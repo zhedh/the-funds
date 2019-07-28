@@ -1,0 +1,42 @@
+@import "../../styles/mixin";
+
+main {
+  .section-banner {
+    height: 19.5rem;
+    background: $primary-color;
+    color: $white;
+
+
+    h1 {
+      @include clearBack;
+      position: relative;
+      height: 6.5rem;
+      text-align: center;
+      line-height: 6.5rem;
+      font-size: $font-title;
+
+      .fa-user {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        margin: auto;
+      }
+    }
+
+    p {
+      @include clearBack;
+      display: flex;
+      align-items: center;
+
+      padding: 6px 20px;
+      font-size: $font-context;
+
+      .megaphone {
+        width: 11px;
+        margin-right: 12px;
+      }
+    }
+
+  }
+}
