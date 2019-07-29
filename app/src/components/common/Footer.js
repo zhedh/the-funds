@@ -7,6 +7,7 @@ import DepositPreSvg from '../../assets/svg/deposit-pre.svg'
 import WalletSvg from '../../assets/svg/wallet.svg'
 import WalletPreSvg from '../../assets/svg/wallet-pre.svg'
 
+
 const TABS = [
     {
         name: 'home',

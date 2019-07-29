@@ -1,6 +1,8 @@
+@import "./styles/mixin";
 
 .App {
-  text-align: center;
+  font-family: $font-style-cn;
+  color: $text-color;
 }
 
 .App-logo {
