@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 import './Footer.scss'
 import FindSvg from '../../assets/svg/find.svg'
 import FindPreSvg from '../../assets/svg/find-pre.svg'
@@ -7,6 +8,7 @@ import DepositPreSvg from '../../assets/svg/deposit-pre.svg'
 import WalletSvg from '../../assets/svg/wallet.svg'
 import WalletPreSvg from '../../assets/svg/wallet-pre.svg'
 
+const FOOTER_PATHS = ['/', '/deposit', 'wallet'];
 
 const TABS = [
     {
@@ -38,9 +40,12 @@ class Footer extends Component {
     };
 
     render() {
+        console.log(this.props)
+        const {location} = this.props
         const {tabName} = this.state;
+        const show = FOOTER_PATHS.includes(location.pathname);
         return (
-            <footer>
+            show && <footer>
                 <ul>
                     {TABS.map(tab =>
                         <li key={tab.name}
@@ -57,4 +62,4 @@ class Footer extends Component {
     }
 }
 
-export default Footer
+export default withRouter(Footer);

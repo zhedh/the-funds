@@ -1,9 +1,9 @@
 class DepositItem {
 
     constructor(props) {
-        // noinspection JSAnnotator
-        super(props);
-        this.depositTime =   props.depositTime;
+        this.depositTime = null;
+        this.returnTime = null;
+        this.zbx = null;
 
     }
 

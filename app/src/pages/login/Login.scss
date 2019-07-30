@@ -1,6 +1,9 @@
-@import "../../styles/mixin";
+@import "../../styles/_common";
 
 #login {
+  position: relative;
+  height: 100vh;
+
   header {
     padding-top: 50px;
   }
