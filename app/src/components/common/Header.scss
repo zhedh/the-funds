@@ -1,0 +1,13 @@
+#common-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 1.8rem 2.8rem;
+
+  img {
+    width: 0.8rem;
+    height: 1.5rem;
+  }
+}
