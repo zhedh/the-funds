@@ -1,0 +1,36 @@
+@import "./mixin";
+
+.btn-common {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  @include clearButton;
+  height: 5rem;
+  line-height: 5rem;
+  border-radius: 2.5rem;
+  color: #fff;
+  background-color: $primary-color;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+
+  &.btn-common__disabled {
+    background-color: $bg-btn-disabled;
+  }
+
+  &.btn-common__bottom {
+    bottom: 5rem;
+  }
+
+  &.btn-common__active {
+    background-color: #ce6433;
+  }
+
+  // &.am-button-active {
+  // outline: none;
+  // }
+
+  // &.am-button-primary {
+  //   background-color: $primary-color;
+  // }
+}
