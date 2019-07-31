@@ -1,18 +1,35 @@
 import React, {PureComponent} from 'react';
 
+import './Dialog.scss'
+
 class Dialog extends PureComponent {
     render() {
+        const {
+            show,
+            title,
+            msg,
+            cancel,
+            confirm,
+            cancelLabel,
+            confirmLabel,
+        } = this.props;
         return (
-            <main>
-                <div className="box">
-                    <h1>提示</h1>
-                    <p>参与定存需先进行身份认证哦</p>
+            show ? <div id="dialog-component">
+                <div className="content">
+                    <h1>{title}</h1>
+                    <p>{msg}</p>
                     <aside>
-                        <button>取消</button>
-                        <button>确定</button>
+                        <button onClick={cancel && cancel()}>
+                            {cancelLabel ? cancelLabel : '取消'}
+                        </button>
+                        <button onClick={confirm && confirm()}>
+                            {confirmLabel ? confirmLabel : '确定'}
+                        </button>
                     </aside>
                 </div>
-            </main>
+            </div> : ''
         );
     }
 }
+
+export default Dialog;

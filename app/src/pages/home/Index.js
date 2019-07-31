@@ -2,13 +2,17 @@ import React, {Component} from 'react';
 import {FaUser} from 'react-icons/fa';
 import {FiChevronRight} from 'react-icons/fi';
 import {IoIosMegaphone} from 'react-icons/io';
+import Dialog from '../../components/common/Dialog'
 import homeNullImg from '../../assets/png/home-null.png';
 
 import './Index.scss'
 
 
 class Index extends Component {
+
+
     render() {
+        const {history} = this.props;
         console.log(this.props)
         return (
             <main>
@@ -30,7 +34,7 @@ class Index extends Component {
                             </div>
                             <FiChevronRight className="icon"/>
                         </li>
-                        <li>
+                        <li onClick={() => history.push('/home/inviter-friend')}>
                             <div className="text">
                                 邀请奖励
                             </div>
@@ -65,6 +69,11 @@ class Index extends Component {
                         每天存一笔，天天有钱赚！
                     </div>
                 </section>
+                <Dialog
+                    show={false}
+                    title="温馨提示"
+                    msg="参与定存需先进行身份认证哦"
+                />
             </main>
         );
     }

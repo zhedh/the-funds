@@ -8,7 +8,7 @@ import DepositPreSvg from '../../assets/svg/deposit-pre.svg'
 import WalletSvg from '../../assets/svg/wallet.svg'
 import WalletPreSvg from '../../assets/svg/wallet-pre.svg'
 
-const FOOTER_PATHS = ['/', '/deposit', 'wallet'];
+const FOOTER_PATHS = ['/home', '/deposit', 'wallet'];
 
 const TABS = [
     {
@@ -45,7 +45,7 @@ class Footer extends Component {
         const {tabName} = this.state;
         const show = FOOTER_PATHS.includes(location.pathname);
         return (
-            show && <footer>
+            show ? <footer>
                 <ul>
                     {TABS.map(tab =>
                         <li key={tab.name}
@@ -57,7 +57,7 @@ class Footer extends Component {
                         </li>)
                     }
                 </ul>
-            </footer>
+            </footer> : ''
         );
     }
 }

@@ -95,9 +95,10 @@
 @mixin clearButton() {
   background-color: transparent;
   border: 0;
+  outline: none;
   color: inherit;
   cursor: pointer;
-  display: block;
+  //display: block;
   font-family: inherit;
   position: relative;
 }
