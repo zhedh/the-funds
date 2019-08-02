@@ -1,6 +1,6 @@
 @import "../../styles/mixin";
 
-main {
+#home {
   .section-banner {
     height: 19.5rem;
     background: $primary-color;
@@ -74,6 +74,16 @@ main {
 
           small {
             font-size: 0.9rem;
+          }
+
+          &.inviter-award {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .icon {
+              margin: 0 8px;
+            }
           }
         }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import QRCode from 'qrcode.react'
+import {Link} from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {MdContentCopy} from 'react-icons/md';
 
@@ -24,7 +25,7 @@ class InviterFriend extends Component {
 
     render() {
         return (
-            <main>
+            <main id="inviter-friend">
                 <Header
                     title="邀请好友"
                     isShadow={true}
@@ -50,8 +51,8 @@ class InviterFriend extends Component {
                         <MdContentCopy className="icon"/>
                     </p>
                 </section>
-                <section className="section-btn">
-                    <button>查看推广</button>
+                <section className="section-link">
+                    <Link to="/home/generalize">查看推广</Link>
                 </section>
             </main>
         );

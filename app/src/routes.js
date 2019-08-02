@@ -20,6 +20,10 @@ const InviterFriend = Loadable({
     loader: () => import('./pages/home/InviterFriend'),
     loading: Loading
 });
+const Generalize = Loadable({
+    loader: () => import('./pages/home/Generalize'),
+    loading: Loading
+});
 const Login = Loadable({
     loader: () => import('./pages/login/Login'),
     loading: Loading
@@ -33,6 +37,7 @@ export default [
     {path: '/', name: 'Home', component: Home},
     {path: '/home', name: 'Home', component: Home},
     {path: '/home/inviter-friend', name: 'InviterFriend', component: InviterFriend},
+    {path: '/home/generalize', name: 'Generalize', component: Generalize},
     {path: '/login', name: 'Login', component: Login},
     {path: '/register', name: 'Register', component: Register},
 ]

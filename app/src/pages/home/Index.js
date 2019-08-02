@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {FaUser} from 'react-icons/fa';
 import {FiChevronRight} from 'react-icons/fi';
 import {IoIosMegaphone} from 'react-icons/io';
+import {GoMailRead} from 'react-icons/go';
 import Dialog from '../../components/common/Dialog'
 import homeNullImg from '../../assets/png/home-null.png';
+import mailRead from '../../assets/png/mail-read.png';
 
 import './Index.scss'
 
@@ -15,7 +17,7 @@ class Index extends Component {
         const {history} = this.props;
         console.log(this.props)
         return (
-            <main>
+            <main id="home">
                 <section className="section-banner">
                     <h1>
                         <FaUser className="fa-user"/>
@@ -35,7 +37,9 @@ class Index extends Component {
                             <FiChevronRight className="icon"/>
                         </li>
                         <li onClick={() => history.push('/home/inviter-friend')}>
-                            <div className="text">
+                            <div className="text inviter-award">
+                                {/*<img src={mailRead} alt="打开信息"/>*/}
+                                <GoMailRead className="icon"/>
                                 邀请奖励
                             </div>
                             <FiChevronRight className="icon"/>

@@ -1,6 +1,6 @@
 @import "../../styles/mixin";
 
-main {
+#inviter-friend {
   padding-top: $header-height;
   line-height: 1.6;
 
@@ -57,15 +57,18 @@ main {
     }
   }
 
-  .section-btn {
+  .section-link {
     padding: 6rem 2rem;
 
-    button {
-      @include clearButton;
+    a {
+      display: block;
       height: 50px;
       width: 100%;
       border-radius: 25px;
       background: $primary-color;
+      line-height: 50px;
+      text-align: center;
+      text-decoration: none;
       color: $white;
       font-size: $font-context;
     }
