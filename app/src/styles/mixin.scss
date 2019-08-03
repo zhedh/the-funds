@@ -96,6 +96,13 @@
   list-style: none;
 }
 
+// 清除input默认样式
+@mixin clearInput() {
+  border: none;
+  background: none;
+  outline: none;
+}
+
 // 清除浮动
 @mixin clearFix() {
   &::before,

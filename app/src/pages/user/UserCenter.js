@@ -1,4 +1,5 @@
 import React, { Component, PureComponent } from 'react'
+import { Modal } from 'antd-mobile'
 import { FaRegQuestionCircle } from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
@@ -30,13 +31,23 @@ class ListItem extends PureComponent {
 }
 
 class UserCenter extends Component {
-  state = { isLogin: false, isFUser: true }
+  state = { isLogin: true, isFUser: true, isCertification: false }
+
   logout = () => {
     console.log('退出登录')
     // 调取退出登录接口
+    Modal.alert('是否退出登录？', '', [
+      {
+        text: '取消',
+        onPress: () => {},
+        style: 'default'
+      },
+      { text: '确认', onPress: () => console.log('ok') }
+    ])
   }
   render() {
-    const { isLogin, isFUser } = this.state
+    const { history } = this.props
+    const { isLogin, isFUser, isCertification } = this.state
     return (
       <div id="user-center">
         <Header title="个人中心" isShadow={true} bgWhite />
@@ -50,9 +61,18 @@ class UserCenter extends Component {
               />
               <ul>
                 <li>ZBX@qq.com</li>
-                <li>未实名认证</li>
+                <li>{isCertification ? '已实名认证' : '未实名认证'}</li>
               </ul>
-              <button className="certification">实名认证</button>
+              {!isCertification && (
+                <button
+                  className="certification"
+                  onClick={() => {
+                    history.push('/verified-country')
+                  }}
+                >
+                  实名认证
+                </button>
+              )}
             </div>
           ) : (
             <h1>

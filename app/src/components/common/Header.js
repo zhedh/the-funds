@@ -13,7 +13,14 @@ class Header extends Component {
     }
   }
   render() {
-    const { title = '', isShadow, isFixed, bgWhite, icon } = this.props
+    const {
+      children,
+      title = '',
+      isShadow,
+      isFixed,
+      bgWhite,
+      icon
+    } = this.props
     let classNames = ''
     classNames += isShadow ? 'shadow ' : ''
     classNames += isFixed ? 'fixed ' : ''
@@ -27,7 +34,7 @@ class Header extends Component {
           onClick={this.onBack}
         />
         <span>{title}</span>
-        <div />
+        <div>{children}</div>
       </header>
     )
   }

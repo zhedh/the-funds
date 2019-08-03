@@ -1,4 +1,4 @@
-@import "./mixin";
+@import './mixin';
 
 .btn-common {
   position: absolute !important;
@@ -15,7 +15,8 @@
   margin: 0 auto;
 
   &.btn-common__disabled {
-    background-color: $bg-btn-disabled;
+    opacity: 0.6;
+    // background-color: $bg-btn-disabled;
   }
 
   &.btn-common__bottom {
@@ -25,19 +26,4 @@
   &.btn-common__active {
     background-color: #ce6433;
   }
-
-  // &.am-button-active {
-  // outline: none;
-  // }
-
-  // &.am-button-primary {
-  //   background-color: $primary-color;
-  // }
 }
-
-// & :global {
-//   .am-toast {
-//   }
-//   .am-toast-mask {
-//   }
-// }
