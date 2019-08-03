@@ -34,7 +34,7 @@ class Index extends Component {
                 <br/>
                 <small>可用特价额度</small>
               </div>
-              <FiChevronRight className="icon" />
+              <FiChevronRight className="icon"/>
             </li>
             <li onClick={() => history.push("/home/inviter-friend")}>
               <div className="text inviter-award">
@@ -47,7 +47,9 @@ class Index extends Component {
         </section>
         <section className="section-main">
           <div className="steps">
-            <span>定存中</span>
+            <Link to="/home/deposit-history">
+              定存中
+            </Link>
             <Link to="/home/rule">
               规则介绍
               <FiChevronRight className="icon"/>

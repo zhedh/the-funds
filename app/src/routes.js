@@ -35,6 +35,10 @@ const Rule = Loadable({
   loader: () => import('./pages/home/Rule'),
   loading: Loading
 });
+const DepositHistory = Loadable({
+  loader: () => import('./pages/home/DepositHistory'),
+  loading: Loading
+});
 const Login = Loadable({
   loader: () => import('./pages/login/Login'),
   loading: Loading
@@ -70,6 +74,7 @@ export default [
   {path: '/home/bargain', name: 'Bargain', component: Bargain},
   {path: '/home/bargain/record', name: 'BargainRecord', component: BargainRecord},
   {path: '/home/rule', name: 'Rule', component: Rule},
+  {path: '/home/deposit-history', name: 'DepositHistory', component: DepositHistory},
 
   // 登陆注册
   {path: '/login', name: 'Login', component: Login},
