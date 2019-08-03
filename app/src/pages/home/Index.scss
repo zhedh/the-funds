@@ -101,10 +101,12 @@
       justify-content: space-between;
       padding: 14px 18px;
 
-      span {
+      span, a {
         display: flex;
         flex-direction: row;
         align-items: center;
+        color: $text-color;
+        text-decoration: none;
 
         .icon {
           font-size: 20px;
