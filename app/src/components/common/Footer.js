@@ -8,7 +8,7 @@ import DepositPreSvg from "../../assets/images/deposit-pre.svg";
 import WalletSvg from "../../assets/images/wallet.svg";
 import WalletPreSvg from "../../assets/images/wallet-pre.svg";
 
-const FOOTER_PATHS = ["/", "/deposit", "wallet"];
+const FOOTER_PATHS = ['/home', '/deposit', 'wallet'];
 
 const TABS = [
   {
@@ -40,32 +40,27 @@ class Footer extends Component {
     this.setState({ tabName });
   };
 
-  render() {
-    const { location } = this.props;
-    const { tabName } = this.state;
-    const show = FOOTER_PATHS.includes(location.pathname);
-    return (
-      show && (
-        <footer>
-          <ul>
-            {TABS.map(tab => (
-              <li
-                key={tab.name}
-                className={tab.name === tabName ? "active" : ""}
-                onClick={() => this.handleChange(tab.name)}
-              >
-                <img
-                  src={tab.name === tabName ? tab.imagePre : tab.image}
-                  alt={tab.label}
-                />
-                {tab.label}
-              </li>
-            ))}
-          </ul>
-        </footer>
-      )
-    );
-  }
+    render() {
+        console.log(this.props)
+        const {location} = this.props
+        const {tabName} = this.state;
+        const show = FOOTER_PATHS.includes(location.pathname);
+        return (
+            show ? <footer>
+                <ul>
+                    {TABS.map(tab =>
+                        <li key={tab.name}
+                            className={tab.name === tabName ? 'active' : ''}
+                            onClick={() => this.handleChange(tab.name)}>
+                            <img src={tab.name === tabName ? tab.imagePre : tab.image}
+                                 alt={tab.label}/>
+                            {tab.label}
+                        </li>)
+                    }
+                </ul>
+            </footer> : ''
+        );
+    }
 }
 
 export default withRouter(Footer);

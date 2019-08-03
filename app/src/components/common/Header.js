@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "./Header.scss";
+
 class Header extends Component {
   render() {
-    const { title = "", history } = this.props;
+    const { title = "", isShadow, isFixed, history } = this.props;
+    let classNames = "";
+    classNames += isShadow ? "shadow " : "";
+    classNames += isFixed ? "fixed " : "";
+
     return (
-      <header id="common-header">
+      <header id="common-header" className={classNames}>
         <img
           src={require("../../assets/images/arrow-left.png")}
-          alt=""
-          onClick={() => {
-            history.goBack();
-          }}
+          alt="返回"
+          onClick={() => history.goBack()}
         />
         <span>{title}</span>
         <div />

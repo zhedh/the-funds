@@ -1,10 +1,15 @@
 @import "../../styles/mixin";
 
-main {
+#home {
   .section-banner {
     height: 19.5rem;
     background: $primary-color;
     color: $white;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     h1 {
       @include clearBack;
@@ -70,6 +75,16 @@ main {
           small {
             font-size: 0.9rem;
           }
+
+          &.inviter-award {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .icon {
+              margin: 0 8px;
+            }
+          }
         }
 
         .icon {
@@ -108,8 +123,8 @@ main {
         align-items: center;
 
         padding: 8px 15px;
-        background:rgba(255,249,247,1);
-        border-radius:7px;
+        background: rgba(255, 249, 247, 1);
+        border-radius: 7px;
         line-height: 1.6;
 
         .main {
@@ -117,11 +132,11 @@ main {
           flex-direction: column;
           font-size: $font-title;
 
-          small{
+          small {
             font-size: 1rem;
           }
 
-          span{
+          span {
             font-size: 1.1rem;
           }
         }
@@ -131,7 +146,7 @@ main {
           flex-direction: column;
           text-align: right;
 
-          time{
+          time {
             padding-bottom: 5px;
           }
         }
