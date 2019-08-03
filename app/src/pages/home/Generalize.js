@@ -1,18 +1,23 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
+import {FiChevronLeft} from 'react-icons/fi';
 
-class Generalize extends Component{
-    render() {
-        return (
-            <main id="generalize">
-                <section className="section-banner">
-                    <h1>
-                        我的推广
-                    </h1>
-                </section>
+import './Generalize.scss'
 
-            </main>
-        );
-    }
+
+class Generalize extends Component {
+  render() {
+    return (
+      <main id="generalize">
+        <section className="section-banner">
+          <h1>
+            <FiChevronLeft className="icon"/>
+            我的推广
+          </h1>
+        </section>
+
+      </main>
+    );
+  }
 }
 
 export default Generalize;

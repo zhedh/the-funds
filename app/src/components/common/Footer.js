@@ -40,7 +40,6 @@ class Footer extends Component {
     };
 
     render() {
-        console.log(this.props)
         const {location} = this.props
         const {tabName} = this.state;
         const show = FOOTER_PATHS.includes(location.pathname);
