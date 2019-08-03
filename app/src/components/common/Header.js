@@ -3,8 +3,17 @@ import { withRouter } from "react-router-dom";
 import "./Header.scss";
 
 class Header extends Component {
+  onBack = () => {
+    const { history, onHandle } = this.props;
+
+    if (onHandle) {
+      onHandle();
+    } else {
+      history.goBack();
+    }
+  };
   render() {
-    const { title = "", isShadow, isFixed, history } = this.props;
+    const { title = "", isShadow, isFixed, icon } = this.props;
     let classNames = "";
     classNames += isShadow ? "shadow " : "";
     classNames += isFixed ? "fixed " : "";
@@ -12,9 +21,9 @@ class Header extends Component {
     return (
       <header id="common-header" className={classNames}>
         <img
-          src={require("../../assets/images/arrow-left.png")}
+          src={icon ? icon : require("../../assets/images/arrow-left.png")}
           alt="返回"
-          onClick={() => history.goBack()}
+          onClick={this.onBack}
         />
         <span>{title}</span>
         <div />

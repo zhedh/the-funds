@@ -71,20 +71,11 @@ class ForgetPwd extends Component {
     const { number, smsCode, password, repassword } = this.state;
     const step = window.location.pathname.split("/")[2];
     if (step === "1") {
-      if (number === "") {
-        Toast.info("请输入邮箱/手机号", TOAST_DURATION);
-        return;
-      }
-
       if (!REG.EMAIL.test(number) && !REG.MOBILE.test(number)) {
         Toast.info("账号输入错误", TOAST_DURATION);
         return;
       }
 
-      if (smsCode === "") {
-        Toast.info("请输入验证码", TOAST_DURATION);
-        return;
-      }
       if (!REG.SMSCODE.test(smsCode)) {
         Toast.info("验证码输入错误", TOAST_DURATION);
         return;
@@ -95,16 +86,8 @@ class ForgetPwd extends Component {
     }
 
     if (step === "2") {
-      if (password === "") {
-        Toast.info("请输入密码", TOAST_DURATION);
-        return;
-      }
       if (!REG.PASSWORD.test(password)) {
         Toast.info("密码最少8位，字母加数字", TOAST_DURATION);
-        return;
-      }
-      if (repassword === "") {
-        Toast.info("请再次输入密码", TOAST_DURATION);
         return;
       }
       if (password !== repassword) {
@@ -132,6 +115,14 @@ class ForgetPwd extends Component {
       history: { location }
     } = this.props;
     const step = location && location.pathname.split("/")[2];
+    let isDisabled;
+
+    if (step === "1") {
+      isDisabled = number === "" || smsCode === "";
+    } else {
+      isDisabled = password === "" || repassword === "";
+    }
+
     return (
       <div id="forget-pwd">
         <Header />
@@ -225,7 +216,8 @@ class ForgetPwd extends Component {
         </div>
         <Button
           activeClassName="btn-common__active"
-          className="btn-common"
+          className={`btn-common ${isDisabled ? "btn-common__disabled" : ""}`}
+          disabled={isDisabled}
           onClick={this.onSubmit}
         >
           下一步
