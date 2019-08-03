@@ -1,7 +1,7 @@
 @import "./mixin";
 
 .btn-common {
-  position: absolute;
+  position: absolute !important;
   left: 20px;
   right: 20px;
   @include clearButton;
@@ -34,3 +34,10 @@
   //   background-color: $primary-color;
   // }
 }
+
+// & :global {
+//   .am-toast {
+//   }
+//   .am-toast-mask {
+//   }
+// }

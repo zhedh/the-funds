@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <header id="common-header">
         <img
-          src={require("../../assets/png/arrow-left.png")}
+          src={require("../../assets/images/arrow-left.png")}
           alt=""
           onClick={() => {
             history.goBack();
