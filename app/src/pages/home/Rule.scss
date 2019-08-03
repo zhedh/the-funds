@@ -1,0 +1,13 @@
+@import "../../styles/mixin";
+
+#rule {
+  @include clearFix;
+  box-sizing: border-box;
+  padding-top: $header-height;
+  min-height: 100vh;
+
+  p {
+    padding: 8px 15px;
+    line-height: 1.6;
+  }
+}

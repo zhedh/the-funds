@@ -1,59 +1,57 @@
-import React, { Component } from 'react'
-import { FiChevronRight } from 'react-icons/fi'
-import { IoIosMegaphone } from 'react-icons/io'
-import { GoMailRead } from 'react-icons/go'
-import Dialog from '../../components/common/Dialog'
-import Header from '../../components/common/Header'
-import homeNullImg from '../../assets/images/home-null.png'
-// import mailRead from "../../assets/images/mail-read.png";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {FiChevronRight} from "react-icons/fi";
+import {IoIosMegaphone} from "react-icons/io";
+import {GoMailRead} from "react-icons/go";
+import Dialog from "../../components/common/Dialog";
+import Header from '../../components/common/Header';
+import homeNullImg from '../../assets/images/home-null.png';
+import userCenterImg from '../../assets/images/user-center.png';
 
-import './Index.scss'
-
-import './Index.scss'
+import './Index.scss';
 
 class Index extends Component {
   render() {
-    const { history } = this.props
+    const {history} = this.props;
     return (
-      <main id="home">
+      <div id="home">
         <section className="section-banner">
           <Header
             title="中募基金"
-            icon={require('../../assets/images/user-center.png')}
+            icon={userCenterImg}
             onHandle={() => {
-              history.push('user-center')
+              history.push("user-center");
             }}
           />
           <p>
-            <IoIosMegaphone className="megaphone" />
+            <IoIosMegaphone className="megaphone"/>
             公告：关于开放ZBX基金定存说明
           </p>
           <ul className="tabs">
-            <li>
+            <li onClick={() => history.push("/home/bargain")}>
               <div className="text">
                 <b>128.23</b>
-                <br />
+                <br/>
                 <small>可用特价额度</small>
               </div>
               <FiChevronRight className="icon" />
             </li>
-            <li onClick={() => history.push('/home/inviter-friend')}>
+            <li onClick={() => history.push("/home/inviter-friend")}>
               <div className="text inviter-award">
-                {/*<img src={mailRead} alt="打开信息"/>*/}
-                <GoMailRead className="icon" />
+                <GoMailRead className="icon"/>
                 邀请奖励
               </div>
-              <FiChevronRight className="icon" />
+              <FiChevronRight className="icon"/>
             </li>
           </ul>
         </section>
         <section className="section-main">
           <div className="steps">
             <span>定存中</span>
-            <span>
+            <Link to="/home/rule">
               规则介绍
-              <FiChevronRight className="icon" />
-            </span>
+              <FiChevronRight className="icon"/>
+            </Link>
           </div>
           <ul className="list">
             <li>
@@ -69,8 +67,8 @@ class Index extends Component {
             </li>
           </ul>
           <div className="null">
-            <img src={homeNullImg} alt="空" />
-            <br />
+            <img src={homeNullImg} alt="空"/>
+            <br/>
             每天存一笔，天天有钱赚！
           </div>
         </section>
@@ -79,9 +77,9 @@ class Index extends Component {
           title="温馨提示"
           msg="参与定存需先进行身份认证哦"
         />
-      </main>
-    )
+      </div>
+    );
   }
 }
 
-export default Index
+export default Index;
