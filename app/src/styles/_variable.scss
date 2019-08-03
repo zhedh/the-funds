@@ -17,7 +17,7 @@ $bg-btn-disabled: #a1a4ac;
 
 /* Default colors */
 $primary-color: #e8713a; // 主题色
-$assistant-color: #2A76DD; // 辅助色
+$assistant-color: #2a76dd; // 辅助色
 
 $succeed-color: #29b056; // 通过、成功
 $warn-color: #fa8100; // 提醒、警告
@@ -27,6 +27,7 @@ $danger-color: #ef4f4f; // 错误、失败
 $border-color: #e9e9eb;
 $border-input-color: #d1d8e6;
 $background-color: #f7f9fc;
+$background-gray: #f7f7f8;
 $background-group-color: #f0f2f5;
 
 /* Font color */
@@ -45,11 +46,11 @@ $font-title-xl: 2.8rem; // 大标题
 
 /* Font family */
 $font-style-cn: PingFangSC-Regular, PingFang SC, Hiragino Sans GB, Arial,
-sans-serif;
+  sans-serif;
 $font-style-en: PingFangSC-Light, PingFang SC, Arial, sans-serif;
 $font-regular: PingFangSC-Regular, PingFang SC, Hiragino Sans GB, Arial,
-sans-serif;
-$font-serif: SimSun, "宋体", serif;
+  sans-serif;
+$font-serif: SimSun, '宋体', serif;
 
 /* Space width */
 $space-width: 15px;
