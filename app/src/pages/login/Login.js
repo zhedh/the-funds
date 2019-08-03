@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Button, Toast } from "antd-mobile";
 import { Link } from "react-router-dom";
-import { REG } from "../../utils/constants";
+import { REG, TOAST_DURATION } from "../../utils/constants";
 import Header from "../../components/common/Header";
 import "./Login.scss";
 class Login extends Component {
   state = {
     number: "",
-    password: ""
+    password: "",
+    type: "password"
   };
 
   onNumberChange = e => {
@@ -25,27 +26,36 @@ class Login extends Component {
   };
 
   onSubmit = () => {
+    const { history } = this.props;
     const { number, password } = this.state;
-
     if (number === "") {
-      Toast.info("请输入邮箱/手机号");
+      Toast.info("请输入邮箱/手机号", TOAST_DURATION);
       return;
     }
+
     if (!REG.EMAIL.test(number) && !REG.MOBILE.test(number)) {
-      Toast.info("账号或密码输入错误");
+      Toast.info("账号输入错误", TOAST_DURATION);
       return;
     }
+
     if (password === "") {
-      Toast.info("请输入密码");
+      Toast.info("请输入密码", TOAST_DURATION);
       return;
     }
     if (!REG.PASSWORD.test(password)) {
-      Toast.info("账号或密码输入错误");
+      Toast.info("密码输入错误", TOAST_DURATION);
       return;
     }
+    // 吊登陆接口，成功后前往首页
+    history.push("/");
   };
+
+  onSetType = type => {
+    this.setState({ type });
+  };
+
   render() {
-    const { number, password } = this.state;
+    const { number, password, type } = this.state;
     return (
       <div id="login">
         <Header />
@@ -63,15 +73,28 @@ class Login extends Component {
           <label>
             <input
               className="input-main"
-              type="password"
+              type={type}
               placeholder="密码"
               value={password}
               onChange={this.onPasswordChange}
             />
-            <img src={require("../../assets/png/open-pwd.png")} alt="" />
+            {type === "text" && (
+              <img
+                src={require("../../assets/images/open-pwd.png")}
+                alt=""
+                onClick={() => this.onSetType("password")}
+              />
+            )}
+            {type === "password" && (
+              <img
+                src={require("../../assets/images/close-pwd.png")}
+                alt=""
+                onClick={() => this.onSetType("text")}
+              />
+            )}
           </label>
           <p>
-            <Link to="/find-password">忘记密码？</Link>
+            <Link to="/forget-password/1">忘记密码？</Link>
             <Link to="/register">注册</Link>
           </p>
         </div>

@@ -1,6 +1,6 @@
 @import "../../styles/_common";
 
-#login {
+#forget-pwd {
   position: relative;
   height: 100vh;
 
@@ -11,11 +11,17 @@
   h2 {
     font-size: $font-title-xl;
     font-weight: 400;
+
+    small {
+      font-size: $font-assistant;
+      color: $black-font-primary;
+    }
   }
 
-  .login-content {
+  .main-content {
     box-sizing: border-box;
     padding: 0 20px;
+    margin-bottom: 3rem;
 
     label {
       position: relative;
@@ -48,6 +54,21 @@
         right: 0;
         width: 2.2rem;
         height: 1.3rem;
+      }
+      .sms-code {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateY(50%);
+        pointer-events: all;
+
+        &.event-none {
+          pointer-events: none;
+        }
+        span {
+          font-weight: 500;
+          color: $primary-color;
+        }
       }
     }
 
