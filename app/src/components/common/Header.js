@@ -1,35 +1,36 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import "./Header.scss";
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import './Header.scss'
 
 class Header extends Component {
   onBack = () => {
-    const { history, onHandle } = this.props;
+    const { history, onHandle } = this.props
 
     if (onHandle) {
-      onHandle();
+      onHandle()
     } else {
-      history.goBack();
+      history.goBack()
     }
-  };
+  }
   render() {
-    const { title = "", isShadow, isFixed, icon } = this.props;
-    let classNames = "";
-    classNames += isShadow ? "shadow " : "";
-    classNames += isFixed ? "fixed " : "";
+    const { title = '', isShadow, isFixed, bgWhite, icon } = this.props
+    let classNames = ''
+    classNames += isShadow ? 'shadow ' : ''
+    classNames += isFixed ? 'fixed ' : ''
+    classNames += bgWhite ? 'bg-White' : ''
 
     return (
       <header id="common-header" className={classNames}>
         <img
-          src={icon ? icon : require("../../assets/images/arrow-left.png")}
+          src={icon ? icon : require('../../assets/images/arrow-left.png')}
           alt="返回"
           onClick={this.onBack}
         />
         <span>{title}</span>
         <div />
       </header>
-    );
+    )
   }
 }
 
-export default withRouter(Header);
+export default withRouter(Header)
