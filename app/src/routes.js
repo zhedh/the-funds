@@ -35,6 +35,10 @@ const Rule = Loadable({
   loader: () => import('./pages/home/Rule'),
   loading: Loading
 })
+const DepositHistory = Loadable({
+  loader: () => import('./pages/home/DepositHistory'),
+  loading: Loading
+})
 const Login = Loadable({
   loader: () => import('./pages/login/Login'),
   loading: Loading
@@ -74,8 +78,11 @@ const VerifiedUpload = Loadable({
 
 export default [
   // 主页
-  { path: '/', name: 'Home', component: Home },
-  { path: '/home', name: 'Home', component: Home },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
+  },
   {
     path: '/home/inviter-friend',
     name: 'InviterFriend',
@@ -94,6 +101,11 @@ export default [
     component: BargainRecord
   },
   { path: '/home/rule', name: 'Rule', component: Rule },
+  {
+    path: '/home/deposit-history',
+    name: 'DepositHistory',
+    component: DepositHistory
+  },
 
   // 登陆注册
   { path: '/login', name: 'Login', component: Login },

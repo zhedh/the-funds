@@ -1,0 +1,27 @@
+@import '../../styles/_common';
+
+#verified-upload {
+  background: #fff;
+
+  .notices {
+    box-sizing: border-box;
+    padding: 0 30px;
+    color: $text-color;
+    font-size: $font-assistant;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .upload-content {
+    padding: 0 30px;
+    margin-top: 2.5rem;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .upload-img {
+    margin-top: 4.5rem;
+  }
+}

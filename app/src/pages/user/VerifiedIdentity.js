@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Button } from 'antd-mobile'
+import { Button, Toast } from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedIdentity.scss'
+import { TOAST_DURATION } from '../../utils/constants'
 const typeList = [
   {
     name: '身份证',
@@ -30,20 +31,53 @@ class VerifiedIdentity extends Component {
     lastName: '',
     cardNumber: ''
   }
-  render() {
+
+  onUsernameChange = e => {
     const {
-      activeType,
-      userName,
-      idCard,
-      firstName,
-      lastName,
-      cardNumber
-    } = this.state
+      target: { value }
+    } = e
+    this.setState({ userName: value })
+  }
+
+  onCardNumberChange = e => {
+    const {
+      target: { value }
+    } = e
+    this.setState({ cardNumber: value })
+  }
+
+  onFirstnameChange = e => {
+    const {
+      target: { value }
+    } = e
+    this.setState({ firstName: value })
+  }
+  onLastNameChange = e => {
+    const {
+      target: { value }
+    } = e
+    this.setState({ lastName: value })
+  }
+  onSubmit = () => {
+    const { cardNumber } = this.state
+    const { history } = this.props
+    if (cardNumber.length < 7) {
+      Toast.info('请输入7-18位证件号码', TOAST_DURATION)
+      return
+    }
+    // 提交数据至后台并 上传照片
+    history.push('/verified-upload')
+  }
+  render() {
+    const { activeType, userName, firstName, lastName, cardNumber } = this.state
     const currType = window.location.pathname.split('/')[2]
     const isDisabled =
       currType !== 'china'
-        ? firstName === '' || lastName === '' || cardNumber === ''
-        : idCard === '' || userName === ''
+        ? activeType === null ||
+          firstName === '' ||
+          lastName === '' ||
+          cardNumber === ''
+        : cardNumber === '' || userName === ''
     return (
       <div id="verified-identity">
         <Header />
@@ -56,8 +90,19 @@ class VerifiedIdentity extends Component {
         <div className="identity-bottom">
           {currType === 'china' ? (
             <div className="identity-bottom__input input-center">
-              <input type="text" placeholder="您的姓名" value={userName} />
-              <input type="text" placeholder="身份证号" value={idCard} />
+              <input
+                type="text"
+                maxLength={70}
+                placeholder="您的姓名"
+                value={userName}
+                onChange={this.onUsernameChange}
+              />
+              <input
+                type="text"
+                placeholder="身份证号"
+                value={cardNumber}
+                onChange={this.onCardNumberChange}
+              />
             </div>
           ) : (
             <Fragment>
@@ -81,9 +126,27 @@ class VerifiedIdentity extends Component {
                 ))}
               </ul>
               <div className="identity-bottom__input">
-                <input type="text" placeholder="姓" value={firstName} />
-                <input type="text" placeholder="名" value={lastName} />
-                <input type="text" placeholder="证件号" value={cardNumber} />
+                <input
+                  type="text"
+                  maxLength={70}
+                  placeholder="姓"
+                  value={firstName}
+                  onChange={this.onFirstnameChange}
+                />
+                <input
+                  type="text"
+                  maxLength={70}
+                  placeholder="名"
+                  value={lastName}
+                  onChange={this.onLastNameChange}
+                />
+                <input
+                  type="text"
+                  maxLength={18}
+                  placeholder="证件号"
+                  value={cardNumber}
+                  onChange={this.onCardNumberChange}
+                />
               </div>
             </Fragment>
           )}

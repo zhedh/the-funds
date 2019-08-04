@@ -4,6 +4,7 @@ import './DepositHistory.scss'
 
 const HISTORIES = [
   {
+    id: 1,
     time: '2019.07.09 15:00',
     status: '已返还',
     order: '201907091234',
@@ -13,6 +14,7 @@ const HISTORIES = [
     exchangePrince: '0.45',
     returnZbx: '123.19'
   }, {
+    id: 2,
     time: '2019.07.09 15:00',
     status: '已返还',
     order: '201907091234',
@@ -30,21 +32,27 @@ class DepositHistory extends Component {
   };
 
   render() {
+    const {history} = this.props
     const {depositHistories} = this.state;
 
     return (
       <div id="deposit-history">
-        <Header title="规则说明" isFixed isShadow/>
+        <Header
+          title="定存历史"
+          isFixed
+          isShadow
+          onHandle={() => history.push('/home')}
+        />
         <ul>
           {depositHistories.map(history =>
-            <li>
+            <li key={history.id}>
               <aside>
                 <span>{history.time}</span>
                 <small>{history.status}</small>
               </aside>
               <p>
                 <label>订单号</label>
-                <span>{history.value}</span>
+                <span>{history.order}</span>
               </p>
               <p>
                 <label>定存ZBX</label>
@@ -73,6 +81,5 @@ class DepositHistory extends Component {
     );
   }
 }
-
 
 export default DepositHistory;
