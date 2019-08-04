@@ -84,6 +84,7 @@ const VerifiedUpload = Loadable({
 
 export default [
   // 主页
+  {path: '/', name: 'Home', component: Home},
   {path: '/home', name: 'Home', component: Home},
   {path: '/home/inviter-friend', name: 'InviterFriend', component: InviterFriend},
   {path: '/home/generalize', name: 'Generalize', component: Generalize},
@@ -102,24 +103,12 @@ export default [
   {path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd},
 
   // 个人中心
-  { path: '/user-center', name: 'UserCenter', component: UserCenter },
-  { path: '/notices', name: 'Notices', component: Notices },
-  { path: '/account', name: 'AccountSafe', component: AccountSafe },
+  {path: '/user-center', name: 'UserCenter', component: UserCenter},
+  {path: '/notices', name: 'Notices', component: Notices},
+  {path: '/account', name: 'AccountSafe', component: AccountSafe},
 
   // 实名认证
-  {
-    path: '/verified-country',
-    name: 'VerifiedCountry',
-    component: VerifiedCountry
-  },
-  {
-    path: '/verified-identity/:state',
-    name: 'VerifiedIdentity',
-    component: VerifiedIdentity
-  },
-  {
-    path: '/verified-upload',
-    name: 'VerifiedUpload',
-    component: VerifiedUpload
-  }
+  {path: '/verified-country', name: 'VerifiedCountry', component: VerifiedCountry},
+  {path: '/verified-identity/:state', name: 'VerifiedIdentity', component: VerifiedIdentity},
+  {path: '/verified-upload', name: 'VerifiedUpload', component: VerifiedUpload}
 ]
