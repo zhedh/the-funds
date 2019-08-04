@@ -56,31 +56,31 @@ const Register = Loadable({
 const ForgetPwd = Loadable({
   loader: () => import('./pages/login/ForgetPwd'),
   loading: Loading
-})
+});
 const UserCenter = Loadable({
   loader: () => import('./pages/user/UserCenter'),
   loading: Loading
-})
+});
 const Notices = Loadable({
   loader: () => import('./pages/notice/Notices'),
   loading: Loading
-})
+});
 const AccountSafe = Loadable({
   loader: () => import('./pages/user/AccountSafe'),
   loading: Loading
-})
+});
 const VerifiedCountry = Loadable({
   loader: () => import('./pages/user/VerifiedCountry'),
   loading: Loading
-})
+});
 const VerifiedIdentity = Loadable({
   loader: () => import('./pages/user/VerifiedIdentity'),
   loading: Loading
-})
+});
 const VerifiedUpload = Loadable({
   loader: () => import('./pages/user/VerifiedUpload'),
   loading: Loading
-})
+});
 
 export default [
   // 主页
