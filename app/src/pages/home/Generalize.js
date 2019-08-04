@@ -58,12 +58,12 @@ class Generalize extends Component {
               {generalizeList.map(generalize =>
                 <li key={generalize.id} onClick={() => this.toDetail(generalize.id)}>
                   <p>
-                    <img src={generalize.img}/>
+                    <img src={generalize.img} alt=""/>
                     {generalize.label}
                   </p>
                   <aside>
                     {generalize.count}
-                    <img src={arrowLeft}/>
+                    <img src={arrowLeft} alt=""/>
                   </aside>
                 </li>)
               }

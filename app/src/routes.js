@@ -39,6 +39,12 @@ const DepositHistory = Loadable({
   loader: () => import('./pages/home/DepositHistory'),
   loading: Loading
 });
+
+const Wallet = Loadable({
+  loader: () => import("./pages/wallet/Index"),
+  loading: Loading
+});
+
 const Login = Loadable({
   loader: () => import('./pages/login/Login'),
   loading: Loading
@@ -66,7 +72,6 @@ const AccountSafe = Loadable({
 
 export default [
   // 主页
-  {path: '/', name: 'Home', component: Home},
   {path: '/home', name: 'Home', component: Home},
   {path: '/home/inviter-friend', name: 'InviterFriend', component: InviterFriend},
   {path: '/home/generalize', name: 'Generalize', component: Generalize},
@@ -75,6 +80,9 @@ export default [
   {path: '/home/bargain/record', name: 'BargainRecord', component: BargainRecord},
   {path: '/home/rule', name: 'Rule', component: Rule},
   {path: '/home/deposit-history', name: 'DepositHistory', component: DepositHistory},
+
+  // 钱包
+  {path: '/wallet', name: 'Wallet', component: Wallet},
 
   // 登陆注册
   {path: '/login', name: 'Login', component: Login},
