@@ -5,21 +5,14 @@ import './AccountSafe.scss'
 
 class AccountSafe extends Component {
   state = {
-    hadTransactionPwd: true // 是否已设置交易密码
+    hadTransactionPwd: false // 是否已设置交易密码
   }
   render() {
     const { hadTransactionPwd } = this.state
     return (
       <div id="account-safe">
         <Header title="安全中心" isShadow={true} />
-        <Link
-          to={{
-            pathname: '/forget-password/1',
-            state: {
-              type: '重置登录密码'
-            }
-          }}
-        >
+        <Link to={{ pathname: '/forget-password/1', state: { type: 'reset' } }}>
           <p>重置登录密码</p>
           <img
             className="arrow"
@@ -29,10 +22,8 @@ class AccountSafe extends Component {
         </Link>
         <Link
           to={{
-            pathname: '/forget-password/1',
-            state: {
-              title: hadTransactionPwd ? '重置交易密码' : '设置交易密码'
-            }
+            pathname: '/transaction-password/1',
+            state: { type: hadTransactionPwd ? 'reset' : 'set' }
           }}
         >
           <p>{hadTransactionPwd ? '重置交易密码' : '设置交易密码'}</p>

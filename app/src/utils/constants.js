@@ -8,7 +8,10 @@ export const REG = {
   IDCARD: /^[a-z0-9A-Z]+$/
 }
 
-export const COUNT_DOWN = 10 // 倒计时
+// 网易验证码 ID
+export const CAPTCHA_ID = '659ba10af0634d2d9451f90fdcadb336'
+
+export const COUNT_DOWN = 60 // 倒计时
 
 export const TOAST_DURATION = 0.9 // 提示框出现时间0.9s
 export const COUNTRIES_LIST = [

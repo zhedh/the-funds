@@ -65,6 +65,10 @@ const ForgetPwd = Loadable({
   loader: () => import('./pages/login/ForgetPwd'),
   loading: Loading
 })
+const TransactionPwd = Loadable({
+  loader: () => import('./pages/login/TransactionPwd'),
+  loading: Loading
+})
 const UserCenter = Loadable({
   loader: () => import('./pages/user/UserCenter'),
   loading: Loading
@@ -131,6 +135,11 @@ export default [
   { path: '/login', name: 'Login', component: Login },
   { path: '/register/:state', name: 'Register', component: Register },
   { path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd },
+  {
+    path: '/transaction-password/:state',
+    name: 'TransactionPwd',
+    component: TransactionPwd
+  },
 
   // 个人中心
   { path: '/user-center', name: 'UserCenter', component: UserCenter },
