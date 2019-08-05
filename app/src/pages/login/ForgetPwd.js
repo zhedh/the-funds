@@ -1,105 +1,115 @@
-import React, { Component, Fragment } from "react";
-import { Button, Toast } from "antd-mobile";
-import { REG, COUNT_DOWN, TOAST_DURATION } from "../../utils/constants";
-import Header from "../../components/common/Header";
-import "./ForgetPwd.scss";
+import React, { Component, Fragment } from 'react'
+import { Button, Toast } from 'antd-mobile'
+import { REG, COUNT_DOWN, TOAST_DURATION } from '../../utils/constants'
+import Header from '../../components/common/Header'
+import './ForgetPwd.scss'
 class ForgetPwd extends Component {
   state = {
-    number: "",
-    smsCode: "",
-    password: "",
-    repassword: "",
-    repwdType: "password",
-    pwdType: "password",
+    number: '',
+    smsCode: '',
+    password: '',
+    repassword: '',
+    repwdType: 'password',
+    pwdType: 'password',
     count: COUNT_DOWN,
-    isGetSms: true
-  };
+    isGetSms: true,
 
+    pageType: null
+  }
+  componentDidMount() {
+    const {
+      history: { location }
+    } = this.props
+    const { state } = location
+    if (state && state.type) {
+      this.setState({ pageTitle: state.title })
+    }
+  }
   componentWillUnmount() {
-    clearInterval(this.timer);
+    clearInterval(this.timer)
   }
 
   onNumberChange = e => {
     const {
       target: { value }
-    } = e;
-    this.setState({ number: value });
-  };
+    } = e
+    this.setState({ number: value })
+  }
 
   onSmsCodeChange = e => {
     const {
       target: { value }
-    } = e;
-    this.setState({ smsCode: value });
-  };
+    } = e
+    this.setState({ smsCode: value })
+  }
 
   onPasswordChange = e => {
     const {
       target: { value }
-    } = e;
-    this.setState({ password: value });
-  };
+    } = e
+    this.setState({ password: value })
+  }
 
   onRepasswordChange = e => {
     const {
       target: { value }
-    } = e;
-    this.setState({ repassword: value });
-  };
+    } = e
+    this.setState({ repassword: value })
+  }
 
   codeCountDown = () => {
-    let count = this.state.count;
+    let count = this.state.count
 
     this.timer = setInterval(() => {
       if (count <= 0) {
-        this.setState({ isGetSms: true, count: COUNT_DOWN });
-        clearInterval(this.timer);
-        return;
+        this.setState({ isGetSms: true, count: COUNT_DOWN })
+        clearInterval(this.timer)
+        return
       } else {
-        this.setState({ isGetSms: false, count: count-- });
+        this.setState({ isGetSms: false, count: count-- })
       }
-    }, 1000);
-  };
+    }, 1000)
+  }
 
   getSmsCode = async () => {
-    await this.codeCountDown();
+    await this.codeCountDown()
     // 调发送接口
-  };
+  }
 
   onSubmit = () => {
-    const { history } = this.props;
-    const { number, smsCode, password, repassword } = this.state;
-    const step = window.location.pathname.split("/")[2];
-    if (step === "1") {
+    const { history } = this.props
+    const { number, smsCode, password, repassword } = this.state
+    const step = window.location.pathname.split('/')[2]
+    if (step === '1') {
       if (!REG.EMAIL.test(number) && !REG.MOBILE.test(number)) {
-        Toast.info("账号输入错误", TOAST_DURATION);
-        return;
+        Toast.info('账号输入错误', TOAST_DURATION)
+        return
       }
 
       if (!REG.SMSCODE.test(smsCode)) {
-        Toast.info("验证码输入错误", TOAST_DURATION);
-        return;
+        Toast.info('验证码输入错误', TOAST_DURATION)
+        return
       }
 
-      history.replace(`/forget-password/2`);
-      return;
+      history.replace(`/forget-password/2`)
+      return
     }
 
-    if (step === "2") {
+    if (step === '2') {
       if (!REG.PASSWORD.test(password)) {
-        Toast.info("密码最少8位，字母加数字", TOAST_DURATION);
-        return;
+        Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
+        return
       }
       if (password !== repassword) {
-        Toast.info("两次密码不一致", TOAST_DURATION);
-        return;
+        Toast.info('两次密码不一致', TOAST_DURATION)
+        return
       }
 
-      Toast.info("密码已重置，请重新登录", TOAST_DURATION, () => {
-        history.push(`/login`);
-      });
+      Toast.info('密码已重置，请重新登录', TOAST_DURATION, () => {
+        history.push(`/login`)
+      })
     }
-  };
+  }
   render() {
     const {
       number,
@@ -109,27 +119,35 @@ class ForgetPwd extends Component {
       count,
       isGetSms,
       pwdType,
-      repwdType
-    } = this.state;
+      repwdType,
+      pageType
+    } = this.state
     const {
       history: { location }
-    } = this.props;
-    const step = location && location.pathname.split("/")[2];
-    let isDisabled;
-
-    if (step === "1") {
-      isDisabled = number === "" || smsCode === "";
+    } = this.props
+    const step = location && location.pathname.split('/')[2]
+    let isDisabled
+    if (step === '1') {
+      isDisabled = number === '' || smsCode === ''
     } else {
-      isDisabled = password === "" || repassword === "";
+      isDisabled = password === '' || repassword === ''
     }
 
     return (
       <div id="forget-pwd">
         <Header />
         <div className="main-content">
-          {step === "1" && (
+          {step === '1' && (
             <Fragment>
-              <h2> {step === "1" ? "找回密码" : "设置交易密码"}</h2>
+              <h2>
+                {pageType === 'loginPwd' && '重置登录密码'}
+                {pageType === 'transactionPwd' && '重置交易密码'}
+                {/* {pageType === null
+                  ? step === '1'
+                    ? '找回密码'
+                    : '设置交易密码'
+                  : pageTitle} */}
+              </h2>
               <label>
                 <input
                   className="input-main"
@@ -149,16 +167,16 @@ class ForgetPwd extends Component {
                   onChange={this.onSmsCodeChange}
                 />
                 <span
-                  className={`sms-code  ${!isGetSms ? `event-none` : ""}`}
+                  className={`sms-code  ${!isGetSms ? `event-none` : ''}`}
                   onClick={this.getSmsCode}
                 >
-                  {isGetSms ? "获取验证码" : <span>{`${count}s`}</span>}
+                  {isGetSms ? '获取验证码' : <span>{`${count}s`}</span>}
                 </span>
               </label>
             </Fragment>
           )}
 
-          {step === "2" && (
+          {step === '2' && (
             <Fragment>
               <h2>
                 重置密码
@@ -173,18 +191,18 @@ class ForgetPwd extends Component {
                   value={password}
                   onChange={this.onPasswordChange}
                 />
-                {pwdType === "text" && (
+                {pwdType === 'text' && (
                   <img
-                    src={require("../../assets/images/open-pwd.png")}
+                    src={require('../../assets/images/open-pwd.png')}
                     alt=""
-                    onClick={() => this.setState({ pwdType: "password" })}
+                    onClick={() => this.setState({ pwdType: 'password' })}
                   />
                 )}
-                {pwdType === "password" && (
+                {pwdType === 'password' && (
                   <img
-                    src={require("../../assets/images/close-pwd.png")}
+                    src={require('../../assets/images/close-pwd.png')}
                     alt=""
-                    onClick={() => this.setState({ pwdType: "text" })}
+                    onClick={() => this.setState({ pwdType: 'text' })}
                   />
                 )}
               </label>
@@ -196,18 +214,18 @@ class ForgetPwd extends Component {
                   value={repassword}
                   onChange={this.onRepasswordChange}
                 />
-                {repwdType === "text" && (
+                {repwdType === 'text' && (
                   <img
-                    src={require("../../assets/images/open-pwd.png")}
+                    src={require('../../assets/images/open-pwd.png')}
                     alt=""
-                    onClick={() => this.setState({ repwdType: "password" })}
+                    onClick={() => this.setState({ repwdType: 'password' })}
                   />
                 )}
-                {repwdType === "password" && (
+                {repwdType === 'password' && (
                   <img
-                    src={require("../../assets/images/close-pwd.png")}
+                    src={require('../../assets/images/close-pwd.png')}
                     alt=""
-                    onClick={() => this.setState({ repwdType: "text" })}
+                    onClick={() => this.setState({ repwdType: 'text' })}
                   />
                 )}
               </label>
@@ -216,15 +234,15 @@ class ForgetPwd extends Component {
         </div>
         <Button
           activeClassName="btn-common__active"
-          className={`btn-common ${isDisabled ? "btn-common__disabled" : ""}`}
+          className={`btn-common ${isDisabled ? 'btn-common__disabled' : ''}`}
           disabled={isDisabled}
           onClick={this.onSubmit}
         >
           下一步
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default ForgetPwd;
+export default ForgetPwd

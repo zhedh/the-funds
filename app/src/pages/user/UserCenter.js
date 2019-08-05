@@ -34,7 +34,7 @@ class UserCenter extends Component {
   state = { isLogin: true, isFUser: true, isCertification: false }
 
   logout = () => {
-    console.log('退出登录')
+    const { history } = this.props
     // 调取退出登录接口
     Modal.alert('是否退出登录？', '', [
       {
@@ -42,7 +42,10 @@ class UserCenter extends Component {
         onPress: () => {},
         style: 'default'
       },
-      { text: '确认', onPress: () => console.log('ok') }
+      {
+        text: '确认',
+        onPress: () => history.push('/')
+      }
     ])
   }
   render() {
@@ -102,17 +105,19 @@ class UserCenter extends Component {
           <ListItem
             icon={require('../../assets/images/account.svg')}
             name="账户安全"
-            url="/account"
+            url={isLogin ? '/account' : '/login'}
           />
         </section>
-        <section className={`list-content list-second`}>
-          <ListItem
-            icon={require('../../assets/images/logout.svg')}
-            name="退出登录"
-            url="/login"
-            onHandle={this.logout}
-          />
-        </section>
+        {isLogin && (
+          <section className={`list-content list-second`}>
+            <ListItem
+              icon={require('../../assets/images/logout.svg')}
+              name="退出登录"
+              url="/login"
+              onHandle={this.logout}
+            />
+          </section>
+        )}
       </div>
     )
   }

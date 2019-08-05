@@ -7,7 +7,20 @@ class VerifiedUpload extends Component {
   state = {
     cardFront: null,
     cardBack: null,
-    cardHold: null
+    cardHold: null,
+    fileName: ''
+  }
+  // 上传护照照片
+  onUpload = (id, fileName) => {
+    const file = document.getElementById(id).files[0]
+    this.setState({ file, fileName: [fileName] }, () => {
+      console.log(id, fileName)
+    })
+  }
+
+  onSubmit = () => {
+    const { history } = this.props
+    history.push('')
   }
   render() {
     const { cardFront, cardBack, cardHold } = this.state
@@ -30,16 +43,62 @@ class VerifiedUpload extends Component {
 
         <div className="upload-content">
           <p>Id card/passport front photo</p>
-          <img src={require('../../assets/images/card-front.png')} alt="" />
+          <img
+            src={
+              cardFront == null
+                ? require('../../assets/images/card-front.png')
+                : cardFront
+            }
+            alt=""
+          />
+          <input
+            type="file"
+            className="upload-photo"
+            id="file0"
+            name="file"
+            accept="image/*"
+            onChange={() => this.onUpload('file0', 'frontPhoto')}
+          />
         </div>
         <div className="upload-content">
           <p>Id card/passport on the back</p>
-          <img src={require('../../assets/images/card-back.png')} alt="" />
+          <img
+            src={
+              cardBack === null
+                ? require('../../assets/images/card-back.png')
+                : cardBack
+            }
+            alt=""
+          />
+          <input
+            type="file"
+            className="upload-photo"
+            id="file1"
+            name="file"
+            accept="image/*"
+            onChange={() => this.onUpload('file1', 'backPhoto')}
+          />
         </div>
         <div className="upload-content">
           <p>Hold id/passport photo</p>
-          <img src={require('../../assets/images/card-hold.png')} alt="" />
+          <img
+            src={
+              cardHold === null
+                ? require('../../assets/images/card-hold.png')
+                : cardHold
+            }
+            alt=""
+          />
+          <input
+            type="file"
+            className="upload-photo"
+            id="file2"
+            name="file"
+            accept="image/*"
+            onChange={() => this.onUpload('file2', 'passport')}
+          />
         </div>
+
         <Button
           activeClassName="btn-common__active"
           className={`btn-common upload-img ${
