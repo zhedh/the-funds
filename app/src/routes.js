@@ -44,6 +44,14 @@ const Wallet = Loadable({
   loader: () => import('./pages/wallet/Index'),
   loading: Loading
 })
+const WalletUsdt = Loadable({
+  loader: () => import('./pages/wallet/WalletUsdt'),
+  loading: Loading
+})
+const WalletZbs = Loadable({
+  loader: () => import('./pages/wallet/WalletZbs'),
+  loading: Loading
+})
 
 const Login = Loadable({
   loader: () => import('./pages/login/Login'),
@@ -116,6 +124,8 @@ export default [
 
   // 钱包
   { path: '/wallet', name: 'Wallet', component: Wallet },
+  { path: '/Wallet/usdt', name: 'WalletUsdt', component: WalletUsdt },
+  { path: '/Wallet/zbs', name: 'WalletZbs', component: WalletZbs },
 
   // 登陆注册
   { path: '/login', name: 'Login', component: Login },

@@ -40,4 +40,13 @@
       }
     }
   }
+
+  .cards-warp {
+    @include clearList;
+    padding: 15px 13px;
+
+    li {
+      margin-bottom: 15px;
+    }
+  }
 }
