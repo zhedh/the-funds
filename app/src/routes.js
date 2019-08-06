@@ -60,6 +60,10 @@ const Recharge = Loadable({
   loader: () => import('./pages/wallet/Recharge'),
   loading: Loading
 });
+const WithdrawRecord = Loadable({
+  loader: () => import('./pages/wallet/WithdrawRecord'),
+  loading: Loading
+});
 
 const Login = Loadable({
   loader: () => import('./pages/login/Login'),
@@ -138,6 +142,7 @@ export default [
   {path: '/wallet/withdraw/zbx', name: 'WithdrawZbx', component: Withdraw},
   {path: '/wallet/recharge/usdt', name: 'RechargeUsdt', component: Recharge},
   {path: '/wallet/recharge/zbx', name: 'RechargeZbx', component: Recharge},
+  {path: '/wallet/withdraw/record', name: 'WithdrawRecord', component: WithdrawRecord},
 
   // 登陆注册
   {path: '/login', name: 'Login', component: Login},
