@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Button, Toast } from 'antd-mobile'
-import UserApi from '../../api/user'
+import { User } from '../../api'
 import { REG, TOAST_DURATION, COUNT_DOWN } from '../../utils/constants'
 import Header from '../../components/common/Header'
 import './Register.scss'
@@ -74,8 +74,9 @@ class Register extends Component {
 
   // 获取图形验证码
   getCaptchapng = () => {
-    UserApi.getCaptchapng().then(res => {
-      this.setState({ veritifiedImg: res.config.url })
+    User.getCaptchapng().then(res => {
+      console.log(res)
+      //   this.setState({ veritifiedImg: res.config.url })
     })
   }
 
@@ -86,25 +87,23 @@ class Register extends Component {
 
     if (REG.MOBILE.test(number)) {
       // 调手机验证码发送接口
-      UserApi.sendSmsCode({
+      User.sendSmsCode({
         imgcode,
         phone: number,
         type: 'reg',
         prefix: '86'
       }).then(res => {
-        if (res.data.status === 1) {
+        if (res.status === 1) {
           Toast.success('验证码发送成功', TOAST_DURATION)
         }
       })
     } else if (REG.EMAIL.test(number)) {
       // 调邮箱验证码发送接口
-      UserApi.sendMailCode({ imgcode, email: number, type: 'reg' }).then(
-        res => {
-          if (res.data.status === 1) {
-            Toast.success('验证码发送成功', TOAST_DURATION)
-          }
+      User.sendMailCode({ imgcode, email: number, type: 'reg' }).then(res => {
+        if (res.status === 1) {
+          Toast.success('验证码发送成功', TOAST_DURATION)
         }
-      )
+      })
     }
   }
 
@@ -115,17 +114,18 @@ class Register extends Component {
   register = () => {
     const { history } = this.props
     const { number, smsCode, password, repassword, inviteCode } = this.state
-    UserApi.register({
+
+    User.register({
       user_name: number,
       code: smsCode,
       password,
       password_confirm: repassword,
       recommend_code: inviteCode
     }).then(res => {
-      if (res.data.status === 1) {
+      if (res.status === 1) {
         history.push('/')
       } else {
-        Toast.info(res.data && res.data.msg, TOAST_DURATION)
+        Toast.info(res && res.msg, TOAST_DURATION)
       }
     })
   }
