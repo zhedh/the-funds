@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Toast } from 'antd-mobile'
-import { REG, TOAST_DURATION } from '../../utils/constants'
+import { REG, TOAST_DURATION, COUNT_DOWN } from '../../utils/constants'
 import Header from '../../components/common/Header'
+import { User } from '../../api'
 import VeritifiedCode from '../../components/partial/VeritifiedCode'
 import VeritifiedPwd from '../../components/partial/VeritifiedPwd'
 import './ForgetPwd.scss'
@@ -9,9 +10,12 @@ class ForgetPwd extends Component {
   state = {
     number: '',
     smsCode: '',
+    imgcode: null,
     password: '',
     repassword: '',
-    pageType: null
+    pageType: null,
+    count: COUNT_DOWN,
+    isGetSms: true
   }
 
   componentDidMount() {
@@ -56,8 +60,49 @@ class ForgetPwd extends Component {
     this.setState({ repassword: value })
   }
 
-  sendSmsCode = () => {
+  codeCountDown = () => {
+    let count = this.state.count
+
+    this.timer = setInterval(() => {
+      if (count <= 0) {
+        this.setState({ isGetSms: true, count: COUNT_DOWN })
+        clearInterval(this.timer)
+        return
+      } else {
+        this.setState({ isGetSms: false, count: count-- })
+      }
+    }, 1000)
+  }
+
+  getSmsCode = async () => {
+    const { imgcode, number } = this.state
+    // 1，图形验证码接口
+    // 2.倒计时开始
+    await this.codeCountDown()
+
     // 调发送接口
+    if (REG.MOBILE.test(number)) {
+      // 调手机验证码发送接口
+      User.sendSmsCode({
+        imgcode,
+        phone: number,
+        type: 'findpassword',
+        prefix: '86'
+      }).then(res => {
+        if (res.status === 1) {
+          Toast.success('验证码发送成功', TOAST_DURATION)
+        }
+      })
+    } else if (REG.EMAIL.test(number)) {
+      // 调邮箱验证码发送接口
+      User.sendMailCode({ imgcode, email: number, type: 'findpassword' }).then(
+        res => {
+          if (res.status === 1) {
+            Toast.success('验证码发送成功', TOAST_DURATION)
+          }
+        }
+      )
+    }
   }
 
   onSubmit = () => {
@@ -75,8 +120,18 @@ class ForgetPwd extends Component {
         return
       }
 
-      history.replace(`/forget-password/2`)
-      return
+      // 调校验验证码 接口，成功回调以下
+      User.checkCode({
+        user_name: number,
+        code: smsCode,
+        type: 'findpassword'
+      }).then(res => {
+        if (res.status === 1) {
+          history.replace(`/forget-password/2`)
+        } else {
+          Toast.info(res && res.msg, TOAST_DURATION)
+        }
+      })
     }
 
     if (step === '2') {
@@ -88,9 +143,20 @@ class ForgetPwd extends Component {
         Toast.info('两次密码不一致', TOAST_DURATION)
         return
       }
-
-      Toast.info('密码已重置，请重新登录', TOAST_DURATION, () => {
-        history.push(`/login`)
+      // 调找回登录密码接口，成功回调 以下
+      User.findPassword({
+        password,
+        password_confirm: repassword,
+        user_name: number,
+        code: smsCode
+      }).then(res => {
+        if (res.status === 1) {
+          Toast.info('密码已重置，请重新登录', TOAST_DURATION, () => {
+            history.push(`/login`)
+          })
+        } else {
+          Toast.info(res && res.msg, TOAST_DURATION)
+        }
       })
     }
   }
@@ -130,7 +196,7 @@ class ForgetPwd extends Component {
               title={pageType === 'reset' ? '重置登录密码' : '找回密码'}
               number={number}
               smsCode={smsCode}
-              sendSmsCode={this.sendSmsCode}
+              sendSmsCode={this.getSmsCode}
               onNumberChange={this.onNumberChange}
               onSmsCodeChange={this.onSmsCodeChange}
             />
