@@ -7,10 +7,16 @@ import Dialog from "../../components/common/Dialog";
 import Header from '../../components/common/Header';
 import homeNullImg from '../../assets/images/home-null.png';
 import userCenterImg from '../../assets/images/user-center.png';
-
+import {User} from '../../api'
 import './Index.scss';
 
 class Index extends Component {
+  componentDidMount() {
+    User.sendMailCode({imgcode: '1234', email: '331743172@qq.com', type: 'reg'}).then(data => {
+      console.log(data)
+    })
+  }
+
   render() {
     const {history} = this.props;
     return (
