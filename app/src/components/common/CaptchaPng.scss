@@ -1,0 +1,71 @@
+@import "../../styles/mixin";
+
+.captcha-png {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &.show{
+    display: flex;
+  }
+
+  main {
+    padding: 0 15px 15px;
+    border-radius: 5px;
+    background: $white;
+    text-align: center;
+    width: 80%;
+
+    h1 {
+      @include clearBack;
+      padding: 15px 0;
+      font-size: $font-title-s;
+    }
+
+    img {
+      width: 100%;
+      min-height: 9.375rem;
+    }
+
+    .input-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 36px;
+        padding: 4px 10px;
+        border-radius: $border-radius;
+        border: 1px solid $border-color;
+      }
+
+      button {
+        margin-left: 10px;
+        max-width: 80px;
+        background: $assistant-color;
+      }
+    }
+
+    button {
+      width: 100%;
+      height: 36px;
+      border: none;
+      background: $primary-color;
+      border-radius: $border-radius;
+      color: $white;
+    }
+  }
+}

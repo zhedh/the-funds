@@ -150,7 +150,7 @@ export default [
 
   // 登陆注册
   { path: '/login', name: 'Login', component: Login },
-  { path: '/register/:state', name: 'Register', component: Register },
+  { path: '/register', name: 'Register', component: Register },
   { path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd },
   {
     path: '/transaction-password/:state',

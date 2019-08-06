@@ -31,7 +31,7 @@ class User {
    **/
   static sendSmsCode(options) {
     options.noLogin = true
-    return http.post('/user/sendmailcode', options)
+    return http.post('/user/sendsmscode', options)
   }
 
   /**

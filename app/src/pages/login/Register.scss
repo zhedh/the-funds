@@ -2,6 +2,7 @@
 
 #register {
   position: relative;
+  box-sizing: border-box;
   height: 100vh;
 
   .register-success {
@@ -35,7 +36,6 @@
   .main-content {
     box-sizing: border-box;
     padding: 0 20px;
-    height: 100%;
 
     label {
       position: relative;
