@@ -6,6 +6,4 @@ class DepositItem {
         this.zbx = null;
 
     }
-
-
 }
