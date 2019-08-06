@@ -1,4 +1,4 @@
-@import "../../styles/_common";
+@import '../../styles/_common';
 
 #register {
   position: relative;
@@ -70,12 +70,22 @@
         height: 1.3rem;
       }
 
+      .sms-img {
+        width: auto;
+        height: 100%;
+        right: 0;
+        margin-top: -2px;
+        z-index: 2;
+        background: #fff;
+      }
+
       .sms-code {
         position: absolute;
         right: 0;
         top: 0;
         transform: translateY(50%);
         pointer-events: all;
+        z-index: 1;
 
         &.event-none {
           pointer-events: none;
