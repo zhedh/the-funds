@@ -62,6 +62,33 @@ class User {
   }
 
   /**
+   * 校验验证码（找回密码）
+   *
+   * @required userName string 手机号或邮箱地址
+   * @required code string 验证码
+   * @required type string 当前模块类型
+   * phonePrefix string 手机号前缀（当输入账号为手机时）
+   **/
+  static checkCode(options) {
+    options.noLogin = true
+    return http.post('/user/checkcode', options)
+  }
+
+  /**
+   * 找回登录密码(登陆页面)
+   *
+   * @required userName string 手机号或邮箱地址
+   * @required code string 验证码
+   * @required password_confirm string 确认密码
+   * @required password string 密码
+   * phonePrefix string 手机号前缀（当输入账号为手机时）
+   **/
+  static findPassword(options) {
+    options.noLogin = true
+    return http.post('/user/findpassword', options)
+  }
+
+  /**
    * 绑定手机号
    *
    * @required userName string 手机号或邮箱地址
