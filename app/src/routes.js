@@ -72,11 +72,15 @@ const Login = Loadable({
 const Register = Loadable({
   loader: () => import('./pages/login/Register'),
   loading: Loading
-});
+})
 const ForgetPwd = Loadable({
   loader: () => import('./pages/login/ForgetPwd'),
   loading: Loading
-});
+})
+const TransactionPwd = Loadable({
+  loader: () => import('./pages/login/TransactionPwd'),
+  loading: Loading
+})
 const UserCenter = Loadable({
   loader: () => import('./pages/user/UserCenter'),
   loading: Loading
@@ -145,14 +149,19 @@ export default [
   {path: '/wallet/withdraw/record', name: 'WithdrawRecord', component: WithdrawRecord},
 
   // 登陆注册
-  {path: '/login', name: 'Login', component: Login},
-  {path: '/register/:state', name: 'Register', component: Register},
-  {path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd},
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/register/:state', name: 'Register', component: Register },
+  { path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd },
+  {
+    path: '/transaction-password/:state',
+    name: 'TransactionPwd',
+    component: TransactionPwd
+  },
 
   // 个人中心
-  {path: '/user-center', name: 'UserCenter', component: UserCenter},
-  {path: '/notices', name: 'Notices', component: Notices},
-  {path: '/account', name: 'AccountSafe', component: AccountSafe},
+  { path: '/user-center', name: 'UserCenter', component: UserCenter },
+  { path: '/notices', name: 'Notices', component: Notices },
+  { path: '/account', name: 'AccountSafe', component: AccountSafe },
 
   // 实名认证
   {

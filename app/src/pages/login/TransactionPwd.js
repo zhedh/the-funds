@@ -5,7 +5,7 @@ import Header from '../../components/common/Header'
 import VeritifiedCode from '../../components/partial/VeritifiedCode'
 import VeritifiedPwd from '../../components/partial/VeritifiedPwd'
 import './ForgetPwd.scss'
-class ForgetPwd extends Component {
+class TransactionPwd extends Component {
   state = {
     number: '',
     smsCode: '',
@@ -23,7 +23,6 @@ class ForgetPwd extends Component {
       this.setState({ pageType: state.type })
     }
   }
-
   componentWillUnmount() {
     clearInterval(this.timer)
   }
@@ -75,7 +74,7 @@ class ForgetPwd extends Component {
         return
       }
 
-      history.replace(`/forget-password/2`)
+      history.replace(`/transaction-password/2`)
       return
     }
 
@@ -89,8 +88,8 @@ class ForgetPwd extends Component {
         return
       }
 
-      Toast.info('密码已重置，请重新登录', TOAST_DURATION, () => {
-        history.push(`/login`)
+      Toast.info('交易密码设置成功', TOAST_DURATION, () => {
+        history.goBack()
       })
     }
   }
@@ -98,13 +97,12 @@ class ForgetPwd extends Component {
   onBack = () => {
     const { history } = this.props
     const { location } = history
-    const { pageType } = this.state
     const step = location && location.pathname.split('/')[2]
 
     if (step === '2') {
-      history.push({ pathname: '/forget-password/1' })
+      history.push({ pathname: '/transaction-password/1' })
     } else {
-      history.push(pageType === 'reset' ? '/account' : '/login')
+      history.push('/account')
     }
   }
 
@@ -122,29 +120,27 @@ class ForgetPwd extends Component {
     }
 
     return (
-      <div id="forget-pwd">
+      <div id="transaction-pwd">
         <Header onHandle={this.onBack} />
-        <div className="main-content">
-          {step === '1' && (
-            <VeritifiedCode
-              title={pageType === 'reset' ? '重置登录密码' : '找回密码'}
-              number={number}
-              smsCode={smsCode}
-              sendSmsCode={this.sendSmsCode}
-              onNumberChange={this.onNumberChange}
-              onSmsCodeChange={this.onSmsCodeChange}
-            />
-          )}
-          {step === '2' && (
-            <VeritifiedPwd
-              title="重置密码"
-              password={password}
-              repassword={repassword}
-              onPasswordChange={this.onPasswordChange}
-              onRepasswordChange={this.onRepasswordChange}
-            />
-          )}
-        </div>
+        {step === '1' && (
+          <VeritifiedCode
+            title={pageType === 'set' ? '设置交易密码' : '重置交易密码'}
+            number={number}
+            smsCode={smsCode}
+            sendSmsCode={this.sendSmsCode}
+            onNumberChange={this.onNumberChange}
+            onSmsCodeChange={this.onSmsCodeChange}
+          />
+        )}
+        {step === '2' && (
+          <VeritifiedPwd
+            title="重置交易密码"
+            password={password}
+            repassword={repassword}
+            onPasswordChange={this.onPasswordChange}
+            onRepasswordChange={this.onRepasswordChange}
+          />
+        )}
         <Button
           activeClassName="btn-common__active"
           className={`btn-common ${isDisabled ? 'btn-common__disabled' : ''}`}
@@ -158,4 +154,4 @@ class ForgetPwd extends Component {
   }
 }
 
-export default ForgetPwd
+export default TransactionPwd
