@@ -37,11 +37,11 @@ class User {
   /**
    * 用户注册
    *
-   * phone_prefix string 手机号前缀
-   * @required user_name string 用户名
+   * phonePrefix string 手机号前缀
+   * @required userName string 用户名
    * @required code string 邮箱验证码
    * @required password string 密码
-   * @required password_confirm string 密码
+   * @required passwordConfirm string 密码
    * recommend_code string 推荐码
    **/
   static register(options) {
@@ -52,9 +52,9 @@ class User {
   /**
    * 用户登录
    *
-   * @required user_name string 手机号或邮箱地址
+   * @required userName string 手机号或邮箱地址
    * @required password string 密码
-   * phone_prefix string 手机号前缀（当输入账号为手机时）
+   * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static login(options) {
     options.noLogin = true;
@@ -64,9 +64,9 @@ class User {
   /**
    * 绑定手机号
    *
-   * @required user_name string 手机号或邮箱地址
+   * @required userName string 手机号或邮箱地址
    * @required password string 密码
-   * phone_prefix string 手机号前缀（当输入账号为手机时）
+   * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   // static login(options) {
   //   options.noLogin = true;
