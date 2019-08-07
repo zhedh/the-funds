@@ -11,15 +11,12 @@ class User {
   // }
 
   static getCaptchaPng() {
-    // options.noLogin = true;
-    return axios.get(config.baseURL + '/captchapng/png',
+    return axios.post(config.baseURL + '/captchapng/png',
       null,
       {responseType: 'blob'}
     ).then(res => {
-      console.log(res)
       return res.data;
     })
-    // return Promise.resolve(config.baseURL + '/captchapng/png')
   }
 
   /**
@@ -70,8 +67,19 @@ class User {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static login(options) {
-    options.noLogin = true
+    options.noLogin = true;
     return http.post('/user/reg', options)
+  }
+
+  /**
+   * 绑定手机号
+   *
+   * @required prefix number 国际码
+   * @required phone string 手机号
+   * @required string 手机验证码
+   **/
+  static bindPhone(options) {
+    return http.post('/user/bindphone', options)
   }
 
   /**
@@ -83,8 +91,20 @@ class User {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static checkCode(options) {
-    options.noLogin = true
+    options.noLogin = true;
     return http.post('/user/checkcode', options)
+  }
+
+  /**
+   * 修改登录密码(用户界面)
+   *
+   * @required password string 密码
+   * @required passwordConfirm string 确认密码
+   * @required verifyToken string 验证token
+   **/
+  static findPassword(options) {
+    options.noLogin = true
+    return http.post('/user/editpassword', options)
   }
 
   /**
@@ -101,17 +121,7 @@ class User {
     return http.post('/user/findpassword', options)
   }
 
-  /**
-   * 绑定手机号
-   *
-   * @required userName string 手机号或邮箱地址
-   * @required password string 密码
-   * phonePrefix string 手机号前缀（当输入账号为手机时）
-   **/
-  // static login(options) {
-  //   options.noLogin = true;
-  //   return http.post('/user/reg', options)
-  // }
+
 }
 
 export default User

@@ -55,7 +55,7 @@
           border-bottom: 2px solid $primary-color;
         }
 
-        &:placeholder {
+        &::placeholder {
           color: $black-font-primary;
           font-weight: 500;
         }

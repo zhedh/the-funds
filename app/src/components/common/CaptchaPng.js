@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {User} from '../../api'
 import {Toast} from "antd-mobile";
 import {REG, TOAST_DURATION} from "../../utils/constants";
-import RCG from 'react-captcha-generator';
 import './CaptchaPng.scss'
 
 class CaptchaPng extends Component {
@@ -21,15 +20,13 @@ class CaptchaPng extends Component {
 
   getCaptchaPng = () => {
     User.getCaptchaPng().then(res => {
-      console.log(res)
       let blob = new Blob([res]);
       let src = (window.URL)
         ? window.URL.createObjectURL(blob)
         : window.webkitURL.createObjectURL(blob);
-      document.querySelector('#captcha').setAttribute('src',src);
+      document.querySelector('#captcha').setAttribute('src', src);
 
-
-      console.log(src)
+      // console.log(src)
 
       // this.setState({imgUrl: src});
       // this.setState({imgUrl: res});

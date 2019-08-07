@@ -1,12 +1,13 @@
 import axios from 'axios';
 import qs from 'qs';
+import Cookies from 'js-cookie';
 import config from './config';
 import {optionsToHump, optionsToLine} from '../utils/common';
 
 const axiosConfig = {
   baseURL: config.baseURL,
   transformRequest: [data => {
-    if(!data) return data;
+    if (!data) return data;
     return qs.stringify(optionsToLine(data));
   }], // 对data进行转换处理
   headers: {
@@ -21,10 +22,13 @@ let instance = axios.create(axiosConfig);
 // 添加请求拦截器
 instance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
-  console.log(config.data)
   if (config.data && config.data.noLogin) {
     delete config.data.noLogin;
+  } else {
+    config.data.openId = Cookies.get('OPENID')
+    config.data.token = Cookies.get('TOKEN')
   }
+  console.log(config.data)
   return config;
 }, error => {
   // 对请求错误做些什么
@@ -35,9 +39,7 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(response => {
   // 对响应数据做点什么
   console.log(response);
-  if(response.config.url.includes('captchapng/png')){
-    return response;
-  }
+
   response.data = optionsToHump(response.data);
   return response.data;
 }, error => {
