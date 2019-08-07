@@ -102,7 +102,7 @@ class User {
    * @required passwordConfirm string 确认密码
    * @required verifyToken string 验证token
    **/
-  static findPassword(options) {
+  static editPassword(options) {
     options.noLogin = true
     return http.post('/user/editpassword', options)
   }
@@ -121,7 +121,46 @@ class User {
     return http.post('/user/findpassword', options)
   }
 
+  /**
+   * 检测手机用户是否存在
+   *
+   * @required phonePrefix string 国际码
+   * @required phoneNo string 号
+   **/
+  static phoneExist(options) {
+    options.noLogin = true;
+    return http.post('/user/phoneexist', options)
+  }
 
+  /**
+   * 检测邮箱用户是否存在
+   *
+   * @required email string 国际码
+   **/
+  static emailExist(options) {
+    options.noLogin = true;
+    return http.post('/user/emailexist', options)
+  }
+
+  /**
+   * 通过邮箱设置支付密码
+   *
+   * @required payPassword string 支付密码
+   * @required payPasswordConfirm string 确认支付密码
+   * @required verifyToken string 验证token
+   **/
+  static setPayPasswordForEmail(options) {
+    return http.post('/user/setpaypasswordforemail', options)
+  }
+
+  /**
+   * 获取支付TOKEN
+   *
+   * @required payPassword string 支付密码
+   **/
+  static getPayToken(options) {
+    return http.post('/user/getpaytoken', options)
+  }
 }
 
-export default User
+export default User;

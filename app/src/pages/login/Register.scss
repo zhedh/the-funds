@@ -6,20 +6,31 @@
   height: 100vh;
 
   .register-success {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $white;
+    min-height: 100vh;
+    z-index: 99;
 
-    img {
-      width: 13.6rem;
-    }
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
 
-    .text {
-      font-size: 2rem;
-      font-weight: 500;
-      color: $text-color;
+      img {
+        width: 13.6rem;
+      }
+
+      .text {
+        font-size: 2rem;
+        font-weight: 500;
+        color: $text-color;
+      }
     }
   }
 
@@ -29,6 +40,7 @@
   }
 
   h2 {
+    padding: 0 20px;
     font-size: $font-title-xl;
     font-weight: 400;
   }
