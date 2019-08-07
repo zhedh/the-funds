@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {User} from '../../api'
 import {Toast} from "antd-mobile";
 import {REG, TOAST_DURATION} from "../../utils/constants";
+import RCG from 'react-captcha-generator';
 import './CaptchaPng.scss'
 
 class CaptchaPng extends Component {
@@ -19,9 +20,19 @@ class CaptchaPng extends Component {
   }
 
   getCaptchaPng = () => {
-    User.getCaptchaPng().then(imgUrl => {
-      imgUrl = `${imgUrl}?${+new Date()}`;
-      this.setState({imgUrl});
+    User.getCaptchaPng().then(res => {
+      console.log(res)
+      let blob = new Blob([res]);
+      let src = (window.URL)
+        ? window.URL.createObjectURL(blob)
+        : window.webkitURL.createObjectURL(blob);
+      document.querySelector('#captcha').setAttribute('src',src);
+
+
+      console.log(src)
+
+      // this.setState({imgUrl: src});
+      // this.setState({imgUrl: res});
     });
   };
 
@@ -74,7 +85,7 @@ class CaptchaPng extends Component {
       <div className={`captcha-png ${show ? 'show' : ''}`}>
         <main>
           <h1>请输入图形验证码</h1>
-          <img src={imgUrl} alt="图形验证码"/>
+          <img id="captcha" src="" alt="图形验证码"/>
           <div className="input-box">
             <input
               type="text"

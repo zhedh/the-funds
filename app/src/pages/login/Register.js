@@ -103,12 +103,15 @@ class Register extends Component {
     })
   }
 
-  getSmsCode = async () => {
-
+  getCode = async () => {
     const {account} = this.state;
-    this.setState({showCaptchaPng:true});
-    await this.codeCountDown()
+    if (!REG.EMAIL.test(account) && !REG.MOBILE.test(account)) {
+      Toast.info('请填写正确的邮箱或手机号', TOAST_DURATION)
+      return
+    }
 
+    this.setState({showCaptchaPng: true});
+    await this.codeCountDown()
   }
 
   onSetType = type => {
@@ -171,7 +174,6 @@ class Register extends Component {
     const {
       account,
       code,
-      imgCode,
       password,
       passwordConfirm,
       recommendCode,
@@ -203,19 +205,12 @@ class Register extends Component {
               type="text"
               maxLength={4}
               placeholder="验证码"
-              value={veritifiedImg ? imgCode : code}
+              value={code}
               onChange={(e) => this.onInputChange(e, 'code')}
-            />
-            <img
-              key={veritifiedImg}
-              className="sms-img"
-              src={this.state.veritifiedImg}
-              alt=""
-              onClick={() => this.getCaptchapng()}
             />
             <span
               className={`sms-code  ${!isGetSms ? `event-none` : ''}`}
-              onClick={this.getSmsCode}
+              onClick={this.getCode}
             >
                     {isGetSms ? '获取验证码' : <span>{`${count}s`}</span>}
                   </span>

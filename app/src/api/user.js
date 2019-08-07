@@ -1,12 +1,25 @@
-import http from './http'
-import config from './config'
+import axios from 'axios';
+import http from './http';
+import config from './config';
 
 class User {
   /**
    * 获取图形验证码
    **/
+  // static getCaptchaPng() {
+  //   return Promise.resolve(config.baseURL + '/captchapng/png')
+  // }
+
   static getCaptchaPng() {
-    return Promise.resolve(config.baseURL + '/captchapng/png')
+    // options.noLogin = true;
+    return axios.get(config.baseURL + '/captchapng/png',
+      null,
+      {responseType: 'blob'}
+    ).then(res => {
+      console.log(res)
+      return res.data;
+    })
+    // return Promise.resolve(config.baseURL + '/captchapng/png')
   }
 
   /**
@@ -17,7 +30,7 @@ class User {
    * type string 图形验证码 （reg|findpassword|setpaypassword|withdraw）
    **/
   static sendMailCode(options) {
-    options.noLogin = true
+    options.noLogin = true;
     return http.post('/user/sendmailcode', options)
   }
 

@@ -6,6 +6,7 @@ import {optionsToHump, optionsToLine} from '../utils/common';
 const axiosConfig = {
   baseURL: config.baseURL,
   transformRequest: [data => {
+    if(!data) return data;
     return qs.stringify(optionsToLine(data));
   }], // 对data进行转换处理
   headers: {
@@ -33,6 +34,10 @@ instance.interceptors.request.use(config => {
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
   // 对响应数据做点什么
+  console.log(response);
+  if(response.config.url.includes('captchapng/png')){
+    return response;
+  }
   response.data = optionsToHump(response.data);
   return response.data;
 }, error => {
