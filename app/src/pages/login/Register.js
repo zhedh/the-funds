@@ -3,7 +3,6 @@ import {Button, Toast} from 'antd-mobile'
 import {User} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
 import Header from '../../components/common/Header'
-import CaptchaPng from '../../components/common/CaptchaPng';
 import Captcha from '../../components/common/Captcha';
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
@@ -244,7 +243,6 @@ class Register extends Component {
         >
           立即注册
         </Button>
-        {/*<CaptchaPng show={showCaptchaPng} account={account} type="reg"/>*/}
       </div>
     )
   }
