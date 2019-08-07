@@ -9,9 +9,14 @@ class AccountSafe extends Component {
   }
   render() {
     const { hadTransactionPwd } = this.state
+    const { history } = this.props
     return (
       <div id="account-safe">
-        <Header title="安全中心" isShadow={true} />
+        <Header
+          title="安全中心"
+          isShadow={true}
+          onHandle={() => history.push('/user-center')}
+        />
         <Link to={{ pathname: '/forget-password/1', state: { type: 'reset' } }}>
           <p>重置登录密码</p>
           <img
