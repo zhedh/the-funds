@@ -1,4 +1,4 @@
-import {CAPTCHA_ID} from './constants'
+import { CAPTCHA_ID } from './constants'
 
 export function convertCanvasToImage(canvas) {
   let image = new Image()
@@ -44,8 +44,8 @@ export const initNECaptcha = (config = {}) => {
           console.log('[NECaptcha] onReady')
         }
         config.onReady &&
-        typeof config.onReady === 'function' &&
-        config.onReady(instance)
+          typeof config.onReady === 'function' &&
+          config.onReady(instance)
       },
       onVerify: (err, data) => {
         // 验证结果
@@ -58,8 +58,8 @@ export const initNECaptcha = (config = {}) => {
         }
 
         config.onVerify &&
-        typeof config.onVerify === 'function' &&
-        config.onVerify(data)
+          typeof config.onVerify === 'function' &&
+          config.onVerify(data)
       }
     },
     instance => {
@@ -71,8 +71,8 @@ export const initNECaptcha = (config = {}) => {
       instance.popUp()
 
       config.onLoad &&
-      typeof config.onLoad === 'function' &&
-      config.onLoad(instance)
+        typeof config.onLoad === 'function' &&
+        config.onLoad(instance)
     },
     err => {
       // 初始化失败
@@ -82,25 +82,37 @@ export const initNECaptcha = (config = {}) => {
       config.onError && typeof config.onError === 'function' && config.onError()
     }
   )
-};
+}
 
 // 下划线转驼峰
 export function optionsToHump(options) {
-  const result = {};
+  const result = {}
   Object.keys(options).map(key => {
-    const newKey = key.replace(/\_(\w)/g, (all, letter) => letter.toUpperCase());
-    result[newKey] = options[key];
-  });
-  return result;
+    const newKey = key.replace(/\_(\w)/g, (all, letter) => letter.toUpperCase())
+    result[newKey] = options[key]
+  })
+  return result
 }
 
 // 驼峰转换下划线
 export function optionsToLine(options) {
-  const result = {};
+  const result = {}
   Object.keys(options).map(key => {
-    const newKey = key.replace(/([A-Z])/g, "_$1").toLowerCase();
-    result[newKey] = options[key];
-  });
-  return result;
+    const newKey = key.replace(/([A-Z])/g, '_$1').toLowerCase()
+    result[newKey] = options[key]
+  })
+  return result
 }
 
+/**
+ * @description 把时间戳转为 JS 时间戳（毫秒，13位）
+ * @param {number} [num=0] 待转换的时间戳
+ * @returns {number} 13 位时间戳
+ */
+export const ensureMilliseconds = (num = 0) => {
+  return Number(
+    String(num)
+      .padEnd(13, 0)
+      .substr(0, 13)
+  )
+}
