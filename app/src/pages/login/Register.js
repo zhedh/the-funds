@@ -69,7 +69,6 @@ class Register extends Component {
   onInputChange = (e, key) => {
     const {target: {value}} = e;
     this.setState({[key]: value});
-    console.log(value);
   };
 
   codeCountDown = () => {
