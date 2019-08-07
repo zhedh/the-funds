@@ -149,9 +149,9 @@ export default [
   {path: '/wallet/withdraw/record', name: 'WithdrawRecord', component: WithdrawRecord},
 
   // 登陆注册
-  { path: '/login', name: 'Login', component: Login },
-  { path: '/register', name: 'Register', component: Register },
-  { path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd },
+  {path: '/login', name: 'Login', component: Login},
+  {path: '/register', name: 'Register', component: Register},
+  {path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd},
   {
     path: '/transaction-password/:state',
     name: 'TransactionPwd',
@@ -159,9 +159,9 @@ export default [
   },
 
   // 个人中心
-  { path: '/user-center', name: 'UserCenter', component: UserCenter },
-  { path: '/notices', name: 'Notices', component: Notices },
-  { path: '/account', name: 'AccountSafe', component: AccountSafe },
+  {path: '/user-center', name: 'UserCenter', component: UserCenter},
+  {path: '/notices', name: 'Notices', component: Notices},
+  {path: '/account', name: 'AccountSafe', component: AccountSafe},
 
   // 实名认证
   {
@@ -185,3 +185,14 @@ export default [
     component: VerifiedResult
   }
 ]
+
+/**
+ * 检讨书
+ *
+ * 由于我个人危险意识不深刻，行为不检举，对您造成心里和生理
+ * 上的压力，对此深感歉意，在此说声对不起。也许说再多也没用
+ * 也不奢求原谅，只求给个重新面对的机会。
+ *
+ * 来自傻缺
+ * 2019年8月7日
+ **/
