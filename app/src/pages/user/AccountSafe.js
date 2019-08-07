@@ -7,6 +7,7 @@ class AccountSafe extends Component {
   state = {
     hadTransactionPwd: false // 是否已设置交易密码
   }
+
   render() {
     const { hadTransactionPwd } = this.state
     const { history } = this.props

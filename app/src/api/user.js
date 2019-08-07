@@ -1,8 +1,36 @@
-import axios from 'axios';
-import http from './http';
-import config from './config';
+import axios from 'axios'
+import http from './http'
+import config from './config'
+import Cookies from 'js-cookie'
 
 class User {
+  // 获取个人信息
+  static getUserInfo() {
+    return http.get('/user/myinfo').then(res => {
+      if (res.status !== 1) return
+      const userInfo = {
+        userId: res.data.user_id || '',
+        email: res.data.email || '',
+        phonePrefix: res.data.phone_prefix || '',
+        phoneNo: res.data.phone_no || '',
+        regTime: res.data.res_time || '',
+        balance: res.data.balance || '--',
+        integral: res.data.integral || '--',
+        warehouse: res.data.warehouse || '--',
+        recommendCode: res.data.recommend_code || '',
+        recommendCount: res.data.recommend_count || '--',
+        authentication: res.data.authentication,
+        isF: res.data.is_f,
+        isFTime: res.data.is_f_time
+      }
+      return userInfo
+    })
+  }
+
+  // 判断是否已登录
+  static isOnline() {
+    return !!Cookies.get('TOKEN') && !!Cookies.get('OPENID')
+  }
   /**
    * 获取图形验证码
    **/
@@ -11,12 +39,11 @@ class User {
   // }
 
   static getCaptchaPng() {
-    return axios.post(config.baseURL + '/captchapng/png',
-      null,
-      {responseType: 'blob'}
-    ).then(res => {
-      return res.data;
-    })
+    return axios
+      .post(config.baseURL + '/captchapng/png', null, { responseType: 'blob' })
+      .then(res => {
+        return res.data
+      })
   }
 
   /**
@@ -27,7 +54,7 @@ class User {
    * type string 图形验证码 （reg|findpassword|setpaypassword|withdraw）
    **/
   static sendMailCode(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/sendmailcode', options)
   }
 
@@ -67,7 +94,7 @@ class User {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static login(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/reg', options)
   }
 
@@ -91,7 +118,7 @@ class User {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static checkCode(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/checkcode', options)
   }
 
@@ -128,7 +155,7 @@ class User {
    * @required phoneNo string 号
    **/
   static phoneExist(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/phoneexist', options)
   }
 
@@ -138,7 +165,7 @@ class User {
    * @required email string 国际码
    **/
   static emailExist(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/emailexist', options)
   }
 
@@ -163,4 +190,4 @@ class User {
   }
 }
 
-export default User;
+export default User
