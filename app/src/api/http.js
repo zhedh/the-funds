@@ -37,7 +37,14 @@ instance.interceptors.request.use(config => {
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
   console.log(response);
-  if (response.data.data) {
+  let {data} = response.data
+
+  if (data) {
+    const isArr = data instanceof Array
+    if (isArr) {
+      response.data.data = data.map(i => optionsToHump(i))
+      return response.data;
+    }
     response.data.data = optionsToHump(response.data.data);
   }
   return response.data;

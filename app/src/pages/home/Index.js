@@ -1,24 +1,44 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {FiChevronRight} from "react-icons/fi";
-import {IoIosMegaphone} from "react-icons/io";
-import {GoMailRead} from "react-icons/go";
-import Dialog from "../../components/common/Dialog";
-import Header from '../../components/common/Header';
-import homeNullImg from '../../assets/images/home-null.png';
-import userCenterImg from '../../assets/images/user-center.png';
-import {UserApi} from '../../api'
-import './Index.scss';
+import React, {Component} from "react"
+import {Link} from "react-router-dom"
+import {FiChevronRight} from "react-icons/fi"
+import {IoIosMegaphone} from "react-icons/io"
+import {GoMailRead} from "react-icons/go"
+import Dialog from "../../components/common/Dialog"
+import Header from '../../components/common/Header'
+import homeNullImg from '../../assets/images/home-null.png'
+import userCenterImg from '../../assets/images/user-center.png'
+import {ProductApi} from '../../api'
+import './Index.scss'
+import {Toast} from "antd-mobile";
+import {TOAST_DURATION} from "../../utils/constants";
 
 class Index extends Component {
+  state = {
+    products: []
+  }
+
   componentDidMount() {
-    UserApi.sendMailCode({imgcode: '1234', email: '331743172@qq.com', type: 'reg'}).then(data => {
-      console.log(data)
+    this.getProducts()
+  }
+
+  getProducts = () => {
+    const {products} = this.state
+    ProductApi.getProductList({
+      page: 1,
+      row: 30
+    }).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg, TOAST_DURATION)
+        return
+      }
+      products.push(...res.data)
     })
   }
 
   render() {
     const {history} = this.props;
+    const {products} = this.state
+    const hasProducts = products && products.length > 0
     return (
       <div id="home">
         <section className="section-banner">
@@ -61,7 +81,7 @@ class Index extends Component {
               <FiChevronRight className="icon"/>
             </Link>
           </div>
-          <ul className="list">
+          {hasProducts && <ul className="list">
             <li>
               <div className="main">
                 <small>2019.07.10 定存</small>
@@ -73,12 +93,12 @@ class Index extends Component {
                 返还
               </div>
             </li>
-          </ul>
-          <div className="null">
+          </ul>}
+          {!hasProducts && <div className="null">
             <img src={homeNullImg} alt="空"/>
             <br/>
             每天存一笔，天天有钱赚！
-          </div>
+          </div>}
         </section>
         <Dialog
           show={false}

@@ -89,7 +89,7 @@ class Login extends Component {
             />
           </label>
           <p>
-            <Link to="/forget-password/1">忘记密码？</Link>
+            <Link to="/password/find">忘记密码？</Link>
             <Link to="/register">注册</Link>
           </p>
         </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Toast} from 'antd-mobile'
-import {REG, PASSWORD_TYPES, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
+import {REG, PASSWORD_TYPES, TOAST_DURATION} from '../../utils/constants'
 import {UserApi} from '../../api'
 import VerifiedCode from '../../components/partial/VerifiedCode'
 import VerifiedPwd from '../../components/partial/VeritifiedPwd'
@@ -30,7 +30,6 @@ class Password extends Component {
   onInputChange = (e, key) => {
     const {value} = e.target
     this.setState({[key]: value})
-    console.log(key, value)
   }
 
   onNext = () => {

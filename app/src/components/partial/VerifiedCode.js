@@ -12,8 +12,31 @@ class VerifiedCode extends Component {
   state = {
     isGetSms: true,
     count: COUNT_DOWN,
+    imgSrc: 'http://47.75.138.157/api/captchapng/png',
     captcha: '',
-    captchaKey: +new Date()
+    captchaKey: +new Date(),
+    preAccount: ''
+  }
+
+  componentDidMount() {
+    this.getCaptchaPng()
+  }
+
+  getCaptchaPng = () => {
+    const key = +new Date()
+
+    UserApi.getCaptchaPng({key}).then(res => {
+      this.setState({captchaKey: key, imgSrc: res})
+    })
+  }
+
+  onAccountBlur = (e) => {
+    const {value} = e.target
+    const {preAccount} = this.state
+    if (value !== preAccount) {
+      this.setState({preAccount: value})
+      this.getCaptchaPng()
+    }
   }
 
   onInputChange = (e, key) => {
@@ -50,10 +73,11 @@ class VerifiedCode extends Component {
       key: captchaKey,
     }).then(res => {
       if (res.status === -1) {
-        Toast.info(res.msg);
+        Toast.info(res.msg)
+        this.getCaptchaPng()
         return;
       }
-      this.codeCountDown();
+      this.codeCountDown()
     });
   };
 
@@ -68,12 +92,13 @@ class VerifiedCode extends Component {
       key: captchaKey,
     }).then(res => {
       if (res.status === -1) {
-        Toast.info(res.msg);
+        Toast.info(res.msg)
+        this.getCaptchaPng()
         return;
       }
-      this.codeCountDown();
-    });
-  };
+      this.codeCountDown()
+    })
+  }
 
   getCode = () => {
     const {userName} = this.props
@@ -84,28 +109,17 @@ class VerifiedCode extends Component {
     }
 
     if (!captcha || captcha.length !== 4) {
-      Toast.info('请输入4位验证码', TOAST_DURATION);
-      return;
+      Toast.info('请输入4位验证码', TOAST_DURATION)
+      return
     }
 
     REG.MOBILE.test(userName) ?
-      this.sendSmsCode() : this.sendMailCode();
-  };
-
-  onSubmit = () => {
-    this.props.onStepChange(2)
+      this.sendSmsCode() : this.sendMailCode()
   }
 
   render() {
-    const {isGetSms, count, captcha, captchaKey} = this.state
-    const {
-      typeOption,
-      userName,
-      code,
-      onInputChange,
-      onNext,
-    } = this.props
-
+    const {typeOption, userName, code, onInputChange, onNext} = this.props
+    const {isGetSms, count, captcha, imgSrc} = this.state
     const canSubmit = userName !== '' && code !== ''
 
     return (
@@ -119,13 +133,15 @@ class VerifiedCode extends Component {
               placeholder="邮箱/手机号"
               value={userName}
               onChange={(e) => onInputChange(e, 'userName')}
+              onBlur={this.onAccountBlur}
             />
           </label>
           <label>
             <Captcha
+              imgSrc={imgSrc}
               value={captcha}
               onChange={(e) => this.onInputChange(e, 'captcha')}
-              onChangeCaptcha={this.onChangeCaptcha}
+              getCaptchaPng={this.getCaptchaPng}
             />
           </label>
           <label>

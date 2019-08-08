@@ -40,6 +40,7 @@ class RegisterSuccess extends Component {
 
 class Register extends Component {
   state = {
+    preAccount: '',
     account: '',
     code: '',
     imgCode: null,
@@ -49,11 +50,24 @@ class Register extends Component {
     showCaptchaPng: false,
     pwType: 'password',
     pwConfirmType: 'password',
+    imgSrc: 'http://47.75.138.157/api/captchapng/png',
     captcha: '',
     captchaKey: +new Date(),
     count: COUNT_DOWN,
     isGetSms: true,
     showSuccess: false
+  };
+
+  componentDidMount() {
+    this.getCaptchaPng();
+  }
+
+  getCaptchaPng = () => {
+    const key = +new Date();
+
+    UserApi.getCaptchaPng({key}).then(res => {
+      this.setState({key, imgSrc: res})
+    });
   };
 
   canSubmit = () => {
@@ -69,6 +83,15 @@ class Register extends Component {
     const {target: {value}} = e;
     this.setState({[key]: value});
   };
+
+  onAccountBlur = (e) => {
+    const {value} = e.target
+    const {preAccount} = this.state
+    if (value !== preAccount) {
+      this.setState({preAccount: value})
+      this.getCaptchaPng()
+    }
+  }
 
   codeCountDown = () => {
     let count = this.state.count
@@ -93,11 +116,12 @@ class Register extends Component {
     }, {
       key: captchaKey,
     }).then(res => {
-      if (res.status === -1) {
-        Toast.info(res.msg);
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        this.getCaptchaPng()
         return;
       }
-      this.codeCountDown();
+      this.codeCountDown()
     });
   };
 
@@ -111,7 +135,7 @@ class Register extends Component {
       key: captchaKey,
     }).then(res => {
       if (res.status === -1) {
-        Toast.info(res.msg);
+        Toast.info(res.msg)
         return;
       }
       this.codeCountDown();
@@ -195,6 +219,7 @@ class Register extends Component {
       pwType,
       pwConfirmType,
       captcha,
+      imgSrc,
       count,
       isGetSms,
       showSuccess
@@ -210,14 +235,16 @@ class Register extends Component {
               type="text"
               placeholder="邮箱/手机号"
               value={account}
+              onBlur={this.onAccountBlur}
               onChange={(e) => this.onInputChange(e, 'account')}
             />
           </label>
           <label>
             <Captcha
+              imgSrc={imgSrc}
               value={captcha}
               onChange={(e) => this.onInputChange(e, 'captcha')}
-              onChangeCaptcha={this.onChangeCaptcha}
+              getCaptchaPng={this.getCaptchaPng}
             />
           </label>
           <label>
