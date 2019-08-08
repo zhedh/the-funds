@@ -1,4 +1,3 @@
-import React from 'react';
 import Loadable from 'react-loadable';
 import Loading from './components/common/Loading'
 
@@ -68,6 +67,10 @@ const Register = Loadable({
   loader: () => import('./pages/login/Register'),
   loading: Loading
 })
+const Password = Loadable({
+  loader: () => import('./pages/login/Password'),
+  loading: Loading
+})
 const ForgetPwd = Loadable({
   loader: () => import('./pages/login/ForgetPwd'),
   loading: Loading
@@ -76,6 +79,8 @@ const TransactionPwd = Loadable({
   loader: () => import('./pages/login/TransactionPwd'),
   loading: Loading
 })
+
+
 const UserCenter = Loadable({
   loader: () => import('./pages/user/UserCenter'),
   loading: Loading
@@ -146,6 +151,7 @@ export default [
   // 登陆注册
   {path: '/login', name: 'Login', component: Login},
   {path: '/register', name: 'Register', component: Register},
+  {path: '/password/:type', name: 'Password', component: Password},
   {path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd},
   {
     path: '/transaction-password/:state',
@@ -181,13 +187,3 @@ export default [
   }
 ]
 
-/**
- * 检讨书
- *
- * 由于我个人危险意识不深刻，行为不检举，对您造成心里和生理
- * 上的压力，对此深感歉意，在此说声对不起。也许说再多也没用
- * 也不奢求原谅，只求给个重新面对的机会。
- *
- * 来自傻缺
- * 2019年8月7日
- **/

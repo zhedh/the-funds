@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Toast } from 'antd-mobile'
 import { REG, TOAST_DURATION } from '../../utils/constants'
 import Header from '../../components/common/Header'
-import VeritifiedCode from '../../components/partial/VeritifiedCode'
+import VeritifiedCode from '../../components/partial/VerifiedCode'
 import VeritifiedPwd from '../../components/partial/VeritifiedPwd'
 import './ForgetPwd.scss'
 class TransactionPwd extends Component {

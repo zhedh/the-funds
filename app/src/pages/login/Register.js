@@ -1,19 +1,13 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
+import Cookies from "js-cookie";
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
-import Header from '../../components/common/Header'
+import AccountHeader from "../../components/partial/AccountHeader";
 import Captcha from '../../components/common/Captcha';
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './Register.scss'
-
-function RegisterHeader(props) {
-  return <div>
-    <Header/>
-    <h2>{props.title}</h2>
-  </div>
-}
 
 class RegisterSuccess extends Component {
   onConfirm = () => {
@@ -24,7 +18,7 @@ class RegisterSuccess extends Component {
   render() {
     return (
       <div className="register-success">
-        <RegisterHeader title="注册成功！"/>
+        <AccountHeader title="注册成功！"/>
         <main>
           <img
             src={require('../../assets/images/register-success.png')}
@@ -108,11 +102,13 @@ class Register extends Component {
   };
 
   sendMailCode = () => {
-    const {account, captcha} = this.state;
+    const {account, captcha, captchaKey} = this.state;
     UserApi.sendMailCode({
       imgcode: captcha,
       email: account,
       type: 'reg'
+    }, {
+      key: captchaKey,
     }).then(res => {
       if (res.status === -1) {
         Toast.info(res.msg);
@@ -144,7 +140,6 @@ class Register extends Component {
   };
 
   register = () => {
-    const {history} = this.props;
     const {account, code, password, passwordConfirm, recommendCode} = this.state
 
     UserApi.register({
@@ -155,11 +150,13 @@ class Register extends Component {
       passwordConfirm,
       recommendCode
     }).then(res => {
-      if (res.status === 1) {
-        history.push('/')
-      } else {
-        Toast.info(res && res.msg, TOAST_DURATION)
+      if (res.status !== 1) {
+        Toast.info(res.msg, TOAST_DURATION)
+        return
       }
+      Cookies.set('OPENID', res.data.openId);
+      Cookies.set('TOKEN', res.data.token)
+      Toast.success('注册成功', TOAST_DURATION, () => this.setState({showSuccess: true}))
     })
   };
 
@@ -205,7 +202,7 @@ class Register extends Component {
 
     return (
       <div id="register">
-        <RegisterHeader title="注册"/>
+        <AccountHeader title="注册"/>
         <div className="main-content">
           <label>
             <input
@@ -256,7 +253,7 @@ class Register extends Component {
           <label>
             <input
               className="input-main"
-              type={passwordConfirm}
+              type={pwConfirmType}
               placeholder="再次输入密码"
               value={passwordConfirm}
               onChange={(e) => this.onInputChange(e, 'passwordConfirm')}

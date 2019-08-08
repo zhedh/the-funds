@@ -10,12 +10,6 @@
     padding-bottom: 1rem;
   }
 
-  h2 {
-    padding: 0 20px;
-    font-size: $font-title-xl;
-    font-weight: 400;
-  }
-
   .main-content {
     box-sizing: border-box;
     padding: 0 20px;
@@ -24,7 +18,7 @@
       position: relative;
       width: 100%;
       display: block;
-      margin-top: 3rem;
+      margin-bottom: 3rem;
 
       .input-main {
         @include clearButton;

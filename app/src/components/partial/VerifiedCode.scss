@@ -1,21 +1,11 @@
 @import '../../styles/mixin';
 
-.veritified {
+.verified-code {
   box-sizing: border-box;
-  padding: 0 20px;
-
-  h2 {
-    font-size: $font-title-xl;
-    font-weight: 400;
-
-    small {
-      font-size: $font-assistant;
-      color: $black-font-primary;
-    }
-  }
 
   .main-content {
     margin-bottom: 3rem;
+    padding: 0 20px;
 
     label {
       position: relative;
@@ -35,20 +25,12 @@
           border-bottom: 2px solid $primary-color;
         }
 
-        &:placeholder {
+        &::placeholder {
           color: $black-font-primary;
           font-weight: 500;
         }
       }
 
-      img {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        width: 2.2rem;
-        height: 1.3rem;
-      }
       .sms-code {
         position: absolute;
         right: 0;

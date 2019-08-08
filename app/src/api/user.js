@@ -1,4 +1,3 @@
-import axios from 'axios'
 import http from './http'
 import config from './config'
 import Cookies from 'js-cookie'
@@ -35,25 +34,8 @@ class UserApi {
   /**
    * 获取图形验证码
    **/
-  // static getCaptchaPng() {
-  //   return Promise.resolve(config.baseURL + '/captchapng/png')
-  // }
-
-  static getCaptchaPng() {
-    return axios.post(config.baseURL + '/captchapng/png',
-      null,
-      {
-        responseType: 'blob',
-        'Vary': 'Accept-Encoding',
-        'Connection': 'keep-alive',
-        'Transfer-Encoding': 'chunked',
-        'Content-Type': 'image/png; charset=utf-8',
-        'Content-Encoding': 'gzip'
-      }
-    ).then(res => {
-      console.log(res)
-      return res.data;
-    })
+  static getCaptchaPng(params = {}) {
+    return Promise.resolve(`${config.baseURL}/captchapng/png?key=${params.key}`)
   }
 
   /**
@@ -61,11 +43,11 @@ class UserApi {
    *
    * @required imgcode string 图形验证码
    * @required email string 邮箱
-   * type string 图形验证码 （reg|findpassword|setpaypassword|withdraw）
+   * type string 类型（reg|findpassword|setpaypassword|withdraw）
    **/
-  static sendMailCode(options) {
+  static sendMailCode(options = {}, params = {}) {
     options.noLogin = true;
-    return http.post('/user/sendmailcode', options)
+    return http.post('/user/sendmailcode?key=' + params.key, options)
   }
 
   /**

@@ -1,21 +1,11 @@
 @import '../../styles/mixin';
 
-.veritified {
+.verified-pwd {
   box-sizing: border-box;
-  padding: 0 20px;
-
-  h2 {
-    font-size: $font-title-xl;
-    font-weight: 400;
-
-    small {
-      font-size: $font-assistant;
-      color: $black-font-primary;
-    }
-  }
 
   .main-content {
     margin-bottom: 3rem;
+    padding: 0 20px;
 
     label {
       position: relative;

@@ -3,7 +3,7 @@ import { Button, Toast } from 'antd-mobile'
 import { REG, TOAST_DURATION, COUNT_DOWN } from '../../utils/constants'
 import Header from '../../components/common/Header'
 import { UserApi } from '../../api'
-import VeritifiedCode from '../../components/partial/VeritifiedCode'
+import VeritifiedCode from '../../components/partial/VerifiedCode'
 import VeritifiedPwd from '../../components/partial/VeritifiedPwd'
 import './ForgetPwd.scss'
 class ForgetPwd extends Component {

@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION} from '../../utils/constants'
-import Header from '../../components/common/Header'
-import './Login.scss'
-import Cookies from 'js-cookie'
+import AccountHeader from "../../components/partial/AccountHeader";
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import './Login.scss'
+
 
 class Login extends Component {
   state = {
@@ -62,9 +63,8 @@ class Login extends Component {
     const canSubmit = number === '' || password === ''
     return (
       <div id="login">
-        <Header/>
+        <AccountHeader title="登录"/>
         <div className="login-content">
-          <h2>登录</h2>
           <label>
             <input
               className="input-main"

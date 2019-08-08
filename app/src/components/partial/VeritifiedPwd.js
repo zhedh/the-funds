@@ -1,79 +1,79 @@
-import React, { Component } from 'react'
-import { COUNT_DOWN } from '../../utils/constants'
+import React, {Component} from 'react'
+import {COUNT_DOWN} from '../../utils/constants'
 import './VeritifiedPwd.scss'
+import openPwdImg from "../../assets/images/open-pwd.png";
+import closePwdImg from "../../assets/images/close-pwd.png";
+import AccountHeader from "./AccountHeader";
+import Button from "antd-mobile/es/button";
 
-class VeritifiedPwd extends Component {
+class VerifiedPwd extends Component {
   state = {
     isGetSms: true,
     count: COUNT_DOWN,
-    repwdType: 'password',
-    pwdType: 'password'
+    pwType: 'password',
+    pwConfirmType: 'password',
   }
+
+  onSetType = (currentType, key) => {
+    console.log(currentType)
+    console.log(key)
+    const type = currentType === 'password' ? 'text' : 'password';
+    this.setState({[key]: type});
+  };
+
   render() {
     const {
       password,
-      repassword,
-      onPasswordChange,
-      onRepasswordChange
+      passwordConfirm,
+      onInputChange,
     } = this.props
-    const { repwdType, pwdType } = this.state
+    const {pwType, pwConfirmType} = this.state
+    const canSubmit = password !== '' && passwordConfirm !== ''
+
     return (
-      <div className="veritified">
-        <h2>
-          重置密码
-          <br />
-          <small>8-20位字符，不可以是纯数字。</small>
-        </h2>
+      <div className="verified-pwd">
+        <AccountHeader title="重置密码" msg="8-20位字符，不可以是纯数字。"/>
         <div className="main-content">
           <label>
             <input
               className="input-main"
-              type={pwdType}
+              type={pwType}
               placeholder="密码"
               value={password}
-              onChange={onPasswordChange}
+              onChange={(e) => onInputChange(e, 'password')}
             />
-            {pwdType === 'text' && (
-              <img
-                src={require('../../assets/images/open-pwd.png')}
-                alt=""
-                onClick={() => this.setState({ pwdType: 'password' })}
-              />
-            )}
-            {pwdType === 'password' && (
-              <img
-                src={require('../../assets/images/close-pwd.png')}
-                alt=""
-                onClick={() => this.setState({ pwdType: 'text' })}
-              />
-            )}
+            <img
+              src={pwType === 'text' ? openPwdImg : closePwdImg}
+              alt=""
+              onClick={() => this.onSetType(pwConfirmType, 'pwType')}
+            />
           </label>
           <label>
             <input
               className="input-main"
-              type={repwdType}
+              type={pwConfirmType}
               placeholder="再次输入密码"
-              value={repassword}
-              onChange={onRepasswordChange}
+              value={passwordConfirm}
+              onChange={(e) => onInputChange(e, 'passwordConfirm')}
             />
-            {repwdType === 'text' && (
-              <img
-                src={require('../../assets/images/open-pwd.png')}
-                alt=""
-                onClick={() => this.setState({ repwdType: 'password' })}
-              />
-            )}
-            {repwdType === 'password' && (
-              <img
-                src={require('../../assets/images/close-pwd.png')}
-                alt=""
-                onClick={() => this.setState({ repwdType: 'text' })}
-              />
-            )}
+            <img
+              className="eye-img"
+              src={pwConfirmType === 'text' ? openPwdImg : closePwdImg}
+              alt="睁眼闭眼"
+              onClick={() => this.onSetType(pwConfirmType, 'pwConfirmType')}
+            />
           </label>
         </div>
+        <Button
+          activeClassName="btn-common__active"
+          className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
+          disabled={!canSubmit}
+          onClick={this.onSubmit}>
+          重置
+        </Button>
       </div>
     )
   }
 }
-export default VeritifiedPwd
+
+export default VerifiedPwd

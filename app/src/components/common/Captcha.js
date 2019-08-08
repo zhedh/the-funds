@@ -14,18 +14,11 @@ class CaptchaPng extends Component {
 
   getCaptchaPng = () => {
     const key = +new Date();
-    this.setState({
-      key,
-      imgSrc: `http://47.75.138.157/api/captchapng/png?key=${key}`
-    })
-    this.props.onChangeCaptcha(key);
-    // UserApi.getCaptchaPng().then(res => {
-    //   let blob = new Blob([res]);
-    //   let src = (window.URL)
-    //     ? window.URL.createObjectURL(blob)
-    //     : window.webkitURL.createObjectURL(blob);
-    //   document.querySelector('#captcha').setAttribute('src', src);
-    // });
+
+    UserApi.getCaptchaPng({key}).then(res => {
+      this.setState({key, imgSrc: res})
+      this.props.onChangeCaptcha(key);
+    });
   };
 
   render() {
@@ -34,6 +27,7 @@ class CaptchaPng extends Component {
       <div id="captcha-box">
         <input
           type="text"
+          maxLength={4}
           placeholder="图形验证码"
           value={value}
           onChange={onChange}
