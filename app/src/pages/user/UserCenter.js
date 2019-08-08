@@ -1,5 +1,6 @@
 import React, { Component, PureComponent } from 'react'
 import { Modal } from 'antd-mobile'
+import { User } from '../../api'
 import { FaRegQuestionCircle } from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
@@ -31,7 +32,16 @@ class ListItem extends PureComponent {
 }
 
 class UserCenter extends Component {
-  state = { isLogin: true, isFUser: true, isCertification: false }
+  state = { isLogin: true, userInfo: {} }
+  componentDidMount() {
+    this.getUserInfo()
+  }
+
+  getUserInfo = () => {
+    User.getUserInfo().then(res => {
+      console.log(res)
+    })
+  }
 
   logout = () => {
     const { history } = this.props
@@ -50,12 +60,16 @@ class UserCenter extends Component {
   }
   render() {
     const { history } = this.props
-    const { isLogin, isFUser, isCertification } = this.state
+    const {
+      isLogin,
+      userInfo: { isF, authentication }
+    } = this.state
+    console.log(User.isOnline())
     return (
       <div id="user-center">
         <Header title="个人中心" isShadow={true} bgWhite />
         <section className={`list-content list-first`}>
-          {isLogin ? (
+          {User.isOnline() ? (
             <div className="list-item">
               <img
                 className="header-logo"
@@ -64,9 +78,9 @@ class UserCenter extends Component {
               />
               <ul>
                 <li>ZBX@qq.com</li>
-                <li>{isCertification ? '已实名认证' : '未实名认证'}</li>
+                <li>{authentication ? '已实名认证' : '未实名认证'}</li>
               </ul>
-              {!isCertification && (
+              {!authentication && (
                 <button
                   className="certification"
                   onClick={() => {
@@ -87,7 +101,7 @@ class UserCenter extends Component {
             </h1>
           )}
           <div className="list-tip">
-            {isFUser ? (
+            {isF ? (
               <span className="active">F用户生效中，2019.07.10失效</span>
             ) : (
               <span> 非F用户，暂不可享推广奖励</span>
@@ -108,7 +122,7 @@ class UserCenter extends Component {
             url={isLogin ? '/account' : '/login'}
           />
         </section>
-        {isLogin && (
+        {User.isOnline() && (
           <section className={`list-content list-second`}>
             <ListItem
               icon={require('../../assets/images/logout.svg')}
