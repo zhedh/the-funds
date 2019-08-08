@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Toast } from 'antd-mobile'
 import { REG, TOAST_DURATION, COUNT_DOWN } from '../../utils/constants'
 import Header from '../../components/common/Header'
-import { User } from '../../api'
+import { UserApi } from '../../api'
 import VeritifiedCode from '../../components/partial/VeritifiedCode'
 import VeritifiedPwd from '../../components/partial/VeritifiedPwd'
 import './ForgetPwd.scss'
@@ -83,7 +83,7 @@ class ForgetPwd extends Component {
     // 调发送接口
     if (REG.MOBILE.test(number)) {
       // 调手机验证码发送接口
-      User.sendSmsCode({
+      UserApi.sendSmsCode({
         imgcode,
         phone: number,
         type: 'findpassword',
@@ -95,7 +95,7 @@ class ForgetPwd extends Component {
       })
     } else if (REG.EMAIL.test(number)) {
       // 调邮箱验证码发送接口
-      User.sendMailCode({ imgcode, email: number, type: 'findpassword' }).then(
+      UserApi.sendMailCode({ imgcode, email: number, type: 'findpassword' }).then(
         res => {
           if (res.status === 1) {
             Toast.success('验证码发送成功', TOAST_DURATION)
@@ -121,7 +121,7 @@ class ForgetPwd extends Component {
       }
 
       // 调校验验证码 接口，成功回调以下
-      User.checkCode({
+      UserApi.checkCode({
         user_name: number,
         code: smsCode,
         type: 'findpassword'
@@ -144,7 +144,7 @@ class ForgetPwd extends Component {
         return
       }
       // 调找回登录密码接口，成功回调 以下
-      User.findPassword({
+      UserApi.findPassword({
         password,
         password_confirm: repassword,
         user_name: number,

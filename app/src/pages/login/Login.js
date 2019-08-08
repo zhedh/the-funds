@@ -1,36 +1,40 @@
-import React, { Component } from 'react'
-import { Button, Toast } from 'antd-mobile'
-import { Link } from 'react-router-dom'
-import UserApi from '../../api/user'
-import { REG, TOAST_DURATION } from '../../utils/constants'
+import React, {Component} from 'react'
+import {Button, Toast} from 'antd-mobile'
+import {Link} from 'react-router-dom'
+import {UserApi} from '../../api'
+import {REG, TOAST_DURATION} from '../../utils/constants'
 import Header from '../../components/common/Header'
 import './Login.scss'
+import Cookies from 'js-cookie'
+
 class Login extends Component {
   state = {
     number: '',
     password: '',
     type: 'password'
-  }
+  };
 
   onNumberChange = e => {
     const {
-      target: { value }
+      target: {value}
     } = e
-    this.setState({ number: value })
+    this.setState({number: value})
   }
 
   onPasswordChange = e => {
     const {
-      target: { value }
+      target: {value}
     } = e
-    this.setState({ password: value })
+    this.setState({password: value})
   }
 
   onSubmit = () => {
-    const { history } = this.props
-    const { number, password } = this.state
+    const {history} = this.props
+    const {number, password} = this.state
 
-    if (!REG.EMAIL.test(number) && !REG.MOBILE.test(number)) {
+    const isPhone = REG.MOBILE.test(number);
+
+    if (!REG.EMAIL.test(number) && !isPhone) {
       Toast.info('账号输入错误', TOAST_DURATION)
       return
     }
@@ -42,27 +46,30 @@ class Login extends Component {
 
     // 登陆接口，成功后前往首页
     UserApi.login({
-      user_name: number,
+      phonePrefix: isPhone ? '86' : null,
+      userName: number,
       password
     }).then(res => {
-      if (res.data && res.data.status !== 1) {
-        Toast.info(res.data && res.data.msg, TOAST_DURATION)
+      if (res.status !== 1) {
+        Toast.info(res.msg, TOAST_DURATION)
         return
       }
+      Cookies.set('OPENID', res.data.openId);
+      Cookies.set('TOKEN', res.data.token)
       Toast.success('登陆成功', TOAST_DURATION, () => history.push('/'))
     })
   }
 
   onSetType = type => {
-    this.setState({ type })
+    this.setState({type})
   }
 
   render() {
-    const { number, password, type } = this.state
+    const {number, password, type} = this.state
     const isDisabled = number === '' || password === ''
     return (
       <div id="login">
-        <Header />
+        <Header/>
         <div className="login-content">
           <h2>登录</h2>
           <label>
@@ -106,7 +113,7 @@ class Login extends Component {
           activeClassName="btn-common__active"
           className={`btn-common btn-common__bottom ${
             isDisabled ? 'btn-common__disabled' : ''
-          }`}
+            }`}
           disabled={isDisabled}
           onClick={this.onSubmit}
         >

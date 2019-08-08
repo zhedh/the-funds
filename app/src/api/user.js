@@ -2,7 +2,7 @@ import axios from 'axios';
 import http from './http';
 import config from './config';
 
-class User {
+class UserApi {
   /**
    * 获取图形验证码
    **/
@@ -13,8 +13,16 @@ class User {
   static getCaptchaPng() {
     return axios.post(config.baseURL + '/captchapng/png',
       null,
-      {responseType: 'blob'}
+      {
+        responseType: 'blob',
+        'Vary': 'Accept-Encoding',
+        'Connection': 'keep-alive',
+        'Transfer-Encoding': 'chunked',
+        'Content-Type': 'image/png; charset=utf-8',
+        'Content-Encoding': 'gzip'
+      }
     ).then(res => {
+      console.log(res)
       return res.data;
     })
   }
@@ -68,7 +76,7 @@ class User {
    **/
   static login(options) {
     options.noLogin = true;
-    return http.post('/user/reg', options)
+    return http.post('/user/login', options)
   }
 
   /**
@@ -163,4 +171,4 @@ class User {
   }
 }
 
-export default User;
+export default UserApi;

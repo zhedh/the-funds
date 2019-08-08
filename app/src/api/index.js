@@ -1,5 +1,5 @@
-import User from './user';
+import UserApi from './user';
 
 export {
-  User,
+  UserApi,
 };

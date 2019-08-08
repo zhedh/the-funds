@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {User} from '../../api'
+import {UserApi} from '../../api'
 import './Captcha.scss'
 
 class CaptchaPng extends Component {
@@ -8,7 +8,7 @@ class CaptchaPng extends Component {
   }
 
   getCaptchaPng = () => {
-    User.getCaptchaPng().then(res => {
+    UserApi.getCaptchaPng().then(res => {
       let blob = new Blob([res]);
       let src = (window.URL)
         ? window.URL.createObjectURL(blob)

@@ -21,7 +21,6 @@ let instance = axios.create(axiosConfig);
 
 // 添加请求拦截器
 instance.interceptors.request.use(config => {
-  // 在发送请求之前做些什么
   if (config.data && config.data.noLogin) {
     delete config.data.noLogin;
   } else {
@@ -37,10 +36,10 @@ instance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
-  // 对响应数据做点什么
   console.log(response);
-
-  response.data = optionsToHump(response.data);
+  if (response.data.data) {
+    response.data.data = optionsToHump(response.data.data);
+  }
   return response.data;
 }, error => {
   // 对响应错误做点什么

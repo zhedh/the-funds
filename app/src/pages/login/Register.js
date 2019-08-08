@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
-import {User} from '../../api'
+import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
 import Header from '../../components/common/Header'
 import Captcha from '../../components/common/Captcha';
@@ -87,7 +87,7 @@ class Register extends Component {
 
   sendSmsCode = () => {
     const {account, captcha} = this.state;
-    User.sendSmsCode({
+    UserApi.sendSmsCode({
       imgcode: captcha,
       prefix: '86',
       phone: account,
@@ -103,7 +103,7 @@ class Register extends Component {
 
   sendMailCode = () => {
     const {account, captcha} = this.state;
-    User.sendMailCode({
+    UserApi.sendMailCode({
       imgcode: captcha,
       email: account,
       type: 'reg'
@@ -141,7 +141,7 @@ class Register extends Component {
     const {history} = this.props;
     const {account, code, password, passwordConfirm, recommendCode} = this.state
 
-    User.register({
+    UserApi.register({
       userName: account,
       code,
       password,
