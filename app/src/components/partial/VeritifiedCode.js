@@ -3,6 +3,7 @@ import { COUNT_DOWN } from '../../utils/constants'
 import { initNECaptcha } from '../../utils/common'
 
 import './VeritifiedCode.scss'
+import Captcha from "../common/Captcha";
 
 class VeritifiedCode extends Component {
   state = { isGetSms: true, count: COUNT_DOWN, isNECaptchaLocked: false }
@@ -64,6 +65,10 @@ class VeritifiedCode extends Component {
               onChange={onNumberChange}
             />
           </label>
+          {/*<Captcha*/}
+            {/*value={captcha}*/}
+            {/*onChange={(e) => this.onInputChange(e, 'captcha')}*/}
+          {/*/>*/}
           <label>
             <input
               className="input-main"

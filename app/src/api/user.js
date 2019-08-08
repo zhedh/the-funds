@@ -76,9 +76,9 @@ class UserApi {
    * @required phone string 图形验证码
    * type string 图形验证码 （reg|findpassword）
    **/
-  static sendSmsCode(options) {
+  static sendSmsCode(options, params) {
     options.noLogin = true
-    return http.post('/user/sendsmscode', options)
+    return http.post('/user/sendsmscode?key=' + params.key, options)
   }
 
   /**
@@ -89,7 +89,7 @@ class UserApi {
    * @required code string 邮箱验证码
    * @required password string 密码
    * @required passwordConfirm string 密码
-   * recommend_code string 推荐码
+   * @required recommendCode string 推荐码
    **/
   static register(options) {
     options.noLogin = true

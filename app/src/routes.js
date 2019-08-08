@@ -1,11 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Loadable from 'react-loadable';
-
-class Loading extends Component {
-  render() {
-    return <div>loading...</div>;
-  }
-}
+import Loading from './components/common/Loading'
 
 const Home = Loadable({
   loader: () => import('./pages/home/Index'),

@@ -87,8 +87,8 @@ export const initNECaptcha = (config = {}) => {
 // 下划线转驼峰
 export function optionsToHump(options) {
   const result = {}
-  Object.keys(options).map(key => {
-    const newKey = key.replace(/\_(\w)/g, (all, letter) => letter.toUpperCase())
+  Object.keys(options).forEach(key => {
+    const newKey = key.replace(/_(\w)/g, (all, letter) => letter.toUpperCase())
     result[newKey] = options[key]
   })
   return result
@@ -97,7 +97,7 @@ export function optionsToHump(options) {
 // 驼峰转换下划线
 export function optionsToLine(options) {
   const result = {}
-  Object.keys(options).map(key => {
+  Object.keys(options).forEach(key => {
     const newKey = key.replace(/([A-Z])/g, '_$1').toLowerCase()
     result[newKey] = options[key]
   })

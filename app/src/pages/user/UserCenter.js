@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from 'react'
 import { Modal } from 'antd-mobile'
-import { User } from '../../api'
+import { UserApi } from '../../api'
 import { FaRegQuestionCircle } from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
@@ -38,7 +38,7 @@ class UserCenter extends Component {
   }
 
   getUserInfo = () => {
-    User.getUserInfo().then(res => {
+    UserApi.getUserInfo().then(res => {
       console.log(res)
     })
   }
@@ -64,12 +64,12 @@ class UserCenter extends Component {
       isLogin,
       userInfo: { isF, authentication }
     } = this.state
-    console.log(User.isOnline())
+    console.log(UserApi.isOnline())
     return (
       <div id="user-center">
         <Header title="个人中心" isShadow={true} bgWhite />
         <section className={`list-content list-first`}>
-          {User.isOnline() ? (
+          {UserApi.isOnline() ? (
             <div className="list-item">
               <img
                 className="header-logo"
@@ -122,7 +122,7 @@ class UserCenter extends Component {
             url={isLogin ? '/account' : '/login'}
           />
         </section>
-        {User.isOnline() && (
+        {UserApi.isOnline() && (
           <section className={`list-content list-second`}>
             <ListItem
               icon={require('../../assets/images/logout.svg')}

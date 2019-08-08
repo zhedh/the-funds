@@ -56,6 +56,7 @@ class Register extends Component {
     pwType: 'password',
     pwConfirmType: 'password',
     captcha: '',
+    captchaKey: +new Date(),
     count: COUNT_DOWN,
     isGetSms: true,
     showSuccess: false
@@ -64,6 +65,10 @@ class Register extends Component {
   canSubmit = () => {
     const {account, code, password, passwordConfirm} = this.state;
     return !!(account && code && password && passwordConfirm);
+  };
+
+  onChangeCaptcha = (key) => {
+    this.setState({captchaKey: key})
   };
 
   onInputChange = (e, key) => {
@@ -78,7 +83,6 @@ class Register extends Component {
       if (count <= 0) {
         this.setState({isGetSms: true, count: COUNT_DOWN})
         clearInterval(this.timer)
-        return;
       } else {
         this.setState({isGetSms: false, count: count--})
       }
@@ -86,12 +90,14 @@ class Register extends Component {
   };
 
   sendSmsCode = () => {
-    const {account, captcha} = this.state;
+    const {account, captcha, captchaKey} = this.state;
     UserApi.sendSmsCode({
       imgcode: captcha,
       prefix: '86',
       phone: account,
       type: 'reg'
+    }, {
+      key: captchaKey,
     }).then(res => {
       if (res.status === -1) {
         Toast.info(res.msg);
@@ -142,6 +148,7 @@ class Register extends Component {
     const {account, code, password, passwordConfirm, recommendCode} = this.state
 
     UserApi.register({
+      phonePrefix: REG.MOBILE.test(account) ? '86' : null,
       userName: account,
       code,
       password,
@@ -157,8 +164,8 @@ class Register extends Component {
   };
 
   onSubmit = () => {
-    const {number, password, passwordConfirm} = this.state;
-    if (!REG.EMAIL.test(number) && !REG.MOBILE.test(number)) {
+    const {account, password, passwordConfirm} = this.state;
+    if (!REG.EMAIL.test(account) && !REG.MOBILE.test(account)) {
       Toast.info('账号输入错误', TOAST_DURATION);
       return
     }
@@ -209,10 +216,13 @@ class Register extends Component {
               onChange={(e) => this.onInputChange(e, 'account')}
             />
           </label>
-          <Captcha
-            value={captcha}
-            onChange={(e) => this.onInputChange(e, 'captcha')}
-          />
+          <label>
+            <Captcha
+              value={captcha}
+              onChange={(e) => this.onInputChange(e, 'captcha')}
+              onChangeCaptcha={this.onChangeCaptcha}
+            />
+          </label>
           <label>
             <input
               className="input-main"
@@ -237,6 +247,7 @@ class Register extends Component {
               onChange={(e) => this.onInputChange(e, 'password')}
             />
             <img
+              className="eye-img"
               src={pwType === 'text' ? openPwdImg : closePwdImg}
               alt="睁眼闭眼"
               onClick={() => this.onSetType(pwType, 'pwType')}
@@ -251,6 +262,7 @@ class Register extends Component {
               onChange={(e) => this.onInputChange(e, 'passwordConfirm')}
             />
             <img
+              className="eye-img"
               src={pwConfirmType === 'text' ? openPwdImg : closePwdImg}
               alt="睁眼闭眼"
               onClick={() => this.onSetType(pwConfirmType, 'pwConfirmType')}

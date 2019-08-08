@@ -1,6 +1,4 @@
-import axios from 'axios'
 import http from './http'
-import config from './config'
 
 class Other {
   /**
