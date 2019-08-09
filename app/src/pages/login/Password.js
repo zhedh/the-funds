@@ -72,8 +72,10 @@ class Password extends Component {
       Toast.info('两次密码不一致', TOAST_DURATION)
       return
     }
-    // 调找回登录密码接口，成功回调 以下
+
+    const isPhone = REG.MOBILE.test(userName)
     UserApi.findPassword({
+      phonePrefix: isPhone ? '86' : null,
       userName,
       code,
       password,

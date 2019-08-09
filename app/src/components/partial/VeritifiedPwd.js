@@ -26,6 +26,7 @@ class VerifiedPwd extends Component {
       password,
       passwordConfirm,
       onInputChange,
+      onSubmit
     } = this.props
     const {pwType, pwConfirmType} = this.state
     const canSubmit = password !== '' && passwordConfirm !== ''
@@ -68,7 +69,7 @@ class VerifiedPwd extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={this.onSubmit}>
+          onClick={onSubmit}>
           重置
         </Button>
       </div>

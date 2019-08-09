@@ -68,7 +68,7 @@ class VerifiedCode extends Component {
       imgcode: captcha,
       prefix: '86',
       phone: userName,
-      type: 'reg'
+      type: 'findpassword'
     }, {
       key: captchaKey,
     }).then(res => {
@@ -87,7 +87,7 @@ class VerifiedCode extends Component {
     UserApi.sendMailCode({
       imgcode: captcha,
       email: userName,
-      type: 'reg'
+      type: 'findpassword'
     }, {
       key: captchaKey,
     }).then(res => {

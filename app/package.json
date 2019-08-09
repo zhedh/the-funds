@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@csstools/normalize.css": "^10.1.0",

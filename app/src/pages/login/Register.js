@@ -66,17 +66,13 @@ class Register extends Component {
     const key = +new Date();
 
     UserApi.getCaptchaPng({key}).then(res => {
-      this.setState({key, imgSrc: res})
+      this.setState({captchaKey: key, imgSrc: res})
     });
   };
 
   canSubmit = () => {
     const {account, code, password, passwordConfirm} = this.state;
     return !!(account && code && password && passwordConfirm);
-  };
-
-  onChangeCaptcha = (key) => {
-    this.setState({captchaKey: key})
   };
 
   onInputChange = (e, key) => {
