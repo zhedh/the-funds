@@ -1,25 +1,25 @@
 import React, {Component} from 'react'
 import {COUNT_DOWN} from '../../utils/constants'
 import './VeritifiedPwd.scss'
-import openPwdImg from "../../assets/images/open-pwd.png";
-import closePwdImg from "../../assets/images/close-pwd.png";
-import AccountHeader from "./AccountHeader";
-import Button from "antd-mobile/es/button";
+import openPwdImg from '../../assets/images/open-pwd.png'
+import closePwdImg from '../../assets/images/close-pwd.png'
+import AccountHeader from './AccountHeader'
+import Button from 'antd-mobile/es/button'
 
 class VerifiedPwd extends Component {
   state = {
     isGetSms: true,
     count: COUNT_DOWN,
     pwType: 'password',
-    pwConfirmType: 'password',
+    pwConfirmType: 'password'
   }
 
   onSetType = (currentType, key) => {
     console.log(currentType)
     console.log(key)
-    const type = currentType === 'password' ? 'text' : 'password';
-    this.setState({[key]: type});
-  };
+    const type = currentType === 'password' ? 'text' : 'password'
+    this.setState({ [key]: type })
+  }
 
   render() {
     const {
