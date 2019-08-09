@@ -1,38 +1,34 @@
-import React, {Component} from 'react'
-import {COUNT_DOWN} from '../../utils/constants'
+import React, { Component } from 'react'
+import { COUNT_DOWN } from '../../utils/constants'
 import './VeritifiedPwd.scss'
-import openPwdImg from "../../assets/images/open-pwd.png";
-import closePwdImg from "../../assets/images/close-pwd.png";
-import AccountHeader from "./AccountHeader";
-import Button from "antd-mobile/es/button";
+import openPwdImg from '../../assets/images/open-pwd.png'
+import closePwdImg from '../../assets/images/close-pwd.png'
+import AccountHeader from './AccountHeader'
+import Button from 'antd-mobile/es/button'
 
 class VerifiedPwd extends Component {
   state = {
     isGetSms: true,
     count: COUNT_DOWN,
     pwType: 'password',
-    pwConfirmType: 'password',
+    pwConfirmType: 'password'
   }
 
   onSetType = (currentType, key) => {
     console.log(currentType)
     console.log(key)
-    const type = currentType === 'password' ? 'text' : 'password';
-    this.setState({[key]: type});
-  };
+    const type = currentType === 'password' ? 'text' : 'password'
+    this.setState({ [key]: type })
+  }
 
   render() {
-    const {
-      password,
-      passwordConfirm,
-      onInputChange,
-    } = this.props
-    const {pwType, pwConfirmType} = this.state
+    const { password, passwordConfirm, onInputChange, onSubmit } = this.props
+    const { pwType, pwConfirmType } = this.state
     const canSubmit = password !== '' && passwordConfirm !== ''
 
     return (
       <div className="verified-pwd">
-        <AccountHeader title="重置密码" msg="8-20位字符，不可以是纯数字。"/>
+        <AccountHeader title="重置密码" msg="8-20位字符，不可以是纯数字。" />
         <div className="main-content">
           <label>
             <input
@@ -40,7 +36,7 @@ class VerifiedPwd extends Component {
               type={pwType}
               placeholder="密码"
               value={password}
-              onChange={(e) => onInputChange(e, 'password')}
+              onChange={e => onInputChange(e, 'password')}
             />
             <img
               src={pwType === 'text' ? openPwdImg : closePwdImg}
@@ -54,7 +50,7 @@ class VerifiedPwd extends Component {
               type={pwConfirmType}
               placeholder="再次输入密码"
               value={passwordConfirm}
-              onChange={(e) => onInputChange(e, 'passwordConfirm')}
+              onChange={e => onInputChange(e, 'passwordConfirm')}
             />
             <img
               className="eye-img"
@@ -68,7 +64,8 @@ class VerifiedPwd extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={this.onSubmit}>
+          onClick={onSubmit}
+        >
           重置
         </Button>
       </div>
