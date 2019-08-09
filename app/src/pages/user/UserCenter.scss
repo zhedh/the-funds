@@ -1,6 +1,8 @@
 @import '../../styles/_common';
 
 #user-center {
+  @include clearFix;
+  box-sizing: border-box;
   min-height: 100vh;
   background-color: $background-gray;
 

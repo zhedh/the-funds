@@ -1,13 +1,14 @@
-import React, { Component, PureComponent } from 'react'
-import { Modal } from 'antd-mobile'
-import { UserApi } from '../../api'
-import { FaRegQuestionCircle } from 'react-icons/fa'
+import React, {Component, PureComponent} from 'react'
+import {Modal} from 'antd-mobile'
+import {PersonApi} from '../../api'
+import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
+import {inject, observer} from "mobx-react";
 
 class ListItem extends PureComponent {
   render() {
-    const { icon, name, url, onHandle } = this.props
+    const {icon, name, url, onHandle} = this.props
     return (
       <div
         className="list-item"
@@ -19,7 +20,7 @@ class ListItem extends PureComponent {
           }
         }}
       >
-        <img className="icon" src={icon} alt="" />
+        <img className="icon" src={icon} alt=""/>
         <span>{name}</span>
         <img
           className="arrow"
@@ -31,25 +32,31 @@ class ListItem extends PureComponent {
   }
 }
 
+@inject('userStore')
+@inject('personStore')
+@observer
 class UserCenter extends Component {
-  state = { isLogin: true, userInfo: {} }
+  state = {isLogin: true, userInfo: {}}
+
   componentDidMount() {
-    this.getUserInfo()
+    const {personStore} = this.props
+    personStore.getUserInfo()
   }
 
   getUserInfo = () => {
-    UserApi.getUserInfo().then(res => {
+    PersonApi.getUserInfo().then(res => {
       console.log(res)
     })
   }
 
   logout = () => {
-    const { history } = this.props
+    const {history} = this.props
     // 调取退出登录接口
     Modal.alert('是否退出登录？', '', [
       {
         text: '取消',
-        onPress: () => {},
+        onPress: () => {
+        },
         style: 'default'
       },
       {
@@ -58,18 +65,24 @@ class UserCenter extends Component {
       }
     ])
   }
+
   render() {
-    const { history } = this.props
-    const {
-      isLogin,
-      userInfo: { isF, authentication }
-    } = this.state
-    console.log(UserApi.isOnline())
+    const {history, userStore, personStore} = this.props
+    const {userInfo} = personStore
+
+    console.log(userInfo)
+
+    console.log(userStore.isLogin)
     return (
       <div id="user-center">
-        <Header title="个人中心" isShadow={true} bgWhite />
+        <Header
+          title="个人中心"
+          isShadow={true}
+          bgWhite
+          onHandle={() => history.push('/home')}
+        />
         <section className={`list-content list-first`}>
-          {UserApi.isOnline() ? (
+          {userStore.isLogin ?
             <div className="list-item">
               <img
                 className="header-logo"
@@ -77,37 +90,31 @@ class UserCenter extends Component {
                 alt=""
               />
               <ul>
-                <li>ZBX@qq.com</li>
-                <li>{authentication ? '已实名认证' : '未实名认证'}</li>
+                <li>{userInfo.email}</li>
+                <li>{userInfo.authentication ? '已实名认证' : '未实名认证'}</li>
               </ul>
-              {!authentication && (
-                <button
-                  className="certification"
-                  onClick={() => {
-                    history.push('/verified-country')
-                  }}
-                >
-                  实名认证
-                </button>
-              )}
+              {!userInfo.authentication && <button
+                className="certification"
+                onClick={() => history.push('/verified-country')}>
+                实名认证
+              </button>}
             </div>
-          ) : (
-            <h1>
+            : <h1>
               您好，请登录
               <img
                 src={require('../../assets/images/arrow-left.png')}
                 alt="返回"
               />
             </h1>
-          )}
+          }
           <div className="list-tip">
-            {isF ? (
+            {userInfo.isF ? (
               <span className="active">F用户生效中，2019.07.10失效</span>
             ) : (
               <span> 非F用户，暂不可享推广奖励</span>
             )}
             &nbsp;
-            <FaRegQuestionCircle />
+            <FaRegQuestionCircle/>
           </div>
         </section>
         <section className={`list-content list-second`}>
@@ -119,10 +126,10 @@ class UserCenter extends Component {
           <ListItem
             icon={require('../../assets/images/account.svg')}
             name="账户安全"
-            url={isLogin ? '/account' : '/login'}
+            url={userStore.isLogin ? '/account' : '/login'}
           />
         </section>
-        {UserApi.isOnline() && (
+        {userStore.isLogin && (
           <section className={`list-content list-second`}>
             <ListItem
               icon={require('../../assets/images/logout.svg')}

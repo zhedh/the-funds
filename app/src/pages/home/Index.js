@@ -1,5 +1,8 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
+import {observer, inject} from "mobx-react";
+import {observable} from "mobx";
+import {Toast} from "antd-mobile";
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
@@ -8,10 +11,11 @@ import Header from '../../components/common/Header'
 import homeNullImg from '../../assets/images/home-null.png'
 import userCenterImg from '../../assets/images/user-center.png'
 import {ProductApi} from '../../api'
-import './Index.scss'
-import {Toast} from "antd-mobile";
 import {TOAST_DURATION} from "../../utils/constants";
+import './Index.scss'
 
+@inject('userStore')
+@observer
 class Index extends Component {
   state = {
     products: []
@@ -36,9 +40,10 @@ class Index extends Component {
   }
 
   render() {
-    const {history} = this.props;
+    const {history, userStore} = this.props;
     const {products} = this.state
     const hasProducts = products && products.length > 0
+
     return (
       <div id="home">
         <section className="section-banner">
@@ -73,7 +78,7 @@ class Index extends Component {
         </section>
         <section className="section-main">
           <div className="steps">
-            <Link to="/home/deposit-history">
+            <Link to={userStore.isLogin ? '/home/deposit-history' : '/login'}>
               定存中
             </Link>
             <Link to="/home/rule">

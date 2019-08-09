@@ -161,6 +161,12 @@
           "libraryName": "antd-mobile",
           "style": true
         }
+      ],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
       ]
     ]
   },

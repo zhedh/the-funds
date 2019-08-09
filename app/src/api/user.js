@@ -3,29 +3,6 @@ import config from './config'
 import Cookies from 'js-cookie'
 
 class UserApi {
-  // 获取个人信息
-  static getUserInfo() {
-    return http.get('/user/myinfo').then(res => {
-      if (res.status !== 1) return
-      const userInfo = {
-        userId: res.data.user_id || '',
-        email: res.data.email || '',
-        phonePrefix: res.data.phone_prefix || '',
-        phoneNo: res.data.phone_no || '',
-        regTime: res.data.res_time || '',
-        balance: res.data.balance || '--',
-        integral: res.data.integral || '--',
-        warehouse: res.data.warehouse || '--',
-        recommendCode: res.data.recommend_code || '',
-        recommendCount: res.data.recommend_count || '--',
-        authentication: res.data.authentication,
-        isF: res.data.is_f,
-        isFTime: res.data.is_f_time
-      }
-      return userInfo
-    })
-  }
-
   // 判断是否已登录
   static isOnline() {
     return !!Cookies.get('TOKEN') && !!Cookies.get('OPENID')

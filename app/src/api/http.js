@@ -24,6 +24,7 @@ instance.interceptors.request.use(config => {
   if (config.data && config.data.noLogin) {
     delete config.data.noLogin;
   } else {
+    config.data = config.data ? config.data : {}
     config.data.openId = Cookies.get('OPENID')
     config.data.token = Cookies.get('TOKEN')
   }
