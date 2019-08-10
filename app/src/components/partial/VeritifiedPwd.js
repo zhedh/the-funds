@@ -18,6 +18,7 @@ class VerifiedPwd extends Component {
 
   render() {
     const {
+      show,
       password,
       passwordConfirm,
       onInputChange,
@@ -28,7 +29,7 @@ class VerifiedPwd extends Component {
     const canSubmit = password !== '' && passwordConfirm !== ''
 
     return (
-      <div className="verified-pwd">
+      <div className={'verified-pwd ' + (show ? 'show' : '')}>
         <AccountHeader
           title="重置密码"
           msg="8-20位字符，不可以是纯数字。"

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION} from '../../utils/constants'
+import {compatibleFixedButton} from "../../utils/common";
 import AccountHeader from "../../components/partial/AccountHeader";
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
@@ -14,7 +15,14 @@ class Login extends Component {
   state = {
     number: '',
     password: '',
-    type: 'password'
+    type: 'password',
+    showBtn: true
+  }
+
+  componentDidMount() {
+    compatibleFixedButton((isShow) => {
+      this.setState({showBtn: isShow})
+    })
   }
 
   onInputChange = (e, key) => {
@@ -62,7 +70,7 @@ class Login extends Component {
   }
 
   render() {
-    const {number, password, type} = this.state
+    const {number, password, type, showBtn} = this.state
     const canSubmit = number === '' || password === ''
     return (
       <div id="login">
@@ -96,7 +104,7 @@ class Login extends Component {
             <Link to="/register">注册</Link>
           </p>
         </div>
-        <Button
+        {showBtn && <Button
           activeClassName="btn-common__active"
           className={`btn-common btn-common__bottom ${
             canSubmit ? 'btn-common__disabled' : ''
@@ -104,7 +112,7 @@ class Login extends Component {
           disabled={canSubmit}
           onClick={this.onSubmit}>
           确认
-        </Button>
+        </Button>}
       </div>
     )
   }

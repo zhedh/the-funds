@@ -130,3 +130,28 @@ export function getQueryParam(key) {
   }
   return null;
 }
+
+/**
+ * @description 弹出软键盘，隐藏底部 fixed button
+ * @param {function} callback
+ * @returns {void}
+ */
+export function compatibleFixedButton(callback) {
+  const windowInnerHeight = window.innerHeight;
+  window.onresize = () => {
+    if (window.innerHeight < windowInnerHeight) {
+      callback && callback(false) // 隐藏
+    } else {
+      callback && callback(true) // 显示
+    }
+  }
+}
+
+/**
+ * @description 判断是否是微信浏览器环境
+ * @returns {bool}
+ */
+export function isWxAgent() {
+  const ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+  return (ua.match(/MicroMessenger/i).toString() === "micromessenger")
+}

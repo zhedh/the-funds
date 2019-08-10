@@ -6,7 +6,6 @@
   right: 20px;
   @include clearButton;
   height: 5rem;
-  line-height: 5rem;
   border-radius: 2.5rem;
   color: #fff;
   background-color: $primary-color;
@@ -17,8 +16,6 @@
   &.btn-common__disabled {
     opacity: 0.6;
     color: #fff;
-
-    // background-color: $bg-btn-disabled;
   }
 
   &.btn-common__bottom {

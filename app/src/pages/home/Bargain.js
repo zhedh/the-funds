@@ -46,11 +46,11 @@ class Bargain extends Component {
         </header>
         <section className="section-banner">
           <div className="banner">
-            <span>特价ZBX奖励额度: 129.09</span>
+            <span>特价XC奖励额度: 129.09</span>
             <small>上次结算时间: 2019.09.08 15:00:00</small>
             <button>解锁</button>
           </div>
-          <p>* 解锁后的特价ZBX将直接充值到您的账户</p>
+          <p>* 解锁后的特价XC将直接充值到您的账户</p>
         </section>
         <section className="section-main">
           <h2>当日奖励额度</h2>

@@ -18,6 +18,7 @@ class Password extends Component {
     code: '',
     password: '',
     passwordConfirm: '',
+    verifyToken: null
   }
 
   componentDidMount() {
@@ -75,6 +76,7 @@ class Password extends Component {
       type: typeOption.codeType
     }).then(res => {
       if (res.status === 1) {
+        this.setState({verifyToken: res.data.verifyToken})
         this.onStepChange(2)
         return
       }
@@ -83,8 +85,14 @@ class Password extends Component {
   }
 
   onSubmit = () => {
-    const {typeOption, userName, code, password, passwordConfirm} = this.state
-
+    const {
+      typeOption,
+      userName,
+      code,
+      password,
+      passwordConfirm,
+      verifyToken
+    } = this.state
     if (!REG.PASSWORD.test(password)) {
       Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
       return
@@ -112,10 +120,9 @@ class Password extends Component {
       return UserApi.editPassword({
         password,
         passwordConfirm,
-        verifyToken: ''
+        verifyToken,
       }).then(res => this.updateLoginPasswordSuccess(res, '更改成功，请重新登录'))
     }
-
   }
 
   updateLoginPasswordSuccess(res, msg) {
@@ -128,32 +135,28 @@ class Password extends Component {
     Toast.info(msg, TOAST_DURATION, () => history.push(`/login`))
   }
 
-  // 找回密码
-  findPassword = () => {
-
-  }
-
-
   render() {
     const {step, typeOption, userName, code, password, passwordConfirm} = this.state
 
     return (
       <div id="password">
-        {step === 1 && <VerifiedCode
+        <VerifiedCode
+          show={step === 1}
           typeOption={typeOption}
           userName={userName}
           code={code}
           onInputChange={this.onInputChange}
           onNext={this.onNext}
           onBack={this.onBack}
-        />}
-        {step === 2 && <VerifiedPwd
+        />
+        <VerifiedPwd
+          show={step === 2}
           password={password}
           passwordConfirm={passwordConfirm}
           onInputChange={this.onInputChange}
           onSubmit={this.onSubmit}
           onStepChange={this.onStepChange}
-        />}
+        />
       </div>
     )
   }

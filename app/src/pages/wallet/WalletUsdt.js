@@ -17,7 +17,7 @@ const CARD = {
 const LIST = [
   {
     id: 1,
-    label: '定存 100ZBX',
+    label: '定存 100XC',
     value: '132.00',
     type: 0,
     time: '2018-08-29 13:42:39'
@@ -35,7 +35,7 @@ const LIST = [
     time: '2018-08-29 13:42:39'
   }, {
     id: 4,
-    label: '定存 100ZBX 手续费',
+    label: '定存 100XC 手续费',
     value: '3.00',
     type: 0,
     time: '2018-08-29 13:42:39'

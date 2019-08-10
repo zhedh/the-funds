@@ -17,7 +17,7 @@ class WalletZbs extends Component {
   render() {
     return (
       <div id="wallet-usdt">
-        <Header title="ZBX" isFixed isShadow/>
+        <Header title="XC" isFixed isShadow/>
         <div className="card">
           <WalletCard card={CARD}/>
         </div>

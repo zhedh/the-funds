@@ -149,7 +149,7 @@ class UserCenter extends Component {
           title="F用户说明"
           onClose={() => this.setState({showFModal: false})}>
           <div style={{fontSize: '1.5rem', textAlign: 'justify', padding: '10px'}}>
-            当您参与超级节点成功后,将获得F用户的标示,F用户标示代表着您能够享受买配奖、代数管理奖、团队奖等相关奖励,F用户标示有效期为48小时。
+            当您参与超级定投成功后,将获得F用户的标示,F用户标示代表着您能够享受买配奖、代数管理奖、团队奖等相关奖励,F用户标示有效期为48小时。
           </div>
         </Modal>
       </div>

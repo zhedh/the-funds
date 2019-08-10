@@ -19,14 +19,20 @@
 
   .section-qr {
     margin: 0 2rem;
-    padding: 3.4rem 0;
+    padding: 3rem 0;
     border-top: 1px solid $border-color;
     text-align: center;
 
     .qr-code__box {
       .qr-code {
+        display: none;
         width: 10.8rem;
         height: 10.8rem;
+      }
+
+      img {
+        width: 13rem;
+        height: 13rem;
       }
 
       span {
@@ -50,14 +56,14 @@
 
       .icon {
         margin-left: 5px;
-        font-size: 14px;
+        font-size: 20px;
         color: $assistant-color;
       }
     }
   }
 
   .section-link {
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
 
     a {
       display: block;

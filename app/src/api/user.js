@@ -93,7 +93,6 @@ class UserApi {
    * @required verifyToken string 验证token
    **/
   static editPassword(options) {
-    options.noLogin = true
     return http.post('/user/editpassword', options)
   }
 

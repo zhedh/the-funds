@@ -1,7 +1,12 @@
 @import '../../styles/mixin';
 
 .verified-code {
+  display: none;
   box-sizing: border-box;
+
+  &.show {
+    display: block;
+  }
 
   .main-content {
     margin-bottom: 3rem;
