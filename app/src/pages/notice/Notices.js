@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import dayjs from 'dayjs'
 import Header from '../../components/common/Header'
+import { OtherApi } from '../../api'
+import noDataImg from '../../assets/images/no-data.png'
 import './Notices.scss'
-import {OtherApi} from '../../api'
-import noDataImg from "../../assets/images/no-data.png";
 
 class Notices extends Component {
-  state = {notices: []}
+  state = { notices: [] }
 
   componentDidMount() {
     this.getNotices()
@@ -14,13 +14,13 @@ class Notices extends Component {
 
   getNotices = () => {
     OtherApi.getNotices().then(res => {
-      if (res.status === 1) this.setState({notices: res.data})
+      if (res.status === 1) this.setState({ notices: res.data })
     })
   }
 
   render() {
-    const {history} = this.props
-    const {notices} = this.state
+    const { history } = this.props
+    const { notices } = this.state
 
     return (
       <div id="notices">
@@ -31,20 +31,23 @@ class Notices extends Component {
           onHandle={() => history.push('/user-center')}
         />
         <section>
-          {notices.length ? notices.map(notice =>
-            <ul
-              key={notice.id}
-              className="list-item"
-              onClick={() => window.location.href = notice.linkUrl}>
-              <li>{notice.title}</li>
-              <li>
-                {dayjs(notice.addTime).format('YY-MM-DD HH:mm')}
-              </li>
-            </ul>
-          ) : <div className="no-data">
-            <img src={noDataImg} alt="空"/>
-            <p>暂无数据</p>
-          </div>}
+          {notices.length ? (
+            notices.map(notice => (
+              <ul
+                key={notice.id}
+                className="list-item"
+                onClick={() => (window.location.href = notice.linkUrl)}
+              >
+                <li>{notice.title}</li>
+                <li>{dayjs(notice.addTime).format('YY-MM-DD HH:mm')}</li>
+              </ul>
+            ))
+          ) : (
+            <div className="no-data">
+              <img src={noDataImg} alt="空" />
+              <p>暂无数据</p>
+            </div>
+          )}
         </section>
       </div>
     )

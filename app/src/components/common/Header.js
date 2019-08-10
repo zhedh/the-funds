@@ -33,7 +33,7 @@ class Header extends Component {
           alt="返回"
           onClick={this.onBack}
         />
-        <span>{title}</span>
+        <span className="right-content">{title}</span>
         <div>{children}</div>
       </header>
     )
