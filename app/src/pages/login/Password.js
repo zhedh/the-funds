@@ -83,7 +83,6 @@ class Password extends Component {
   }
 
   onSubmit = () => {
-    const {history} = this.props
     const {typeOption, userName, code, password, passwordConfirm} = this.state
 
     if (!REG.PASSWORD.test(password)) {
@@ -124,7 +123,7 @@ class Password extends Component {
       Toast.info(res && res.msg, TOAST_DURATION)
       return
     }
-    const {userStore} = this.props
+    const {userStore, history} = this.props
     userStore.logout()
     Toast.info(msg, TOAST_DURATION, () => history.push(`/login`))
   }

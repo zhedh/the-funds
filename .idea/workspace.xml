@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a61b7edb-69f7-4da5-85e0-c0160a3d4967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/home/InviterFriend.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/InviterFriend.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/home/InviterFriend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/InviterFriend.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/login/Password.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/utils/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/utils/common.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -79,11 +74,11 @@
           <entry key="editorconfig" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
-          <entry key="js" value="19705" />
+          <entry key="js" value="19707" />
           <entry key="json" value="53" />
           <entry key="md" value="192" />
           <entry key="scss" value="6983" />
-          <entry key="txt" value="180" />
+          <entry key="txt" value="188" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -91,9 +86,9 @@
           <entry key="CSS" value="23" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="53" />
-          <entry key="JavaScript" value="19705" />
+          <entry key="JavaScript" value="19707" />
           <entry key="Markdown" value="192" />
-          <entry key="PLAIN_TEXT" value="182" />
+          <entry key="PLAIN_TEXT" value="190" />
           <entry key="SCSS" value="6983" />
         </counts>
       </usages-collector>
@@ -114,11 +109,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/pages/login/Password.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="121" column="40" lean-forward="true" selection-start-line="121" selection-start-column="40" selection-end-line="121" selection-end-column="40" />
+            <state relative-caret-position="191">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#481#594#0" expanded="true" />
                 <element signature="e#2537#2653#0" expanded="true" />
@@ -128,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/api/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="140" column="6" lean-forward="true" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
+            <state relative-caret-position="210">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -513,7 +508,7 @@
       <workItem from="1565319929871" duration="2482000" />
       <workItem from="1565324676520" duration="1751000" />
       <workItem from="1565368376956" duration="5384000" />
-      <workItem from="1565397962463" duration="12152000" />
+      <workItem from="1565397962463" duration="12278000" />
     </task>
     <task id="LOCAL-00001" summary="create project catalogue">
       <created>1564327452647</created>
@@ -732,11 +727,18 @@
       <option name="project" value="LOCAL" />
       <updated>1565417716035</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="update password">
+      <created>1565424726459</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1565424726459</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206918000" />
+    <option name="totallyTimeSpent" value="207044000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="703" y="23" width="899" height="969" extended-state="0" />
@@ -791,9 +793,9 @@
     <MESSAGE value="password" />
     <MESSAGE value="find password" />
     <MESSAGE value="add mobx" />
-    <MESSAGE value="update password" />
     <MESSAGE value="update user center" />
-    <option name="LAST_COMMIT_MESSAGE" value="update user center" />
+    <MESSAGE value="update password" />
+    <option name="LAST_COMMIT_MESSAGE" value="update password" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
@@ -1198,24 +1200,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Password.js">
+    <entry file="file://$PROJECT_DIR$/app/src/api/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="121" column="40" lean-forward="true" selection-start-line="121" selection-start-column="40" selection-end-line="121" selection-end-column="40" />
+        <state relative-caret-position="210">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#481#594#0" expanded="true" />
-            <element signature="e#2537#2653#0" expanded="true" />
-            <element signature="e#2996#3072#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/api/user.js">
+    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Password.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="140" column="6" lean-forward="true" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
+        <state relative-caret-position="191">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#481#594#0" expanded="true" />
+            <element signature="e#2537#2653#0" expanded="true" />
+            <element signature="e#2996#3072#0" expanded="true" />
           </folding>
         </state>
       </provider>
