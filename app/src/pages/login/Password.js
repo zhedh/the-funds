@@ -5,11 +5,14 @@ import {UserApi} from '../../api'
 import VerifiedCode from '../../components/partial/VerifiedCode'
 import VerifiedPwd from '../../components/partial/VeritifiedPwd'
 import './Password.scss'
+import {inject, observer} from "mobx-react";
 
-
+@inject('userStore')
+@inject('personStore')
+@observer
 class Password extends Component {
   state = {
-    type: 'find', // find | reset
+    typeOption: {},
     step: 1,
     userName: '',
     code: '',
@@ -18,9 +21,20 @@ class Password extends Component {
   }
 
   componentDidMount() {
-    const {match} = this.props
-    const type = match.params
-    this.setState({type})
+    const {match, history, userStore, personStore} = this.props
+    const {type} = match.params
+    const typeOption = PASSWORD_TYPES.find(item => item.type === type)
+    if (!typeOption) {
+      history.push('/404')
+    }
+    if (userStore.isOnline) {
+      personStore.getUserInfo().then(() => {
+        const userName = personStore.userName
+        this.setState({typeOption, userName})
+      })
+      return
+    }
+    this.setState({typeOption})
   }
 
   componentWillUnmount() {
@@ -32,8 +46,10 @@ class Password extends Component {
     this.setState({[key]: value})
   }
 
+  onStepChange = step => this.setState({step})
+
   onNext = () => {
-    const {userName, code} = this.state
+    const {userName, code, typeOption} = this.state
     const isPhone = REG.MOBILE.test(userName)
     if (!REG.EMAIL.test(userName) && !isPhone) {
       Toast.info('账号输入错误', TOAST_DURATION)
@@ -50,16 +66,15 @@ class Password extends Component {
       phonePrefix: isPhone ? '86' : null,
       userName,
       code,
-      type: 'findpassword'
+      type: typeOption.codeType
     }).then(res => {
       if (res.status === 1) {
-        this.setState({step: 2})
+        this.onStepChange(2)
         return
       }
       Toast.info(res && res.msg, TOAST_DURATION)
     })
   }
-
 
   onSubmit = () => {
     const {userName, code, password, passwordConfirm} = this.state
@@ -94,20 +109,12 @@ class Password extends Component {
 
   onBack = () => {
     const {history} = this.props
-    const {location} = history
-    const {pageType} = this.state
-    const step = location && location.pathname.split('/')[2]
-
-    if (step === '2') {
-      history.push({pathname: '/forget-password/1'})
-    } else {
-      history.push(pageType === 'reset' ? '/account' : '/login')
-    }
+    const {typeOption} = this.state
+    history.push(typeOption.type !== 'find' ? '/account' : '/login')
   }
 
   render() {
-    const {step, type, userName, code, password, passwordConfirm} = this.state
-    const typeOption = PASSWORD_TYPES.find(item => item.type === type) || {}
+    const {step, typeOption, userName, code, password, passwordConfirm} = this.state
 
     return (
       <div id="password">
@@ -117,12 +124,14 @@ class Password extends Component {
           code={code}
           onInputChange={this.onInputChange}
           onNext={this.onNext}
+          onBack={this.onBack}
         />}
         {step === 2 && <VerifiedPwd
           password={password}
           passwordConfirm={passwordConfirm}
           onInputChange={this.onInputChange}
           onSubmit={this.onSubmit}
+          onStepChange={this.onStepChange}
         />}
       </div>
     )

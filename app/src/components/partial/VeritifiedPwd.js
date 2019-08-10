@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {COUNT_DOWN} from '../../utils/constants'
 import './VeritifiedPwd.scss'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
@@ -8,17 +7,13 @@ import Button from 'antd-mobile/es/button'
 
 class VerifiedPwd extends Component {
   state = {
-    isGetSms: true,
-    count: COUNT_DOWN,
     pwType: 'password',
     pwConfirmType: 'password'
   }
 
   onSetType = (currentType, key) => {
-    console.log(currentType)
-    console.log(key)
     const type = currentType === 'password' ? 'text' : 'password'
-    this.setState({ [key]: type })
+    this.setState({[key]: type})
   }
 
   render() {
@@ -26,14 +21,19 @@ class VerifiedPwd extends Component {
       password,
       passwordConfirm,
       onInputChange,
-      onSubmit
+      onSubmit,
+      onStepChange
     } = this.props
     const {pwType, pwConfirmType} = this.state
     const canSubmit = password !== '' && passwordConfirm !== ''
 
     return (
       <div className="verified-pwd">
-        <AccountHeader title="重置密码" msg="8-20位字符，不可以是纯数字。"/>
+        <AccountHeader
+          title="重置密码"
+          msg="8-20位字符，不可以是纯数字。"
+          onHandle={() => onStepChange(1)}
+        />
         <div className="main-content">
           <label>
             <input

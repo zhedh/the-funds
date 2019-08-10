@@ -1,6 +1,6 @@
 import http from './http'
 
-class Other {
+class OtherApi {
   /**
    * 获取公告列表
    **/
@@ -9,4 +9,4 @@ class Other {
   }
 }
 
-export default Other
+export default OtherApi

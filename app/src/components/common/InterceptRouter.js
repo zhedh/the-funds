@@ -10,7 +10,7 @@ class InterceptRouter extends Component {
     if (location.pathname === '/') {
       history.push('/home');
     }
-    userStore.setLoginStatus()
+    userStore.setUserStatus()
   }
 
   render() {

@@ -537,12 +537,23 @@ export const globalCountries = [
 export const PASSWORD_TYPES = [
   {
     type: 'find',
-    title: '找回密码'
+    title: '找回密码',
+    codeType: 'findpassword',
+    canChangeUser: true
   }, {
     type: 'reset',
-    title: '重置登录密码'
+    title: '重置登录密码',
+    codeType: 'findpassword',
+    canChangeUser: false
   }, {
     type: 'pay',
-    title: '设置交易密码'
+    title: '设置交易密码',
+    codeType: 'setpaypassword',
+    canChangeUser: false
+  }, {
+    type: 'repay',
+    title: '重置交易密码',
+    codeType: 'setpaypassword',
+    canChangeUser: false
   },
 ]

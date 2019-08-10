@@ -1,52 +1,50 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import dayjs from 'dayjs'
 import Header from '../../components/common/Header'
-import { ensureMilliseconds } from '../../utils/common'
 import './Notices.scss'
-import Other from '../../api/other'
+import {OtherApi} from '../../api'
+import noDataImg from "../../assets/images/no-data.png";
 
 class Notices extends Component {
-  state = { notices: [] }
+  state = {notices: []}
+
   componentDidMount() {
     this.getNotices()
   }
 
   getNotices = () => {
-    Other.getNotices().then(res => {
-      if (res && res.status === 1) {
-        console.log(res.data)
-        this.setState({
-          notices: res.data.map(i => ({
-            id: i.id,
-            title: i.title,
-            linkUrl: i.link_url,
-            content: i.content,
-            addTime: ensureMilliseconds(Number(i.add_time))
-          }))
-        })
-      }
+    OtherApi.getNotices().then(res => {
+      if (res.status === 1) this.setState({notices: res.data})
     })
   }
+
   render() {
-    const { notices } = this.state
+    const {history} = this.props
+    const {notices} = this.state
+
     return (
       <div id="notices">
-        <Header title="公告列表" isShadow={true} />
+        <Header
+          title="公告列表"
+          isShadow
+          isFixed
+          onHandle={() => history.push('/user-center')}
+        />
         <section>
-          {notices.map(notice => (
+          {notices.length ? notices.map(notice =>
             <ul
               key={notice.id}
               className="list-item"
-              onClick={() => {
-                window.location.href = notice.link_url
-              }}
-            >
+              onClick={() => window.location.href = notice.linkUrl}>
               <li>{notice.title}</li>
               <li>
-                {dayjs(notice.addTime).format('YY-MM-DD HH:mm')}18-08-07 10:49
+                {dayjs(notice.addTime).format('YY-MM-DD HH:mm')}
               </li>
             </ul>
-          ))}
+          ) : <div className="no-data">
+            <img src={noDataImg} alt="空"/>
+            <p>暂无数据</p>
+          </div>}
         </section>
       </div>
     )

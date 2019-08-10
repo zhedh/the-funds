@@ -1,6 +1,5 @@
 import React, {Component, PureComponent} from 'react'
 import {Modal} from 'antd-mobile'
-import {PersonApi} from '../../api'
 import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
@@ -36,21 +35,15 @@ class ListItem extends PureComponent {
 @inject('personStore')
 @observer
 class UserCenter extends Component {
-  state = {isLogin: true, userInfo: {}}
+  state = {isOnline: true, showFModal: false}
 
   componentDidMount() {
     const {personStore} = this.props
     personStore.getUserInfo()
   }
 
-  getUserInfo = () => {
-    PersonApi.getUserInfo().then(res => {
-      console.log(res)
-    })
-  }
-
   logout = () => {
-    const {history} = this.props
+    const {history, userStore} = this.props
     // 调取退出登录接口
     Modal.alert('是否退出登录？', '', [
       {
@@ -61,7 +54,10 @@ class UserCenter extends Component {
       },
       {
         text: '确认',
-        onPress: () => history.push('/')
+        onPress: () => {
+          userStore.logout()
+          history.push('/')
+        }
       }
     ])
   }
@@ -69,10 +65,8 @@ class UserCenter extends Component {
   render() {
     const {history, userStore, personStore} = this.props
     const {userInfo} = personStore
+    const {showFModal} = this.state
 
-    console.log(userInfo)
-
-    console.log(userStore.isLogin)
     return (
       <div id="user-center">
         <Header
@@ -82,7 +76,7 @@ class UserCenter extends Component {
           onHandle={() => history.push('/home')}
         />
         <section className={`list-content list-first`}>
-          {userStore.isLogin ?
+          {userStore.isOnline ?
             <div className="list-item">
               <img
                 className="header-logo"
@@ -90,7 +84,7 @@ class UserCenter extends Component {
                 alt=""
               />
               <ul>
-                <li>{userInfo.email}</li>
+                <li>{userInfo.email || userInfo.phoneNo}</li>
                 <li>{userInfo.authentication ? '已实名认证' : '未实名认证'}</li>
               </ul>
               {!userInfo.authentication && <button
@@ -99,7 +93,7 @@ class UserCenter extends Component {
                 实名认证
               </button>}
             </div>
-            : <h1>
+            : <h1 onClick={() => history.push('/login')}>
               您好，请登录
               <img
                 src={require('../../assets/images/arrow-left.png')}
@@ -114,7 +108,9 @@ class UserCenter extends Component {
               <span> 非F用户，暂不可享推广奖励</span>
             )}
             &nbsp;
-            <FaRegQuestionCircle/>
+            <FaRegQuestionCircle
+              onClick={() => this.setState({showFModal: true})}
+            />
           </div>
         </section>
         <section className={`list-content list-second`}>
@@ -126,10 +122,15 @@ class UserCenter extends Component {
           <ListItem
             icon={require('../../assets/images/account.svg')}
             name="账户安全"
-            url={userStore.isLogin ? '/account' : '/login'}
+            url={userStore.isOnline ? '/account' : '/login'}
           />
+          {!userStore.isOnline && <ListItem
+            icon={require('../../assets/images/account.svg')}
+            name="联系客服"
+            url={'/account'}
+          />}
         </section>
-        {userStore.isLogin && (
+        {userStore.isOnline && (
           <section className={`list-content list-second`}>
             <ListItem
               icon={require('../../assets/images/logout.svg')}
@@ -139,9 +140,24 @@ class UserCenter extends Component {
             />
           </section>
         )}
+        <Modal
+          visible={showFModal}
+          className="f-modal"
+          closable
+          maskClosable
+          transparent
+          title="F用户说明"
+          onClose={() => this.setState({showFModal: false})}>
+          <div style={{fontSize: '1.5rem', textAlign: 'justify', padding: '10px'}}>
+            当您参与超级节点成功后,将获得F用户的标示,F用户标示代表着您能够享受买配奖、代数管理奖、团队奖等相关奖励,F用户标示有效期为48小时。
+          </div>
+        </Modal>
       </div>
     )
   }
 }
 
 export default UserCenter
+
+
+// 联系客服图片和链接没有通

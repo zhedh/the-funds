@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
+import {Toast, Button} from "antd-mobile";
 import {COUNT_DOWN, REG, TOAST_DURATION} from '../../utils/constants'
 import Captcha from "../common/Captcha";
 import AccountHeader from "./AccountHeader";
 import UserApi from "../../api/user";
-import {Toast} from "antd-mobile";
 import './VerifiedCode.scss'
-import Button from "antd-mobile/es/button";
 
 
 class VerifiedCode extends Component {
@@ -20,6 +19,10 @@ class VerifiedCode extends Component {
 
   componentDidMount() {
     this.getCaptchaPng()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   getCaptchaPng = () => {
@@ -44,10 +47,6 @@ class VerifiedCode extends Component {
     this.setState({[key]: value})
   }
 
-  onChangeCaptcha = (key) => {
-    this.setState({captchaKey: key})
-  };
-
   codeCountDown = () => {
     let count = this.state.count
 
@@ -62,13 +61,13 @@ class VerifiedCode extends Component {
   }
 
   sendSmsCode = () => {
-    const {userName} = this.props
+    const {userName, typeOption} = this.props
     const {captcha, captchaKey} = this.state;
     UserApi.sendSmsCode({
       imgcode: captcha,
       prefix: '86',
       phone: userName,
-      type: 'findpassword'
+      type: typeOption.codeType
     }, {
       key: captchaKey,
     }).then(res => {
@@ -82,12 +81,12 @@ class VerifiedCode extends Component {
   };
 
   sendMailCode = () => {
-    const {userName} = this.props
+    const {userName, typeOption} = this.props
     const {captcha, captchaKey} = this.state;
     UserApi.sendMailCode({
       imgcode: captcha,
       email: userName,
-      type: 'findpassword'
+      type: typeOption.codeType
     }, {
       key: captchaKey,
     }).then(res => {
@@ -118,13 +117,13 @@ class VerifiedCode extends Component {
   }
 
   render() {
-    const {typeOption, userName, code, onInputChange, onNext} = this.props
+    const {typeOption, userName, code, onInputChange, onNext, onBack} = this.props
     const {isGetSms, count, captcha, imgSrc} = this.state
     const canSubmit = userName !== '' && code !== ''
 
     return (
       <div className="verified-code">
-        <AccountHeader title={typeOption.title}/>
+        <AccountHeader title={typeOption.title} onHandle={onBack}/>
         <div className="main-content">
           <label>
             <input
@@ -132,6 +131,7 @@ class VerifiedCode extends Component {
               type="text"
               placeholder="邮箱/手机号"
               value={userName}
+              readOnly={!typeOption.canChangeUser}
               onChange={(e) => onInputChange(e, 'userName')}
               onBlur={this.onAccountBlur}
             />

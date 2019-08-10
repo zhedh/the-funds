@@ -8,7 +8,7 @@ import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
-import homeNullImg from '../../assets/images/home-null.png'
+import noDataImg from '../../assets/images/no-data.png'
 import userCenterImg from '../../assets/images/user-center.png'
 import {ProductApi} from '../../api'
 import {TOAST_DURATION} from "../../utils/constants";
@@ -78,7 +78,7 @@ class Index extends Component {
         </section>
         <section className="section-main">
           <div className="steps">
-            <Link to={userStore.isLogin ? '/home/deposit-history' : '/login'}>
+            <Link to={userStore.isOnline ? '/home/deposit-history' : '/login'}>
               定存中
             </Link>
             <Link to="/home/rule">
@@ -100,7 +100,7 @@ class Index extends Component {
             </li>
           </ul>}
           {!hasProducts && <div className="null">
-            <img src={homeNullImg} alt="空"/>
+            <img src={noDataImg} alt="空"/>
             <br/>
             每天存一笔，天天有钱赚！
           </div>}

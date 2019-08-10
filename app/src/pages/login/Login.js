@@ -54,6 +54,7 @@ class Login extends Component {
       }
       Cookies.set('OPENID', res.data.openId);
       Cookies.set('TOKEN', res.data.token)
+      Cookies.set('PAY_PASSWORD', res.data.payPassword)
       Toast.success('登陆成功', TOAST_DURATION, () => history.push('/'))
     })
   }

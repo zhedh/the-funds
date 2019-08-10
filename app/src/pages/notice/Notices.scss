@@ -1,7 +1,9 @@
 @import '../../styles/_common';
 
 #notices {
+  box-sizing: border-box;
   min-height: 100vh;
+  padding-top: $header-height;
   background-color: #fff;
 
   ul {
@@ -22,6 +24,21 @@
         margin-top: 0.8rem;
         color: #989c9f;
       }
+    }
+  }
+
+  .no-data {
+    padding: 12rem 20px;
+    text-align: center;
+
+    img {
+      width: 99px;
+    }
+
+    p {
+      @include clearBack;
+      padding-top: 5px;
+      color: $text-sub-color;
     }
   }
 }

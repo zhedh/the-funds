@@ -1,13 +1,7 @@
 import http from './http'
 import config from './config'
-import Cookies from 'js-cookie'
 
 class UserApi {
-  // 判断是否已登录
-  static isOnline() {
-    return !!Cookies.get('TOKEN') && !!Cookies.get('OPENID')
-  }
-
   /**
    * 获取图形验证码
    **/

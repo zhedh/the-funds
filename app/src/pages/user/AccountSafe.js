@@ -1,16 +1,13 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Header from '../../components/common/Header'
 import './AccountSafe.scss'
+import {inject} from "mobx-react";
 
+@inject('userStore')
 class AccountSafe extends Component {
-  state = {
-    hadTransactionPwd: false // 是否已设置交易密码
-  }
-
   render() {
-    const { hadTransactionPwd } = this.state
-    const { history } = this.props
+    const {history, userStore: {hasPayPassword}} = this.props
     return (
       <div id="account-safe">
         <Header
@@ -18,7 +15,7 @@ class AccountSafe extends Component {
           isShadow={true}
           onHandle={() => history.push('/user-center')}
         />
-        <Link to={{ pathname: '/forget-password/1', state: { type: 'reset' } }}>
+        <Link to="/password/reset">
           <p>重置登录密码</p>
           <img
             className="arrow"
@@ -26,13 +23,8 @@ class AccountSafe extends Component {
             alt=""
           />
         </Link>
-        <Link
-          to={{
-            pathname: '/transaction-password/1',
-            state: { type: hadTransactionPwd ? 'reset' : 'set' }
-          }}
-        >
-          <p>{hadTransactionPwd ? '重置交易密码' : '设置交易密码'}</p>
+        <Link to={`/password/${hasPayPassword ? 'repay' : 'pay'}`}>
+          <p>{hasPayPassword ? '重置交易密码' : '设置交易密码'}</p>
           <img
             className="arrow"
             src={require('../../assets/images/arrow-right.png')}

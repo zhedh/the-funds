@@ -57,12 +57,12 @@ function ToLogin() {
 
 class Index extends Component {
   render() {
-    const isLogin = true;
+    const isOnline = true;
 
     return (
       <div id="wallet">
         <Header title="钱包" isFixed isShadow/>
-        {isLogin ? <CardList cards={CARDS}/> : <ToLogin/>}
+        {isOnline ? <CardList cards={CARDS}/> : <ToLogin/>}
       </div>
     );
   }

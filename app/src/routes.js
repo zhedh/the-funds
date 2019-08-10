@@ -71,14 +71,6 @@ const Password = Loadable({
   loader: () => import('./pages/login/Password'),
   loading: Loading
 })
-const ForgetPwd = Loadable({
-  loader: () => import('./pages/login/ForgetPwd'),
-  loading: Loading
-})
-const TransactionPwd = Loadable({
-  loader: () => import('./pages/login/TransactionPwd'),
-  loading: Loading
-})
 
 
 const UserCenter = Loadable({
@@ -107,6 +99,11 @@ const VerifiedUpload = Loadable({
 })
 const VerifiedResult = Loadable({
   loader: () => import('./pages/user/VerifiedResult'),
+  loading: Loading
+})
+
+const NoMatch = Loadable({
+  loader: () => import('./pages/exception/404'),
   loading: Loading
 })
 
@@ -152,12 +149,6 @@ export default [
   {path: '/login', name: 'Login', component: Login},
   {path: '/register', name: 'Register', component: Register},
   {path: '/password/:type', name: 'Password', component: Password},
-  {path: '/forget-password/:state', name: 'ForgetPwd', component: ForgetPwd},
-  {
-    path: '/transaction-password/:state',
-    name: 'TransactionPwd',
-    component: TransactionPwd
-  },
 
   // 个人中心
   {path: '/user-center', name: 'UserCenter', component: UserCenter},
@@ -184,6 +175,13 @@ export default [
     path: '/verified-result',
     name: 'VerifiedResult',
     component: VerifiedResult
+  },
+
+  // 404
+  {
+    path: '/404',
+    name: '404',
+    component: NoMatch
   }
 ]
 

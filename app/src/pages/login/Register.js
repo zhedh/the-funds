@@ -176,6 +176,7 @@ class Register extends Component {
       }
       Cookies.set('OPENID', res.data.openId);
       Cookies.set('TOKEN', res.data.token)
+      Cookies.set('PAY_PASSWORD', res.data.payPassword)
       Toast.success('注册成功', TOAST_DURATION, () => this.setState({showSuccess: true}))
     })
   };
