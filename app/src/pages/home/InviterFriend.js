@@ -3,13 +3,17 @@ import QRCode from 'qrcode.react'
 import {Link} from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {MdContentCopy} from 'react-icons/md';
-
 import Header from '../../components/common/Header'
 import './InviterFriend.scss'
+import {inject, observer} from "mobx-react";
 
+@inject('personStore')
+@observer
 class InviterFriend extends Component {
 
   componentDidMount() {
+    const {personStore} = this.props
+    personStore.getUserInfo()
   }
 
   saveImg = () => {
