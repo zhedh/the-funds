@@ -41,6 +41,12 @@ class Password extends Component {
     clearInterval(this.timer)
   }
 
+  onBack = () => {
+    const {history} = this.props
+    const {typeOption} = this.state
+    history.push(typeOption.type !== 'find' ? '/account' : '/login')
+  }
+
   onInputChange = (e, key) => {
     const {value} = e.target
     this.setState({[key]: value})
@@ -77,7 +83,8 @@ class Password extends Component {
   }
 
   onSubmit = () => {
-    const {userName, code, password, passwordConfirm} = this.state
+    const {history} = this.props
+    const {typeOption, userName, code, password, passwordConfirm} = this.state
 
     if (!REG.PASSWORD.test(password)) {
       Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
@@ -89,29 +96,44 @@ class Password extends Component {
     }
 
     const isPhone = REG.MOBILE.test(userName)
-    UserApi.findPassword({
-      phonePrefix: isPhone ? '86' : null,
-      userName,
-      code,
-      password,
-      passwordConfirm,
-    }).then(res => {
-      if (res.status === 1) {
-        const {history} = this.props
-        Toast.info('密码已重置，请重新登录', TOAST_DURATION, () =>
-          history.push(`/login`)
-        )
-        return
-      }
-      Toast.info(res && res.msg, TOAST_DURATION)
-    })
+
+    // 找回登录密码
+    if (typeOption.type === 'find') {
+      return UserApi.findPassword({
+        phonePrefix: isPhone ? '86' : null,
+        userName,
+        code,
+        password,
+        passwordConfirm,
+      }).then(res => this.updateLoginPasswordSuccess(res, '密码已重置，请重新登录'))
+    }
+
+    // 重置登录密码
+    if (typeOption.type === 'reset') {
+      return UserApi.editPassword({
+        password,
+        passwordConfirm,
+        verifyToken: ''
+      }).then(res => this.updateLoginPasswordSuccess(res, '更改成功，请重新登录'))
+    }
+
   }
 
-  onBack = () => {
-    const {history} = this.props
-    const {typeOption} = this.state
-    history.push(typeOption.type !== 'find' ? '/account' : '/login')
+  updateLoginPasswordSuccess(res, msg) {
+    if (res.status !== 1) {
+      Toast.info(res && res.msg, TOAST_DURATION)
+      return
+    }
+    const {userStore} = this.props
+    userStore.logout()
+    Toast.info(msg, TOAST_DURATION, () => history.push(`/login`))
   }
+
+  // 找回密码
+  findPassword = () => {
+
+  }
+
 
   render() {
     const {step, typeOption, userName, code, password, passwordConfirm} = this.state

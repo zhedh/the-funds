@@ -3,6 +3,7 @@ import {Button, Toast} from 'antd-mobile'
 import Cookies from "js-cookie";
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
+import {getQueryParam} from "../../utils/common";
 import AccountHeader from "../../components/partial/AccountHeader";
 import Captcha from '../../components/common/Captcha';
 import openPwdImg from '../../assets/images/open-pwd.png'
@@ -12,7 +13,9 @@ import './Register.scss'
 class RegisterSuccess extends Component {
   onConfirm = () => {
     const {history} = this.props;
-    history.push('/');
+    // 暂时进入邀请好友页
+    // history.push('/');
+    history.push('/home/inviter-friend');
   };
 
   render() {
@@ -59,6 +62,8 @@ class Register extends Component {
   };
 
   componentDidMount() {
+    const recommendCode = getQueryParam('recommendCode')
+    this.setState({recommendCode})
     this.getCaptchaPng();
   }
 

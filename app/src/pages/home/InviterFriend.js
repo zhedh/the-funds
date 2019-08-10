@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import QRCode from 'qrcode.react'
 import {Link} from 'react-router-dom'
+import {inject, observer} from "mobx-react";
+import {Toast} from "antd-mobile";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {MdContentCopy} from 'react-icons/md';
 import Header from '../../components/common/Header'
 import './InviterFriend.scss'
-import {inject, observer} from "mobx-react";
+
 
 @inject('personStore')
 @observer
@@ -28,7 +30,12 @@ class InviterFriend extends Component {
   };
 
   render() {
-    const {history} = this.props;
+    const {history, personStore} = this.props;
+    const {userInfo} = personStore
+    const {origin} = window.location
+    const inviterUrl = origin + '/register?recommendCode=' + userInfo.recommendCode
+    console.log(userInfo)
+    console.log(inviterUrl)
     return (
       <div id="inviter-friend">
         <Header
@@ -40,27 +47,32 @@ class InviterFriend extends Component {
           }}
         />
         <section className="section-text">
-          9k8NBV7
+          {userInfo.recommendCode}
           <br/>
           <CopyToClipboard
-            text={'9k8NBV7'}
-            onCopy={() => console.log('9k8NBV7')}>
+            text={userInfo.recommendCode}
+            onCopy={() => Toast.info('复制成功')}>
             <span>复制邀请码</span>
           </CopyToClipboard>
         </section>
         <section className="section-qr">
           <div className="qr-code__box">
-            <QRCode className="qr-code" value="9k8NBV7"/>
+            <QRCode className="qr-code" value={inviterUrl}/>
             <br/>
             <span onClick={this.saveImg}>保存邀请二维码</span>
           </div>
           <p>
-            https://apitest.mokengsk/
-            <MdContentCopy className="icon"/>
+            {inviterUrl}
+            <CopyToClipboard
+              text={inviterUrl}
+              onCopy={() => Toast.info('复制成功')}>
+              <MdContentCopy className="icon"/>
+            </CopyToClipboard>
           </p>
         </section>
         <section className="section-link">
-          <Link to="/home/generalize">查看推广</Link>
+          <a>注册成功</a>
+          {/*<Link to="/home/generalize">查看推广</Link>*/}
         </section>
       </div>
     );

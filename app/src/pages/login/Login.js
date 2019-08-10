@@ -15,7 +15,7 @@ class Login extends Component {
     number: '',
     password: '',
     type: 'password'
-  };
+  }
 
   onInputChange = (e, key) => {
     const {value} = e.target
@@ -55,7 +55,9 @@ class Login extends Component {
       Cookies.set('OPENID', res.data.openId);
       Cookies.set('TOKEN', res.data.token)
       Cookies.set('PAY_PASSWORD', res.data.payPassword)
-      Toast.success('登陆成功', TOAST_DURATION, () => history.push('/'))
+      // 暂时进入邀请好友页
+      // Toast.success('登陆成功', TOAST_DURATION, () => history.push('/'))
+      Toast.success('登陆成功', TOAST_DURATION, () => history.push('/home/inviter-friend'))
     })
   }
 
