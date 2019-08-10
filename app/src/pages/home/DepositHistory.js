@@ -55,7 +55,7 @@ class DepositHistory extends Component {
                 <span>{history.order}</span>
               </p>
               <p>
-                <label>定存ZBX</label>
+                <label>定存XC</label>
                 <span>{history.depositZbx}</span>
               </p>
               <p>
@@ -67,11 +67,11 @@ class DepositHistory extends Component {
                 <span>{history.fee}</span>
               </p>
               <p>
-                <label>返还日兑价ZBX/USDT</label>
+                <label>返还日兑价XC/USDT</label>
                 <span>{history.exchangePrince}</span>
               </p>
               <p>
-                <label>到期返还ZBX</label>
+                <label>到期返还XC</label>
                 <span>{history.returnZbx}</span>
               </p>
             </li>)

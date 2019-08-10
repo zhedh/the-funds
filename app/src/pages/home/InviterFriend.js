@@ -1,41 +1,39 @@
 import React, {Component} from 'react';
 import QRCode from 'qrcode.react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {inject, observer} from "mobx-react";
 import {Toast} from "antd-mobile";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {MdContentCopy} from 'react-icons/md';
 import Header from '../../components/common/Header'
 import './InviterFriend.scss'
-
+import {isWxAgent} from "../../utils/common";
 
 @inject('personStore')
 @observer
 class InviterFriend extends Component {
+  state = {
+    codeUrl: null
+  }
 
   componentDidMount() {
     const {personStore} = this.props
     personStore.getUserInfo()
+    this.saveImg()
   }
 
   saveImg = () => {
     const canvas = document.querySelector('.qr-code__box canvas')
-    const url = canvas.toDataURL('image/png');
-    const event = new MouseEvent('click')
-    let a = document.createElement('a')
-
-    a.download = 'inviter-code';
-    a.href = url
-    a.dispatchEvent(event)
+    const codeUrl = canvas.toDataURL('image/png');
+    this.setState({codeUrl})
   };
 
   render() {
+    const {codeUrl} = this.state
     const {history, personStore} = this.props;
     const {userInfo} = personStore
     const {origin} = window.location
     const inviterUrl = origin + '/register?recommendCode=' + userInfo.recommendCode
-    console.log(userInfo)
-    console.log(inviterUrl)
     return (
       <div id="inviter-friend">
         <Header
@@ -57,9 +55,14 @@ class InviterFriend extends Component {
         </section>
         <section className="section-qr">
           <div className="qr-code__box">
-            <QRCode className="qr-code" value={inviterUrl}/>
+            <QRCode
+              className="qr-code"
+              value={inviterUrl}
+            />
             <br/>
-            <span onClick={this.saveImg}>保存邀请二维码</span>
+            <img src={codeUrl} alt=""/>
+            <br/>
+            <span>{isWxAgent() ? '长按保存二维码' : '点击二维码保存图片'}</span>
           </div>
           <p>
             {inviterUrl}
@@ -71,7 +74,7 @@ class InviterFriend extends Component {
           </p>
         </section>
         <section className="section-link">
-          <a>注册成功</a>
+          <a href="#">注册成功</a>
           {/*<Link to="/home/generalize">查看推广</Link>*/}
         </section>
       </div>

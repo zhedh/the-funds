@@ -117,12 +117,14 @@ class VerifiedCode extends Component {
   }
 
   render() {
-    const {typeOption, userName, code, onInputChange, onNext, onBack} = this.props
+    const {show, typeOption, userName, code, onInputChange, onNext, onBack} = this.props
     const {isGetSms, count, captcha, imgSrc} = this.state
     const canSubmit = userName !== '' && code !== ''
 
+    console.log(show)
+
     return (
-      <div className="verified-code">
+      <div className={'verified-code ' + (show ? 'show' : '')}>
         <AccountHeader title={typeOption.title} onHandle={onBack}/>
         <div className="main-content">
           <label>

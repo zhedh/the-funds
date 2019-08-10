@@ -7,13 +7,13 @@ const RECORDS = [
   {
     id: 1,
     time: '2019.07.09 15:00',
-    label: '定存100ZBX',
+    label: '定存100XC',
     type: 1,
     value: 10
   }, {
     id: 2,
     time: '2019.07.09 15:00',
-    label: '定存200ZBX',
+    label: '定存200XC',
     type: 1,
     value: 10
   }, {

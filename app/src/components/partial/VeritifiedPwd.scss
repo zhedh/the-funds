@@ -1,7 +1,12 @@
 @import '../../styles/mixin';
 
 .verified-pwd {
+  display: none;
   box-sizing: border-box;
+
+  &.show{
+    display: block;
+  }
 
   .main-content {
     margin-bottom: 3rem;
@@ -25,7 +30,7 @@
           border-bottom: 2px solid $primary-color;
         }
 
-        &:placeholder {
+        &::placeholder {
           color: $black-font-primary;
           font-weight: 500;
         }

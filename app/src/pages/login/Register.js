@@ -3,7 +3,7 @@ import {Button, Toast} from 'antd-mobile'
 import Cookies from "js-cookie";
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
-import {getQueryParam} from "../../utils/common";
+import {compatibleFixedButton, getQueryParam} from "../../utils/common";
 import AccountHeader from "../../components/partial/AccountHeader";
 import Captcha from '../../components/common/Captcha';
 import openPwdImg from '../../assets/images/open-pwd.png'
@@ -58,13 +58,17 @@ class Register extends Component {
     captchaKey: +new Date(),
     count: COUNT_DOWN,
     isGetSms: true,
-    showSuccess: false
+    showSuccess: false,
+    showBtn: true
   };
 
   componentDidMount() {
     const recommendCode = getQueryParam('recommendCode')
     this.setState({recommendCode})
-    this.getCaptchaPng();
+    this.getCaptchaPng()
+    compatibleFixedButton((isShow) => {
+      this.setState({showBtn: isShow})
+    })
   }
 
   getCaptchaPng = () => {
@@ -224,7 +228,8 @@ class Register extends Component {
       imgSrc,
       count,
       isGetSms,
-      showSuccess
+      showSuccess,
+      showBtn
     } = this.state;
 
     return (
@@ -304,16 +309,15 @@ class Register extends Component {
             />
           </label>
         </div>
-        <Button
+        {showBtn && <Button
           activeClassName="btn-common__active"
           className={`btn-common btn-common__bottom ${
             this.canSubmit() ? '' : 'btn-common__disabled'
             }`}
           disabled={!this.canSubmit()}
-          onClick={this.onSubmit}
-        >
+          onClick={this.onSubmit}>
           立即注册
-        </Button>
+        </Button>}
         {showSuccess && <RegisterSuccess history={this.props.history}/>}
       </div>
     )

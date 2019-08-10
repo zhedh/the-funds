@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import {observer, inject} from "mobx-react";
-import {observable} from "mobx";
 import {Toast} from "antd-mobile";
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
@@ -48,7 +47,7 @@ class Index extends Component {
       <div id="home">
         <section className="section-banner">
           <Header
-            title="中募基金"
+            title="定投XC"
             icon={userCenterImg}
             onHandle={() => {
               history.push("user-center");
@@ -56,7 +55,7 @@ class Index extends Component {
           />
           <p>
             <IoIosMegaphone className="megaphone"/>
-            公告：关于开放ZBX基金定存说明
+            公告：关于开放XC基金定存说明
           </p>
           <ul className="tabs">
             <li onClick={() => history.push("/home/bargain")}>
@@ -90,7 +89,7 @@ class Index extends Component {
             <li>
               <div className="main">
                 <small>2019.07.10 定存</small>
-                1000 ZBX
+                1000 XC
                 <span>消耗 58.59 USDT</span>
               </div>
               <div className="aside">
