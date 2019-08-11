@@ -149,9 +149,11 @@ export function compatibleFixedButton(callback) {
 
 /**
  * @description 判断是否是微信浏览器环境
- * @returns {bool}
+ * @returns {boolean}
  */
 export function isWxAgent() {
   const ua = navigator.userAgent.toLowerCase();//获取判断用的对象
-  return (ua.match(/MicroMessenger/i).toString() === "micromessenger")
+  const match = ua.match(/MicroMessenger/i)
+  if (!match) return false
+  return (match.toString() === "micromessenger")
 }

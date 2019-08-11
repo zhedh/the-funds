@@ -50,7 +50,7 @@ class Login extends Component {
       return
     }
 
-    // 登陆接口，成功后前往首页
+    // 登录接口，成功后前往首页
     UserApi.login({
       phonePrefix: isPhone ? '86' : null,
       userName: number,
@@ -64,8 +64,8 @@ class Login extends Component {
       Cookies.set('TOKEN', res.data.token)
       Cookies.set('PAY_PASSWORD', res.data.payPassword)
       // 暂时进入邀请好友页
-      // Toast.success('登陆成功', TOAST_DURATION, () => history.push('/'))
-      Toast.success('登陆成功', TOAST_DURATION, () => history.push('/home/inviter-friend'))
+      // Toast.success('登录成功', TOAST_DURATION, () => history.push('/'))
+      Toast.success('登录成功', TOAST_DURATION, () => history.push('/home/inviter-friend'))
     })
   }
 
