@@ -41,13 +41,13 @@ class PersonApi {
    * 提交认证资料
    *
    * @required country string 国家
-   * @required cardType string 证件类型
+   * @required cardType string 证件类型 身份证、护照、驾照
    * @required firstName string 名字（选中中国时为全名）
    * @required lastName string 姓式（选中中国时可以不提交）
    * @required cardId string 证件号码
    **/
-  static getWalletAddress(options = {}) {
-    return http.post('/user/mywallet', options)
+  static submitAuthentication(options = {}) {
+    return http.post('/user/authentication', options)
   }
 
   /**
@@ -70,7 +70,7 @@ class PersonApi {
   /**
    * 提交认证审核
    **/
-  static submitAuthentication(options = {}) {
+  static submitAuthInfo(options = {}) {
     return http.post('/user/authenticationsubmit', options)
   }
 

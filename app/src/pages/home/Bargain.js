@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import arrowLeft from '../../assets/images/arrow-left.png';
 
 import './Bargain.scss'
+import {inject, observer} from "mobx-react";
 
 const BARGAINS = [
   {
@@ -22,14 +23,23 @@ const BARGAINS = [
   },
 ];
 
+@inject('personStore')
+@observer
 class Bargain extends Component {
   state = {
     bargains: BARGAINS
   };
 
+  componentDidMount(){
+    const {personStore} = this.props
+    personStore.getSpecial()
+  }
+
   render() {
-    const {history} = this.props
+    const {history,personStore} = this.props
     const {bargains} = this.state;
+    const {specials} = personStore
+    console.log(specials)
 
     return (
       <div id="bargain">

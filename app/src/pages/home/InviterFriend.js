@@ -6,18 +6,23 @@ import {Toast} from "antd-mobile";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {MdContentCopy} from 'react-icons/md';
 import Header from '../../components/common/Header'
+import {TOAST_DURATION} from "../../utils/constants";
 import './InviterFriend.scss'
-import {isWxAgent} from "../../utils/common";
 
 @inject('personStore')
+@inject('userStore')
 @observer
 class InviterFriend extends Component {
   state = {
-    codeUrl: null
+    codeUrl: ''
   }
 
   componentDidMount() {
-    const {personStore} = this.props
+    const {personStore, userStore, history} = this.props
+    if (!userStore.isOnline) {
+      Toast.info('请先登录', TOAST_DURATION, () => history.push('/login'))
+      return
+    }
     personStore.getUserInfo()
     this.saveImg()
   }
@@ -64,7 +69,7 @@ class InviterFriend extends Component {
             <br/>
             <img src={codeUrl} alt=""/>
             <br/>
-            <span>{isWxAgent() ? '长按保存二维码' : '点击二维码保存图片'}</span>
+            <span>点击或长按二维码保存图片</span>
           </div>
           <p>
             {inviterUrl}

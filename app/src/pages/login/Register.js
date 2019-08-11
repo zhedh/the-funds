@@ -30,10 +30,8 @@ class RegisterSuccess extends Component {
           <p className="text">恭喜您，注册成功 !</p>
         </main>
         <Button
-          activeClassName="btn-common__active"
-          className={`btn-common btn-common__bottom `}
-          onClick={this.onConfirm}
-        >
+          className="btn"
+          onClick={this.onConfirm}>
           立即开启
         </Button>
       </div>
@@ -46,7 +44,7 @@ class Register extends Component {
     preAccount: '',
     account: '',
     code: '',
-    imgCode: null,
+    imgCode: '',
     password: '',
     passwordConfirm: '',
     recommendCode: '',
@@ -63,7 +61,7 @@ class Register extends Component {
   };
 
   componentDidMount() {
-    const recommendCode = getQueryParam('recommendCode')
+    const recommendCode = getQueryParam('recommendCode') || ''
     this.setState({recommendCode})
     this.getCaptchaPng()
     compatibleFixedButton((isShow) => {
@@ -216,6 +214,7 @@ class Register extends Component {
   };
 
   render() {
+    const {history} = this.props
     const {
       account,
       code,
@@ -234,7 +233,7 @@ class Register extends Component {
 
     return (
       <div id="register">
-        <AccountHeader title="注册"/>
+        <AccountHeader title="注册" onHandle={() => history.push('/login')}/>
         <div className="main-content">
           <label>
             <input

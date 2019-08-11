@@ -14,6 +14,7 @@ export const CAPTCHA_ID = '659ba10af0634d2d9451f90fdcadb336'
 export const COUNT_DOWN = 60 // 倒计时
 
 export const TOAST_DURATION = 1.9 // 提示框出现时间0.9s
+
 export const COUNTRIES_LIST = [
   'China中国',
   'Hong Kong香港',

@@ -67,6 +67,10 @@
         .text {
           font-size: $font-assistant;
 
+          span{
+            font-size: $font-title-s;
+          }
+
           b {
             font-size: 2.1rem;
             font-weight: normal;

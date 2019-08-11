@@ -12,7 +12,6 @@ import userCenterImg from '../../assets/images/user-center.png'
 import {ProductApi} from '../../api'
 import {TOAST_DURATION} from "../../utils/constants";
 import './Index.scss'
-import PersonApi from "../../api/person";
 
 @inject('userStore')
 @inject('personStore')
@@ -64,7 +63,7 @@ class Index extends Component {
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
               <div className="text">
-                <b>{userStore.isOnline ? personStore.allUsableSpecial : '登录查看'}</b>
+                {userStore.isOnline ? <b>{personStore.allUsableSpecial}</b> : <span>登录查看</span>}
                 <br/>
                 <small>可用特价额度</small>
               </div>

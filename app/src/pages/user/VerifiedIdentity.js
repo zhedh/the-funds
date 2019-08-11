@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import { Button, Toast } from 'antd-mobile'
+import React, {Component, Fragment} from 'react'
+import {Button, Toast} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedIdentity.scss'
-import { TOAST_DURATION } from '../../utils/constants'
+import {COUNTRIES_LIST, TOAST_DURATION} from '../../utils/constants'
+import {inject, observer} from "mobx-react"
+
 const typeList = [
   {
     name: '身份证',
@@ -20,47 +22,41 @@ const typeList = [
     active: require('../../assets/images/driving-active.svg')
   }
 ]
+
+@inject('authStore')
+@observer
 class VerifiedIdentity extends Component {
   state = {
+    isChina: true,
     activeType: null,
-
     userName: '',
     idCard: '',
-
     firstName: '',
     lastName: '',
     cardNumber: ''
   }
 
-  onUsernameChange = e => {
-    const {
-      target: { value }
-    } = e
-    this.setState({ userName: value })
+  componentDidMount() {
+    const {authStore, match} = this.props
+    const {country} = match.params
+    if (country) {
+      this.setState({isChina: country === COUNTRIES_LIST[0]})
+      authStore.changeInfoItem(country, 'country')
+    }
+    console.log(authStore.authInfo)
   }
 
-  onCardNumberChange = e => {
-    const {
-      target: { value }
-    } = e
-    this.setState({ cardNumber: value })
+  canSubmit = () => {
+    const {authStore} = this.props
+    const {country, cardType, firstName, lastName, cardId} = authStore.authInfo
+    const {isChina} = this.state
+    return isChina ? (firstName && cardId)
+      : (country && cardType && firstName && lastName && cardId)
   }
 
-  onFirstnameChange = e => {
-    const {
-      target: { value }
-    } = e
-    this.setState({ firstName: value })
-  }
-  onLastNameChange = e => {
-    const {
-      target: { value }
-    } = e
-    this.setState({ lastName: value })
-  }
   onSubmit = () => {
-    const { cardNumber } = this.state
-    const { history } = this.props
+    const {cardNumber} = this.state
+    const {history} = this.props
     if (cardNumber.length < 7) {
       Toast.info('请输入7-18位证件号码', TOAST_DURATION)
       return
@@ -68,59 +64,51 @@ class VerifiedIdentity extends Component {
     // 提交数据至后台并 上传照片
     history.push('/verified-upload')
   }
+
   render() {
-    const { activeType, userName, firstName, lastName, cardNumber } = this.state
-    const currType = window.location.pathname.split('/')[2]
-    const isDisabled =
-      currType !== 'china'
-        ? activeType === null ||
-          firstName === '' ||
-          lastName === '' ||
-          cardNumber === ''
-        : cardNumber === '' || userName === ''
+    const {authStore} = this.props
+    const {country, cardType, firstName, lastName, cardId} = authStore.authInfo
+    const {isChina} = this.state
+
     return (
       <div id="verified-identity">
-        <Header />
-
+        <Header/>
         <div className="identity-top">
-          <img src={require('../../assets/images/identity.png')} alt="" />
+          <img src={require('../../assets/images/identity.png')} alt=""/>
           <h2>填写信息</h2>
           <p>确认所填信息与证件一致</p>
         </div>
         <div className="identity-bottom">
-          {currType === 'china' ? (
+          {isChina ? (
             <div className="identity-bottom__input input-center">
               <input
                 type="text"
                 maxLength={70}
                 placeholder="您的姓名"
-                value={userName}
-                onChange={this.onUsernameChange}
+                value={firstName}
+                onChange={(e) => authStore.changeInfoItem(e.target.value, 'firstName')}
               />
               <input
                 type="text"
                 placeholder="身份证号"
-                value={cardNumber}
-                onChange={this.onCardNumberChange}
+                value={cardId}
+                onChange={(e) => authStore.changeInfoItem(e.target.value, 'cardId')}
               />
             </div>
           ) : (
             <Fragment>
-              <p>您可以选择一下验证方式</p>
+              <label>您可以选择一下验证方式</label>
               <ul className="identity-bottom__type">
                 {typeList.map(type => (
                   <li
                     key={type.name}
-                    className={activeType === type.name ? 'active' : ''}
-                    onClick={() => {
-                      this.setState({ activeType: type.name })
-                    }}
-                  >
+                    className={cardType === type.name ? 'active' : ''}
+                    onClick={() => authStore.changeInfoItem(type.name, 'cardType')}>
                     <img
-                      src={activeType === type.name ? type.active : type.icon}
+                      src={cardType === type.name ? type.active : type.icon}
                       alt=""
                     />
-                    <br />
+                    <br/>
                     <small>{type.name}</small>
                   </li>
                 ))}
@@ -131,21 +119,21 @@ class VerifiedIdentity extends Component {
                   maxLength={70}
                   placeholder="姓"
                   value={firstName}
-                  onChange={this.onFirstnameChange}
+                  onChange={(e) => authStore.changeInfoItem(e.target.value, 'firstName')}
                 />
                 <input
                   type="text"
                   maxLength={70}
                   placeholder="名"
                   value={lastName}
-                  onChange={this.onLastNameChange}
+                  onChange={(e) => authStore.changeInfoItem(e.target.value, 'lastName')}
                 />
                 <input
                   type="text"
                   maxLength={18}
                   placeholder="证件号"
-                  value={cardNumber}
-                  onChange={this.onCardNumberChange}
+                  value={cardId}
+                  onChange={(e) => authStore.changeInfoItem(e.target.value, 'cardId')}
                 />
               </div>
             </Fragment>
@@ -154,9 +142,9 @@ class VerifiedIdentity extends Component {
         <Button
           activeClassName="btn-common__active"
           className={`btn-common btn-common__bottom ${
-            isDisabled ? 'btn-common__disabled' : ''
-          }`}
-          disabled={isDisabled}
+            !this.canSubmit() ? 'btn-common__disabled' : ''
+            }`}
+          disabled={!this.canSubmit()}
           onClick={this.onSubmit}
         >
           下一步
@@ -165,4 +153,5 @@ class VerifiedIdentity extends Component {
     )
   }
 }
+
 export default VerifiedIdentity

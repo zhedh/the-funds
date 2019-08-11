@@ -3,6 +3,8 @@ import qs from 'qs';
 import Cookies from 'js-cookie';
 import config from './config';
 import {optionsToHump, optionsToLine} from '../utils/common';
+import {Toast} from "antd-mobile";
+import {TOAST_DURATION} from "../utils/constants";
 
 const axiosConfig = {
   baseURL: config.baseURL,
@@ -27,8 +29,12 @@ instance.interceptors.request.use(config => {
     config.data = config.data ? config.data : {}
     config.data.openId = Cookies.get('OPENID')
     config.data.token = Cookies.get('TOKEN')
+
+    // 用户没有登录，先登录后进行操作
+    if (!config.data.token || !config.data.openId) {
+      Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
+    }
   }
-  console.log(config.data)
   return config;
 }, error => {
   // 对请求错误做些什么

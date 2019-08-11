@@ -170,7 +170,7 @@ export default [
     component: VerifiedCountry
   },
   {
-    path: '/verified-identity/:state',
+    path: '/verified-identity/:country',
     name: 'VerifiedIdentity',
     component: VerifiedIdentity
   },

@@ -1,79 +1,52 @@
 import React, {Component} from 'react';
-import Header from "../../components/common/Header";
+import dayjs from "dayjs";
+import {Toast} from "antd-mobile";
+import OtherApi from "../../api/other";
 import {chineseCapital} from "../../utils/common";
+import Header from "../../components/common/Header";
 import './GeneralizeDetail.scss'
-
-const USERS = [
-  {
-    id: 1,
-    email: 'dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 2,
-    email: 'dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 3,
-    email: 'dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 4,
-    email: 'dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 5,
-    email: 'dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 6,
-    email: 'dlajdj43b@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 7,
-    email: '32332dlab@163.com',
-    time: '2019-02-14 14:45'
-  }, {
-    id: 8,
-    email: 'dla4345b@163.com',
-    time: '2019-02-14 14:45'
-  },
-];
-
 
 class GeneralizeDetail extends Component {
   state = {
     title: '一代推荐',
-    users: USERS
+    users: []
   };
 
   componentDidMount() {
     const {match} = this.props;
     const {id} = match.params;
     this.setState({title: chineseCapital(id) + '代推荐'});
+    this.getSpreadList()
+  }
+
+  getSpreadList = () => {
+    OtherApi.getSpreadList().then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        return;
+      }
+      this.setState({users: res.data})
+    })
   }
 
   render() {
     const {title, users} = this.state;
+
     return (
       <div id="generalize-detail">
-        <Header
-          title={title}
-          isShadow={true}
-          isFixed={true}
-        />
+        <Header title={title} isShadow isFixed/>
         <ul>
           <li>
             <span>用户</span>
             <time>推广时间</time>
           </li>
           {users.map(user =>
-            <li key={user.id}>
-              <span>{user.email}</span>
-              <time>{user.time}</time>
+            <li key={user.regTime}>
+              <span>{user.phoneNo || user.email}</span>
+              <time>{dayjs(user.regTime * 1000).format('YY-MM-DD HH:mm')}</time>
             </li>)
           }
         </ul>
-
       </div>
     );
   }

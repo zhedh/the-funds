@@ -32,10 +32,9 @@ class PersonStore {
   @action
   getSpecial() {
     PersonApi.getSpecial().then(res => {
-      this.specials = res.data
+      if (res.status === 1) this.specials = res.data
     })
   }
-
 }
 
 export default PersonStore

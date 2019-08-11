@@ -3,25 +3,37 @@
 #verified-identity {
   .identity-top {
     text-align: center;
-    transform: translateY(-2rem);
+    margin-top: -30px;
+    line-height: 1.2;
 
-    h2 {
-      font-size: $font-title-xl;
-      color: #35393e;
-    }
-    p {
-      font-size: $font-title;
-      color: #5a5a5a;
-    }
     img {
       width: 6.4rem;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      @include clearBack;
+      font-size: $font-title-l;
+      color: #35393e;
+    }
+
+    p {
+      @include clearBack;
+      margin-top: 13px;
+      color: $text-sub-color;
+      font-weight: bold;
     }
   }
 
   .identity-bottom {
+    padding: 3rem 6rem;
     text-align: center;
-    width: 80%;
-    margin: auto;
+
+    label {
+      display: block;
+      color: #CCCCCC;
+      font-size: $font-assistant;
+    }
 
     .identity-bottom__type {
       @include clearList;
@@ -35,8 +47,10 @@
         box-sizing: border-box;
         padding: 1.5rem 1.6rem 0.5rem;
         border: 1px solid #ccc;
+        font-size: 1rem;
 
         img {
+          margin-bottom: 5px;
           width: 2.7rem;
           height: 1.7rem;
         }

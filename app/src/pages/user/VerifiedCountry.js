@@ -1,26 +1,25 @@
-import React, { Component } from 'react'
-import { COUNTRIES_LIST } from '../../utils/constants'
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import {COUNTRIES_LIST} from '../../utils/constants'
 import Header from '../../components/common/Header'
 import './VerifiedCountry.scss'
 
+
+@inject('authStore')
+@observer
 class VerifiedCountry extends Component {
-  state = {
-    selectedCountry: 'China中国'
-  }
 
   selectCountry = () => {
-    const { history } = this.props
-    const { selectedCountry } = this.state
-    if (selectedCountry === null) return
-    history.push(
-      `/verified-identity/${
-        selectedCountry === 'China中国' ? 'china' : 'foreign'
-      }`
-    )
+    const {history, authStore} = this.props
+    const {country} = authStore.authInfo
+    history.push('/verified-identity/' + country)
   }
 
   render() {
-    const { selectedCountry } = this.state
+    const {authStore} = this.props
+    const {country} = authStore.authInfo
+    const selectedCountry = country
+
     return (
       <div id="verified-country">
         <Header title="选择国家" isFixed bgWhite>
@@ -33,17 +32,12 @@ class VerifiedCountry extends Component {
           {COUNTRIES_LIST.map((country, key) => (
             <li
               key={key.toString()}
-              onClick={() => {
-                this.setState({ selectedCountry: country })
-              }}
-            >
+              onClick={() => authStore.changeInfoItem(country, 'country')}>
               <span>{country}</span>
-              {selectedCountry === country && (
-                <img
-                  src={require('../../assets/images/select-country.png')}
-                  alt=""
-                />
-              )}
+              {selectedCountry === country && <img
+                src={require('../../assets/images/select-country.png')}
+                alt=""
+              />}
             </li>
           ))}
         </ul>
@@ -51,4 +45,5 @@ class VerifiedCountry extends Component {
     )
   }
 }
+
 export default VerifiedCountry

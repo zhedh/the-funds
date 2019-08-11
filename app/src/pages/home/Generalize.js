@@ -1,30 +1,31 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {OtherApi} from '../../api'
 import arrowLeft from '../../assets/images/arrow-left.png';
 import arrowRightWhite from '../../assets/images/arrow-right-white.png';
 import generalizeUserOne from '../../assets/images/generalize-user-one.png';
 import generalizeUserTwo from '../../assets/images/generalize-user-two.png';
-
 import './Generalize.scss'
-
-const GENERALIZE_LIST = [
-  {
-    id: 1,
-    img: generalizeUserOne,
-    label: '一代推荐人数',
-    count: '16',
-  }, {
-    id: 2,
-    img: generalizeUserTwo,
-    label: '二代推荐人数',
-    count: '8',
-  },
-];
+import {Toast} from "antd-mobile";
 
 class Generalize extends Component {
   state = {
-    generalizeList: GENERALIZE_LIST
+    mySpread: {}
   };
+
+  componentDidMount() {
+    this.getMySpread()
+  }
+
+  getMySpread = () => {
+    OtherApi.getMySpread().then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        return;
+      }
+      this.setState({mySpread: res.data})
+    })
+  }
 
   toDetail = (id) => {
     const {history} = this.props;
@@ -32,7 +33,7 @@ class Generalize extends Component {
   };
 
   render() {
-    const {generalizeList} = this.state
+    const {mySpread = {}} = this.state
     return (
       <div id="generalize">
         <section className="section-banner">
@@ -44,7 +45,7 @@ class Generalize extends Component {
           </h1>
           <div className="content">
             <div className="count">
-              300
+              {(mySpread.recommendCount + mySpread.recommendCount2) || 0}
               <small>旗下推广总人数</small>
             </div>
           </div>
@@ -55,33 +56,41 @@ class Generalize extends Component {
               推荐列表
             </label>
             <ul className="list">
-              {generalizeList.map(generalize =>
-                <li key={generalize.id} onClick={() => this.toDetail(generalize.id)}>
-                  <p>
-                    <img src={generalize.img} alt=""/>
-                    {generalize.label}
-                  </p>
-                  <aside>
-                    {generalize.count}
-                    <img src={arrowLeft} alt=""/>
-                  </aside>
-                </li>)
-              }
+              <li onClick={() => this.toDetail(1)}>
+                <p>
+                  <img src={generalizeUserOne} alt=""/>
+                  一代推荐人数
+                </p>
+                <aside>
+                  {mySpread.recommendCount}
+                  <img src={arrowLeft} alt=""/>
+                </aside>
+              </li>
+              <li onClick={() => this.toDetail(2)}>
+                <p>
+                  <img src={generalizeUserTwo} alt=""/>
+                  一代推荐人数
+                </p>
+                <aside>
+                  {mySpread.recommendCount2}
+                  <img src={arrowLeft} alt=""/>
+                </aside>
+              </li>
             </ul>
           </div>
           <div className="group">
             <label>推荐团队</label>
             <ul className="team">
               <li>
-                <span>43</span>
+                <span>{mySpread.teamCount}</span>
                 <small>有效成员</small>
               </li>
               <li>
-                <span>V1</span>
+                <span>V{mySpread.teamLevel}</span>
                 <small>团队等级</small>
               </li>
               <li>
-                <span>43</span>
+                <span>{mySpread.rebate}</span>
                 <small>返还比例</small>
               </li>
             </ul>
