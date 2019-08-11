@@ -1,0 +1,79 @@
+@import '../../styles/_common';
+.unlock-limit {
+  height: 90%;
+  text-align: center;
+
+  section {
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    &.content-detail {
+      line-height: 1.5;
+
+      h1 {
+        margin-bottom: -1px;
+      }
+
+      span,
+      a {
+        font-size: $font-assistant + 0.1;
+      }
+
+      a {
+        color: #2564c1;
+        text-decoration: underline;
+      }
+
+      span {
+        color: $text-sub-color;
+      }
+    }
+
+    &.content-charge {
+      margin-top: 35px;
+
+      p {
+        text-align: left;
+        color: #db3f3e;
+        font-weight: 500;
+        font-size: $font-context + 0.1;
+      }
+
+      label {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        font-size: $font-assistant + 0.1;
+        margin-top: 13px;
+
+        input {
+          @include clearInput;
+          width: 100%;
+          padding: 10px 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        span {
+          display: inline-block;
+
+          &.all {
+            position: absolute;
+            right: 0;
+            top: 40%;
+            width: 10%;
+          }
+        }
+
+        small {
+          color: $text-sub-color;
+          font-size: $font-assistant;
+        }
+      }
+
+      h3 {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+    }
+  }
+}

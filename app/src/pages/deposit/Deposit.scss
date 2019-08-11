@@ -12,6 +12,15 @@
     }
   }
 
+  .modal-btn {
+    position: absolute;
+    bottom: 10%;
+  }
+
+  .handle-btn {
+    bottom: 4%;
+  }
+
   .drawer-main {
     min-height: 100vh;
     overflow: auto;
@@ -30,9 +39,6 @@
     }
 
     section {
-      box-sizing: border-box;
-      padding: 20px;
-
       &.content-top {
         width: 70%;
         margin: 3rem auto;
@@ -54,75 +60,6 @@
           .am-segment-item-selected {
             border-radius: 20px;
             background: rgba(232, 113, 58, 1) !important;
-          }
-        }
-      }
-
-      &.content-middle {
-        text-align: center;
-        margin: 4rem auto;
-        padding: 0 20px;
-
-        .tab-first_h2 {
-          font-size: $font-title-s + 0.1;
-          color: $text-color;
-        }
-
-        .tab-first_p {
-          font-size: $font-assistant;
-          color: $text-sub-color;
-        }
-      }
-
-      &.content-bottom {
-        ul {
-          @include clearList;
-          display: flex;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-
-          li {
-            width: 29%;
-            text-align: center;
-            padding: 2rem 0;
-            border: 2px solid $text-sub-color;
-            border-radius: 5px;
-            color: $text-sub-color;
-            margin-right: 4.3%;
-            margin-bottom: 20px;
-
-            &:nth-child(3n) {
-              margin-right: 0;
-            }
-
-            &.active {
-              color: $black;
-              border-color: $primary-color;
-            }
-
-            span {
-              line-height: 2;
-              font-size: $font-assistant;
-            }
-          }
-        }
-
-        .fee {
-          display: flex;
-          flex-direction: column;
-          text-align: right;
-
-          > p {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 500;
-            font-size: $font-title-s;
-            color: #000;
-          }
-
-          small {
-            color: $text-sub-color;
-            font-size: $font-assistant;
           }
         }
       }
@@ -180,24 +117,47 @@
     }
   }
 
-  .ensure-pay {
-    position: absolute;
+  .ensure-pay__wrapper {
+    position: fixed;
+    top: 0;
     bottom: 0;
-    width: 100%;
-    background: #fff;
-    z-index: 2;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.4);
 
-    .pay-content {
-      box-sizing: border-box;
-      padding: 20px;
+    .ensure-pay__content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 52%;
+      background: #fff;
+      z-index: 2;
 
-      p {
-        display: flex;
-        justify-content: space-between;
-        color: #25292e;
+      .pay-content {
+        box-sizing: border-box;
+        padding: 20px;
 
-        &:first-child {
-          font-size: $font-title;
+        p {
+          display: flex;
+          justify-content: space-between;
+          color: #25292e;
+          font-size: $font-assistant;
+          font-weight: 500;
+
+          &:first-child {
+            font-size: $font-title;
+          }
+
+          span > small {
+            color: $text-sub-color;
+            font-size: $font-assistant;
+          }
+        }
+
+        .tips {
+          color: $text-sub-color;
+          font-size: $font-assistant;
         }
       }
     }

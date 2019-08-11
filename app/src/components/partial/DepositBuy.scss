@@ -1,0 +1,78 @@
+@import '../../styles/_common';
+
+.deposit-buy {
+  height: 90%;
+
+  section {
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    &.content-middle {
+      text-align: center;
+      margin: 4rem auto;
+
+      .tab-first_h2 {
+        font-size: $font-title-s + 0.1;
+        color: $text-color;
+      }
+
+      .tab-first_p {
+        font-size: $font-assistant;
+        color: $text-sub-color;
+      }
+    }
+
+    &.content-bottom {
+      ul {
+        @include clearList;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        li {
+          width: 29%;
+          text-align: center;
+          padding: 2rem 0;
+          border: 2px solid $text-sub-color;
+          border-radius: 5px;
+          color: $text-sub-color;
+          margin-right: 4.3%;
+          margin-bottom: 20px;
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+
+          &.active {
+            color: $black;
+            border-color: $primary-color;
+          }
+
+          span {
+            line-height: 2;
+            font-size: $font-assistant;
+          }
+        }
+      }
+
+      .fee {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+
+        > p {
+          display: flex;
+          justify-content: space-between;
+          font-weight: 500;
+          font-size: $font-title-s;
+          color: #000;
+        }
+
+        small {
+          color: $text-sub-color;
+          font-size: $font-assistant;
+        }
+      }
+    }
+  }
+}
