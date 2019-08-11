@@ -18,7 +18,7 @@ class PersonApi {
   }
 
   /**
-   * 我的特价额度
+   * 我的特价额度明细
    *
    * @required productId string 商品ID
    * status string 0锁定，1可用，2提现锁定，3已失效
@@ -31,7 +31,7 @@ class PersonApi {
   /**
    * 我的钱包地址
    *
-   * @required type string 钱包地址类型(USDT、ZBX)
+   * @required type string 钱包地址类型 USDT|ZBX
    **/
   static getWalletAddress(options = {}) {
     return http.post('/user/mywallet', options)
@@ -72,6 +72,62 @@ class PersonApi {
    **/
   static submitAuthentication(options = {}) {
     return http.post('/user/authenticationsubmit', options)
+  }
+
+  /**
+   * 提币申请初始化
+   *
+   * @required type string 提币类型 usdt|inp
+   **/
+  static cashInit(options = {}) {
+    return http.post('/user/cashini', options)
+  }
+
+  /**
+   * 提交提币申请
+   *
+   * @required code string 邮箱验证码
+   * @required amount string 提币数量
+   * @required walletTo string 提入的钱包地址
+   * @required type string 提币类型 USDT|INP
+   **/
+  static submitCash(options = {}) {
+    return http.post('/user/cash', options)
+  }
+
+  /**
+   * 我的提币申请
+   *
+   * @required type string 提币类型 USDT|INP
+   **/
+  static getCashList(options = {}) {
+    return http.post('/user/cashlist', options)
+  }
+
+  /**
+   * 获取站内还是站外提币及手续费比例
+   *
+   * @required address string 钱包地址
+   **/
+  static getCashList(options = {}) {
+    return http.post('/user/walletforaddress', options)
+  }
+
+  /**
+   * 购买会员
+   *
+   * @required payToken string 支付TOKEN
+   * month number 购买月数，缺省为1个月
+   **/
+  static buyVip(options = {}) {
+    return http.post('/user/buyvip', options)
+  }
+
+  /**
+   * 会员信息
+   **/
+  static getVipInfo(options = {}) {
+    return http.post('/user/vipinfo', options)
   }
 }
 

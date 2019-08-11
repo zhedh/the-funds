@@ -2,7 +2,7 @@
 
 #common-header {
   position: relative;
-  z-index: 1;
+  z-index: 9;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,6 +28,10 @@
 
   img {
     height: 1.5rem;
+
+    &.hidden{
+      visibility: hidden;
+    }
   }
 
   span {

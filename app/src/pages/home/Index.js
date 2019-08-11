@@ -12,17 +12,22 @@ import userCenterImg from '../../assets/images/user-center.png'
 import {ProductApi} from '../../api'
 import {TOAST_DURATION} from "../../utils/constants";
 import './Index.scss'
+import PersonApi from "../../api/person";
 
 @inject('userStore')
+@inject('personStore')
 @observer
 class Index extends Component {
   state = {
-    products: []
+    products: [],
   }
 
   componentDidMount() {
+    const {userStore, personStore} = this.props
+    if (userStore.isOnline) personStore.getSpecial()
     this.getProducts()
   }
+
 
   getProducts = () => {
     const {products} = this.state
@@ -39,9 +44,12 @@ class Index extends Component {
   }
 
   render() {
-    const {history, userStore} = this.props;
+    const {history, userStore, personStore} = this.props;
     const {products} = this.state
     const hasProducts = products && products.length > 0
+
+    console.log(personStore.allUsableSpecial)
+
 
     return (
       <div id="home">
@@ -53,20 +61,21 @@ class Index extends Component {
               history.push("user-center");
             }}
           />
-          <p>
+          <p onClick={() => history.push('/notices')}>
             <IoIosMegaphone className="megaphone"/>
             公告：关于开放XC基金定存说明
           </p>
           <ul className="tabs">
-            <li onClick={() => history.push("/home/bargain")}>
+            <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
               <div className="text">
-                <b>128.23</b>
+                <b>{userStore.isOnline ? personStore.allUsableSpecial : '登录查看'}</b>
                 <br/>
                 <small>可用特价额度</small>
               </div>
               <FiChevronRight className="icon"/>
             </li>
-            <li onClick={() => history.push("/home/inviter-friend")}>
+            <li
+              onClick={() => history.push(userStore.isOnline ? '/home/inviter-friend' : '/login')}>
               <div className="text inviter-award">
                 <GoMailRead className="icon"/>
                 邀请奖励
@@ -85,7 +94,7 @@ class Index extends Component {
               <FiChevronRight className="icon"/>
             </Link>
           </div>
-          {hasProducts && <ul className="list">
+          {hasProducts ? <ul className="list">
             <li>
               <div className="main">
                 <small>2019.07.10 定存</small>
@@ -97,8 +106,7 @@ class Index extends Component {
                 返还
               </div>
             </li>
-          </ul>}
-          {!hasProducts && <div className="null">
+          </ul> : <div className="null">
             <img src={noDataImg} alt="空"/>
             <br/>
             每天存一笔，天天有钱赚！

@@ -45,11 +45,11 @@ function ToLogin() {
   return (
     <div className="login-warp">
       <main>
-        <img src={walletToLoginImg} alt="去登陆"/>
+        <img src={walletToLoginImg} alt="去登录"/>
         <p>您未登录，不能进行操作</p>
       </main>
       <aside>
-        <Link to="/login">去登陆</Link>
+        <Link to="/login">去登录</Link>
       </aside>
     </div>
   );

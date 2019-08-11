@@ -97,7 +97,7 @@ class UserApi {
   }
 
   /**
-   * 找回登录密码(登陆页面)
+   * 找回登录密码(登录页面)
    *
    * @required userName string 手机号或邮箱地址
    * @required code string 验证码

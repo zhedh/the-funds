@@ -69,6 +69,11 @@ class Password extends Component {
     }
 
     // 调校验验证码 接口，成功回调以下
+    // 找回密码不校验
+    if (typeOption.type === 'find') {
+      this.onStepChange(2)
+      return
+    }
     UserApi.checkCode({
       phonePrefix: isPhone ? '86' : null,
       userName,

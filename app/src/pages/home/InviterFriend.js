@@ -37,9 +37,11 @@ class InviterFriend extends Component {
     return (
       <div id="inviter-friend">
         <Header
+          hideIcon
           title="邀请好友"
           isShadow={true}
           isFixed={true}
+          bgWhite
           onHandle={() => {
             history.push('/home');
           }}
@@ -74,7 +76,7 @@ class InviterFriend extends Component {
           </p>
         </section>
         <section className="section-link">
-          <a href="#">注册成功</a>
+          <a>注册成功</a>
           {/*<Link to="/home/generalize">查看推广</Link>*/}
         </section>
       </div>
