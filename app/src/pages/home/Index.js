@@ -28,7 +28,6 @@ class Index extends Component {
     this.getProducts()
   }
 
-
   getProducts = () => {
     const {products} = this.state
     ProductApi.getProductList({
@@ -47,9 +46,6 @@ class Index extends Component {
     const {history, userStore, personStore} = this.props;
     const {products} = this.state
     const hasProducts = products && products.length > 0
-
-    console.log(personStore.allUsableSpecial)
-
 
     return (
       <div id="home">
@@ -118,8 +114,8 @@ class Index extends Component {
           msg="参与定存需先进行身份认证哦"
         />
       </div>
-    );
+    )
   }
 }
 
-export default Index;
+export default Index
