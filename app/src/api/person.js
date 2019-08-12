@@ -57,7 +57,20 @@ class PersonApi {
    * @required type string 1为正面，2为背面，3为手持证件照
    **/
   static uploadPhoto(options = {}) {
-    return http.post('/user/uploadphoto', options)
+    return http.post(
+      '/user/uploadphoto',
+      options,
+      {
+        transformRequest: [data => {
+          let formData = new FormData()
+          for (const key of Object.keys(data)) {
+            formData.append(key, data[key])
+          }
+          return formData
+        }],
+        headers: {'Content-Type': 'multipart/form-data'}
+      }
+    )
   }
 
   /**
@@ -109,7 +122,7 @@ class PersonApi {
    *
    * @required address string 钱包地址
    **/
-  static getCashList(options = {}) {
+  static serviceCharge(options = {}) {
     return http.post('/user/walletforaddress', options)
   }
 

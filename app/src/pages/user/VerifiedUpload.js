@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
-import { Button } from 'antd-mobile'
+import React, {Component} from 'react'
+import {Button} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedUpload.scss'
+import {inject, observer} from "mobx-react";
 
+@inject('authStore')
+@observer
 class VerifiedUpload extends Component {
   state = {
     cardFront: null,
@@ -13,23 +16,24 @@ class VerifiedUpload extends Component {
   // 上传护照照片
   onUpload = (id, fileName) => {
     const file = document.getElementById(id).files[0]
-    this.setState({ file, fileName: [fileName] }, () => {
+    this.setState({file, fileName: [fileName]}, () => {
       console.log(id, fileName)
     })
   }
 
   onSubmit = () => {
-    const { history } = this.props
+    const {history} = this.props
     history.push('')
   }
+
   render() {
-    const { cardFront, cardBack, cardHold } = this.state
-    const isDisabled =
-      cardFront === null || cardBack === null || cardHold === null
+    const {authStore} = this.props
+    const {cardFront, cardBack, cardHold} = authStore.photo
+    const canSubmit = cardFront && cardBack && cardHold
 
     return (
       <div id="verified-upload">
-        <Header title="身份认证" />
+        <Header title="身份认证"/>
 
         <ul className="notices">
           <li>
@@ -44,73 +48,52 @@ class VerifiedUpload extends Component {
         <div className="upload-content">
           <p>Id card/passport front photo</p>
           <img
-            src={
-              cardFront == null
-                ? require('../../assets/images/card-front.png')
-                : cardFront
-            }
+            src={cardFront ? cardFront : require('../../assets/images/card-front.png')}
             alt=""
           />
           <input
             type="file"
             className="upload-photo"
-            id="file0"
-            name="file"
             accept="image/*"
-            onChange={() => this.onUpload('file0', 'frontPhoto')}
+            onChange={(e) => authStore.changePhotoItem(e, 'cardFront')}
           />
         </div>
         <div className="upload-content">
           <p>Id card/passport on the back</p>
           <img
-            src={
-              cardBack === null
-                ? require('../../assets/images/card-back.png')
-                : cardBack
-            }
+            src={cardBack ? cardBack : require('../../assets/images/card-back.png')}
             alt=""
           />
           <input
             type="file"
             className="upload-photo"
-            id="file1"
-            name="file"
             accept="image/*"
-            onChange={() => this.onUpload('file1', 'backPhoto')}
+            onChange={(e) => authStore.changePhotoItem(e, 'cardBack')}
           />
         </div>
         <div className="upload-content">
           <p>Hold id/passport photo</p>
           <img
-            src={
-              cardHold === null
-                ? require('../../assets/images/card-hold.png')
-                : cardHold
-            }
+            src={cardHold ? cardHold : require('../../assets/images/card-hold.png')}
             alt=""
           />
           <input
             type="file"
             className="upload-photo"
-            id="file2"
-            name="file"
             accept="image/*"
-            onChange={() => this.onUpload('file2', 'passport')}
+            onChange={(e) => authStore.changePhotoItem(e, 'cardHold')}
           />
         </div>
-
         <Button
           activeClassName="btn-common__active"
-          className={`btn-common upload-img ${
-            isDisabled ? 'btn-common__disabled' : ''
-          }`}
-          disabled={isDisabled}
-          onClick={this.onSubmit}
-        >
+          className={`btn-common upload-img ${!canSubmit ? 'btn-common__disabled' : ''}`}
+          disabled={!canSubmit}
+          onClick={this.onSubmit}>
           提交审核
         </Button>
       </div>
     )
   }
 }
+
 export default VerifiedUpload

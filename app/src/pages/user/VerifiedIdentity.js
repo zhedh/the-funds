@@ -43,7 +43,6 @@ class VerifiedIdentity extends Component {
       this.setState({isChina: country === COUNTRIES_LIST[0]})
       authStore.changeInfoItem(country, 'country')
     }
-    console.log(authStore.authInfo)
   }
 
   canSubmit = () => {
@@ -55,19 +54,24 @@ class VerifiedIdentity extends Component {
   }
 
   onSubmit = () => {
-    const {cardNumber} = this.state
-    const {history} = this.props
-    if (cardNumber.length < 7) {
+    const {history, authStore} = this.props
+    const {cardId} = authStore.authInfo
+    if (cardId.length < 7 && cardId.length <= 18) {
       Toast.info('请输入7-18位证件号码', TOAST_DURATION)
       return
     }
-    // 提交数据至后台并 上传照片
-    history.push('/verified-upload')
+    authStore.submitAuthentication().then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg, TOAST_DURATION)
+        return
+      }
+      history.push('/verified-upload')
+    })
   }
 
   render() {
     const {authStore} = this.props
-    const {country, cardType, firstName, lastName, cardId} = authStore.authInfo
+    const {cardType, firstName, lastName, cardId} = authStore.authInfo
     const {isChina} = this.state
 
     return (
@@ -145,8 +149,7 @@ class VerifiedIdentity extends Component {
             !this.canSubmit() ? 'btn-common__disabled' : ''
             }`}
           disabled={!this.canSubmit()}
-          onClick={this.onSubmit}
-        >
+          onClick={this.onSubmit}>
           下一步
         </Button>
       </div>
