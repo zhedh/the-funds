@@ -1,78 +1,122 @@
 @import '../../styles/_common';
 
 .deposit-buy {
+  display: none;
   height: 90%;
 
-  section {
-    box-sizing: border-box;
-    padding: 0 20px;
+  &.show{
+    display: block;
+  }
 
-    &.content-middle {
-      text-align: center;
-      margin: 4rem auto;
+  .current-info {
+    padding: 1rem 20px 3rem;
+    text-align: center;
+    visibility: hidden;
 
-      .tab-first_h2 {
-        font-size: $font-title-s + 0.1;
-        color: $text-color;
-      }
-
-      .tab-first_p {
-        font-size: $font-assistant;
-        color: $text-sub-color;
-      }
+    &.show {
+      visibility: visible;
     }
 
-    &.content-bottom {
-      ul {
-        @include clearList;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+    h2 {
+      font-size: $font-title-s + 0.1;
+      color: $text-color;
+    }
 
-        li {
-          width: 29%;
-          text-align: center;
-          padding: 2rem 0;
-          border: 2px solid $text-sub-color;
-          border-radius: 5px;
-          color: $text-sub-color;
-          margin-right: 4.3%;
-          margin-bottom: 20px;
+    p {
+      font-size: $font-assistant;
+      color: $text-sub-color;
+    }
+  }
 
-          &:nth-child(3n) {
-            margin-right: 0;
-          }
+  .gears {
+    @include clearList;
+    padding: 0 10px;
 
-          &.active {
-            color: $black;
-            border-color: $primary-color;
-          }
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 
-          span {
-            line-height: 2;
-            font-size: $font-assistant;
-          }
-        }
-      }
+    li {
+      box-sizing: border-box;
+      width: 33.33%;
+      padding: 0 9px 20px;
 
-      .fee {
+      .box {
         display: flex;
         flex-direction: column;
-        text-align: right;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        height: 7.4rem;
+        border: 2px solid $text-sub-color;
+        border-radius: 5px;
+        color: $text-sub-color;
 
-        > p {
-          display: flex;
-          justify-content: space-between;
-          font-weight: 500;
-          font-size: $font-title-s;
-          color: #000;
+        .price {
+          font-size: $font-title;
         }
 
         small {
-          color: $text-sub-color;
+          margin-top: 6px;
           font-size: $font-assistant;
         }
       }
+
+      &.active {
+        color: $black;
+        border-color: $primary-color;
+
+        .box {
+          border-color: $primary-color;
+          color: $text-color;
+          font-weight: bold;
+        }
+      }
     }
+  }
+
+  .fee {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    p {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: $font-title-s;
+      color: #000;
+    }
+
+    small {
+      color: $text-sub-color;
+      font-size: $font-assistant;
+    }
+  }
+
+  aside {
+    text-align: center;
+    font-size: $font-assistant;
+
+    p {
+      color: #db3f3e;
+
+      a {
+        color: #2564c1;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .btn {
+    @include clearButton;
+    margin: 0 20px 20px;
+    height: 5rem;
+    border-radius: 2.5rem;
+    color: #fff;
+    background-color: $primary-color;
+    font-size: 1.5rem;
+    text-align: center;
   }
 }

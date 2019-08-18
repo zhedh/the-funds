@@ -17,7 +17,7 @@ const TABS = [
   },
   {
     pathname: "/deposit",
-    label: "定存",
+    label: "定投",
     image: DepositSvg,
     imagePre: DepositPreSvg
   },

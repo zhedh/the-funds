@@ -1,6 +1,7 @@
 @import '../../styles/_common';
 
 #deposit {
+
   header > div {
     .drawer-text {
       position: absolute;
@@ -21,77 +22,67 @@
     bottom: 4%;
   }
 
-  .drawer-main {
-    min-height: 100vh;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-
+  .am-drawer {
     .am-drawer-sidebar {
       width: 70%;
       background-color: #fff;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
-
-      .am-list {
-        // width: 300px;
-        padding: 0;
-      }
+      z-index: 99;
     }
 
-    section {
-      &.content-top {
-        width: 70%;
-        margin: 3rem auto;
-        background: rgba(232, 113, 58, 0.5);
-        border-radius: 20px;
-        color: #fff;
-        padding: 0;
+  }
 
-        .segmented-control {
-          .am-segment-item {
-            border: none;
-            background: rgba(232, 113, 58, 0.5);
-            color: #fff;
-            border-radius: 20px;
-            padding: 12px 0;
-            font-size: $font-context - 0.1;
-          }
+  main {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-top: $header-height;
+    padding-bottom: $footer-height;
+    -webkit-overflow-scrolling: touch;
 
-          .am-segment-item-selected {
-            border-radius: 20px;
-            background: rgba(232, 113, 58, 1) !important;
-          }
+    section.select-bar {
+      width: 70%;
+      margin: 3rem auto;
+      background: rgba(232, 113, 58, 0.5);
+      border-radius: 20px;
+      color: #fff;
+      padding: 0;
+
+      .segmented-control {
+        .am-segment-item {
+          border: none;
+          background: rgba(232, 113, 58, 0.5);
+          color: #fff;
+          border-radius: 20px;
+          padding: 12px 0;
+          font-size: $font-context - 0.1;
         }
-      }
 
-      &.content-auth {
-        text-align: center;
-        font-size: $font-assistant;
-
-        p {
-          color: #db3f3e;
-
-          a {
-            color: #2564c1;
-            text-decoration: underline;
-          }
+        .am-segment-item-selected {
+          border-radius: 20px;
+          background: rgba(232, 113, 58, 1) !important;
         }
       }
     }
   }
 
-  .drawer-content {
-    font-weight: 600;
+  .sidebar {
+    padding-top: 30px;
+    font-weight: 500;
+    z-index: 100;
 
-    .drawer-content__header {
+    .sidebar-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       box-sizing: border-box;
-      padding: 50px 15px 14px;
+      height: 40px;
+      padding: 0 15px;
       font-size: $font-title-s;
 
       img {
-        width: 1.8rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
     }
 
@@ -100,14 +91,16 @@
 
       li {
         box-sizing: border-box;
-        padding: 11px 15px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
         color: #5a5a5a;
         font-size: $font-assistant;
 
         &:first-child {
           font-size: $font-context;
           color: #35393e;
-          border-bottom: 1px solid #9c9cad;
+          border-bottom: 1px solid $border-color;
         }
 
         &.active {

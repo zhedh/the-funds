@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import arrowLeft from '../../assets/images/arrow-left.png';
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
 
+import arrowLeft from '../../assets/images/arrow-left.png'
+import {BARGAIN} from '../../assets/static'
 import './Bargain.scss'
-import {inject, observer} from "mobx-react";
 
 const BARGAINS = [
   {
@@ -56,7 +57,7 @@ class Bargain extends Component {
         </header>
         <section className="section-banner">
           <div className="banner">
-            <span>特价XC奖励额度: 129.09</span>
+            <span>{BARGAIN.BANNER_LABEL} 129.09</span>
             <small>上次结算时间: 2019.09.08 15:00:00</small>
             <button>解锁</button>
           </div>

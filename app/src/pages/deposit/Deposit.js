@@ -1,125 +1,121 @@
-import React, { Component } from 'react'
-import { Drawer, SegmentedControl, Button } from 'antd-mobile'
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import {Drawer, SegmentedControl, Button} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import DepositBuy from '../../components/partial/DepositBuy'
-import UnlockLimit from '../../components/partial/UnlockLimit'
+import DepositUnlock from '../../components/partial/DepositUnlock'
+import leftDrawerIcon from '../../assets/images/left-drawer.png'
 import './Deposit.scss'
 
-const fundList = ['ZBX', 'ZBS']
+@inject('productStore')
+@observer
 class Deposit extends Component {
   state = {
-    openIt: false,
-    activeFund: 0,
+    showDrawer: false,
     ensureToPay: false,
     ensureToUnlock: false,
-    selectCardIndex: null,
-    selectTabIndex: 1
+    selectTabIndex: 0
   }
 
-  openDrawer = (...args) => {
-    this.setState({ openIt: !this.state.openIt })
+  componentDidMount() {
+    const {productStore} = this.props
+    productStore.getProducts().then(productId => {
+      if (productId) {
+        productStore.getProductDetail(productId)
+      }
+    })
   }
 
   onClose = () => {
-    this.setState({ ensureToPay: false, ensureToUnlock: false })
-  }
-
-  onSelectCard = key => {
-    this.setState({ selectCardIndex: key })
+    this.setState({ensureToPay: false, ensureToUnlock: false})
   }
 
   onDepositBuy = () => {
-    this.setState({ ensureToPay: true })
+    this.setState({ensureToPay: true})
   }
+
   onUnlockLimit = () => {
-    this.setState({ ensureToUnlock: true })
+    this.setState({ensureToUnlock: true})
   }
+
   onSegmentedChange = e => {
-    const {
-      nativeEvent: { selectedSegmentIndex }
-    } = e
-    console.log(selectedSegmentIndex)
-    this.setState({ selectTabIndex: selectedSegmentIndex })
+    const {selectedSegmentIndex} = e.nativeEvent
+    this.setState({selectTabIndex: selectedSegmentIndex})
   }
+
   onDeposit = () => {
-    const { selectTabIndex } = this.state
+    const {selectTabIndex} = this.state
     if (selectTabIndex === 0) {
       this.onDepositBuy()
     } else {
       this.onUnlockLimit()
     }
   }
+
   render() {
+    const {productStore} = this.props
+    const {products, currentProduct, changeProduct} = productStore
+
     const {
-      openIt,
-      activeFund,
+      showDrawer,
       ensureToPay,
       ensureToUnlock,
-      selectCardIndex,
       selectTabIndex
     } = this.state
+
     const sidebar = (
-      <div className="drawer-content">
-        <div className="drawer-content__header">
+      <div className="sidebar">
+        <header className="sidebar-header">
           <span>选择定存基金</span>
-          <img src={require('../../assets/images/left-drawer.png')} alt="" />
-        </div>
+          <img
+            src={leftDrawerIcon}
+            alt="抽屉"
+            onClick={() => this.setState({showDrawer: false})}
+          />
+        </header>
         <ul>
           <li>全部</li>
-          {fundList.map((fund, key) => (
+          {products.map((product) =>
             <li
-              key={key.toString()}
-              className={activeFund === key ? 'active' : ''}
-              onClick={() => this.setState({ activeFund: key })}
-            >
-              {fund}
+              key={product.id}
+              className={currentProduct.id === product.id ? 'active' : ''}
+              onClick={() => changeProduct(product.id, true)}>
+              {product.productName}
             </li>
-          ))}
+          )}
         </ul>
       </div>
     )
+
     return (
       <div id="deposit">
-        <Header
-          isShadow
-          bgWhite
-          title="定存"
-          onHandle={this.openDrawer}
-          icon={require('../../assets/images/left-drawer.png')}
-        >
-          <span className="drawer-text">xc</span>
-        </Header>
-
         <Drawer
-          className="drawer-main"
-          contentStyle={{ paddingTop: 44 }}
+          className="am-drawer"
           sidebar={sidebar}
-          open={openIt}
-          onOpenChange={this.openDrawer}
+          open={showDrawer}
+          onOpenChange={() => this.setState({showDrawer: !showDrawer})}
         >
-          <section className="content-top select-bar">
-            <SegmentedControl
-              className="segmented-control"
-              values={['定存投资', '解锁额度']}
-              onChange={this.onSegmentedChange}
-            />
-          </section>
-          {selectTabIndex === 0 && (
-            <DepositBuy
-              key={selectTabIndex}
-              selectCardIndex={selectCardIndex}
-              onSelectCard={this.onSelectCard}
-            />
-          )}
-          {selectTabIndex === 1 && <UnlockLimit key={selectTabIndex} />}
-
-          <Button
-            activeClassName="btn-common__active"
-            className="btn-common handle-btn"
-            onClick={this.onDeposit}
-          >
-            {selectTabIndex === 0 ? '定存' : '解锁'}
-          </Button>
+          <main>
+            <Header
+              isFixed
+              isShadow
+              bgWhite
+              title="定投XC"
+              onHandle={() => this.setState({showDrawer: true})}
+              icon={leftDrawerIcon}>
+              <span className="drawer-text">xc</span>
+            </Header>
+            <section className="select-bar">
+              <SegmentedControl
+                className="segmented-control"
+                values={['定存投资', '解锁额度']}
+                selectedIndex={selectTabIndex}
+                onChange={this.onSegmentedChange}
+              />
+            </section>
+            <DepositBuy show={selectTabIndex === 0}/>
+            <DepositUnlock show={selectTabIndex === 1}/>
+          </main>
         </Drawer>
 
         {ensureToPay && (
@@ -135,11 +131,11 @@ class Deposit extends Component {
               <div className="pay-content">
                 <p>
                   <span>
-                    定存投资（ZBX） <br />
+                    定存投资（ZBX） <br/>
                     <small>手续费0.3%</small>
                   </span>
                   <span>
-                    59.13 <br />
+                    59.13 <br/>
                     <small>0.15</small>
                   </span>
                 </p>
@@ -172,15 +168,15 @@ class Deposit extends Component {
               <div className="pay-content">
                 <p>
                   <span>
-                    支付总额（USDT） <br />
+                    支付总额（USDT） <br/>
                     <small> 交易额</small>
-                    <br />
+                    <br/>
                     <small> 手续费0.3%</small>
                   </span>
                   <span>
-                    59.13 <br />
+                    59.13 <br/>
                     <small>58.98</small>
-                    <br />
+                    <br/>
                     <small>0.15</small>
                   </span>
                 </p>
@@ -205,4 +201,5 @@ class Deposit extends Component {
     )
   }
 }
+
 export default Deposit

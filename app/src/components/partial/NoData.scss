@@ -1,0 +1,13 @@
+@import "../../styles/mixin";
+
+.no-data {
+  padding: 10rem 0;
+  text-align: center;
+  color: $text-sub-color;
+
+  img {
+    width: 9.9rem;
+    height: 6.5rem;
+    margin-bottom: 14px;
+  }
+}

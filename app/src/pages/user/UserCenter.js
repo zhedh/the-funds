@@ -38,8 +38,10 @@ class UserCenter extends Component {
   state = {isOnline: true, showFModal: false}
 
   componentDidMount() {
-    const {personStore} = this.props
-    personStore.getUserInfo()
+    const {personStore, userStore} = this.props
+    if (userStore.isOnline) {
+      personStore.getUserInfo()
+    }
   }
 
   logout = () => {
@@ -48,8 +50,6 @@ class UserCenter extends Component {
     Modal.alert('是否退出登录？', '', [
       {
         text: '取消',
-        onPress: () => {
-        },
         style: 'default'
       },
       {

@@ -11,6 +11,15 @@ class ProductApi {
     options.noLogin = true;
     return http.post('/product/list', options)
   }
+
+  /**
+   * 基金详情（下单页面初始化）
+   *
+   * product_id number 商品id（不传默认自动获取）
+   **/
+  static getProductDetail(options = {}) {
+    return http.post('/order/createini', options)
+  }
 }
 
 export default ProductApi

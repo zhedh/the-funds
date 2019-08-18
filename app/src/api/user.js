@@ -1,12 +1,12 @@
 import http from './http'
-import config from './config'
+import {CONFIG }from '../config';
 
 class UserApi {
   /**
    * 获取图形验证码
    **/
   static getCaptchaPng(params = {}) {
-    return Promise.resolve(`${config.baseURL}/captchapng/png?key=${params.key}`)
+    return Promise.resolve(`${CONFIG.API_BASE_URL}/captchapng/png?key=${params.key}`)
   }
 
   /**

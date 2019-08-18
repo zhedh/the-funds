@@ -1,18 +1,20 @@
 import React, {Component} from 'react'
 // import { Link } from 'react-router-dom'
-import './UnlockLimit.scss'
+import './DepositUnlock.scss'
+import {Button} from "antd-mobile";
 
-class UnlockLimit extends Component {
+class DepositUnlock extends Component {
   render() {
+    const {show} = this.props
+
     return (
-      <div className="unlock-limit">
+      <div className={`deposit-unlock ${show ? 'show' : ''}`}>
         <section className="content-detail">
           <h1>126.24</h1>
           <span>可解锁XC特价额度</span>
           <br/>
           <a href="#123">查看详情</a>
         </section>
-
         <section className="content-charge">
           <p>XC/USDT特价: 0.1248</p>
           <label>
@@ -28,9 +30,15 @@ class UnlockLimit extends Component {
             <span>--</span>
           </h3>
         </section>
+        <Button
+          className="btn"
+          activeClassName="btn-common__active"
+          onClick={this.onDeposit}>
+          解锁
+        </Button>
       </div>
     )
   }
 }
 
-export default UnlockLimit
+export default DepositUnlock

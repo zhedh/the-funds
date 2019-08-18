@@ -69,6 +69,10 @@ class Register extends Component {
     })
   }
 
+  componentWillUnmount() {
+    window.onresize = null
+  }
+
   getCaptchaPng = () => {
     const key = +new Date();
 

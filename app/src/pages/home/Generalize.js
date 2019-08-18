@@ -69,7 +69,7 @@ class Generalize extends Component {
               <li onClick={() => this.toDetail(2)}>
                 <p>
                   <img src={generalizeUserTwo} alt=""/>
-                  一代推荐人数
+                  二代推荐人数
                 </p>
                 <aside>
                   {mySpread.recommendCount2}

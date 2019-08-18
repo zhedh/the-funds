@@ -39,6 +39,7 @@ class OtherApi {
    *
    * page string 页码
    * row string 每页条数
+   * @required type string 推荐等级 （1|2）
    **/
   static getSpreadList(options = {}) {
     return http.post('/other/myspreadlist', options)

@@ -5,16 +5,19 @@ import {Toast} from "antd-mobile";
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
-import Dialog from "../../components/common/Dialog"
-import Header from '../../components/common/Header'
-import noDataImg from '../../assets/images/no-data.png'
+
 import userCenterImg from '../../assets/images/user-center.png'
+import {HOME} from '../../assets/static'
 import {ProductApi} from '../../api'
 import {TOAST_DURATION} from "../../utils/constants";
+import Dialog from "../../components/common/Dialog"
+import Header from '../../components/common/Header'
+import NoData from "../../components/partial/NoData";
 import './Index.scss'
 
 @inject('userStore')
 @inject('personStore')
+@inject('noticeStore')
 @observer
 class Index extends Component {
   state = {
@@ -22,7 +25,8 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {userStore, personStore} = this.props
+    const {userStore, personStore, noticeStore} = this.props
+    noticeStore.getNotices()
     if (userStore.isOnline) personStore.getSpecial()
     this.getProducts()
   }
@@ -42,15 +46,16 @@ class Index extends Component {
   }
 
   render() {
-    const {history, userStore, personStore} = this.props;
+    const {history, userStore, personStore, noticeStore} = this.props;
     const {products} = this.state
+    const {newestNotice} = noticeStore
     const hasProducts = products && products.length > 0
 
     return (
       <div id="home">
         <section className="section-banner">
           <Header
-            title="定投XC"
+            title={HOME.TITLE}
             icon={userCenterImg}
             onHandle={() => {
               history.push("user-center");
@@ -58,7 +63,7 @@ class Index extends Component {
           />
           <p onClick={() => history.push('/notices')}>
             <IoIosMegaphone className="megaphone"/>
-            公告：关于开放XC基金定存说明
+            公告：{newestNotice ? newestNotice.title : '暂无公告'}
           </p>
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
@@ -101,11 +106,8 @@ class Index extends Component {
                 返还
               </div>
             </li>
-          </ul> : <div className="null">
-            <img src={noDataImg} alt="空"/>
-            <br/>
-            每天存一笔，天天有钱赚！
-          </div>}
+          </ul> : <NoData msg="每天存一笔，天天有钱赚！"/>}
+
         </section>
         <Dialog
           show={false}

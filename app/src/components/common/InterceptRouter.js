@@ -7,9 +7,9 @@ import {inject, observer} from "mobx-react";
 class InterceptRouter extends Component {
   componentDidMount() {
     const {history, location, userStore} = this.props;
-    if (location.pathname === '/') {
-      history.push('/home');
-    }
+    // if (location.pathname === '/') {
+    //   history.push('/home');
+    // }
     userStore.setUserStatus()
   }
 

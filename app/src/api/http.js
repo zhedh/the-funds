@@ -1,13 +1,13 @@
 import axios from 'axios';
 import qs from 'qs';
 import Cookies from 'js-cookie';
-import config from './config';
+import {CONFIG} from '../config';
 import {optionsToHump, optionsToLine} from '../utils/common';
 import {Toast} from "antd-mobile";
 import {TOAST_DURATION} from "../utils/constants";
 
 const axiosConfig = {
-  baseURL: config.baseURL,
+  baseURL: CONFIG.API_BASE_URL,
   transformRequest: [data => {
     if (!data) return data;
     return qs.stringify(optionsToLine(data));
@@ -29,11 +29,6 @@ instance.interceptors.request.use(config => {
     config.data = config.data ? config.data : {}
     config.data.openId = Cookies.get('OPENID')
     config.data.token = Cookies.get('TOKEN')
-
-    // 用户没有登录，先登录后进行操作
-    if (!config.data.token || !config.data.openId) {
-      Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
-    }
   }
   return config;
 }, error => {
@@ -43,9 +38,18 @@ instance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
-  console.log(response);
+  console.log(response.data);
   let {data} = response.data
 
+  // 用户请求需要登录的接口，跳转登录页
+  if (response.data.status === -101) {
+    Cookies.remove('OPENID')
+    Cookies.remove('TOKEN')
+    Cookies.remove('PAY_PASSWORD')
+    Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
+  }
+
+  // 对下划线转驼峰进行处理
   if (data) {
     const isArr = data instanceof Array
     if (isArr) {

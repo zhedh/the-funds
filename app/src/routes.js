@@ -113,7 +113,7 @@ const Deposit = Loadable({
 
 export default [
   // 主页
-  { path: '/', name: 'Home', component: Home },
+  { path: '/', name: 'Login', component: Login },
   { path: '/home', name: 'Home', component: Home },
   {
     path: '/home/inviter-friend',

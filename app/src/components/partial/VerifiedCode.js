@@ -121,8 +121,6 @@ class VerifiedCode extends Component {
     const {isGetSms, count, captcha, imgSrc} = this.state
     const canSubmit = userName !== '' && code !== ''
 
-    console.log(show)
-
     return (
       <div className={'verified-code ' + (show ? 'show' : '')}>
         <AccountHeader title={typeOption.title} onHandle={onBack}/>
