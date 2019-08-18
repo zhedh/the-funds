@@ -30,7 +30,7 @@ const NTTC = {
     API_BASE_URL: 'http://api.zbxcoin.com/api'
   },
   DEV: {
-    API_BASE_URL: 'http://47.75.138.157/api'
+    API_BASE_URL: 'http://47.75.105.186/api'
   }
 }
 

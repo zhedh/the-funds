@@ -25,6 +25,10 @@ class Login extends Component {
     })
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer)
+  }
+
   onInputChange = (e, key) => {
     const {value} = e.target
     this.setState({[key]: value})
@@ -64,14 +68,16 @@ class Login extends Component {
       Cookies.set('TOKEN', res.data.token)
       Cookies.set('PAY_PASSWORD', res.data.payPassword)
       // 暂时进入邀请好友页
-      // Toast.success('登录成功', TOAST_DURATION, () => history.push('/'))
-      Toast.success('登录成功', TOAST_DURATION, () => history.push('/home/inviter-friend'))
+      // Toast.success('登录成功', TOAST_DURATION, () => history.push('/home'))
+      Toast.success('登录成功', TOAST_DURATION)
+      this.timer = setTimeout(() => history.push('/home/inviter-friend'), TOAST_DURATION)
     })
   }
 
   render() {
     const {number, password, type, showBtn} = this.state
     const canSubmit = number === '' || password === ''
+
     return (
       <div id="login">
         <AccountHeader title="登录"/>
