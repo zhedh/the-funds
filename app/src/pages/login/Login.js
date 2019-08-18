@@ -1,16 +1,13 @@
 import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
 import {Button, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
-import Cookies from 'js-cookie'
-import {UserApi} from '../../api'
 import {REG, TOAST_DURATION} from '../../utils/constants'
-import {compatibleFixedButton} from "../../utils/common";
-import AccountHeader from "../../components/partial/AccountHeader";
+import {compatibleFixedButton} from "../../utils/common"
+import AccountHeader from "../../components/partial/AccountHeader"
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './Login.scss'
-import UserStore from "../../stores/user";
-import {inject, observer} from "mobx-react";
 
 @inject('userStore')
 @observer

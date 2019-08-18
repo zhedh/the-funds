@@ -1,15 +1,11 @@
 import http from "./http";
 
-class ProductApi {
+class WalletApi {
   /**
-   * 基金列表
-   *
-   * page string 页码默认1
-   * row string 每页条数
+   * 我的钱包
    **/
-  static getProductList(options = {}) {
-    options.noLogin = true;
-    return http.post('/product/list', options)
+  static getMyWallet(options = {}) {
+    return http.post('/userassets/mywarehouse', options)
   }
 
   /**
@@ -35,4 +31,4 @@ class ProductApi {
   }
 }
 
-export default ProductApi
+export default WalletApi

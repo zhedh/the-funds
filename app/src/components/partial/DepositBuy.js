@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import './DepositBuy.scss'
-import {Button} from "antd-mobile";
+import {Button, Toast} from "antd-mobile";
 import {inject, observer} from "mobx-react";
 import Header from "../common/Header";
+import openPwdImg from "../../assets/images/open-pwd.png";
+import closePwdImg from "../../assets/images/close-pwd.png";
 
 @inject('productStore')
 @inject('userStore')
@@ -11,7 +13,18 @@ import Header from "../common/Header";
 @observer
 class DepositBuy extends Component {
   state = {
-    showConfirm: false
+    showConfirm: false,
+    payPassword: '',
+    pwdType: 'password'
+  }
+
+  onInputChange = (e, key) => {
+    const {value} = e.target
+    this.setState({[key]: value})
+  }
+
+  onSetType = currentType => {
+    this.setState({pwdType: currentType === 'text' ? 'password' : 'text'})
   }
 
   onDeposit = (gearNum) => {
@@ -19,16 +32,30 @@ class DepositBuy extends Component {
   }
 
   onSubmit = () => {
-    const {userStore} = this.props
-    userStore.getPayToken().then(res => {
-      console.log(res)
+    const {userStore, productStore} = this.props
+    const {payPassword} = this.state
+    userStore.getPayToken({payPassword}).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        return
+      }
+      return res.data.token
+
+    }).then(payToken => {
+      if (!payToken) return
+      productStore.createOrder(payToken).then(res => {
+        if (res.status !== 1) {
+          Toast.info(res.msg)
+          return
+        }
+      })
     })
   }
 
   render() {
     const {show, productStore, userStore, personStore} = this.props
-    const {showConfirm} = this.state
-    const {productDetail, gears, gearNum, changeGearNum} = productStore
+    const {showConfirm, payPassword, pwdType} = this.state
+    const {productDetail, gears, gearNum} = productStore
     const hasGears = gears && gears.length > 0
     const userBalance = productDetail.userBalance && Number(productDetail.userBalance).toFixed(2)
 
@@ -43,7 +70,7 @@ class DepositBuy extends Component {
             <li
               key={gear.num}
               className={gearNum === gear.num ? 'active' : ''}
-              onClick={() => changeGearNum(gear.num)}>
+              onClick={() => productStore.changeGearNum(gear.num)}>
               <div className="box">
                 <div className="price">
                   {gear.num}
@@ -98,6 +125,19 @@ class DepositBuy extends Component {
                 <span>可用</span>
                 <span>{userBalance}</span>
               </p>
+              <div className="input-box">
+                <input
+                  type={pwdType}
+                  placeholder="支付密码"
+                  value={payPassword}
+                  onChange={(e) => this.onInputChange(e, 'payPassword')}
+                />
+                <img
+                  src={pwdType === 'text' ? openPwdImg : closePwdImg}
+                  alt="eyes"
+                  onClick={() => this.onSetType(pwdType)}
+                />
+              </div>
             </div>
             <Button
               activeClassName="btn-common__active"

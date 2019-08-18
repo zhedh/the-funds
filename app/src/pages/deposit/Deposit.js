@@ -13,7 +13,6 @@ import './Deposit.scss'
 class Deposit extends Component {
   state = {
     showDrawer: false,
-    ensureToPay: false,
     ensureToUnlock: false,
     selectTabIndex: 0
   }
@@ -29,11 +28,7 @@ class Deposit extends Component {
   }
 
   onClose = () => {
-    this.setState({ensureToPay: false, ensureToUnlock: false})
-  }
-
-  onDepositBuy = () => {
-    this.setState({ensureToPay: true})
+    this.setState({ ensureToUnlock: false})
   }
 
   onUnlockLimit = () => {
@@ -56,11 +51,10 @@ class Deposit extends Component {
 
   render() {
     const {productStore} = this.props
-    const {products, currentProduct, changeProduct} = productStore
+    const {products, currentProduct} = productStore
 
     const {
       showDrawer,
-      ensureToPay,
       ensureToUnlock,
       selectTabIndex
     } = this.state
@@ -81,7 +75,7 @@ class Deposit extends Component {
             <li
               key={product.id}
               className={currentProduct.id === product.id ? 'active' : ''}
-              onClick={() => changeProduct(product.id, true)}>
+              onClick={() => productStore.changeProduct(product.id, true)}>
               {product.productName}
             </li>
           )}
@@ -110,7 +104,7 @@ class Deposit extends Component {
             <section className="select-bar">
               <SegmentedControl
                 className="segmented-control"
-                values={['定存投资', '解锁额度']}
+                values={[`定投${currentProduct.productName || ''}`, '特价额度']}
                 selectedIndex={selectTabIndex}
                 onChange={this.onSegmentedChange}
               />

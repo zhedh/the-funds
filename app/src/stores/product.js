@@ -14,7 +14,7 @@ class ProductStore {
   }
 
   @action
-  getProducts = () => {
+  getProducts() {
     return ProductApi.getProductList().then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
@@ -28,7 +28,7 @@ class ProductStore {
   }
 
   @action
-  getProductDetail = (productId) => {
+  getProductDetail(productId) {
     return ProductApi.getProductDetail({productId}).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
@@ -39,13 +39,25 @@ class ProductStore {
   }
 
   @action
-  changeProduct = (id, isChangeDetail) => {
+  changeProduct(id, isChangeDetail) {
     this.currentProduct = this.products.find(product => product.id === id)
     if (isChangeDetail) this.getProductDetail(id)
   }
 
   @action
-  changeGearNum = num => this.gearNum = num
+  changeGearNum(num) {
+    this.gearNum = num
+  }
+
+  @action
+  createOrder(payToken) {
+    return ProductApi.createOrder({
+      payToken,
+      productId: this.productDetail.productId,
+      productAmount: this.gearNum,
+      special: '0'
+    })
+  }
 
 }
 

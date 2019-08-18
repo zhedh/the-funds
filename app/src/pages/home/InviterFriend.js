@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import QRCode from 'qrcode.react'
 // import {Link} from 'react-router-dom'
-import {inject, observer} from "mobx-react";
-import {Toast} from "antd-mobile";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {MdContentCopy} from 'react-icons/md';
+import {inject, observer} from "mobx-react"
+import {Toast} from "antd-mobile"
+import {CopyToClipboard} from 'react-copy-to-clipboard'
+import {MdContentCopy} from 'react-icons/md'
 import Header from '../../components/common/Header'
-import {TOAST_DURATION} from "../../utils/constants";
+import {TOAST_DURATION} from "../../utils/constants"
 import './InviterFriend.scss'
 
 @inject('personStore')

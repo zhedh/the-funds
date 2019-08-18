@@ -169,6 +169,39 @@
             color: $text-sub-color;
           }
         }
+
+        .input-box {
+          position: relative;
+          width: 100%;
+          display: inline-block;
+          margin-top: 3rem;
+
+          input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 1.3rem;
+            @include clearButton;
+            border-bottom: 1px solid $black-border-bottom;
+
+            &:focus {
+              border-bottom: 2px solid $primary-color;
+            }
+
+            &::placeholder {
+              color: $black-font-primary;
+              font-weight: 500;
+            }
+          }
+
+          img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            width: 2.2rem;
+            height: 1.3rem;
+          }
+        }
       }
 
       .primary-button{

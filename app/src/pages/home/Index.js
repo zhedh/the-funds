@@ -12,7 +12,7 @@ import {ProductApi} from '../../api'
 import {TOAST_DURATION} from "../../utils/constants";
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
-import NoData from "../../components/partial/NoData";
+import NoData from "../../components/common/NoData";
 import './Index.scss'
 
 @inject('userStore')

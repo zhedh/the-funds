@@ -69,8 +69,8 @@ class UserStore {
   }
 
   @action
-  getPayToken() {
-    return UserApi.getPayToken({payPassword: this.payPassword})
+  getPayToken(options) {
+    return UserApi.getPayToken(options)
   }
 }
 
