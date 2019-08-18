@@ -86,7 +86,7 @@ class PersonApi {
   /**
    * 提交认证审核
    **/
-  static submitAuthInfo(options = {}) {
+  static submitAuthAudit(options = {}) {
     return http.post('/user/authenticationsubmit', options)
   }
 

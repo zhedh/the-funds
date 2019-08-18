@@ -1,29 +1,24 @@
 import React, {Component} from 'react'
-import {Button} from 'antd-mobile'
+import {inject, observer} from "mobx-react"
+import {Button, Toast} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedUpload.scss'
-import {inject, observer} from "mobx-react";
+
 
 @inject('authStore')
 @observer
 class VerifiedUpload extends Component {
-  state = {
-    cardFront: null,
-    cardBack: null,
-    cardHold: null,
-    fileName: ''
-  }
-  // 上传护照照片
-  onUpload = (id, fileName) => {
-    const file = document.getElementById(id).files[0]
-    this.setState({file, fileName: [fileName]}, () => {
-      console.log(id, fileName)
-    })
-  }
 
   onSubmit = () => {
-    const {history} = this.props
-    history.push('')
+    const {history, authStore} = this.props
+    authStore.submitAuthAudit().then(res => {
+      console.log(res.data)
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        return
+      }
+      history.push('')
+    })
   }
 
   render() {
@@ -33,7 +28,7 @@ class VerifiedUpload extends Component {
 
     return (
       <div id="verified-upload">
-        <Header title="身份认证"/>
+        <Header title="身份认证" isFixed bgWhite/>
 
         <ul className="notices">
           <li>

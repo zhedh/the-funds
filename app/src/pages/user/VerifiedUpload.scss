@@ -1,7 +1,10 @@
 @import '../../styles/_common';
 
 #verified-upload {
-  padding-bottom: 1.2rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-top: $header-height;
+  padding-bottom: 2rem;
 
   .notices {
     box-sizing: border-box;
