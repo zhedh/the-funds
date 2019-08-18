@@ -110,6 +110,10 @@ const Deposit = Loadable({
   loader: () => import('./pages/deposit/Deposit'),
   loading: Loading
 })
+const DepositResult = Loadable({
+  loader: () => import('./pages/deposit/DepositResult'),
+  loading: Loading
+})
 
 export default [
   // 主页
@@ -187,6 +191,7 @@ export default [
 
   // 定存
   { path: '/deposit', name: 'Deposit', component: Deposit },
+  { path: '/deposit/result', name: 'DepositResult', component: DepositResult },
 
   // 404
   {

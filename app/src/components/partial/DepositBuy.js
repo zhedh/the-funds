@@ -32,7 +32,7 @@ class DepositBuy extends Component {
   }
 
   onSubmit = () => {
-    const {userStore, productStore} = this.props
+    const {history, userStore, productStore} = this.props
     const {payPassword} = this.state
     userStore.getPayToken({payPassword}).then(res => {
       if (res.status !== 1) {
@@ -48,6 +48,7 @@ class DepositBuy extends Component {
           Toast.info(res.msg)
           return
         }
+        history.push('/deposit/result')
       })
     })
   }

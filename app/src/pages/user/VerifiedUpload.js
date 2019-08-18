@@ -4,7 +4,6 @@ import {Button, Toast} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedUpload.scss'
 
-
 @inject('authStore')
 @observer
 class VerifiedUpload extends Component {
@@ -12,12 +11,11 @@ class VerifiedUpload extends Component {
   onSubmit = () => {
     const {history, authStore} = this.props
     authStore.submitAuthAudit().then(res => {
-      console.log(res.data)
       if (res.status !== 1) {
         Toast.info(res.msg)
         return
       }
-      history.push('')
+      history.push('/verified-result')
     })
   }
 

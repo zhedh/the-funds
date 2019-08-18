@@ -31,6 +31,7 @@ class PersonStore {
   getUserInfo() {
     return PersonApi.getUserInfo().then(res => {
       if (res.status === 1) this.userInfo = res.data
+      return res
     })
   }
 
