@@ -13,7 +13,6 @@ class NoticeStore {
   getNotices() {
     OtherApi.getNotices().then(res => {
       if (res.status === 1) this.notices = res.data
-      console.log(this.notices)
     })
   }
 

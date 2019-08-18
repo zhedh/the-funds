@@ -9,8 +9,11 @@ import AccountHeader from "../../components/partial/AccountHeader";
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './Login.scss'
+import UserStore from "../../stores/user";
+import {inject, observer} from "mobx-react";
 
-
+@inject('userStore')
+@observer
 class Login extends Component {
   state = {
     number: '',
@@ -39,7 +42,7 @@ class Login extends Component {
   }
 
   onSubmit = () => {
-    const {history} = this.props
+    const {history, userStore} = this.props
     const {number, password} = this.state
 
     const isPhone = REG.MOBILE.test(number);
@@ -55,7 +58,7 @@ class Login extends Component {
     }
 
     // 登录接口，成功后前往首页
-    UserApi.login({
+    userStore.login({
       phonePrefix: isPhone ? '86' : null,
       userName: number,
       password
@@ -64,13 +67,11 @@ class Login extends Component {
         Toast.info(res.msg, TOAST_DURATION)
         return
       }
-      Cookies.set('OPENID', res.data.openId);
-      Cookies.set('TOKEN', res.data.token)
-      Cookies.set('PAY_PASSWORD', res.data.payPassword)
+
       // 暂时进入邀请好友页
-      // Toast.success('登录成功', TOAST_DURATION, () => history.push('/home'))
+      // Toast.success('登录成功', TOAST_DURATION, () => history.push('/home'))l
       Toast.success('登录成功', TOAST_DURATION)
-      this.timer = setTimeout(() => history.push('/home/inviter-friend'), TOAST_DURATION)
+      this.timer = setTimeout(() => history.push('/home/inviter-friend'),TOAST_DURATION * 1000)
     })
   }
 

@@ -1,26 +1,21 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
 import dayjs from 'dayjs'
 import Header from '../../components/common/Header'
-import { OtherApi } from '../../api'
 import noDataImg from '../../assets/images/no-data.png'
 import './Notices.scss'
 
+@inject('noticeStore')
+@observer
 class Notices extends Component {
-  state = { notices: [] }
 
   componentDidMount() {
-    this.getNotices()
-  }
-
-  getNotices = () => {
-    OtherApi.getNotices().then(res => {
-      if (res.status === 1) this.setState({ notices: res.data })
-    })
+    const {noticeStore} = this.props
+    noticeStore.getNotices()
   }
 
   render() {
-    const { history } = this.props
-    const { notices } = this.state
+    const {history, noticeStore} = this.props
 
     return (
       <div id="notices">
@@ -31,20 +26,20 @@ class Notices extends Component {
           onHandle={() => history.push('/user-center')}
         />
         <section>
-          {notices.length ? (
-            notices.map(notice => (
+          {noticeStore.notices.length ? (
+            noticeStore.notices.map(notice => (
               <ul
                 key={notice.id}
                 className="list-item"
                 onClick={() => (window.location.href = notice.linkUrl)}
               >
                 <li>{notice.title}</li>
-                <li>{dayjs(notice.addTime).format('YY-MM-DD HH:mm')}</li>
+                <li>{dayjs(notice.addTime * 1000).format('YYYY-MM-DD HH:mm')}</li>
               </ul>
             ))
           ) : (
             <div className="no-data">
-              <img src={noDataImg} alt="空" />
+              <img src={noDataImg} alt="空"/>
               <p>暂无数据</p>
             </div>
           )}

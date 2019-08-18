@@ -26,3 +26,22 @@
     opacity: 0.5;
   }
 }
+
+.primary-button {
+  @include clearButton;
+  height: 5rem;
+  border-radius: 2.5rem;
+  color: #fff;
+  background-color: $primary-color;
+  font-size: 1.5rem;
+  text-align: center;
+
+  &.disabled {
+    opacity: 0.6;
+    color: #fff;
+  }
+
+  &.active {
+    opacity: 0.5;
+  }
+}

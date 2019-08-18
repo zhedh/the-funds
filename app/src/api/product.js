@@ -15,7 +15,19 @@ class ProductApi {
   /**
    * 基金详情（下单页面初始化）
    *
-   * product_id number 商品id（不传默认自动获取）
+   * productId number 商品id（不传默认自动获取）
+   **/
+  static getProductDetail(options = {}) {
+    return http.post('/order/createini', options)
+  }
+
+  /**
+   * 创建订单
+   *
+   * @required payToken string 支付TOKEN
+   * @required productId string 商品id
+   * @required productAmount string 商品数量
+   *
    **/
   static getProductDetail(options = {}) {
     return http.post('/order/createini', options)

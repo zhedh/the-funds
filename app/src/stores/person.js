@@ -12,6 +12,11 @@ class PersonStore {
   }
 
   @computed
+  get isAuth() {
+    return this.userInfo.authentication === 2
+  }
+
+  @computed
   get allUsableSpecial() {
     if (!this.specials.length) {
       return 0

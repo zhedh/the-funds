@@ -123,4 +123,57 @@
       opacity: 0.5;
     }
   }
+
+  .confirm-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+
+    display: none;
+    background: rgba(0, 0, 0, 0.4);
+
+    &.show {
+      display: block;
+    }
+
+    .content-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: $white;
+      padding-bottom: 40px;
+
+      .content {
+        box-sizing: border-box;
+        padding: 15px 20px 80px;
+
+        p {
+          @include clearBack;
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          font-size: $font-assistant;
+          font-weight: 600;
+
+          &.deposit-price {
+            padding: 6px 0;
+            font-size: $font-title-s;
+          }
+
+          &.service-charge{
+            padding: 5px 0;
+            color: $text-sub-color;
+          }
+        }
+      }
+
+      .primary-button{
+        margin: 0 20px;
+      }
+    }
+  }
 }
