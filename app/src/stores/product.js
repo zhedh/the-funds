@@ -6,7 +6,7 @@ class ProductStore {
   @observable products = []
   @observable currentProduct = {}
   @observable productDetail = {}
-  @observable gearNum = 100
+  @observable gearNum = null
 
   @computed
   get gears() {

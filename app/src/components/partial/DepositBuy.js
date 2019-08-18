@@ -5,18 +5,22 @@ import {Button} from "antd-mobile";
 import {inject, observer} from "mobx-react";
 
 @inject('productStore')
+@inject('userStore')
 @observer
 class DepositBuy extends Component {
   render() {
-    const {show, productStore} = this.props
+    const {show, productStore, userStore} = this.props
     const {productDetail, gears, gearNum, changeGearNum} = productStore
     const hasGears = gears && gears.length > 0
+    console.log(userStore.hasPayPassword)
+
+
     return (
       <div className={`deposit-buy ${show ? 'show' : ''}`}>
-        <div className="current-info show">
-          <h2 className="tab-first_h2">ZBX/USDT当前价格: 0.5898</h2>
-          <p className="tab-first_p">最新兑价（数据来源：影力所）</p>
-        </div>
+        {/*<div className="current-info show">*/}
+        {/*<h2 className="tab-first_h2">ZBX/USDT当前价格: 0.5898</h2>*/}
+        {/*<p className="tab-first_p">最新兑价（数据来源：影力所）</p>*/}
+        {/*</div>*/}
         <ul className="gears">
           {hasGears && gears.map(gear => (
             <li
@@ -36,7 +40,7 @@ class DepositBuy extends Component {
         <div className="fee">
           <p>
             <span>定存送ZBX特价额度</span>
-            <span>{gearNum ? (gearNum/10).toFixed(0) : 0}</span>
+            <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
           </p>
           <small>手续费费率：{productDetail.serviceCharge}%</small>
         </div>
@@ -44,12 +48,12 @@ class DepositBuy extends Component {
           <p>
             *您暂未通过实名认证，无法定存 <Link to="/">去认证</Link>
           </p>
-          <p>
-            *您暂未设置交易密码，无法定存 <Link to="/">去设置</Link>
-          </p>
+          {!userStore.hasPayPassword && <p>
+            *您暂未设置交易密码，无法定存 <Link to="/password/pay">去设置</Link>
+          </p>}
         </aside>
         <Button
-          className="btn"
+          className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"
           onClick={this.onDeposit}>
           定投

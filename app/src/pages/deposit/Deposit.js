@@ -7,6 +7,7 @@ import DepositUnlock from '../../components/partial/DepositUnlock'
 import leftDrawerIcon from '../../assets/images/left-drawer.png'
 import './Deposit.scss'
 
+@inject('personStore')
 @inject('productStore')
 @observer
 class Deposit extends Component {
@@ -18,7 +19,8 @@ class Deposit extends Component {
   }
 
   componentDidMount() {
-    const {productStore} = this.props
+    const {productStore, personStore} = this.props
+    personStore.getUserInfo()
     productStore.getProducts().then(productId => {
       if (productId) {
         productStore.getProductDetail(productId)
