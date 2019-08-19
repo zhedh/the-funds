@@ -14,21 +14,23 @@ class Deposit extends Component {
   state = {
     showDrawer: false,
     ensureToUnlock: false,
-    selectTabIndex: 0
+    selectTabIndex: 1
   }
 
   componentDidMount() {
     const {productStore, personStore} = this.props
     personStore.getUserInfo()
+    personStore.getSpecial()
     productStore.getProducts().then(productId => {
       if (productId) {
         productStore.getProductDetail(productId)
       }
     })
+
   }
 
   onClose = () => {
-    this.setState({ ensureToUnlock: false})
+    this.setState({ensureToUnlock: false})
   }
 
   onUnlockLimit = () => {

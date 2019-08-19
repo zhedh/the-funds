@@ -4,7 +4,7 @@ class WalletApi {
   /**
    * 我的钱包
    **/
-  static getMyWallet(options = {}) {
+  static getWallets(options = {}) {
     return http.post('/userassets/mywarehouse', options)
   }
 

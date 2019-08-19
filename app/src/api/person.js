@@ -30,6 +30,15 @@ class PersonApi {
   }
 
   /**
+   * 我的特价额度记录
+   *
+   * @required productId string 商品ID
+   **/
+  static getSpecialRecords(options = {}) {
+    return http.post('/user/myspeciallistinfo', options)
+  }
+
+  /**
    * 我的钱包地址
    *
    * @required type string 钱包地址类型 USDT|ZBX

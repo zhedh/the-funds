@@ -8,8 +8,6 @@ import {GoMailRead} from "react-icons/go"
 
 import userCenterImg from '../../assets/images/user-center.png'
 import {HOME} from '../../assets/static'
-import {ProductApi} from '../../api'
-import {TOAST_DURATION} from "../../utils/constants";
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
 import NoData from "../../components/common/NoData";
@@ -18,6 +16,7 @@ import './Index.scss'
 @inject('userStore')
 @inject('personStore')
 @inject('noticeStore')
+@inject('productStore')
 @observer
 class Index extends Component {
   state = {
@@ -25,29 +24,15 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {userStore, personStore, noticeStore} = this.props
+    const {userStore, personStore, noticeStore, productStore} = this.props
     noticeStore.getNotices()
     if (userStore.isOnline) personStore.getSpecial()
-    this.getProducts()
-  }
-
-  getProducts = () => {
-    const {products} = this.state
-    ProductApi.getProductList({
-      page: 1,
-      row: 30
-    }).then(res => {
-      if (res.status !== 1) {
-        Toast.info(res.msg, TOAST_DURATION)
-        return
-      }
-      products.push(...res.data)
-    })
+    productStore.getProducts()
   }
 
   render() {
-    const {history, userStore, personStore, noticeStore} = this.props;
-    const {products} = this.state
+    const {history, userStore, personStore, noticeStore, productStore} = this.props;
+    const {products} = productStore
     const {newestNotice} = noticeStore
     const hasProducts = products && products.length > 0
 

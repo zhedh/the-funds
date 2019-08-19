@@ -1,11 +1,14 @@
 import {observable, action, computed} from 'mobx'
+import {WalletApi} from "../api";
 
 class WalletStore {
-  @observable wallet = {}
+  @observable wallets = []
 
   @action
-  getWallet() {
-
+  getWallets() {
+    return WalletApi.getWallets().then(res => {
+      if (res.status === 1) this.wallets = res.data
+    })
   }
 }
 

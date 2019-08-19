@@ -37,7 +37,14 @@ class PersonStore {
 
   @action
   getSpecial() {
-    PersonApi.getSpecial().then(res => {
+    return PersonApi.getSpecial().then(res => {
+      if (res.status === 1) this.specials = res.data
+    })
+  }
+
+  @action
+  getSpecialRecords(options){
+    return PersonApi.getSpecialRecords(options).then(res => {
       if (res.status === 1) this.specials = res.data
     })
   }

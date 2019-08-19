@@ -144,7 +144,7 @@ class DepositBuy extends Component {
               activeClassName="btn-common__active"
               className="primary-button"
               onClick={this.onSubmit}>
-              确认定存
+              确认
             </Button>
           </div>
         </div>
