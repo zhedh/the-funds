@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
-import Cookies from "js-cookie";
+import {inject, observer} from "mobx-react"
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
-import {compatibleFixedButton, getQueryParam} from "../../utils/common";
-import AccountHeader from "../../components/partial/AccountHeader";
-import Captcha from '../../components/common/Captcha';
+import {compatibleFixedButton, getQueryParam} from "../../utils/common"
+import AccountHeader from "../../components/partial/AccountHeader"
+import Captcha from '../../components/common/Captcha'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './Register.scss'
@@ -39,6 +39,8 @@ class RegisterSuccess extends Component {
   }
 }
 
+@inject('userStore')
+@observer
 class Register extends Component {
   state = {
     preAccount: '',
@@ -171,9 +173,10 @@ class Register extends Component {
   };
 
   register = () => {
+    const {userStore} = this.props
     const {account, code, password, passwordConfirm, recommendCode} = this.state
 
-    UserApi.register({
+    userStore.register({
       phonePrefix: REG.MOBILE.test(account) ? '86' : null,
       userName: account,
       code,
@@ -185,9 +188,6 @@ class Register extends Component {
         Toast.info(res.msg, TOAST_DURATION)
         return
       }
-      Cookies.set('OPENID', res.data.openId);
-      Cookies.set('TOKEN', res.data.token)
-      Cookies.set('PAY_PASSWORD', res.data.payPassword)
       Toast.success('注册成功', TOAST_DURATION, () => this.setState({showSuccess: true}))
     })
   };

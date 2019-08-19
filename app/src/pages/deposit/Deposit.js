@@ -13,7 +13,6 @@ import './Deposit.scss'
 class Deposit extends Component {
   state = {
     showDrawer: false,
-    ensureToPay: false,
     ensureToUnlock: false,
     selectTabIndex: 0
   }
@@ -29,11 +28,7 @@ class Deposit extends Component {
   }
 
   onClose = () => {
-    this.setState({ensureToPay: false, ensureToUnlock: false})
-  }
-
-  onDepositBuy = () => {
-    this.setState({ensureToPay: true})
+    this.setState({ ensureToUnlock: false})
   }
 
   onUnlockLimit = () => {
@@ -56,11 +51,10 @@ class Deposit extends Component {
 
   render() {
     const {productStore} = this.props
-    const {products, currentProduct, changeProduct} = productStore
+    const {products, currentProduct} = productStore
 
     const {
       showDrawer,
-      ensureToPay,
       ensureToUnlock,
       selectTabIndex
     } = this.state
@@ -81,7 +75,7 @@ class Deposit extends Component {
             <li
               key={product.id}
               className={currentProduct.id === product.id ? 'active' : ''}
-              onClick={() => changeProduct(product.id, true)}>
+              onClick={() => productStore.changeProduct(product.id, true)}>
               {product.productName}
             </li>
           )}
@@ -110,7 +104,7 @@ class Deposit extends Component {
             <section className="select-bar">
               <SegmentedControl
                 className="segmented-control"
-                values={['定存投资', '解锁额度']}
+                values={[`定投${currentProduct.productName || ''}`, '特价额度']}
                 selectedIndex={selectTabIndex}
                 onChange={this.onSegmentedChange}
               />
@@ -119,43 +113,6 @@ class Deposit extends Component {
             <DepositUnlock show={selectTabIndex === 1}/>
           </main>
         </Drawer>
-
-        {ensureToPay && (
-          <div className="ensure-pay__wrapper">
-            <div className="ensure-pay__content">
-              <Header
-                isShadow
-                title="确认支付"
-                icon={require('../../assets/images/close.png')}
-                onHandle={this.onClose}
-              />
-
-              <div className="pay-content">
-                <p>
-                  <span>
-                    定存投资（ZBX） <br/>
-                    <small>手续费0.3%</small>
-                  </span>
-                  <span>
-                    59.13 <br/>
-                    <small>0.15</small>
-                  </span>
-                </p>
-                <p>
-                  <span>可用</span>
-                  <span>12000.00</span>
-                </p>
-              </div>
-              <Button
-                activeClassName="btn-common__active"
-                className="btn-common modal-btn"
-                onClick={this.onClose}
-              >
-                确认定存
-              </Button>
-            </div>
-          </div>
-        )}
 
         {ensureToUnlock && (
           <div className="ensure-pay__wrapper">

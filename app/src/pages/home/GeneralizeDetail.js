@@ -5,7 +5,7 @@ import OtherApi from "../../api/other";
 import {chineseCapital} from "../../utils/common";
 import Header from "../../components/common/Header";
 import './GeneralizeDetail.scss'
-import NoData from "../../components/partial/NoData";
+import NoData from "../../components/common/NoData";
 
 class GeneralizeDetail extends Component {
   state = {

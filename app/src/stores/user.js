@@ -1,5 +1,6 @@
 import {observable, action, computed} from 'mobx'
 import Cookies from "js-cookie";
+import UserApi from "../api/user";
 
 class UserStore {
   @observable token;
@@ -24,6 +25,34 @@ class UserStore {
   }
 
   @action
+  setUserCookie(data) {
+    Cookies.set('OPENID', data.openId)
+    Cookies.set('TOKEN', data.token)
+    Cookies.set('PAY_PASSWORD', data.payPassword)
+    this.setUserStatus()
+  }
+
+  @action
+  register(options) {
+    return UserApi.register(options).then(res => {
+      if (res.status === 1) {
+        this.setUserCookie(res.data)
+      }
+      return res
+    })
+  }
+
+  @action
+  login(options) {
+    return UserApi.login(options).then(res => {
+      if (res.status === 1) {
+        this.setUserCookie(res.data)
+      }
+      return res
+    })
+  }
+
+  @action
   logout() {
     Cookies.remove('TOKEN')
     Cookies.remove('OPENID')
@@ -31,6 +60,17 @@ class UserStore {
     this.token = null
     this.openid = null
     this.payPassword = null
+  }
+
+  @action
+  changePayPasswordStatus(status) {
+    Cookies.set('PAY_PASSWORD', status)
+    this.payPassword = Cookies.get('PAY_PASSWORD')
+  }
+
+  @action
+  getPayToken(options) {
+    return UserApi.getPayToken(options)
   }
 }
 

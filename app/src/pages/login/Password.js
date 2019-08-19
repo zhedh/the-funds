@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
 import {Toast} from 'antd-mobile'
 import {REG, PASSWORD_TYPES, TOAST_DURATION} from '../../utils/constants'
 import {UserApi} from '../../api'
 import VerifiedCode from '../../components/partial/VerifiedCode'
 import VerifiedPwd from '../../components/partial/VeritifiedPwd'
 import './Password.scss'
-import {inject, observer} from "mobx-react";
 
 @inject('userStore')
 @inject('personStore')
@@ -98,6 +98,7 @@ class Password extends Component {
       passwordConfirm,
       verifyToken
     } = this.state
+
     if (!REG.PASSWORD.test(password)) {
       Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
       return
@@ -126,7 +127,25 @@ class Password extends Component {
         password,
         passwordConfirm,
         verifyToken,
-      }).then(res => this.updateLoginPasswordSuccess(res, '更改成功，请重新登录'))
+      }).then(res => this.updateLoginPasswordSuccess(res, '重置成功，请重新登录'))
+    }
+
+    if (typeOption.type === 'pay' || typeOption.type === 'repay') {
+      return UserApi.setPayPasswordForEmail({
+        payPassword: password,
+        payPasswordConfirm: passwordConfirm,
+        verifyToken,
+      }).then(res => {
+        if (res.status !== 1) {
+          Toast.info(res && res.msg, TOAST_DURATION)
+          return
+        }
+
+        const {history, userStore} = this.props
+        const msg = typeOption.type === 'pay' ? '设置成功' : '重置成功'
+        userStore.changePayPasswordStatus(1)
+        Toast.info(msg, TOAST_DURATION, () => history.goBack())
+      })
     }
   }
 

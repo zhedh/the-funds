@@ -1,4 +1,5 @@
-import http from "./http";
+import http from "./http"
+import {optionsToLine} from "../utils/common"
 
 class PersonApi {
   /**
@@ -57,11 +58,13 @@ class PersonApi {
    * @required type string 1为正面，2为背面，3为手持证件照
    **/
   static uploadPhoto(options = {}) {
+    console.log(options)
     return http.post(
       '/user/uploadphoto',
       options,
       {
         transformRequest: [data => {
+          data = optionsToLine(data)
           let formData = new FormData()
           for (const key of Object.keys(data)) {
             formData.append(key, data[key])
@@ -83,7 +86,7 @@ class PersonApi {
   /**
    * 提交认证审核
    **/
-  static submitAuthInfo(options = {}) {
+  static submitAuthAudit(options = {}) {
     return http.post('/user/authenticationsubmit', options)
   }
 
