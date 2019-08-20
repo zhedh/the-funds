@@ -1,10 +1,7 @@
 import Loadable from 'react-loadable'
 import Loading from './components/common/Loading'
 
-const Home = Loadable({
-  loader: () => import('./pages/home/Index'),
-  loading: Loading
-})
+const Home = import('./pages/home/Index')
 const InviterFriend = Loadable({
   loader: () => import('./pages/home/InviterFriend'),
   loading: Loading
@@ -59,10 +56,7 @@ const WithdrawRecord = Loadable({
   loading: Loading
 })
 
-const Login = Loadable({
-  loader: () => import('./pages/login/Login'),
-  loading: Loading
-})
+const Login = import('./pages/login/Login')
 const Register = Loadable({
   loader: () => import('./pages/login/Register'),
   loading: Loading
@@ -194,6 +188,7 @@ export default [
   { path: '/deposit/result', name: 'DepositResult', component: DepositResult },
 
   // 404
+
   {
     path: '/404',
     name: '404',

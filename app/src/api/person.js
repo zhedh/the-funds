@@ -67,7 +67,6 @@ class PersonApi {
    * @required type string 1为正面，2为背面，3为手持证件照
    **/
   static uploadPhoto(options = {}) {
-    console.log(options)
     return http.post(
       '/user/uploadphoto',
       options,

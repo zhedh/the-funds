@@ -14,11 +14,12 @@ class AccountHeader extends Component {
   }
 
   render() {
-    const {title = '重置密码', msg,} = this.props
+    const {title = '重置密码', msg, hideBack} = this.props
 
     return (
       <div className="account-header">
         <img
+          className={hideBack ? 'hidden' : ''}
           src={require('../../assets/images/arrow-left.png')}
           alt="返回"
           onClick={this.onBack}

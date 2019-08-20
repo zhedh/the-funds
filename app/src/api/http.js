@@ -38,7 +38,6 @@ instance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
-  console.log(response.data);
   let {data} = response.data
 
   // 用户请求需要登录的接口，跳转登录页
