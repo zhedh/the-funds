@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
-import './DepositUnlock.scss'
 import { Button } from 'antd-mobile'
+import { inject, observer } from 'mobx-react'
+import './DepositUnlock.scss'
 
+@inject('productStore')
+@inject('userStore')
+@inject('personStore')
+@observer
 class DepositUnlock extends Component {
   render() {
-    const { show, onDeposit } = this.props
+    const { show, productStore, userStore, personStore, onDeposit } = this.props
+    const { productDetail } = productStore
+    const { specials } = personStore
+    console.log(specials)
 
     return (
       <div className={`deposit-unlock ${show ? 'show' : ''}`}>
         <section className="content-detail">
           <h1>126.24</h1>
-          <span>可解锁XC特价额度</span>
+          <span>可解锁{productDetail.productName}特价额度</span>
           <br />
           <a href="#123">查看详情</a>
         </section>

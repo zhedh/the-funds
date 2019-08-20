@@ -160,7 +160,7 @@ class DepositBuy extends Component {
               className="primary-button"
               onClick={this.onSubmit}
             >
-              确认定存
+              确认
             </Button>
           </div>
         </div>

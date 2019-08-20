@@ -3,6 +3,8 @@ import qs from 'qs'
 import Cookies from 'js-cookie'
 import {CONFIG} from '../config'
 import {optionsToHump, optionsToLine} from '../utils/common'
+import {Toast} from "antd-mobile";
+import {TOAST_DURATION} from "../utils/constants";
 
 const axiosConfig = {
   baseURL: CONFIG.API_BASE_URL,
@@ -41,10 +43,10 @@ instance.interceptors.response.use(response => {
 
   // 用户请求需要登录的接口，跳转登录页
   if (response.data.status === -101) {
-    // Cookies.remove('OPENID')
-    // Cookies.remove('TOKEN')
-    // Cookies.remove('PAY_PASSWORD')
-    // Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
+    Cookies.remove('OPENID')
+    Cookies.remove('TOKEN')
+    Cookies.remove('PAY_PASSWORD')
+    Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
   }
 
   // 对下划线转驼峰进行处理
