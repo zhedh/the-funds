@@ -31,7 +31,7 @@
 
 export const SWITCH = {
   PROJECT: 'NTTC',
-  ONLINE: true
+  ONLINE: false
 }
 
 const XC = {
