@@ -80,7 +80,7 @@ class Deposit extends Component {
             <li
               key={product.id}
               className={currentProduct.id === product.id ? 'active' : ''}
-              onClick={() => productStore.changeProduct(product.id, true)}
+              onClick={() => changeProduct(product.id, true)}
             >
               {product.productName}
             </li>
