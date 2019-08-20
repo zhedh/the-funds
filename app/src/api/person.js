@@ -12,6 +12,16 @@ class PersonApi {
   }
 
   /**
+   * 定存中的基金
+   *
+   * @required productId string 商品id
+   * @required status string 定投中：0
+   **/
+  static getDepositRecords(options = {}) {
+    return http.post('/user/mywarehouselist', options)
+  }
+
+  /**
    * 我的特价额度
    **/
   static getSpecial(options = {}) {

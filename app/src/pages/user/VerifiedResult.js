@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
+import {inject, observer} from "mobx-react"
 import Header from '../../components/common/Header'
 import './VerifiedResult.scss'
-import {inject, observer} from "mobx-react";
 
 const resultOptions = [
   {
@@ -19,7 +19,6 @@ const resultOptions = [
     image: require('../../assets/images/vertified-fail.png')
   },
 ]
-
 
 @inject('personStore')
 @observer
@@ -66,7 +65,6 @@ class VerifiedResult extends Component {
         {resultOption.type === 3 && (
           <div className="result-content">
             <div className="verified-fail">认证失败！</div>
-            {/*<div className="fail-reason">失败原因：xxxx</div>*/}
             <br/>
             <Button
               activeClassName="btn-common__active"
