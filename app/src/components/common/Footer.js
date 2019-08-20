@@ -10,24 +10,26 @@ import WalletPreSvg from "../../assets/images/wallet-pre.svg";
 
 const TABS = [
   {
-    pathname: "/home/",
+    pathname: "/home",
     label: "首页",
     image: FindSvg,
     imagePre: FindPreSvg
   },
   {
-    pathname: "/deposit/",
+    pathname: "/deposit",
     label: "定投",
     image: DepositSvg,
     imagePre: DepositPreSvg
   },
   {
-    pathname: "/wallet/",
+    pathname: "/wallet",
     label: "钱包",
     image: WalletSvg,
     imagePre: WalletPreSvg
   }
 ];
+
+const PATHS = ["/home", "/home/", "/deposit", "/deposit/", "/wallet", "/wallet/"]
 
 class Footer extends Component {
   handleChange = pathname => {
@@ -37,7 +39,7 @@ class Footer extends Component {
 
   render() {
     const {location} = this.props
-    const show = TABS.some(tab => tab.pathname.includes(location.pathname))
+    const show = PATHS.includes(location.pathname)
 
     return (
       show ? <footer>

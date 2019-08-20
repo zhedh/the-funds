@@ -40,7 +40,6 @@ class Bargain extends Component {
     const {history,personStore} = this.props
     const {bargains} = this.state;
     const {specials} = personStore
-    console.log(specials)
 
     return (
       <div id="bargain">

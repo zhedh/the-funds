@@ -68,7 +68,7 @@ class Login extends Component {
       // 暂时进入邀请好友页
       // Toast.success('登录成功', TOAST_DURATION, () => history.push('/home'))l
       Toast.success('登录成功', TOAST_DURATION)
-      this.timer = setTimeout(() => history.push('/home/inviter-friend'),TOAST_DURATION * 1000)
+      this.timer = setTimeout(() => history.push('/home/inviter-friend'), TOAST_DURATION * 1000)
     })
   }
 
@@ -78,7 +78,7 @@ class Login extends Component {
 
     return (
       <div id="login">
-        <AccountHeader title="登录"/>
+        <AccountHeader hideBack title="登录"/>
         <div className="login-content">
           <label>
             <input
