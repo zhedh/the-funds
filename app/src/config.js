@@ -14,7 +14,6 @@
  * ONLINE bool 线上版本
  * */
 
-
 export const SWITCH = {
   PROJECT: 'XC',
   ONLINE: false

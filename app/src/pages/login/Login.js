@@ -50,7 +50,7 @@ class Login extends Component {
     }
 
     if (!REG.PASSWORD.test(password)) {
-      Toast.info('密码输入错误', TOAST_DURATION)
+      Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
       return
     }
 
