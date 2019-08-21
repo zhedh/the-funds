@@ -16,7 +16,6 @@ import './Index.scss'
 @inject('userStore')
 @inject('personStore')
 @inject('noticeStore')
-@inject('productStore')
 @observer
 class Index extends Component {
   state = {
@@ -24,17 +23,20 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {userStore, personStore, noticeStore, productStore} = this.props
+    const {userStore, personStore, noticeStore} = this.props
     noticeStore.getNotices()
-    if (userStore.isOnline) personStore.getSpecial()
-    productStore.getProducts()
+    if (userStore.isOnline) {
+      personStore.getSpecial()
+      personStore.getDepositRecords()
+    }
   }
 
   render() {
-    const {history, userStore, personStore, noticeStore, productStore} = this.props;
-    const {products} = productStore
+    const {history, userStore, personStore, noticeStore} = this.props;
     const {newestNotice} = noticeStore
-    const hasProducts = products && products.length > 0
+    const {depositRecords} = personStore
+    const hasRecords = userStore.isOnline && depositRecords && depositRecords.length > 0
+    console.log(userStore.isOnline)
 
     return (
       <div id="home">
@@ -79,7 +81,7 @@ class Index extends Component {
               <FiChevronRight className="icon"/>
             </Link>
           </div>
-          {hasProducts ? <ul className="list">
+          {hasRecords ? <ul className="list">
             <li>
               <div className="main">
                 <small>2019.07.10 定存</small>

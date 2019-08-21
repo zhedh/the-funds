@@ -2,9 +2,10 @@ import {observable, action, computed} from 'mobx'
 import PersonApi from "../api/person";
 
 class PersonStore {
-  @observable name = 'kevin';
-  @observable userInfo = {};
-  @observable specials = [];
+  @observable name = 'kevin'
+  @observable userInfo = {}
+  @observable specials = []
+  @observable depositRecords = []
 
   @computed
   get userName() {
@@ -43,9 +44,16 @@ class PersonStore {
   }
 
   @action
-  getSpecialRecords(options){
+  getSpecialRecords(options) {
     return PersonApi.getSpecialRecords(options).then(res => {
       if (res.status === 1) this.specials = res.data
+    })
+  }
+
+  @action
+  getDepositRecords(options) {
+    return PersonApi.getDepositRecords(options).then(res => {
+      if (res.status === 1) this.depositRecords = res.data
     })
   }
 }

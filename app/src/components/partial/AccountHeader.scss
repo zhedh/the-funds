@@ -8,6 +8,10 @@
   img {
     padding: 15px 30px 15px 8px;
     width: 8px;
+
+    &.hidden {
+      visibility: hidden;
+    }
   }
 
   h1 {
@@ -25,8 +29,8 @@
   }
 }
 
-@media screen and (max-width: 370px){
-  .account-header{
+@media screen and (max-width: 370px) {
+  .account-header {
     min-height: 10rem;
   }
 }

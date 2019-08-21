@@ -9,14 +9,40 @@ import Header from '../../components/common/Header'
 import {TOAST_DURATION} from "../../utils/constants"
 import './InviterFriend.scss'
 
-@inject('personStore')
-@inject('userStore')
-@observer
-class InviterFriend extends Component {
+class QrCodeBox extends Component {
   state = {
     codeUrl: ''
   }
 
+  componentDidMount() {
+    const canvas = document.querySelector('.qr-code__box canvas')
+    const codeUrl = canvas.toDataURL('image/png');
+    this.setState({codeUrl})
+  }
+
+  render() {
+    const {inviterUrl} = this.props
+    const {codeUrl} = this.state
+
+    return (
+      <div className="qr-code__box">
+        <QRCode
+          className="qr-code"
+          value={inviterUrl}
+        />
+        <br/>
+        <img src={codeUrl} alt=""/>
+        <br/>
+        <span>点击或长按二维码保存图片</span>
+      </div>
+    );
+  }
+}
+
+@inject('personStore')
+@inject('userStore')
+@observer
+class InviterFriend extends Component {
   componentDidMount() {
     const {personStore, userStore, history} = this.props
     if (!userStore.isOnline) {
@@ -24,21 +50,14 @@ class InviterFriend extends Component {
       return
     }
     personStore.getUserInfo()
-    this.saveImg()
   }
 
-  saveImg = () => {
-    const canvas = document.querySelector('.qr-code__box canvas')
-    const codeUrl = canvas.toDataURL('image/png');
-    this.setState({codeUrl})
-  };
-
   render() {
-    const {codeUrl} = this.state
     const {history, personStore} = this.props;
     const {userInfo} = personStore
     const {origin} = window.location
     const inviterUrl = origin + '/register?recommendCode=' + userInfo.recommendCode
+
     return (
       <div id="inviter-friend">
         <Header
@@ -61,16 +80,10 @@ class InviterFriend extends Component {
           </CopyToClipboard>
         </section>
         <section className="section-qr">
-          <div className="qr-code__box">
-            <QRCode
-              className="qr-code"
-              value={inviterUrl}
-            />
-            <br/>
-            <img src={codeUrl} alt=""/>
-            <br/>
-            <span>点击或长按二维码保存图片</span>
-          </div>
+          <QrCodeBox
+            key={userInfo.recommendCode}
+            inviterUrl={inviterUrl}
+          />
           <p>
             {inviterUrl}
             <CopyToClipboard
