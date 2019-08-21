@@ -12,6 +12,13 @@ class PersonApi {
   }
 
   /**
+   * 获取最后一次结算时间
+   **/
+  static getLastClearTime(options = {}) {
+    return http.post('/order/getlastcleartime', options)
+  }
+
+  /**
    * 定存中的基金
    *
    * @required productId string 商品id
@@ -35,7 +42,7 @@ class PersonApi {
    * status string 0锁定，1可用，2提现锁定，3已失效
    * day string today|yestoday
    **/
-  static getSpecialDetail(options = {}) {
+  static getSpecialAwards(options = {}) {
     return http.post('/user/myspeciallist', options)
   }
 

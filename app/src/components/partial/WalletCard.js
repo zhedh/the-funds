@@ -4,6 +4,7 @@ import rechargeImg from '../../assets/images/recharge.svg'
 import withdrawImg from '../../assets/images/withdraw.svg'
 import arrowRightImg from '../../assets/images/arrow-right-white.png'
 import './WalletCard.scss'
+import dayjs from "dayjs";
 
 class WalletCard extends Component {
   toPage = link => {
@@ -22,7 +23,7 @@ class WalletCard extends Component {
         onClick={() => this.toPage(card.link)}
       >
         <h1>
-          <small>总资产（{card.cardName}）</small>
+          <small>总资产（{card.name}）</small>
           <span>1240.24</span>
         </h1>
         <ul>
@@ -43,7 +44,7 @@ class WalletCard extends Component {
           <img className="arrow-right" src={arrowRightImg} alt="" />
         )}
         {card.updateTime && (
-          <span className="update-time">最近更新时间：{card.updateTime}</span>
+          <span className="update-time">最近更新时间：{dayjs(card.updateTime).format('YYYY-MM-DD HH:mm')}</span>
         )}
       </div>
     )

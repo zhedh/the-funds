@@ -3,8 +3,10 @@ import PersonApi from "../api/person";
 
 class PersonStore {
   @observable name = 'kevin'
+  @observable lastClearTime = ''
   @observable userInfo = {}
   @observable specials = []
+  @observable specialAwards = []
   @observable depositRecords = []
 
   @computed
@@ -37,9 +39,24 @@ class PersonStore {
   }
 
   @action
+  getLastClearTime() {
+    return PersonApi.getLastClearTime().then(res => {
+      if (res.status === 1) this.lastClearTime = res.data.lastcleartime
+      return res
+    })
+  }
+
+  @action
   getSpecial() {
     return PersonApi.getSpecial().then(res => {
       if (res.status === 1) this.specials = res.data
+    })
+  }
+
+  @action
+  getSpecialAwards(options) {
+    return PersonApi.getSpecialAwards(options).then(res => {
+      if (res.status === 1) this.specialAwards = res.data
     })
   }
 

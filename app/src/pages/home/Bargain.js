@@ -1,45 +1,22 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-
 import arrowLeft from '../../assets/images/arrow-left.png'
 import {BARGAIN} from '../../assets/static'
 import './Bargain.scss'
 
-const BARGAINS = [
-  {
-    label: '定存奖',
-    value: 10
-  }, {
-    label: '代数奖',
-    value: 15
-  }, {
-    label: '管理奖',
-    value: 10
-  }, {
-    label: '团队奖',
-    value: 0
-  }, {
-    label: '运营奖',
-    value: 0
-  },
-];
-
 @inject('personStore')
 @observer
 class Bargain extends Component {
-  state = {
-    bargains: BARGAINS
-  };
-
-  componentDidMount(){
+  componentDidMount() {
     const {personStore} = this.props
     personStore.getSpecial()
+    personStore.getLastClearTime()
+    personStore.getSpecialAwards({productId: 234240})
   }
 
   render() {
-    const {history,personStore} = this.props
-    const {bargains} = this.state;
-    const {specials} = personStore
+    const {history, personStore} = this.props
+    const {allUsableSpecial, lastClearTime, specialAwards} = personStore
 
     return (
       <div id="bargain">
@@ -56,19 +33,21 @@ class Bargain extends Component {
         </header>
         <section className="section-banner">
           <div className="banner">
-            <span>{BARGAIN.BANNER_LABEL} 129.09</span>
-            <small>上次结算时间: 2019.09.08 15:00:00</small>
-            <button>解锁</button>
+            <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
+            <small>上次结算时间: {lastClearTime}</small>
+            <button onClick={()=>history.push('/deposit?type=unLock')}>
+              解锁
+            </button>
           </div>
           <p>* 解锁后的特价XC将直接充值到您的账户</p>
         </section>
         <section className="section-main">
           <h2>当日奖励额度</h2>
           <ul>
-            {bargains.map(bargain =>
-              <li key={bargain.label}>
-                <label>{bargain.label}</label>
-                <span>{bargain.value}</span>
+            {specialAwards.map(award =>
+              <li key={award.remark}>
+                <label>{award.remark}</label>
+                <span>{award.amount}</span>
               </li>)
             }
           </ul>
