@@ -24,7 +24,7 @@ class WalletCard extends Component {
       >
         <h1>
           <small>总资产（{card.name}）</small>
-          <span>1240.24</span>
+          <span>{card.asset}</span>
         </h1>
         <ul>
           {card.withdrawUrl && (
@@ -42,9 +42,6 @@ class WalletCard extends Component {
         </ul>
         {card.link && (
           <img className="arrow-right" src={arrowRightImg} alt="" />
-        )}
-        {card.updateTime && (
-          <span className="update-time">最近更新时间：{dayjs(card.updateTime).format('YYYY-MM-DD HH:mm')}</span>
         )}
       </div>
     )

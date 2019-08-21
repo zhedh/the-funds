@@ -1,68 +1,64 @@
-import React, {Component} from 'react';
-import Header from "../../components/common/Header";
-import walletUsdtImg from "../../assets/images/wallet-usdt.png";
-import WalletCard from "../../components/partial/WalletCard";
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import dayjs from "dayjs"
+import Header from "../../components/common/Header"
+import walletUsdtImg from "../../assets/images/wallet-usdt.png"
+import WalletCard from "../../components/partial/WalletCard"
 
 import './WalletUsdt.scss'
 
-const CARD = {
+const USDT_CARD = {
   bgImg: walletUsdtImg,
-  cardName: 'USDT',
-  value: '1240.24',
-  rechargeUrl: '/home',
-  withdrawUrl: '/home',
-  // updateTime: '2019.07.18 15:23:22 '
-};
+  name: 'USDT',
+  asset: '',
+  rechargeUrl: '1',
+  withdrawUrl: '1',
+}
 
-const LIST = [
-  {
-    id: 1,
-    label: '定存 100XC',
-    value: '132.00',
-    type: 0,
-    time: '2018-08-29 13:42:39'
-  }, {
-    id: 2,
-    label: '充值',
-    value: '1000.00',
-    type: 1,
-    time: '2018-08-29 13:42:39'
-  }, {
-    id: 3,
-    label: '提现',
-    value: '132.00',
-    type: 0,
-    time: '2018-08-29 13:42:39'
-  }, {
-    id: 4,
-    label: '定存 100XC 手续费',
-    value: '3.00',
-    type: 0,
-    time: '2018-08-29 13:42:39'
-  },
-];
-
+@inject('personStore')
+@inject('walletStore')
+@observer
 class WalletUsdt extends Component {
+  state = {
+    usdtCard: USDT_CARD
+  }
+
+  componentDidMount() {
+    const {personStore, walletStore} = this.props
+    personStore.getUserInfo().then(() => {
+      const {userInfo} = personStore
+      const usdtCard = {
+        ...USDT_CARD,
+        asset: userInfo.balance,
+      }
+      this.setState({usdtCard})
+    })
+    walletStore.getUsdtStream()
+  }
+
   render() {
-    const records = LIST;
+    const {walletStore} = this.props
+    const {usdtCard} = this.state
+    const {usdtStream} = walletStore
+
     return (
       <div id="wallet-usdt">
         <Header title="USDT" isFixed isShadow/>
         <div className="card">
-          <WalletCard card={CARD}/>
+          <WalletCard card={usdtCard}/>
         </div>
         <ul className="records">
-          {records.map(record =>
-            <li key={record.id}>
+          {usdtStream.map(item =>
+            <li key={item.id}>
               <main>
-                {record.label}
-                <small>{record.time}</small>
+                {item.remark}
+                <small>{dayjs(item.addTime * 1000).format('YYYY-MM-DD HH:mm:ss')}</small>
               </main>
-              <aside>{(record.type === 1 ? '+' : '-') + record.value}</aside>
+              <aside>{item.amount}</aside>
             </li>)}
         </ul>
       </div>
-    );
+    )
   }
 }
 

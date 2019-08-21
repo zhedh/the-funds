@@ -1,31 +1,28 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Header from '../../components/common/Header';
-import WalletCard from '../../components/partial/WalletCard';
-import walletToLoginImg from '../../assets/images/wallet-to-login.png';
-import walletZbsImg from '../../assets/images/wallet-zbs.png';
-import walletUsdtImg from '../../assets/images/wallet-usdt.png';
-
-import './Index.scss';
-import {inject, observer} from "mobx-react";
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {inject, observer} from "mobx-react"
+import Header from '../../components/common/Header'
+import WalletCard from '../../components/partial/WalletCard'
+import walletToLoginImg from '../../assets/images/wallet-to-login.png'
+import walletZbsImg from '../../assets/images/wallet-zbs.png'
+import walletUsdtImg from '../../assets/images/wallet-usdt.png'
+import './Index.scss'
 
 const USDT_CARD = {
   bgImg: walletUsdtImg,
   name: 'USDT',
   asset: '',
-  rechargeUrl: '',
-  withdrawUrl: '',
-  updateTime: +new Date(),
-  link: '/wallet/card/'
+  rechargeUrl: '1',
+  withdrawUrl: '1',
+  link: '/wallet/usdt'
 }
 
 const WALLET_CARD = {
   bgImg: walletZbsImg,
   name: 'XC',
   asset: '',
-  rechargeUrl: '',
-  withdrawUrl: '',
-  updateTime: +new Date(),
+  rechargeUrl: '1',
+  withdrawUrl: '1',
   link: '/wallet/card/'
 }
 
@@ -79,11 +76,9 @@ class Index extends Component {
     const cards = []
     cards.push({
       ...USDT_CARD,
-      asset: userInfo.warehouse,
-      updateTime: userInfo.lastloginTime * 1000
+      asset: userInfo.balance,
     })
     const walletCards = wallets.map(wallet => {
-      console.log(wallet)
       return {
         ...WALLET_CARD,
         name: wallet.productName,

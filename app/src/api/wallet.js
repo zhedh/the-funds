@@ -29,6 +29,18 @@ class WalletApi {
   static createOrder(options = {}) {
     return http.post('/order/createorder', options)
   }
+
+  /**
+   * 获取USDT流水
+   *
+   * type string balance(代表USDT) 默认值：balance
+   * page string 页码
+   * row string 每页条数
+   *
+   **/
+  static getUsdtStream(options = {}) {
+    return http.post('/userassets/stream', options)
+  }
 }
 
 export default WalletApi

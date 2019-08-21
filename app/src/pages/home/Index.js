@@ -1,18 +1,17 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import {observer, inject} from "mobx-react";
-// import {Toast} from "antd-mobile";
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
+import dayjs from "dayjs"
 
 import userCenterImg from '../../assets/images/user-center.png'
 import {HOME} from '../../assets/static'
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
-import NoData from "../../components/common/NoData";
+import NoData from "../../components/common/NoData"
 import './Index.scss'
-import dayjs from "dayjs";
 
 @inject('userStore')
 @inject('personStore')
@@ -88,8 +87,8 @@ class Index extends Component {
             </Link>
           </div>
           {hasRecords ? <ul className="list">
-            {depositRecords.map(record =>
-              <li>
+            {depositRecords.map((record,key) =>
+              <li key={key}>
                 <div className="main">
                   <small>
                     {dayjs(record.addTime * 1000).format('YYYY.MM.DD')}

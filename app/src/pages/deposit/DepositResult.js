@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-import {Button, Toast} from 'antd-mobile'
+import {Button} from 'antd-mobile'
 import './DepositResult.scss'
-
 
 @inject('personStore')
 @observer
 class DepositResult extends Component {
-
   componentDidMount() {
 
   }
