@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from "../../components/common/Header";
 
 import './BargainRecord.scss';
+import {inject, observer} from "mobx-react";
 
 const RECORDS = [
   {
@@ -31,10 +32,19 @@ const RECORDS = [
   },
 ]
 
+@inject('personStore')
+@observer
 class BargainRecord extends Component {
   state = {
     records: RECORDS
   };
+
+  componentDidMount() {
+    const {personStore} = this.props
+    personStore.getSpecialRecords({productId: 234240})
+
+    // productId 暂时写死 specialRecords
+  }
 
   render() {
     const {records} = this.state;

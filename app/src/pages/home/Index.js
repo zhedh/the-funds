@@ -12,6 +12,7 @@ import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
 import NoData from "../../components/common/NoData";
 import './Index.scss'
+import dayjs from "dayjs";
 
 @inject('userStore')
 @inject('personStore')
@@ -24,23 +25,22 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {userStore, personStore, noticeStore,} = this.props
+    const {userStore, personStore, noticeStore, productStore} = this.props
     noticeStore.getNotices()
     if (userStore.isOnline) {
       personStore.getSpecial()
-      // productStore.getProductList().then(productId => {
-      //
-      // })
-      // personStore.getDepositRecords()
+      productStore.getProducts().then(productId => {
+        personStore.getDepositRecords({productId, status: 0})
+      })
     }
   }
 
   render() {
-    const {history, userStore, personStore, noticeStore} = this.props;
+    const {history, userStore, personStore, noticeStore,productStore} = this.props;
     const {newestNotice} = noticeStore
     const {depositRecords} = personStore
+    const {currentProduct} = productStore
     const hasRecords = userStore.isOnline && depositRecords && depositRecords.length > 0
-    console.log(userStore.isOnline)
 
     return (
       <div id="home">
@@ -88,17 +88,23 @@ class Index extends Component {
             </Link>
           </div>
           {hasRecords ? <ul className="list">
-            <li>
-              <div className="main">
-                <small>2019.07.10 定存</small>
-                1000 XC
-                <span>消耗 58.59 USDT</span>
-              </div>
-              <div className="aside">
-                <time>2019.07.17</time>
-                返还
-              </div>
-            </li>
+            {depositRecords.map(record =>
+              <li>
+                <div className="main">
+                  <small>
+                    {dayjs(record.addTime * 1000).format('YYYY.MM.DD')}
+                    &nbsp;
+                    {record.remark}
+                  </small>
+                  {record.amount} {currentProduct.productName}
+                  {/*<span>消耗 58.59 USDT</span>*/}
+                </div>
+                <div className="aside">
+                  <time>{dayjs(record.unlockTime * 1000).format('YYYY.MM.DD')}</time>
+                  返还日期
+                </div>
+              </li>
+            )}
           </ul> : <NoData msg="每天存一笔，天天有钱赚！"/>}
 
         </section>

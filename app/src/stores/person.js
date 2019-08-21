@@ -7,6 +7,7 @@ class PersonStore {
   @observable userInfo = {}
   @observable specials = []
   @observable specialAwards = []
+  @observable specialRecords = []
   @observable depositRecords = []
 
   @computed
@@ -63,7 +64,7 @@ class PersonStore {
   @action
   getSpecialRecords(options) {
     return PersonApi.getSpecialRecords(options).then(res => {
-      if (res.status === 1) this.specials = res.data
+      if (res.status === 1) this.specialRecords = res.data
     })
   }
 
