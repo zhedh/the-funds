@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button } from 'antd-mobile'
 import { inject, observer } from 'mobx-react'
 import './DepositUnlock.scss'
@@ -9,11 +9,12 @@ import './DepositUnlock.scss'
 @inject('personStore')
 @observer
 class DepositUnlock extends Component {
+  state = { totalAmount: null }
   render() {
     const { show, productStore, userStore, personStore, onDeposit } = this.props
     const { productDetail } = productStore
     const { specials } = personStore
-    console.log(specials)
+    const { totalAmount, unLockAmount } = this.state
 
     return (
       <div className={`deposit-unlock ${show ? 'show' : ''}`}>
@@ -21,13 +22,22 @@ class DepositUnlock extends Component {
           <h1>126.24</h1>
           <span>可解锁{productDetail.productName}特价额度</span>
           <br />
-          <a href="#123">查看详情</a>
+          <Link to="/home/bargain">查看详情</Link>
         </section>
         <section className="content-charge">
           <p>XC/USDT特价: 0.1248</p>
           <label>
-            <input type="text" placeholder="输入解锁数量" />
-            <span className="all">全部</span>
+            <input
+              type="text"
+              placeholder="输入解锁数量"
+              value={unLockAmount}
+              onChange={e =>
+                this.setState({ unLockAmount: e.target && e.target.value })
+              }
+            />
+            <span className="all" onClick={() => {}}>
+              全部
+            </span>
           </label>
           <label>
             <small>USDT 余额：12000</small>
@@ -35,7 +45,7 @@ class DepositUnlock extends Component {
           </label>
           <h3>
             <span>交易额（USDT）</span>
-            <span>--</span>
+            <span>{unLockAmount * 4}</span>
           </h3>
         </section>
         <Button

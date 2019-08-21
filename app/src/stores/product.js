@@ -1,6 +1,6 @@
-import {observable, action, computed} from 'mobx'
-import {ProductApi} from '../api'
-import {Toast} from 'antd-mobile'
+import { observable, action, computed } from 'mobx'
+import { ProductApi } from '../api'
+import { Toast } from 'antd-mobile'
 
 class ProductStore {
   @observable products = []
@@ -20,7 +20,7 @@ class ProductStore {
         Toast.info(res.msg)
         return null
       }
-      res.data.push({id: 234241, productName: "XB"})
+      // res.data.push({id: 234241, productName: "XB"})
       this.products = res.data
       this.currentProduct = res.data[0] || {}
       return this.currentProduct.id
@@ -29,7 +29,7 @@ class ProductStore {
 
   @action
   getProductDetail(productId) {
-    return ProductApi.getProductDetail({productId}).then(res => {
+    return ProductApi.getProductDetail({ productId }).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
         return
@@ -58,7 +58,6 @@ class ProductStore {
       special: '0'
     })
   }
-
 }
 
 export default ProductStore

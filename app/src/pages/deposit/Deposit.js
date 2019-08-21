@@ -54,9 +54,15 @@ class Deposit extends Component {
     }
   }
 
+  selectProduct = id => {
+    const { productStore } = this.props
+    this.setState({ showDrawer: false }, () => {
+      productStore.changeProduct(id, true)
+    })
+  }
   render() {
     const { productStore } = this.props
-    const { products, currentProduct, changeProduct } = productStore
+    const { products, currentProduct } = productStore
 
     const {
       showDrawer,
@@ -81,7 +87,7 @@ class Deposit extends Component {
             <li
               key={product.id}
               className={currentProduct.id === product.id ? 'active' : ''}
-              onClick={() => changeProduct(product.id, true)}
+              onClick={() => this.selectProduct(product.id)}
             >
               {product.productName}
             </li>
