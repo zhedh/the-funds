@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react"
 import Header from "../../components/common/Header"
 import walletUsdtImg from "../../assets/images/wallet-usdt.png"
 import WalletCard from "../../components/partial/WalletCard"
-import {formatTime} from "../../utils/format"
+import {formatSpecialOffer, formatTime} from "../../utils/format"
 import './WalletUsdt.scss'
 
 const USDT_CARD = {
@@ -53,7 +53,7 @@ class WalletUsdt extends Component {
                 {item.remark}
                 <small>{formatTime(item.addTime)}</small>
               </main>
-              <aside>{item.amount}</aside>
+              <aside>{formatSpecialOffer(item.amount)}</aside>
             </li>)}
         </ul>
       </div>

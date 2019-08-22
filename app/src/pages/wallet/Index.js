@@ -23,7 +23,8 @@ const WALLET_CARD = {
   asset: '',
   rechargeUrl: '1',
   withdrawUrl: '1',
-  link: '/wallet/card/'
+  link: '/wallet/coin/',
+  productId: ''
 }
 
 class CardList extends Component {
@@ -83,7 +84,7 @@ class Index extends Component {
         ...WALLET_CARD,
         name: wallet.productName,
         asset: wallet.data.amount,
-        link: '/wallet/card/' + wallet.productName
+        productId: wallet.productId
       }
     })
     cards.push(...walletCards)

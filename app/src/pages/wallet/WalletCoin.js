@@ -1,24 +1,49 @@
-import React, {Component} from 'react';
-import Header from "../../components/common/Header";
-import walletZbsImg from "../../assets/images/wallet-zbs.png";
-import WalletCard from "../../components/partial/WalletCard";
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import Header from "../../components/common/Header"
+import walletZbsImg from "../../assets/images/wallet-zbs.png"
+import WalletCard from "../../components/partial/WalletCard"
 
-import './WalletZbs.scss'
+import './WalletCoin.scss'
 
-const CARD = {
+const COIN_CARD = {
   bgImg: walletZbsImg,
-  cardName: 'USDT',
-  value: '1240.24',
-  withdrawUrl: '/home',
-};
+  name: 'XC',
+  asset: '',
+  rechargeUrl: '1',
+  withdrawUrl: '1',
+}
 
-class WalletZbs extends Component {
+@inject('walletStore')
+@observer
+class WalletCoin extends Component {
+  state = {
+    coinCard: COIN_CARD
+  }
+
+  componentDidMount() {
+    const {walletStore, match} = this.props
+    const {id} = match.params
+    walletStore.getCurrentWallet(Number(id)).then(res => {
+      const coinCard = {
+        ...COIN_CARD,
+        name: res.productName,
+        productId: res.productId,
+        asset: res.data && res.data.amount
+      }
+      this.setState({coinCard})
+    })
+  }
+
+
   render() {
+    const {coinCard} = this.state
+
     return (
       <div id="wallet-zbx">
-        <Header title="XC" isFixed isShadow/>
+        <Header title={coinCard.name} isFixed isShadow/>
         <div className="card">
-          <WalletCard card={CARD}/>
+          <WalletCard card={coinCard}/>
         </div>
         <ul className="records">
           <li>
@@ -60,4 +85,4 @@ class WalletZbs extends Component {
   }
 }
 
-export default WalletZbs;
+export default WalletCoin;

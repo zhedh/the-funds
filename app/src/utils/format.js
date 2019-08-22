@@ -24,5 +24,5 @@ export function formatCoinPrice(price) {
 // 特价额度数量保留2位
 export function formatSpecialOffer(price) {
   if (!price) return 0
-  return Number(price).toFixed(4)
+  return Number(price).toFixed(2)
 }
