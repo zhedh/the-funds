@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import dayjs from "dayjs";
-import {Toast} from "antd-mobile";
-import OtherApi from "../../api/other";
-import {chineseCapital} from "../../utils/common";
-import Header from "../../components/common/Header";
+import React, {Component} from 'react'
+import {Toast} from "antd-mobile"
+import OtherApi from "../../api/other"
+import {chineseCapital} from "../../utils/common"
+import {formatTime} from "../../utils/format"
+import Header from "../../components/common/Header"
+import NoData from "../../components/common/NoData"
 import './GeneralizeDetail.scss'
-import NoData from "../../components/common/NoData";
 
 class GeneralizeDetail extends Component {
   state = {
     title: '一代推荐',
     users: []
-  };
+  }
 
   componentDidMount() {
-    const {match} = this.props;
-    const {id} = match.params;
-    this.setState({title: chineseCapital(id) + '代推荐'});
+    const {match} = this.props
+    const {id} = match.params
+    this.setState({title: chineseCapital(id) + '代推荐'})
     this.getSpreadList(id)
   }
 
@@ -48,7 +48,7 @@ class GeneralizeDetail extends Component {
             {users.map(user =>
               <li key={user.regTime}>
                 <span>{user.phoneNo || user.email}</span>
-                <time>{dayjs(user.regTime * 1000).format('YY-MM-DD HH:mm')}</time>
+                <time>{formatTime(user.regTime)}</time>
               </li>)
             }
           </ul> : <NoData msg="暂无数据"/>
@@ -58,4 +58,4 @@ class GeneralizeDetail extends Component {
   }
 }
 
-export default GeneralizeDetail;
+export default GeneralizeDetail

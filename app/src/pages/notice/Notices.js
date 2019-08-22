@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-import dayjs from 'dayjs'
 import Header from '../../components/common/Header'
-import noDataImg from '../../assets/images/no-data.png'
+import {formatTime} from "../../utils/format";
+import NoData from "../../components/common/NoData";
 import './Notices.scss'
 
 @inject('noticeStore')
@@ -34,14 +34,11 @@ class Notices extends Component {
                 onClick={() => (window.location.href = notice.linkUrl)}
               >
                 <li>{notice.title}</li>
-                <li>{dayjs(notice.addTime * 1000).format('YYYY-MM-DD HH:mm')}</li>
+                <li>{formatTime(notice.addTime)}</li>
               </ul>
             ))
           ) : (
-            <div className="no-data">
-              <img src={noDataImg} alt="空"/>
-              <p>暂无数据</p>
-            </div>
+            <NoData msg="暂无数据"/>
           )}
         </section>
       </div>

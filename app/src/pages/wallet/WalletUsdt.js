@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-import dayjs from "dayjs"
 import Header from "../../components/common/Header"
 import walletUsdtImg from "../../assets/images/wallet-usdt.png"
 import WalletCard from "../../components/partial/WalletCard"
-
+import {formatTime} from "../../utils/format"
 import './WalletUsdt.scss'
 
 const USDT_CARD = {
@@ -52,7 +51,7 @@ class WalletUsdt extends Component {
             <li key={item.id}>
               <main>
                 {item.remark}
-                <small>{dayjs(item.addTime * 1000).format('YYYY-MM-DD HH:mm:ss')}</small>
+                <small>{formatTime(item.addTime)}</small>
               </main>
               <aside>{item.amount}</aside>
             </li>)}

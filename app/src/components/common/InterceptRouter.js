@@ -11,10 +11,10 @@ class InterceptRouter extends Component {
   }
 
   componentDidMount() {
-    // const {history, location, userStore} = this.props;
-    // if (location.pathname === '/') {
-    //   history.push('/home');
-    // }
+    const {history, location} = this.props;
+    if (location.pathname === '/') {
+      history.push('/home');
+    }
   }
 
   render() {

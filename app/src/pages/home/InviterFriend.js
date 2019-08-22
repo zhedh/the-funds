@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import QRCode from 'qrcode.react'
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {inject, observer} from "mobx-react"
 import {Toast} from "antd-mobile"
 import {CopyToClipboard} from 'react-copy-to-clipboard'
@@ -61,7 +61,7 @@ class InviterFriend extends Component {
     return (
       <div id="inviter-friend">
         <Header
-          hideIcon
+          // hideIcon
           title="邀请好友"
           isShadow={true}
           isFixed={true}
@@ -94,8 +94,8 @@ class InviterFriend extends Component {
           </p>
         </section>
         <section className="section-link">
-          <a>注册成功</a>
-          {/*<Link to="/home/generalize">查看推广</Link>*/}
+          {/*<a>注册成功</a>*/}
+          <Link to="/home/generalize">查看推广</Link>
         </section>
       </div>
     );

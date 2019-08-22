@@ -4,7 +4,6 @@ import rechargeImg from '../../assets/images/recharge.svg'
 import withdrawImg from '../../assets/images/withdraw.svg'
 import arrowRightImg from '../../assets/images/arrow-right-white.png'
 import './WalletCard.scss'
-import dayjs from "dayjs";
 
 class WalletCard extends Component {
   toPage = link => {

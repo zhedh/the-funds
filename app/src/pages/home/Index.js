@@ -1,16 +1,16 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
-import {observer, inject} from "mobx-react";
+import {observer, inject} from "mobx-react"
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
-import dayjs from "dayjs"
 
 import userCenterImg from '../../assets/images/user-center.png'
 import {HOME} from '../../assets/static'
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
 import NoData from "../../components/common/NoData"
+import {formatDate} from "../../utils/format"
 import './Index.scss'
 
 @inject('userStore')
@@ -35,7 +35,7 @@ class Index extends Component {
   }
 
   render() {
-    const {history, userStore, personStore, noticeStore,productStore} = this.props;
+    const {history, userStore, personStore, noticeStore, productStore} = this.props;
     const {newestNotice} = noticeStore
     const {depositRecords} = personStore
     const {currentProduct} = productStore
@@ -87,11 +87,11 @@ class Index extends Component {
             </Link>
           </div>
           {hasRecords ? <ul className="list">
-            {depositRecords.map((record,key) =>
+            {depositRecords.map((record, key) =>
               <li key={key}>
                 <div className="main">
                   <small>
-                    {dayjs(record.addTime * 1000).format('YYYY.MM.DD')}
+                    {formatDate(record.addTime)}
                     &nbsp;
                     {record.remark}
                   </small>
@@ -99,7 +99,7 @@ class Index extends Component {
                   {/*<span>消耗 58.59 USDT</span>*/}
                 </div>
                 <div className="aside">
-                  <time>{dayjs(record.unlockTime * 1000).format('YYYY.MM.DD')}</time>
+                  <time>{formatDate(record.unlockTime)}</time>
                   返还日期
                 </div>
               </li>

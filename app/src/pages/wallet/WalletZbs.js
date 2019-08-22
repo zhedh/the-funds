@@ -12,11 +12,10 @@ const CARD = {
   withdrawUrl: '/home',
 };
 
-
 class WalletZbs extends Component {
   render() {
     return (
-      <div id="wallet-usdt">
+      <div id="wallet-zbx">
         <Header title="XC" isFixed isShadow/>
         <div className="card">
           <WalletCard card={CARD}/>
