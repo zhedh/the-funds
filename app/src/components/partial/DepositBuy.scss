@@ -98,6 +98,7 @@
   aside {
     text-align: center;
     font-size: $font-assistant;
+    margin-bottom: 5rem;
 
     p {
       color: #db3f3e;
@@ -149,7 +150,7 @@
 
       .content {
         box-sizing: border-box;
-        padding: 15px 20px 80px;
+        padding: 15px 20px 30px;
 
         p {
           @include clearBack;
@@ -164,7 +165,7 @@
             font-size: $font-title-s;
           }
 
-          &.service-charge{
+          &.service-charge {
             padding: 5px 0;
             color: $text-sub-color;
           }
@@ -204,7 +205,7 @@
         }
       }
 
-      .primary-button{
+      .primary-button {
         margin: 0 20px;
       }
     }

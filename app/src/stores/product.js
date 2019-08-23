@@ -1,12 +1,15 @@
-import {observable, action, computed} from 'mobx'
-import {ProductApi} from '../api'
-import {Toast} from 'antd-mobile'
+import { observable, action, computed } from 'mobx'
+import { ProductApi } from '../api'
+import { Toast } from 'antd-mobile'
+// import { refDecorator } from 'mobx/lib/internal'
 
 class ProductStore {
   @observable products = []
   @observable currentProduct = {}
   @observable productDetail = {}
   @observable gearNum = null
+  @observable totalAmount = '--'
+  @observable unLockAmount = ''
 
   @computed
   get gears() {
@@ -20,7 +23,7 @@ class ProductStore {
         Toast.info(res.msg)
         return null
       }
-      res.data.push({id: 234241, productName: "XB"})
+      // res.data.push({id: 234241, productName: "XB"})
       this.products = res.data
       this.currentProduct = res.data[0] || {}
       return this.currentProduct.id
@@ -29,7 +32,7 @@ class ProductStore {
 
   @action
   getProductDetail(productId) {
-    return ProductApi.getProductDetail({productId}).then(res => {
+    return ProductApi.getProductDetail({ productId }).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
         return
@@ -59,6 +62,12 @@ class ProductStore {
     })
   }
 
+  @action
+  onAmountChange = e => {
+    this.unLockAmount = e.target && e.target.value
+    this.totalAmount =
+      (e.target && e.target.value) * this.productDetail.specialOffer
+  }
 }
 
 export default ProductStore

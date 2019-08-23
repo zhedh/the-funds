@@ -1,11 +1,11 @@
-import {observable, action, computed} from 'mobx'
-import PersonApi from "../api/person";
+import { observable, action, computed } from 'mobx'
+import PersonApi from '../api/person'
 
 class PersonStore {
   @observable name = 'kevin'
   @observable lastClearTime = ''
   @observable userInfo = {}
-  @observable specials = []
+  @observable specials = [] // 特价额度
   @observable specialAwards = []
   @observable specialRecords = []
   @observable depositRecords = []
@@ -26,7 +26,7 @@ class PersonStore {
       return 0
     }
     return this.specials.reduce((pre, cur) => {
-      const {usable} = cur.data
+      const { usable } = cur.data
       return pre + usable
     }, 0)
   }

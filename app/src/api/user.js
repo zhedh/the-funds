@@ -1,12 +1,14 @@
 import http from './http'
-import {CONFIG }from '../config';
+import { CONFIG } from '../config'
 
 class UserApi {
   /**
    * 获取图形验证码
    **/
   static getCaptchaPng(params = {}) {
-    return Promise.resolve(`${CONFIG.API_BASE_URL}/captchapng/png?key=${params.key}`)
+    return Promise.resolve(
+      `${CONFIG.API_BASE_URL}/captchapng/png?key=${params.key}`
+    )
   }
 
   /**
@@ -17,7 +19,7 @@ class UserApi {
    * type string 类型（reg|findpassword|setpaypassword|withdraw）
    **/
   static sendMailCode(options = {}, params = {}) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/sendmailcode?key=' + params.key, options)
   }
 
@@ -57,7 +59,7 @@ class UserApi {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static login(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/login', options)
   }
 
@@ -81,7 +83,7 @@ class UserApi {
    * phonePrefix string 手机号前缀（当输入账号为手机时）
    **/
   static checkCode(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/checkcode', options)
   }
 
@@ -117,7 +119,7 @@ class UserApi {
    * @required phoneNo string 号
    **/
   static phoneExist(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/phoneexist', options)
   }
 
@@ -127,7 +129,7 @@ class UserApi {
    * @required email string 国际码
    **/
   static emailExist(options) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/user/emailexist', options)
   }
 
@@ -152,4 +154,4 @@ class UserApi {
   }
 }
 
-export default UserApi;
+export default UserApi

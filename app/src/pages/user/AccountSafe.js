@@ -1,14 +1,17 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../../components/common/Header'
 import './AccountSafe.scss'
-import {inject, observer} from "mobx-react";
+import { inject, observer } from 'mobx-react'
 
 @inject('userStore')
 @observer
 class AccountSafe extends Component {
   render() {
-    const {history, userStore: {hasPayPassword}} = this.props
+    const {
+      history,
+      userStore: { hasPayPassword }
+    } = this.props
 
     return (
       <div id="account-safe">

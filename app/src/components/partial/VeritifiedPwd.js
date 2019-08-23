@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './VeritifiedPwd.scss'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
@@ -13,7 +13,7 @@ class VerifiedPwd extends Component {
 
   onSetType = (currentType, key) => {
     const type = currentType === 'password' ? 'text' : 'password'
-    this.setState({[key]: type})
+    this.setState({ [key]: type })
   }
 
   render() {
@@ -23,15 +23,16 @@ class VerifiedPwd extends Component {
       passwordConfirm,
       onInputChange,
       onSubmit,
-      onStepChange
+      onStepChange,
+      typeOption
     } = this.props
-    const {pwType, pwConfirmType} = this.state
+    const { pwType, pwConfirmType } = this.state
     const canSubmit = password !== '' && passwordConfirm !== ''
-
+    console.log(typeOption)
     return (
       <div className={'verified-pwd ' + (show ? 'show' : '')}>
         <AccountHeader
-          title="重置密码"
+          title={typeOption.type === 'pay' ? '设置密码' : '重置密码'}
           msg="8-20位字符，不可以是纯数字。"
           onHandle={() => onStepChange(1)}
         />
@@ -42,7 +43,7 @@ class VerifiedPwd extends Component {
               type={pwType}
               placeholder="密码"
               value={password}
-              onChange={(e) => onInputChange(e, 'password')}
+              onChange={e => onInputChange(e, 'password')}
             />
             <img
               src={pwType === 'text' ? openPwdImg : closePwdImg}
@@ -56,7 +57,7 @@ class VerifiedPwd extends Component {
               type={pwConfirmType}
               placeholder="再次输入密码"
               value={passwordConfirm}
-              onChange={(e) => onInputChange(e, 'passwordConfirm')}
+              onChange={e => onInputChange(e, 'passwordConfirm')}
             />
             <img
               className="eye-img"
@@ -70,8 +71,9 @@ class VerifiedPwd extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={onSubmit}>
-          重置
+          onClick={onSubmit}
+        >
+          {typeOption.type === 'pay' ? '设置' : '重置'}
         </Button>
       </div>
     )
