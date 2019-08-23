@@ -38,29 +38,29 @@ instance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
-  let {data} = response.data
+  let res = response.data
 
   // 用户请求需要登录的接口，跳转登录页
-  if (response.data.status === -101) {
+  if (res.status === -101) {
     Cookies.remove('OPENID')
     Cookies.remove('TOKEN')
     Cookies.remove('PAY_PASSWORD')
     Toast.info('请先登录', TOAST_DURATION, () => window.location.href = '/login')
+    return res
   }
 
   // 对下划线转驼峰进行处理
-  if (data) {
-    const isArr = data instanceof Array
+  if (res.data) {
+    const isArr = res.data instanceof Array
     if (isArr) {
-      response.data.data = data.map(i => optionsToHump(i))
-      return response.data;
+      res.data = res.data.map(i => optionsToHump(i))
+      return res;
     }
-    response.data.data = optionsToHump(response.data.data);
+    res.data = optionsToHump(res.data);
   }
-  return response.data;
+  return res;
 }, error => {
-  // 对响应错误做点什么
-  return Promise.reject(error);
+  console.log(error)
 });
 
 export default instance;

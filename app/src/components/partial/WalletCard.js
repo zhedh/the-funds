@@ -7,7 +7,8 @@ import {formatCoinPrice} from "../../utils/format"
 import './WalletCard.scss'
 
 class WalletCard extends Component {
-  toPage = link => {
+  toPage = (link, e) => {
+    e && e.stopPropagation()
     if (link) {
       const {history} = this.props
       history.push(link)
@@ -29,13 +30,13 @@ class WalletCard extends Component {
         </h1>
         <ul>
           {card.withdrawUrl && (
-            <li onClick={() => this.toPage(card.withdrawUrl)}>
+            <li onClick={(e) => this.toPage(card.withdrawUrl, e)}>
               <img src={withdrawImg} alt=""/>
               提现
             </li>
           )}
           {card.rechargeUrl && (
-            <li onClick={() => this.toPage(card.rechargeUrl)}>
+            <li onClick={(e) => this.toPage(card.rechargeUrl, e)}>
               <img src={rechargeImg} alt=""/>
               充值
             </li>

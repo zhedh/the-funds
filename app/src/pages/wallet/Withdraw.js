@@ -5,10 +5,17 @@ import scanIcon from '../../assets/images/scan.svg';
 import './Withdraw.scss';
 
 class Withdraw extends Component {
+  componentDidMount() {
+
+  }
+
   render() {
+    const {match} = this.props
+    const {type} = match.params
+
     return (
       <div id="withdraw">
-        <Header title="XC提币" isFixed isShadow/>
+        <Header title={type + '提币'} bgWhite isFixed isShadow/>
         <section className="section-form">
           <div className="row">
             <span className="balance">可用：128.23</span>

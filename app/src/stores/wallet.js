@@ -39,6 +39,14 @@ class WalletStore {
       if (res.status === 1) this.coinStream = res.data
     })
   }
+
+  @action
+  withdrawInit(options){
+    return WalletApi.getCoinStream(options).then(res => {
+      if (res.status === 1) this.coinStream = res.data
+      return res
+    })
+  }
 }
 
 export default WalletStore

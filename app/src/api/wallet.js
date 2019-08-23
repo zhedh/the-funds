@@ -50,6 +50,15 @@ class WalletApi {
   static getCoinStream(options = {}) {
     return http.post('/userassets/mywarehouselist', options)
   }
+
+  /**
+   * 提币申请初始化
+   *
+   * @required type string 提币类型，USDT|XC
+   **/
+  static withdrawInit(options = {}) {
+    return http.post('/user/cashini', options)
+  }
 }
 
 export default WalletApi
