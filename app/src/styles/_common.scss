@@ -41,6 +41,11 @@
     color: #fff;
   }
 
+  &.am-button-disabled {
+    opacity: 0.6;
+    color: #fff !important;
+  }
+
   &.active {
     opacity: 0.5;
   }

@@ -1,7 +1,8 @@
-import { observable, action } from 'mobx'
-import { COUNTRIES_LIST } from '../utils/constants'
+import {observable, action} from 'mobx'
+import {Toast} from 'antd-mobile'
+import {COUNTRIES_LIST} from '../utils/constants'
 import PersonApi from '../api/person'
-import { Toast } from 'antd-mobile'
+import {compressorImg} from "../utils/file"
 
 class AuthStore {
   @observable authInfo = {
@@ -21,8 +22,6 @@ class AuthStore {
   @action
   setStorage() {
     try {
-      console.log('this.authInfo', this.authInfo)
-
       const authInfo = JSON.stringify(this.authInfo)
       localStorage.setItem('AUTH_INFO', authInfo)
     } catch (e) {
@@ -49,18 +48,22 @@ class AuthStore {
 
   @action
   changePhotoItem(e, key) {
-    if (!e.target.files) return
     const image = e.target.files[0]
     const type = this.getPhotoType(key)
-    PersonApi.uploadPhoto({
-      image,
-      type
-    }).then(res => {
-      if (res.status !== 1) {
-        Toast.info(res.msg)
-      }
-      Toast.info('上传成功')
-      this.getPhotoItem(image, key)
+
+    compressorImg(image, (result) => {
+      let file = new window.File([result], result.name, {type: result.type})
+      PersonApi.uploadPhoto({
+        image: file,
+        type
+      }).then(res => {
+        if (res.status !== 1) {
+          Toast.info(res.msg)
+          return
+        }
+        Toast.info('上传成功')
+        this.getPhotoItem(image, key)
+      })
     })
   }
 
@@ -84,12 +87,23 @@ class AuthStore {
     const _this = this
     try {
       const reads = new FileReader()
-      reads.readAsDataURL(image)
-      reads.onload = function() {
-        _this.photo[key] = this.result
+      reads.onload = function () {
+        let img = new Image();
+        img.src = this.result;
+
+        if (img.complete) {
+          _this.photo[key] = this.result
+
+        } else {
+          img.onload = () => {
+            _this.photo[key] = this.result
+          }
+        }
       }
-    } catch (e) {
-      console.log(e)
+
+      reads.readAsDataURL(image)
+    } catch (err) {
+      console.log(err)
     }
   }
 }

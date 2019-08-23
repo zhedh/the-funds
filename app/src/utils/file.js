@@ -1,3 +1,5 @@
+import Compressor from "compressorjs";
+
 export function downloadFile(fileName, content) {
   let aLink = document.createElement('a');
   let blob = base64ToBlob(content); // new Blob([content]);
@@ -25,4 +27,20 @@ export function base64ToBlob(code) {
     uInt8Array[i] = raw.charCodeAt(i);
   }
   return new Blob([uInt8Array], {type: contentType});
+}
+
+// 压缩图片
+export function compressorImg(image, callback) {
+  if (!image) return
+  const ratio = image.size / 1000 * 2000
+  new Compressor(image, {
+    quality: ratio >= 1 ? 1 / ratio : 0.9,
+    convertSize: 2000000,
+    success(result) {
+      callback && callback(result)
+    },
+    error(err) {
+      console.log(err.message);
+    },
+  });
 }

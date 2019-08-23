@@ -150,7 +150,7 @@ export default [
   { path: '/wallet/recharge/usdt', name: 'RechargeUsdt', component: Recharge },
   { path: '/wallet/recharge/zbx', name: 'RechargeZbx', component: Recharge },
   {
-    path: '/wallet/withdraw/record',
+    path: '/wallet/withdraw-record',
     name: 'WithdrawRecord',
     component: WithdrawRecord
   },

@@ -6,6 +6,7 @@ class WalletStore {
   @observable currentWallet = {}
   @observable usdtStream = []
   @observable coinStream = []
+  @observable withdrawInfo = {type: ''}
 
   @action
   getWallets() {
@@ -41,9 +42,9 @@ class WalletStore {
   }
 
   @action
-  withdrawInit(options){
-    return WalletApi.getCoinStream(options).then(res => {
-      if (res.status === 1) this.coinStream = res.data
+  withdrawInit(options) {
+    return WalletApi.withdrawInit(options).then(res => {
+      if (res.status === 1) this.withdrawInfo = res.data
       return res
     })
   }

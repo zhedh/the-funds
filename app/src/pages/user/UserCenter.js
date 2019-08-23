@@ -39,15 +39,15 @@ class UserCenter extends Component {
 
   componentDidMount() {
     const { personStore, userStore } = this.props
-    let script = document.createElement('script')
-
-    script.type = 'text/javascript'
-    // script.async = true
-    script.defer = true
-    script.id = 'ze-snippet'
-    script.src =
-      'https://static.zdassets.com/ekr/snippet.js?key=46514fb7-9da7-4496-b5c3-d942215d5215'
-    document.body.appendChild(script)
+    // let script = document.createElement('script')
+    //
+    // script.type = 'text/javascript'
+    // // script.async = true
+    // script.defer = true
+    // script.id = 'ze-snippet'
+    // script.src =
+    //   'https://static.zdassets.com/ekr/snippet.js?key=46514fb7-9da7-4496-b5c3-d942215d5215'
+    // document.body.appendChild(script)
 
     if (userStore.isOnline) {
       personStore.getUserInfo()

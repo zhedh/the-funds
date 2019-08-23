@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
-import { Button, Toast } from 'antd-mobile'
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
+import {Button, Toast} from 'antd-mobile'
 import Header from '../../components/common/Header'
 import './VerifiedUpload.scss'
 
@@ -8,7 +8,7 @@ import './VerifiedUpload.scss'
 @observer
 class VerifiedUpload extends Component {
   onSubmit = () => {
-    const { history, authStore } = this.props
+    const {history, authStore} = this.props
     authStore.submitAuthAudit().then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
@@ -19,13 +19,13 @@ class VerifiedUpload extends Component {
   }
 
   render() {
-    const { authStore } = this.props
-    const { cardFront, cardBack, cardHold } = authStore.photo
+    const {authStore} = this.props
+    const {cardFront, cardBack, cardHold} = authStore.photo
     const canSubmit = cardFront && cardBack && cardHold
 
     return (
       <div id="verified-upload">
-        <Header title="身份认证" isFixed bgWhite />
+        <Header title="身份认证" isFixed bgWhite/>
 
         <ul className="notices">
           <li>
@@ -85,10 +85,8 @@ class VerifiedUpload extends Component {
           />
         </div>
         <Button
-          activeClassName="btn-common__active"
-          className={`btn-common upload-img ${
-            !canSubmit ? 'btn-common__disabled' : ''
-          }`}
+          activeClassName="active"
+          className="primary-button upload-img"
           disabled={!canSubmit}
           onClick={this.onSubmit}
         >

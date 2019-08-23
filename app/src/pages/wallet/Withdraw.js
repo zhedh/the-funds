@@ -1,24 +1,39 @@
-import React, {Component} from 'react';
-import Header from "../../components/common/Header";
-import scanIcon from '../../assets/images/scan.svg';
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import {formatCoinPrice} from "../../utils/format"
+import Header from "../../components/common/Header"
+import scanIcon from '../../assets/images/scan.svg'
+import recordIcon from '../../assets/images/record.png'
+import './Withdraw.scss'
 
-import './Withdraw.scss';
-
+@inject('walletStore')
+@observer
 class Withdraw extends Component {
   componentDidMount() {
-
+    const {match, walletStore} = this.props
+    const {type} = match.params
+    walletStore.withdrawInit({type})
   }
 
   render() {
-    const {match} = this.props
-    const {type} = match.params
+    const {history, walletStore} = this.props
+    const {withdrawInfo} = walletStore
 
     return (
       <div id="withdraw">
-        <Header title={type + '提币'} bgWhite isFixed isShadow/>
+        <Header title={withdrawInfo.type + '提币'} bgWhite isFixed isShadow>
+          <img
+            className="record-icon"
+            src={recordIcon}
+            alt="提现记录"
+            onClick={() => history.push('/wallet/withdraw-record')}
+          />
+        </Header>
         <section className="section-form">
           <div className="row">
-            <span className="balance">可用：128.23</span>
+            <span className="balance">
+              可用：{formatCoinPrice(withdrawInfo.balance)}
+            </span>
           </div>
           <div className="row">
             <label>提币地址</label>

@@ -10,6 +10,13 @@ $text-sub-color: #ABABAB;
   //font-family: $font-regular;
   font-weight: 600;
 
+  header {
+    .record-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   .section-form {
     padding: 0 20px;
 
