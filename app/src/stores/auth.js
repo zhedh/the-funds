@@ -1,7 +1,7 @@
-import {observable, action} from 'mobx'
-import {COUNTRIES_LIST} from "../utils/constants"
-import PersonApi from "../api/person"
-import {Toast} from "antd-mobile"
+import { observable, action } from 'mobx'
+import { COUNTRIES_LIST } from '../utils/constants'
+import PersonApi from '../api/person'
+import { Toast } from 'antd-mobile'
 
 class AuthStore {
   @observable authInfo = {
@@ -21,6 +21,8 @@ class AuthStore {
   @action
   setStorage() {
     try {
+      console.log('this.authInfo', this.authInfo)
+
       const authInfo = JSON.stringify(this.authInfo)
       localStorage.setItem('AUTH_INFO', authInfo)
     } catch (e) {
@@ -82,10 +84,10 @@ class AuthStore {
     const _this = this
     try {
       const reads = new FileReader()
-      reads.readAsDataURL(image);
-      reads.onload = function () {
+      reads.readAsDataURL(image)
+      reads.onload = function() {
         _this.photo[key] = this.result
-      };
+      }
     } catch (e) {
       console.log(e)
     }

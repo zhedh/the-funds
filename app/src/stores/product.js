@@ -1,12 +1,15 @@
 import { observable, action, computed } from 'mobx'
 import { ProductApi } from '../api'
 import { Toast } from 'antd-mobile'
+// import { refDecorator } from 'mobx/lib/internal'
 
 class ProductStore {
   @observable products = []
   @observable currentProduct = {}
   @observable productDetail = {}
   @observable gearNum = null
+  @observable totalAmount = '--'
+  @observable unLockAmount = ''
 
   @computed
   get gears() {
@@ -57,6 +60,13 @@ class ProductStore {
       productAmount: this.gearNum,
       special: '0'
     })
+  }
+
+  @action
+  onAmountChange = e => {
+    this.unLockAmount = e.target && e.target.value
+    this.totalAmount =
+      (e.target && e.target.value) * this.productDetail.specialOffer
   }
 }
 

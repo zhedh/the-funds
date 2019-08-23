@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import {observer, inject} from "mobx-react";
-import {Toast} from "antd-mobile";
+// import {Toast} from "antd-mobile";
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
@@ -16,6 +16,7 @@ import './Index.scss'
 @inject('userStore')
 @inject('personStore')
 @inject('noticeStore')
+@inject('productStore')
 @observer
 class Index extends Component {
   state = {
@@ -23,11 +24,14 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const {userStore, personStore, noticeStore} = this.props
+    const {userStore, personStore, noticeStore,} = this.props
     noticeStore.getNotices()
     if (userStore.isOnline) {
       personStore.getSpecial()
-      personStore.getDepositRecords()
+      // productStore.getProductList().then(productId => {
+      //
+      // })
+      // personStore.getDepositRecords()
     }
   }
 
@@ -50,7 +54,9 @@ class Index extends Component {
           />
           <p onClick={() => history.push('/notices')}>
             <IoIosMegaphone className="megaphone"/>
-            公告：{newestNotice ? newestNotice.title : '暂无公告'}
+            <span>
+              公告：{newestNotice ? newestNotice.title : '暂无公告'}
+            </span>
           </p>
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>

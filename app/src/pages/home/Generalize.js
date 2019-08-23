@@ -45,7 +45,7 @@ class Generalize extends Component {
           </h1>
           <div className="content">
             <div className="count">
-              {(mySpread.recommendCount + mySpread.recommendCount2) || 0}
+              {(mySpread.recommendCount + mySpread.recommendCount2) || '--'}
               <small>旗下推广总人数</small>
             </div>
           </div>

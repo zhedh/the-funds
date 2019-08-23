@@ -562,3 +562,8 @@ export const PASSWORD_TYPES = [
     canChangeUser: false
   }
 ]
+
+export const PRECISION = {
+  SPECIAL_OFFER: 2,
+  OFFER: 4
+}

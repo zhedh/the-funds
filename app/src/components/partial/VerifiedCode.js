@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
-import {Toast, Button} from "antd-mobile";
-import {COUNT_DOWN, REG, TOAST_DURATION} from '../../utils/constants'
-import Captcha from "../common/Captcha";
-import AccountHeader from "./AccountHeader";
-import UserApi from "../../api/user";
+import React, { Component } from 'react'
+import { Toast, Button } from 'antd-mobile'
+import { COUNT_DOWN, REG, TOAST_DURATION } from '../../utils/constants'
+import Captcha from '../common/Captcha'
+import AccountHeader from './AccountHeader'
+import UserApi from '../../api/user'
 import './VerifiedCode.scss'
-
 
 class VerifiedCode extends Component {
   state = {
@@ -28,23 +27,23 @@ class VerifiedCode extends Component {
   getCaptchaPng = () => {
     const key = +new Date()
 
-    UserApi.getCaptchaPng({key}).then(res => {
-      this.setState({captchaKey: key, imgSrc: res})
+    UserApi.getCaptchaPng({ key }).then(res => {
+      this.setState({ captchaKey: key, imgSrc: res })
     })
   }
 
-  onAccountBlur = (e) => {
-    const {value} = e.target
-    const {preAccount} = this.state
+  onAccountBlur = e => {
+    const { value } = e.target
+    const { preAccount } = this.state
     if (value !== preAccount) {
-      this.setState({preAccount: value})
+      this.setState({ preAccount: value })
       this.getCaptchaPng()
     }
   }
 
   onInputChange = (e, key) => {
-    const {value} = e.target
-    this.setState({[key]: value})
+    const { value } = e.target
+    this.setState({ [key]: value })
   }
 
   codeCountDown = () => {
@@ -52,56 +51,84 @@ class VerifiedCode extends Component {
 
     this.timer = setInterval(() => {
       if (count <= 0) {
-        this.setState({isGetSms: true, count: COUNT_DOWN})
+        this.setState({ isGetSms: true, count: COUNT_DOWN })
         clearInterval(this.timer)
         return
       }
-      this.setState({isGetSms: false, count: count--})
+      this.setState({ isGetSms: false, count: count-- })
     }, 1000)
   }
 
-  sendSmsCode = () => {
-    const {userName, typeOption} = this.props
-    const {captcha, captchaKey} = this.state;
-    UserApi.sendSmsCode({
-      imgcode: captcha,
-      prefix: '86',
-      phone: userName,
-      type: typeOption.codeType
-    }, {
-      key: captchaKey,
-    }).then(res => {
+  emailExist = () => {
+    const { userName } = this.props
+    UserApi.emailExist({ email: userName }).then(res => {
+      if (res.status === -2) {
+        Toast.info('该邮箱未注册')
+        return
+      }
+    })
+  }
+
+  phoneExist = () => {
+    const { userName } = this.props
+    UserApi.emailExist({ phoneNo: userName, phonePrefix: '86' }).then(res => {
+      if (res.status === -2) {
+        Toast.info('该手机号未注册')
+        return
+      }
+    })
+  }
+
+  sendSmsCode = async () => {
+    const { userName, typeOption } = this.props
+    const { captcha, captchaKey } = this.state
+    await this.phoneExist()
+    UserApi.sendSmsCode(
+      {
+        imgcode: captcha,
+        prefix: '86',
+        phone: userName,
+        type: typeOption.codeType
+      },
+      {
+        key: captchaKey
+      }
+    ).then(res => {
       if (res.status === -1) {
-        Toast.info(res.msg)
+        // Toast.info(res.msg)
         this.getCaptchaPng()
-        return;
+        return
       }
       this.codeCountDown()
-    });
-  };
+    })
+  }
 
-  sendMailCode = () => {
-    const {userName, typeOption} = this.props
-    const {captcha, captchaKey} = this.state;
-    UserApi.sendMailCode({
-      imgcode: captcha,
-      email: userName,
-      type: typeOption.codeType
-    }, {
-      key: captchaKey,
-    }).then(res => {
+  sendMailCode = async () => {
+    const { userName, typeOption } = this.props
+    const { captcha, captchaKey } = this.state
+    await this.emailExist()
+    UserApi.sendMailCode(
+      {
+        imgcode: captcha,
+        email: userName,
+        type: typeOption.codeType
+      },
+      {
+        key: captchaKey
+      }
+    ).then(res => {
       if (res.status === -1) {
-        Toast.info(res.msg)
+        // Toast.info(res.msg)
         this.getCaptchaPng()
-        return;
+        return
       }
       this.codeCountDown()
     })
   }
 
   getCode = () => {
-    const {userName} = this.props
-    const {captcha} = this.state;
+    const { userName } = this.props
+    const { captcha } = this.state
     if (!REG.EMAIL.test(userName) && !REG.MOBILE.test(userName)) {
       Toast.info('请填写正确的邮箱或者手机号', TOAST_DURATION)
       return
@@ -112,18 +139,25 @@ class VerifiedCode extends Component {
       return
     }
 
-    REG.MOBILE.test(userName) ?
-      this.sendSmsCode() : this.sendMailCode()
+    REG.MOBILE.test(userName) ? this.sendSmsCode() : this.sendMailCode()
   }
 
   render() {
-    const {show, typeOption, userName, code, onInputChange, onNext, onBack} = this.props
-    const {isGetSms, count, captcha, imgSrc} = this.state
+    const {
+      show,
+      typeOption,
+      userName,
+      code,
+      onInputChange,
+      onNext,
+      onBack
+    } = this.props
+    const { isGetSms, count, captcha, imgSrc } = this.state
     const canSubmit = userName !== '' && code !== ''
 
     return (
       <div className={'verified-code ' + (show ? 'show' : '')}>
-        <AccountHeader title={typeOption.title} onHandle={onBack}/>
+        <AccountHeader title={typeOption.title} onHandle={onBack} />
         <div className="main-content">
           <label>
             <input
@@ -132,7 +166,7 @@ class VerifiedCode extends Component {
               placeholder="邮箱/手机号"
               value={userName}
               readOnly={!typeOption.canChangeUser}
-              onChange={(e) => onInputChange(e, 'userName')}
+              onChange={e => onInputChange(e, 'userName')}
               onBlur={this.onAccountBlur}
             />
           </label>
@@ -140,7 +174,7 @@ class VerifiedCode extends Component {
             <Captcha
               imgSrc={imgSrc}
               value={captcha}
-              onChange={(e) => this.onInputChange(e, 'captcha')}
+              onChange={e => this.onInputChange(e, 'captcha')}
               getCaptchaPng={this.getCaptchaPng}
             />
           </label>
@@ -151,7 +185,7 @@ class VerifiedCode extends Component {
               maxLength={4}
               placeholder="验证码"
               value={code}
-              onChange={(e) => onInputChange(e, 'code')}
+              onChange={e => onInputChange(e, 'code')}
             />
             <span
               id="btn-code"
@@ -166,7 +200,8 @@ class VerifiedCode extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={onNext}>
+          onClick={onNext}
+        >
           下一步
         </Button>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Drawer, SegmentedControl, Button } from 'antd-mobile'
+import { Drawer, SegmentedControl } from 'antd-mobile'
 import Header from '../../components/common/Header'
 import DepositBuy from '../../components/partial/DepositBuy'
 import DepositUnlock from '../../components/partial/DepositUnlock'
@@ -63,13 +63,7 @@ class Deposit extends Component {
   render() {
     const { productStore } = this.props
     const { products, currentProduct } = productStore
-
-    const {
-      showDrawer,
-      ensureToUnlock,
-      selectTabIndex,
-      ensureToPay
-    } = this.state
+    const { showDrawer, selectTabIndex } = this.state
 
     const sidebar = (
       <div className="sidebar">
@@ -134,7 +128,7 @@ class Deposit extends Component {
           </main>
         </Drawer>
 
-        {ensureToPay && (
+        {/* {ensureToPay && (
           <div className="ensure-pay__wrapper">
             <div className="ensure-pay__content">
               <Header
@@ -152,7 +146,7 @@ class Deposit extends Component {
                   </span>
                   <span>
                     59.13 <br />
-                    <small>0.15</small>
+                    <small>{0.15}</small>
                   </span>
                 </p>
                 <p>
@@ -190,15 +184,26 @@ class Deposit extends Component {
                     <small> 手续费0.3%</small>
                   </span>
                   <span>
-                    59.13 <br />
-                    <small>58.98</small>
+                    {Number(totalAmount * (1 + serviceCharge)).toFixed(
+                      PRECISION.OFFER
+                    )}
                     <br />
-                    <small>0.15</small>
+                    <small>
+                      {Number(totalAmount).toFixed(PRECISION.OFFER)}
+                    </small>
+                    <br />
+                    <small>
+                      {Number(totalAmount * serviceCharge).toFixed(
+                        PRECISION.OFFER
+                      )}
+                    </small>
                   </span>
                 </p>
                 <p>
                   <span>可用</span>
-                  <span>12000.00</span>
+                  <span>
+                    {Number(productDetail.userBalance).toFixed(PRECISION.OFFER)}
+                  </span>
                 </p>
 
                 <small className="tips">*扣款时依照最新的兑价为准</small>
@@ -212,7 +217,7 @@ class Deposit extends Component {
               </Button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     )
   }

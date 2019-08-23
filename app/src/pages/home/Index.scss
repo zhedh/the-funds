@@ -40,6 +40,10 @@
         font-size: 13px;
         margin-right: 5px;
       }
+
+      span {
+        @include overflow(1);
+      }
     }
 
     .tabs {

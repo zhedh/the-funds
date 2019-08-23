@@ -97,13 +97,13 @@ class DepositBuy extends Component {
           <aside>
             {!personStore.isAuth && (
               <p>
-                *您暂未通过实名认证，无法定存{' '}
+                *您暂未通过实名认证，无法定存
                 <Link to="/verified-country">去认证</Link>
               </p>
             )}
             {!userStore.hasPayPassword && (
               <p>
-                *您暂未设置交易密码，无法定存{' '}
+                *您暂未设置交易密码，无法定存
                 <Link to="/password/pay">去设置</Link>
               </p>
             )}
@@ -128,7 +128,7 @@ class DepositBuy extends Component {
             />
             <div className="content">
               <p className="deposit-price">
-                <span>定存投资（ZBX）</span>
+                <span>定存投资（XC）</span>
                 <span>{gearNum}</span>
               </p>
               <p className="service-charge">

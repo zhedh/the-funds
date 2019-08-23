@@ -1,4 +1,4 @@
-import http from "./http";
+import http from './http'
 
 class ProductApi {
   /**
@@ -8,7 +8,7 @@ class ProductApi {
    * row string 每页条数
    **/
   static getProductList(options = {}) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/product/list', options)
   }
 
