@@ -41,6 +41,15 @@ class WalletApi {
   static getUsdtStream(options = {}) {
     return http.post('/userassets/stream', options)
   }
+
+  /**
+   * 获取基金流水
+   *
+   * @required productId string 商品id
+   **/
+  static getCoinStream(options = {}) {
+    return http.post('/userassets/mywarehouselist', options)
+  }
 }
 
 export default WalletApi

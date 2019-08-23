@@ -142,8 +142,7 @@ export default [
   {path: '/wallet', name: 'Wallet', component: Wallet},
   {path: '/wallet/usdt', name: 'WalletUsdt', component: WalletUsdt},
   {path: '/wallet/coin/:id', name: 'WalletCoin', component: WalletCoin},
-  {path: '/wallet/withdraw/usdt', name: 'WithdrawUsdt', component: Withdraw},
-  {path: '/wallet/withdraw/zbx', name: 'WithdrawZbx', component: Withdraw},
+  {path: '/wallet/withdraw/:type', name: 'Withdraw', component: Withdraw},
   {path: '/wallet/recharge/usdt', name: 'RechargeUsdt', component: Recharge},
   {path: '/wallet/recharge/zbx', name: 'RechargeZbx', component: Recharge},
   {

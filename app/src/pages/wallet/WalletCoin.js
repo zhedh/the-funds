@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react"
 import Header from "../../components/common/Header"
 import walletZbsImg from "../../assets/images/wallet-zbs.png"
 import WalletCard from "../../components/partial/WalletCard"
-
+import {formatTime} from "../../utils/format"
 import './WalletCoin.scss'
 
 const COIN_CARD = {
@@ -33,11 +33,14 @@ class WalletCoin extends Component {
       }
       this.setState({coinCard})
     })
+    walletStore.getCoinStream({productId: id})
   }
 
 
   render() {
+    const {walletStore} = this.props
     const {coinCard} = this.state
+    const {coinStream} = walletStore
 
     return (
       <div id="wallet-zbx">
@@ -46,39 +49,17 @@ class WalletCoin extends Component {
           <WalletCard card={coinCard}/>
         </div>
         <ul className="records">
-          <li>
-            <main>
-              <small>2019.07.17 15:00</small>
-              +120.00
-              <span>定存数量 100</span>
-            </main>
-            <aside>
-              定存返还
-              <span>定存价格（USDT） 0.5</span>
-              <span>返还日价格（USDT） 0.4</span>
-            </aside>
-          </li>
-          <li>
-            <main>
-              <small>2019.07.17 15:00</small>
-              +8.20
-            </main>
-            <aside className="orange">
-              解锁额度
-            </aside>
-          </li>
-          <li>
-            <main>
-              <small>2019.07.17 15:00</small>
-              -5.27
-              <span>定存数量 100</span>
-            </main>
-            <aside className="blue-green">
-              提现
-              <span>实际到账 4.12</span>
-              <span>手续费 1.00</span>
-            </aside>
-          </li>
+          {coinStream.map((record, key) =>
+            <li key={key}>
+              <main>
+                {record.remark}
+                <small>{formatTime(record.addTime)}</small>
+              </main>
+              <aside>
+                {record.amount}
+              </aside>
+            </li>
+          )}
         </ul>
       </div>
     );
