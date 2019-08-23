@@ -41,8 +41,8 @@ const WalletUsdt = Loadable({
   loader: () => import('./pages/wallet/WalletUsdt'),
   loading: Loading
 })
-const WalletProduct = Loadable({
-  loader: () => import('./pages/wallet/WalletZbs'),
+const WalletCoin = Loadable({
+  loader: () => import('./pages/wallet/WalletCoin'),
   loading: Loading
 })
 const Withdraw = Loadable({
@@ -145,13 +145,8 @@ export default [
   // 钱包
   { path: '/wallet', name: 'Wallet', component: Wallet },
   { path: '/wallet/usdt', name: 'WalletUsdt', component: WalletUsdt },
-  {
-    path: '/wallet/card/:name',
-    name: 'WalletProduct',
-    component: WalletProduct
-  },
-  { path: '/wallet/withdraw/usdt', name: 'WithdrawUsdt', component: Withdraw },
-  { path: '/wallet/withdraw/zbx', name: 'WithdrawZbx', component: Withdraw },
+  { path: '/wallet/coin/:id', name: 'WalletCoin', component: WalletCoin },
+  { path: '/wallet/withdraw/:type', name: 'Withdraw', component: Withdraw },
   { path: '/wallet/recharge/usdt', name: 'RechargeUsdt', component: Recharge },
   { path: '/wallet/recharge/zbx', name: 'RechargeZbx', component: Recharge },
   {

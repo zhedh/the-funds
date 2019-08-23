@@ -25,7 +25,7 @@ class PersonApi {
    * @required status string 定投中：0
    **/
   static getDepositRecords(options = {}) {
-    return http.post('/user/mywarehouselist', options)
+    return http.post('/userassets/mywarehouselist', options)
   }
 
   /**

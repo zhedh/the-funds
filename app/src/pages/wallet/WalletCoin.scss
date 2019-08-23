@@ -1,6 +1,6 @@
 @import '../../styles/_common';
 
-#wallet-usdt {
+#wallet-zbx {
   @include clearFix;
   box-sizing: border-box;
   padding-top: $header-height;
@@ -35,44 +35,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        font-size: 2.1rem;
 
-        small {
-          margin-bottom: 14px;
+        small{
+          margin-top: 5px;
           color: $text-sub-color;
           font-size: $font-assistant;
-        }
-
-        span {
-          margin-top: 14px;
-          color: #7C7F82;
-          font-weight: bold;
-          font-size: $font-assistant;
-        }
-      }
-
-      aside {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        font-weight: bold;
-
-        span {
-          margin-top: 8px;
-          font-size: $font-assistant;
-          color: #7C7F82;
-
-          &:first-child {
-            margin-top: 20px;
-          }
-        }
-
-        &.orange {
-          color: #E8713A;
-        }
-
-        &.blue-green {
-          color: #36C2CF;
         }
       }
     }

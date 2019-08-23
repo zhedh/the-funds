@@ -1,0 +1,69 @@
+import React, {Component} from 'react'
+import {inject, observer} from "mobx-react"
+import Header from "../../components/common/Header"
+import walletZbsImg from "../../assets/images/wallet-zbs.png"
+import WalletCard from "../../components/partial/WalletCard"
+import {formatTime} from "../../utils/format"
+import './WalletCoin.scss'
+
+const COIN_CARD = {
+  bgImg: walletZbsImg,
+  name: 'XC',
+  asset: '',
+  rechargeUrl: '1',
+  withdrawUrl: '1',
+}
+
+@inject('walletStore')
+@observer
+class WalletCoin extends Component {
+  state = {
+    coinCard: COIN_CARD
+  }
+
+  componentDidMount() {
+    const {walletStore, match} = this.props
+    const {id} = match.params
+    walletStore.getCurrentWallet(Number(id)).then(res => {
+      const coinCard = {
+        ...COIN_CARD,
+        name: res.productName,
+        productId: res.productId,
+        asset: res.data && res.data.amount
+      }
+      this.setState({coinCard})
+    })
+    walletStore.getCoinStream({productId: id})
+  }
+
+
+  render() {
+    const {walletStore} = this.props
+    const {coinCard} = this.state
+    const {coinStream} = walletStore
+
+    return (
+      <div id="wallet-zbx">
+        <Header title={coinCard.name} isFixed isShadow/>
+        <div className="card">
+          <WalletCard card={coinCard}/>
+        </div>
+        <ul className="records">
+          {coinStream.map((record, key) =>
+            <li key={key}>
+              <main>
+                {record.remark}
+                <small>{formatTime(record.addTime)}</small>
+              </main>
+              <aside>
+                {record.amount}
+              </aside>
+            </li>
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default WalletCoin;

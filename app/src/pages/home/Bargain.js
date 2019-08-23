@@ -5,13 +5,18 @@ import {BARGAIN} from '../../assets/static'
 import './Bargain.scss'
 
 @inject('personStore')
+@inject('productStore')
 @observer
 class Bargain extends Component {
   componentDidMount() {
-    const {personStore} = this.props
+    const {personStore, productStore} = this.props
     personStore.getSpecial()
     personStore.getLastClearTime()
-    personStore.getSpecialAwards({productId: 234240})
+
+    // productId 默认取基金第一个
+    productStore.getProducts().then(productId => {
+      personStore.getSpecialAwards({productId})
+    })
   }
 
   render() {
@@ -35,7 +40,7 @@ class Bargain extends Component {
           <div className="banner">
             <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
             <small>上次结算时间: {lastClearTime}</small>
-            <button onClick={()=>history.push('/deposit?type=unLock')}>
+            <button onClick={() => history.push('/deposit?type=unLock')}>
               解锁
             </button>
           </div>

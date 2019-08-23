@@ -6,8 +6,6 @@ import './DepositResult.scss'
 @inject('personStore')
 @observer
 class DepositResult extends Component {
-  componentDidMount() {}
-
   render() {
     const { history } = this.props
     return (

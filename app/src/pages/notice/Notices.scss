@@ -15,13 +15,15 @@
     font-size: $font-assistant;
 
     li {
+      line-height: 1.5;
+
       &:first-child {
         font-weight: 500;
         color: $text-color;
       }
 
       &:last-child {
-        margin-top: 0.8rem;
+        margin-top: 0.6rem;
         color: #989c9f;
       }
     }
