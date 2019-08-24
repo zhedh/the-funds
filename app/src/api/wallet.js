@@ -70,6 +70,13 @@ class WalletApi {
    **/
   static withdraw(options = {}) {
     return http.post('/user/cash', options)
+  }/**
+   * 提币申请记录
+   *
+   * @required type string 提币类型，USDT|XC
+   **/
+  static withdrawRecords(options = {}) {
+    return http.post('/user/cashlist', options)
   }
 }
 

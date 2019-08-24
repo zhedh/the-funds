@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-import {Toast} from "antd-mobile"
+import {Toast, Button} from "antd-mobile"
+import UserApi from "../../api/user"
+import {COUNT_DOWN} from "../../utils/constants"
+import {isMobile} from "../../utils/reg"
 import {formatCoinPrice} from "../../utils/format"
+import {getImagePath} from "../../utils/file"
 import Header from "../../components/common/Header"
 import scanIcon from '../../assets/images/scan.svg'
 import recordIcon from '../../assets/images/record.png'
-import {getImagePath} from "../../utils/file"
+import Captcha from "../../components/common/Captcha"
 import './Withdraw.scss'
-import Captcha from "../../components/common/Captcha";
-import UserApi from "../../api/user";
-import {COUNT_DOWN} from "../../utils/constants";
-import Button from "antd-mobile/es/button";
-import {isMobile} from "../../utils/reg";
 
 @inject('walletStore')
 @inject('personStore')
@@ -64,7 +63,6 @@ class Withdraw extends Component {
     getImagePath(files[0], (url) => {
       window.qrcode.decode(url);
       window.qrcode.callback = (msg) => {
-        console.log(msg)
         this.setState({walletTo: msg})
       }
     })
@@ -138,9 +136,9 @@ class Withdraw extends Component {
         Toast.info(res.msg)
         return
       }
-      Toast.info('提现成功，正在跳转提现记录页')
+      Toast.info('提现成功，正在跳转提币记录页')
       this.linkTimer = setTimeout(() => {
-        history.push('/wallet/withdraw-record')
+        history.push('/wallet/withdraw-record/' + type)
       }, 2000)
     })
   }
@@ -166,7 +164,7 @@ class Withdraw extends Component {
     } = walletStore.withdrawInfo || {}
 
     const canSubmit = walletTo && amount && code
-    const realAmount = amount && (Number(amount) - Number(serviceCharge)) || '--'
+    const realAmount = amount ? (Number(amount) - Number(serviceCharge)) : '--'
 
     return (
       <div id="withdraw">
@@ -231,7 +229,9 @@ class Withdraw extends Component {
                 value={code}
                 onChange={(e) => this.onInputChange(e, 'code')}
               />
-              <button onClick={this.getCode}>
+              <button
+                className={isCountDown ? 'count-down' : ''}
+                onClick={this.getCode}>
                 {isCountDown ? `${count}S` : '获取验证码'}
               </button>
             </div>
