@@ -1,4 +1,4 @@
-import Compressor from "compressorjs";
+import Compressor from "compressorjs"
 
 export function downloadFile(fileName, content) {
   let aLink = document.createElement('a');

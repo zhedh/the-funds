@@ -13,8 +13,6 @@ import './Register.scss'
 class RegisterSuccess extends Component {
   onConfirm = () => {
     const { history } = this.props
-    // 暂时进入邀请好友页
-    // history.push('/');
     history.push('/home/inviter-friend')
   }
 

@@ -2,7 +2,7 @@ import { observable, action, computed } from 'mobx'
 import PersonApi from '../api/person'
 
 class PersonStore {
-  @observable name = 'kevin'
+  @observable name = ''
   @observable lastClearTime = ''
   @observable userInfo = {}
   @observable specials = [] // 特价额度

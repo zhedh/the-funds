@@ -17,12 +17,12 @@ export function formatDateTime(timestamp) {
 
 // USDT、ZBX价格与数量都保留4位小数
 export function formatCoinPrice(price) {
-  if (!price) return 0
+  if (!price) return '--'
   return Number(price).toFixed(4)
 }
 
 // 特价额度数量保留2位
 export function formatSpecialOffer(price) {
-  if (!price) return 0
+  if (!price) return '--'
   return Number(price).toFixed(2)
 }

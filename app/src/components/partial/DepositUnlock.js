@@ -1,51 +1,89 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'antd-mobile'
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
+import {Link} from 'react-router-dom'
+import {Button, Toast} from 'antd-mobile'
 import Header from '../common/Header'
-import { inject, observer } from 'mobx-react'
-import { PRECISION } from '../../utils/constants'
+import {formatCoinPrice, formatSpecialOffer} from "../../utils/format";
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './DepositUnlock.scss'
 
 @inject('productStore')
 @inject('userStore')
-@inject('personStore')
 @observer
 class DepositUnlock extends Component {
-  state = { showConfirm: false, payPassword: '', pwdType: 'password' }
-
-  onDeposit = gearNum => {
-    if (gearNum) this.setState({ showConfirm: true })
+  state = {
+    showConfirm: false,
+    payPassword: '',
+    pwdType: 'password'
   }
+
+  onInputChange = (e, key) => {
+    const {value} = e.target
+    this.setState({[key]: value})
+  }
+
+  onSetType = currentType => {
+    this.setState({pwdType: currentType === 'text' ? 'password' : 'text'})
+  }
+
+  onDeposit = amount => {
+    if (amount) this.setState({showConfirm: true})
+  }
+
+  onSubmit = () => {
+    const {history, userStore, productStore} = this.props
+    const {payPassword} = this.state
+    userStore
+      .getPayToken({payPassword})
+      .then(res => {
+        if (res.status !== 1) {
+          Toast.info(res.msg)
+          return
+        }
+        return res.data.token
+      })
+      .then(payToken => {
+        if (!payToken) return
+        productStore.createSpecialOrder(payToken).then(res => {
+          if (res.status !== 1) {
+            Toast.info(res.msg)
+            return
+          }
+          history.push({pathname: '/deposit/result', state: 'unLock'})
+        })
+      })
+  }
+
   render() {
-    const { showConfirm, payPassword, pwdType } = this.state
-    const { show, productStore } = this.props
+    const {showConfirm, payPassword, pwdType} = this.state
+    const {show, productStore} = this.props
     const {
       productDetail,
       unLockAmount,
       totalAmount,
       onAmountChange
     } = productStore
-    const { serviceCharge } = productDetail
-    // {Number(totalAmount * (1 + serviceCharge)).toFixed(
-    console.log(totalAmount, serviceCharge)
+    const {
+      productName,
+      serviceCharge,
+      specialOffer,
+      userSpecial,
+      userBalance,
+    } = productDetail
+
     return (
       <div className={`deposit-unlock ${show ? 'show' : ''}`}>
         <section className="content-detail">
-          <h1>{productDetail.userSpecial}</h1>
-          <span>可解锁{productDetail.productName}特价额度</span>
-          <br />
+          <h1>{userSpecial}</h1>
+          <span>可解锁{productName}特价额度</span>
+          <br/>
           <Link to="/home/bargain">查看详情</Link>
         </section>
         <section className="content-charge">
           <p>
-            XC/USDT特价:
-            {productDetail.specialOffer
-              ? Number(productDetail.specialOffer).toFixed(
-                  PRECISION.SPECIAL_OFFER
-                )
-              : '--'}
+            {productName || '--'}/USDT特价:
+            {formatSpecialOffer(specialOffer)}
           </p>
           <label>
             <input
@@ -56,78 +94,60 @@ class DepositUnlock extends Component {
             />
             <span
               className="all"
-              onClick={() => {
-                this.setState({ unLockAmount: productDetail.userSpecial })
-              }}
-            >
+              onClick={() => productStore.addAllUnLockAmount()}>
               全部
             </span>
           </label>
           <label>
             <small>
               USDT 余额：
-              {Number(productDetail.userBalance).toFixed(PRECISION.OFFER)}
+              {formatCoinPrice(userBalance)}
             </small>
-            <small>手续费费率：{productDetail.serviceCharge}%</small>
+            <small>手续费费率：{serviceCharge}%</small>
           </label>
           <h3>
             <span>交易额（USDT）</span>
             <span>
-              {totalAmount === '--'
-                ? '--'
-                : Number(totalAmount).toFixed(PRECISION.OFFER)}
+              {formatCoinPrice(totalAmount)}
             </span>
           </h3>
         </section>
         <Button
-          className="btn"
-          activeClassName="btn-common__active"
+          className="primary-button"
+          activeClassName="active"
           disabled={!unLockAmount}
-          onClick={this.onDeposit}
+          onClick={() => this.onDeposit(totalAmount)}
         >
-          解锁
+          认购
         </Button>
 
-        {/* 弹窗 */}
-        <div className={`ensure-pay__wrapper ${showConfirm ? 'show' : ''}`}>
-          <div className="ensure-pay__content">
+        {/*解锁弹窗*/}
+        <div className={`confirm-wrapper ${showConfirm ? 'show' : ''}`}>
+          <div className="content-box">
             <Header
               isShadow
               title="确认支付"
               icon={require('../../assets/images/close.png')}
-              onHandle={() => this.setState({ showConfirm: false })}
+              onHandle={() => this.setState({showConfirm: false})}
             />
-
-            <div className="pay-content">
-              <p>
+            <div className="content">
+              <p className="deposit-price">
+                <span>支付总额（USDT）</span>
+                <span>{formatCoinPrice(totalAmount)}</span>
+              </p>
+              <p className="service-charge">
+                <span>手续费{serviceCharge}%</span>
                 <span>
-                  支付总额（USDT） <br />
-                  <small>交易额</small>
-                  <br />
-                  <small>手续费0.3%</small>
-                </span>
-                <span>
-                  {Number(totalAmount * (1 + serviceCharge)).toFixed(
-                    PRECISION.OFFER
-                  )}
-                  <br />
-                  <small>{Number(totalAmount).toFixed(PRECISION.OFFER)}</small>
-                  <br />
-                  <small>
-                    {Number(totalAmount * serviceCharge).toFixed(
-                      PRECISION.OFFER
-                    )}
-                  </small>
+                  {formatSpecialOffer(totalAmount * serviceCharge * 0.01)}
                 </span>
               </p>
               <p>
                 <span>可用</span>
-                <span>
-                  {Number(productDetail.userBalance).toFixed(PRECISION.OFFER)}
-                </span>
+                <span>{formatCoinPrice(userBalance)}</span>
               </p>
-
-              <small className="tips">*扣款时依照最新的兑价为准</small>
+              <p className="service-charge">
+                *扣款时依照最新的兑价为准
+              </p>
               <div className="input-box">
                 <input
                   type={pwdType}
@@ -144,10 +164,10 @@ class DepositUnlock extends Component {
             </div>
             <Button
               activeClassName="btn-common__active"
-              className="btn-common modal-btn"
-              onClick={this.onClose}
+              className="primary-button"
+              onClick={this.onSubmit}
             >
-              确认买入
+              确认
             </Button>
           </div>
         </div>

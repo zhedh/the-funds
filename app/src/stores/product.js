@@ -1,6 +1,7 @@
-import { observable, action, computed } from 'mobx'
-import { ProductApi } from '../api'
-import { Toast } from 'antd-mobile'
+import {observable, action, computed} from 'mobx'
+import {ProductApi} from '../api'
+import {Toast} from 'antd-mobile'
+
 // import { refDecorator } from 'mobx/lib/internal'
 
 class ProductStore {
@@ -8,7 +9,7 @@ class ProductStore {
   @observable currentProduct = {}
   @observable productDetail = {}
   @observable gearNum = null
-  @observable totalAmount = '--'
+  @observable totalAmount = ''
   @observable unLockAmount = ''
 
   @computed
@@ -32,7 +33,7 @@ class ProductStore {
 
   @action
   getProductDetail(productId) {
-    return ProductApi.getProductDetail({ productId }).then(res => {
+    return ProductApi.getProductDetail({productId}).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
         return
@@ -53,7 +54,7 @@ class ProductStore {
   }
 
   @action
-  createOrder(payToken) {
+  createDepositOrder(payToken) {
     return ProductApi.createOrder({
       payToken,
       productId: this.productDetail.productId,
@@ -63,10 +64,25 @@ class ProductStore {
   }
 
   @action
+  createSpecialOrder(payToken) {
+    return ProductApi.createOrder({
+      payToken,
+      productId: this.productDetail.productId,
+      productAmount: this.unLockAmount,
+      special: '1'
+    })
+  }
+
+  @action
   onAmountChange = e => {
     this.unLockAmount = e.target && e.target.value
     this.totalAmount =
       (e.target && e.target.value) * this.productDetail.specialOffer
+  }
+
+  @action
+  addAllUnLockAmount() {
+    this.unLockAmount = this.productDetail.userSpecial
   }
 }
 
