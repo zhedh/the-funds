@@ -4,19 +4,47 @@ import {formatCoinPrice} from "../../utils/format"
 import Header from "../../components/common/Header"
 import scanIcon from '../../assets/images/scan.svg'
 import recordIcon from '../../assets/images/record.png'
+import {getImagePath} from "../../utils/file";
 import './Withdraw.scss'
 
 @inject('walletStore')
 @observer
 class Withdraw extends Component {
+  state = {
+    code: '',
+    amount: null,
+    walletTo: '',
+    type: '',
+  }
+
   componentDidMount() {
     const {match, walletStore} = this.props
     const {type} = match.params
+    this.setState({type})
     walletStore.withdrawInit({type})
+  }
+
+  onInputChange = (e, key) => {
+    const {value} = e.target
+    this.setState({[key]: value})
+  }
+
+  onChangeFile = (e) => {
+    const {files} = e.target
+    if (!files) return
+
+    getImagePath(files[0], (url) => {
+      window.qrcode.decode(url);
+      window.qrcode.callback = (msg) => {
+        console.log(msg)
+        this.setState({walletTo: msg})
+      }
+    })
   }
 
   render() {
     const {history, walletStore} = this.props
+    const {code, amount, walletTo,type} = this.state
     const {withdrawInfo} = walletStore
 
     return (
@@ -38,23 +66,41 @@ class Withdraw extends Component {
           <div className="row">
             <label>提币地址</label>
             <div className="input-box">
-              <input type="text" placeholder="输入或长按粘贴地址"/>
-              <button>
-                <img src={scanIcon} alt="扫码"/>
-              </button>
+              <input
+                type="text"
+                placeholder="输入或长按粘贴地址"
+                value={walletTo}
+                onChange={(e) => this.onInputChange(e, 'walletTo')}
+              />
+              <div className="file-btn">
+                <input type="file" onChange={this.onChangeFile}/>
+                <button>
+                  <img src={scanIcon} alt="扫码"/>
+                </button>
+              </div>
             </div>
           </div>
           <div className="row">
-            <label>数量（XC）</label>
+            <label>数量（{type}）</label>
             <div className="input-box">
-              <input type="text" placeholder="最小提币量0.01"/>
+              <input
+                type="text"
+                placeholder="最小提币量0.01"
+                value={amount}
+                onChange={(e) => this.onInputChange(e, 'amount')}
+              />
             </div>
-            <small>手续费：5XC</small>
+            <small>手续费：{withdrawInfo.serviceCharge}{type}</small>
           </div>
           <div className="row">
             <label>邮箱验证码</label>
             <div className="input-box">
-              <input type="text" placeholder="请输入邮箱验证码"/>
+              <input
+                type="text"
+                placeholder="请输入手机或邮箱验证码"
+                value={code}
+                onChange={(e) => this.onInputChange(e, 'code')}
+              />
               <button>获取验证码</button>
             </div>
           </div>

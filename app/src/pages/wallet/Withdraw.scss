@@ -40,9 +40,10 @@ $text-sub-color: #ABABAB;
       .input-box {
         position: relative;
 
-        input {
+        input[type='text'] {
+          box-sizing: border-box;
           width: 100%;
-          padding: 8px 0;
+          padding: 8px 70px 8px 0;
           border: none;
           border-bottom: 1px solid $border-color;
           font-size: 1.3rem;
@@ -55,6 +56,25 @@ $text-sub-color: #ABABAB;
 
           &::placeholder {
             color: $text-sub-color;
+          }
+        }
+
+        .file-btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: 4rem;
+
+          input[type='file'] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
           }
         }
 
