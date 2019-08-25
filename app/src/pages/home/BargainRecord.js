@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
-
 import Header from "../../components/common/Header"
 import {formatTime} from "../../utils/format"
-import NoData from "../../components/common/NoData";
+import NoData from "../../components/common/NoData"
 import './BargainRecord.scss'
 
 @inject('personStore')
@@ -12,7 +11,7 @@ import './BargainRecord.scss'
 class BargainRecord extends Component {
   componentDidMount() {
     const {personStore, productStore} = this.props
-    productStore.getProducts().then(productId => {
+    productStore.getProductId().then(productId => {
       personStore.getSpecialRecords({productId})
     })
   }
@@ -23,7 +22,7 @@ class BargainRecord extends Component {
 
     return (
       <div id="bargain-record">
-        <Header title="特价额度记录" isFixed isShadow/>
+        <Header title="特价额度记录" isFixed isShadow bgWhite/>
         <ul>
           {
             specialRecords.map(record =>

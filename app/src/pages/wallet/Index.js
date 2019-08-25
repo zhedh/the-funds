@@ -12,7 +12,7 @@ const USDT_CARD = {
   bgImg: walletUsdtImg,
   name: 'USDT',
   asset: '',
-  rechargeUrl: '1',
+  rechargeUrl: '/wallet/recharge/USDT',
   withdrawUrl: '/wallet/withdraw/USDT',
   link: '/wallet/usdt'
 }
@@ -21,7 +21,7 @@ const WALLET_CARD = {
   bgImg: walletZbsImg,
   name: 'XC',
   asset: '',
-  rechargeUrl: '1',
+  rechargeUrl: '/wallet/recharge/',
   withdrawUrl: '/wallet/withdraw/',
   link: '/wallet/coin/',
   productId: ''
@@ -83,6 +83,7 @@ class Index extends Component {
       return {
         ...WALLET_CARD,
         name: wallet.productName,
+        rechargeUrl: '/wallet/recharge/' + wallet.productName,
         withdrawUrl: '/wallet/withdraw/' + wallet.productName,
         asset: wallet.data.amount,
         productId: wallet.productId

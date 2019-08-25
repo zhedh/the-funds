@@ -18,6 +18,11 @@ const LoadableFooter = Loadable({
 })
 
 class App extends Component {
+  componentWillMount() {
+    // const {productStore} = stores
+    // productStore.getProducts()
+  }
+
   componentDidMount() {
     document.title = SWITCH.PROJECT === 'XC' ? 'XC定投' : 'NTTC'
   }

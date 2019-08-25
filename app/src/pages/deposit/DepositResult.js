@@ -29,10 +29,10 @@ class DepositResult extends Component {
           >
             完成
           </Button>
-          {!isUnLock &&<Button
+          {!isUnLock && <Button
             activeClassName="active"
             className="primary-button hollow"
-            onClick={() => history.push('/deposit')}
+            onClick={() => history.push({pathname: '/deposit', state: 1})}
           >
             解锁XC
           </Button>}

@@ -94,7 +94,6 @@ class InviterFriend extends Component {
           </p>
         </section>
         <section className="section-link">
-          {/*<a>注册成功</a>*/}
           <Link to="/home/generalize">查看推广</Link>
         </section>
       </div>

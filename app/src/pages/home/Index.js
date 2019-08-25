@@ -1,16 +1,17 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import {observer, inject} from "mobx-react"
+import {Carousel, WingBlank} from "antd-mobile"
 import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
 
+import {formatDate} from "../../utils/format"
 import userCenterImg from '../../assets/images/user-center.png'
 import {HOME} from '../../assets/static'
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
 import NoData from "../../components/common/NoData"
-import {formatDate} from "../../utils/format"
 import './Index.scss'
 
 @inject('userStore')
@@ -19,10 +20,6 @@ import './Index.scss'
 @inject('productStore')
 @observer
 class Index extends Component {
-  state = {
-    products: [],
-  }
-
   componentDidMount() {
     const {userStore, personStore, noticeStore, productStore} = this.props
     noticeStore.getNotices()
@@ -36,7 +33,7 @@ class Index extends Component {
 
   render() {
     const {history, userStore, personStore, noticeStore, productStore} = this.props;
-    const {newestNotice} = noticeStore
+    const {notices} = noticeStore
     const {depositRecords} = personStore
     const {currentProduct} = productStore
     const hasRecords = userStore.isOnline && depositRecords && depositRecords.length > 0
@@ -51,12 +48,29 @@ class Index extends Component {
               history.push("user-center");
             }}
           />
-          <p onClick={() => history.push('/notices')}>
-            <IoIosMegaphone className="megaphone"/>
-            <span>
-              公告：{newestNotice ? newestNotice.title : '暂无公告'}
-            </span>
-          </p>
+          <div className="notice-carousel" onClick={() => history.push('/notices')}>
+            <label>
+              <IoIosMegaphone className="megaphone"/>
+              公告：
+            </label>
+            {notices.length ? <WingBlank>
+              <Carousel
+                className="carousel"
+                vertical
+                dots={false}
+                dragging={false}
+                swiping={false}
+                autoplay
+                infinite>
+                {notices.map(notice =>
+                  <div key={notice.id} className="item">
+                    {notice.title}
+                  </div>
+                )}
+              </Carousel>
+            </WingBlank> : <span className="item">暂无公告</span>}
+
+          </div>
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
               <div className="text">
@@ -78,9 +92,10 @@ class Index extends Component {
         </section>
         <section className="section-main">
           <div className="steps">
-            <Link to={userStore.isOnline ? '/home/deposit-history' : '/login'}>
-              定存中
-            </Link>
+            {/*<Link to={userStore.isOnline ? '/home/deposit-history' : '/login'}>*/}
+            {/*定存中*/}
+            {/*</Link>*/}
+            <span>定存中</span>
             <Link to="/home/rule">
               规则介绍
               <FiChevronRight className="icon"/>
@@ -105,7 +120,6 @@ class Index extends Component {
               </li>
             )}
           </ul> : <NoData msg="每天存一笔，天天有钱赚！"/>}
-
         </section>
         <Dialog
           show={false}

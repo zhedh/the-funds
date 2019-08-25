@@ -1,12 +1,11 @@
 import {observable, action, computed} from 'mobx'
 import {ProductApi} from '../api'
 import {Toast} from 'antd-mobile'
-
-// import { refDecorator } from 'mobx/lib/internal'
+import Cookies from 'js-cookie'
 
 class ProductStore {
+  @observable productId
   @observable products = []
-  @observable currentProduct = {}
   @observable productDetail = {}
   @observable gearNum = null
   @observable totalAmount = ''
@@ -17,6 +16,31 @@ class ProductStore {
     return this.productDetail.amountList || []
   }
 
+  @computed
+  get currentProduct() {
+    return this.products.find(product => product.id === Number(this.productId)) || this.products[0] || {}
+  }
+
+  @action
+  setCookieProductId(id) {
+    Cookies.set('PRODUCT_ID', id)
+    this.productId = id
+  }
+
+  @action
+  getCookieProductId() {
+    this.productId = Cookies.get('PRODUCT_ID')
+  }
+
+  @action
+  getProductId() {
+    this.productId = Cookies.get('PRODUCT_ID')
+    if (this.productId) {
+      return Promise.resolve(this.productId)
+    }
+    return this.getProducts()
+  }
+
   @action
   getProducts() {
     return ProductApi.getProductList().then(res => {
@@ -24,10 +48,14 @@ class ProductStore {
         Toast.info(res.msg)
         return null
       }
-      // res.data.push({id: 234241, productName: "XB"})
       this.products = res.data
-      this.currentProduct = res.data[0] || {}
-      return this.currentProduct.id
+
+      // 初始化默认基金产品ID
+      this.getCookieProductId()
+      if (!this.productId) {
+        this.setCookieProductId(res.data[0] && res.data[0].id)
+      }
+      return this.productId
     })
   }
 
@@ -44,7 +72,7 @@ class ProductStore {
 
   @action
   changeProduct(id, isChangeDetail) {
-    this.currentProduct = this.products.find(product => product.id === id)
+    this.setCookieProductId(id)
     if (isChangeDetail) this.getProductDetail(id)
   }
 

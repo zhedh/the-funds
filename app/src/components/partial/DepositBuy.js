@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import './DepositBuy.scss'
-import {Button, Toast} from 'antd-mobile'
+import {withRouter} from "react-router"
 import {inject, observer} from 'mobx-react'
+import {Button, Toast} from 'antd-mobile'
 import Header from '../common/Header'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import './DepositBuy.scss'
 
 @inject('productStore')
 @inject('userStore')
@@ -28,6 +29,15 @@ class DepositBuy extends Component {
   }
 
   onDeposit = gearNum => {
+    const {personStore,userStore} = this.props
+    if(!personStore.isAuth){
+      Toast.info('请进行身份认证')
+      return
+    }
+    if(!userStore.hasPayPassword){
+      Toast.info('请设置交易密码')
+      return
+    }
     if (gearNum) this.setState({showConfirm: true})
   }
 
@@ -65,10 +75,6 @@ class DepositBuy extends Component {
 
     return (
       <div className={`deposit-buy ${show ? 'show' : ''}`}>
-        {/*<div className="current-info show">*/}
-        {/*<h2 className="tab-first_h2">ZBX/USDT当前价格: 0.5898</h2>*/}
-        {/*<p className="tab-first_p">最新兑价（数据来源：影力所）</p>*/}
-        {/*</div>*/}
         <ul className="gears">
           {hasGears &&
           gears.map(gear => (
@@ -87,10 +93,10 @@ class DepositBuy extends Component {
           ))}
         </ul>
         <div className="fee">
-          <p>
-            <span>定存送ZBX特价额度</span>
+          {gearNum && <p>
+            <span>定投送{productDetail.productName}特价额度</span>
             <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
-          </p>
+          </p>}
           <small>手续费费率：{productDetail.serviceCharge}%</small>
         </div>
         {!personStore.isAuth && !userStore.hasPayPassword && (
@@ -112,8 +118,7 @@ class DepositBuy extends Component {
         <Button
           className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"
-          onClick={() => this.onDeposit(gearNum)}
-        >
+          onClick={() => this.onDeposit(gearNum)}>
           定投
         </Button>
 
@@ -128,7 +133,7 @@ class DepositBuy extends Component {
             />
             <div className="content">
               <p className="deposit-price">
-                <span>定存投资（XC）</span>
+                <span>定投{productDetail.productName}</span>
                 <span>{gearNum}</span>
               </p>
               <p className="service-charge">
@@ -156,7 +161,7 @@ class DepositBuy extends Component {
               </div>
             </div>
             <Button
-              activeClassName="btn-common__active"
+              activeClassName="active"
               className="primary-button"
               onClick={this.onSubmit}
             >
@@ -169,4 +174,4 @@ class DepositBuy extends Component {
   }
 }
 
-export default DepositBuy
+export default withRouter(DepositBuy)
