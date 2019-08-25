@@ -39,7 +39,6 @@ class UserCenter extends Component {
 
   componentDidMount() {
     const {personStore, userStore} = this.props
-    console.log(333333)
     this.createIframe()
 
     if (userStore.isOnline) {
