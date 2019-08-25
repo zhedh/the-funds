@@ -1,6 +1,7 @@
 import {observable, action, computed} from 'mobx'
-import Cookies from "js-cookie";
-import UserApi from "../api/user";
+import Cookies from "js-cookie"
+import UserApi from "../api/user"
+import {isMobile} from "../utils/reg"
 
 class UserStore {
   @observable token;
@@ -14,6 +15,7 @@ class UserStore {
 
   @computed
   get hasPayPassword() {
+    console.log(this.payPassword)
     return Number(this.payPassword) === 1
   }
 
@@ -71,6 +73,25 @@ class UserStore {
   @action
   getPayToken(options) {
     return UserApi.getPayToken(options)
+  }
+
+  // 获取验证码
+  // 用 account 替代 phone 或者 email
+  @action
+  getCode(options, params) {
+    const {account} = options
+    return isMobile(account) ?
+      UserApi.sendSmsCode({
+        imgcode: options.captcha,
+        prefix: options.prefix ? options.prefix : '86',
+        phone: account,
+        type: options.type
+      }, params) :
+      UserApi.sendMailCode({
+        imgcode: options.captcha,
+        email: account,
+        type: options.type
+      }, params)
   }
 }
 

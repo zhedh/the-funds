@@ -8,28 +8,9 @@
     display: block;
   }
 
-  .current-info {
-    padding: 1rem 20px 3rem;
-    text-align: center;
-    visibility: hidden;
-
-    &.show {
-      visibility: visible;
-    }
-
-    h2 {
-      font-size: $font-title-s + 0.1;
-      color: $text-color;
-    }
-
-    p {
-      font-size: $font-assistant;
-      color: $text-sub-color;
-    }
-  }
-
   .gears {
     @include clearList;
+    margin-top: 60px;
     padding: 0 10px;
 
     display: flex;

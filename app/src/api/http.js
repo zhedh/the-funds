@@ -3,9 +3,10 @@ import qs from 'qs'
 import Cookies from 'js-cookie'
 import {CONFIG} from '../config'
 import {optionsToHump, optionsToLine} from '../utils/common'
-import {Toast} from "antd-mobile";
-import {TOAST_DURATION} from "../utils/constants";
+import {Toast} from "antd-mobile"
+import {TOAST_DURATION} from "../utils/constants"
 
+const requestToast = Toast
 const axiosConfig = {
   baseURL: CONFIG.API_BASE_URL,
   transformRequest: [data => {
@@ -20,25 +21,46 @@ const axiosConfig = {
 };
 
 let instance = axios.create(axiosConfig);
+let requestCount = 0
+let timer
 
 // 添加请求拦截器
 instance.interceptors.request.use(config => {
   if (config.data && config.data.noLogin) {
-    delete config.data.noLogin;
+    delete config.data.noLogin
   } else {
     config.data = config.data ? config.data : {}
     config.data.openId = Cookies.get('OPENID')
     config.data.token = Cookies.get('TOKEN')
   }
-  return config;
+  requestCount++
+  if (requestCount === 1) {
+    requestToast.loading('请稍后...', 10)
+  }
+  return config
 }, error => {
   // 对请求错误做些什么
-  return Promise.reject(error);
+  return Promise.reject(error)
 });
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
   let res = response.data
+
+  // timer = setTimeout(() => {
+  //   requestCount--
+  //   if (requestCount <= 0) {
+  //     requestToast.hide()
+  //     clearTimeout(timer)
+  //   }
+  // }, 30)
+
+  requestCount--
+  if (requestCount <= 0) {
+    requestToast.hide()
+    clearTimeout(timer)
+  }
+
 
   // 用户请求需要登录的接口，跳转登录页
   if (res.status === -101) {

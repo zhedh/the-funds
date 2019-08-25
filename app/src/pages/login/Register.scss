@@ -1,16 +1,11 @@
 @import '../../styles/_common';
 
 #register {
+  @include clearFix;
   position: relative;
   box-sizing: border-box;
-  padding-bottom: 10rem;
   background: $white;
   min-height: 100vh;
-
-  header {
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-  }
 
   .main-content {
     box-sizing: border-box;
@@ -81,6 +76,10 @@
     }
   }
 
+  .primary-button {
+    margin: 4rem 20px;
+  }
+
   .register-success {
     position: fixed;
     top: 0;
@@ -107,19 +106,6 @@
         font-weight: 500;
         color: $text-color;
       }
-    }
-
-    .btn {
-      @include clearButton;
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 5rem;
-      height: 5rem;
-      border-radius: 2.5rem;
-      color: #fff;
-      background-color: $primary-color;
-      font-size: 1.5rem;
     }
   }
 }

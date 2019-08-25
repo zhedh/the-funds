@@ -10,8 +10,8 @@ const USDT_CARD = {
   bgImg: walletUsdtImg,
   name: 'USDT',
   asset: '',
-  rechargeUrl: '1',
-  withdrawUrl: '1',
+  rechargeUrl: '/wallet/recharge/USDT',
+  withdrawUrl: '/wallet/withdraw/USDT',
 }
 
 @inject('personStore')

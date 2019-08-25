@@ -1,19 +1,48 @@
-import { observable, action, computed } from 'mobx'
-import { ProductApi } from '../api'
-import { Toast } from 'antd-mobile'
-// import { refDecorator } from 'mobx/lib/internal'
+import {observable, action, computed} from 'mobx'
+import {ProductApi} from '../api'
+import {Toast} from 'antd-mobile'
+import Cookies from 'js-cookie'
 
 class ProductStore {
+  @observable productId
   @observable products = []
-  @observable currentProduct = {}
   @observable productDetail = {}
   @observable gearNum = null
-  @observable totalAmount = '--'
   @observable unLockAmount = ''
 
   @computed
   get gears() {
     return this.productDetail.amountList || []
+  }
+
+  @computed
+  get currentProduct() {
+    return this.products.find(product => product.id === Number(this.productId)) || this.products[0] || {}
+  }
+
+  @computed
+  get totalAmount() {
+    return this.unLockAmount * this.productDetail.specialOffer
+  }
+
+  @action
+  setCookieProductId(id) {
+    Cookies.set('PRODUCT_ID', id)
+    this.productId = id
+  }
+
+  @action
+  getCookieProductId() {
+    this.productId = Cookies.get('PRODUCT_ID')
+  }
+
+  @action
+  getProductId() {
+    this.productId = Cookies.get('PRODUCT_ID')
+    if (this.productId) {
+      return Promise.resolve(this.productId)
+    }
+    return this.getProducts()
   }
 
   @action
@@ -23,16 +52,20 @@ class ProductStore {
         Toast.info(res.msg)
         return null
       }
-      // res.data.push({id: 234241, productName: "XB"})
       this.products = res.data
-      this.currentProduct = res.data[0] || {}
-      return this.currentProduct.id
+
+      // 初始化默认基金产品ID
+      this.getCookieProductId()
+      if (!this.productId) {
+        this.setCookieProductId(res.data[0] && res.data[0].id)
+      }
+      return this.productId
     })
   }
 
   @action
   getProductDetail(productId) {
-    return ProductApi.getProductDetail({ productId }).then(res => {
+    return ProductApi.getProductDetail({productId}).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
         return
@@ -43,7 +76,7 @@ class ProductStore {
 
   @action
   changeProduct(id, isChangeDetail) {
-    this.currentProduct = this.products.find(product => product.id === id)
+    this.setCookieProductId(id)
     if (isChangeDetail) this.getProductDetail(id)
   }
 
@@ -53,7 +86,7 @@ class ProductStore {
   }
 
   @action
-  createOrder(payToken) {
+  createDepositOrder(payToken) {
     return ProductApi.createOrder({
       payToken,
       productId: this.productDetail.productId,
@@ -63,10 +96,23 @@ class ProductStore {
   }
 
   @action
+  createSpecialOrder(payToken) {
+    return ProductApi.createOrder({
+      payToken,
+      productId: this.productDetail.productId,
+      productAmount: this.unLockAmount,
+      special: '1'
+    })
+  }
+
+  @action
   onAmountChange = e => {
     this.unLockAmount = e.target && e.target.value
-    this.totalAmount =
-      (e.target && e.target.value) * this.productDetail.specialOffer
+  }
+
+  @action
+  addAllUnLockAmount() {
+    this.unLockAmount = this.productDetail.userSpecial
   }
 }
 

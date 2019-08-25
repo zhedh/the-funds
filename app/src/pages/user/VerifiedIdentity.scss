@@ -1,6 +1,7 @@
 @import '../../styles/_common';
 
 #verified-identity {
+  @include clearFix;
   .identity-top {
     text-align: center;
     margin-top: -30px;
@@ -63,7 +64,7 @@
 
     .identity-bottom__input {
       &.input-center {
-        transform: translateY(50%);
+        padding: 5rem 0;
       }
 
       input {
@@ -74,7 +75,7 @@
         border-bottom: 1px solid #ccc;
 
         &::placeholder {
-          font-size: 600;
+          font-weight: 600;
           color: #a7a7a9;
         }
 
@@ -83,5 +84,9 @@
         }
       }
     }
+  }
+
+  .primary-button {
+    margin: 20px;
   }
 }

@@ -36,21 +36,36 @@
       }
     }
 
-    p {
+    .notice-carousel {
       @include clearBack;
-      display: flex;
-      align-items: center;
-
-      padding: 6px 20px;
+      position: relative;
+      padding: 0 5px 0 64px;
       font-size: $font-context;
 
-      .megaphone {
-        font-size: 13px;
-        margin-right: 5px;
+      label {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+
+        .megaphone {
+          font-size: 13px;
+          margin-right: 5px;
+        }
       }
 
-      span {
+      .item {
+        height: 36px;
+        line-height: 36px;
         @include overflow(1);
+      }
+
+      span{
+        margin-left: 15px;
       }
     }
 

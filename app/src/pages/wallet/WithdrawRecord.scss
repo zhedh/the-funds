@@ -1,6 +1,7 @@
 @import '../../styles/_common';
 
 $text-sub-color: #5A5A5A;
+
 #withdraw-record {
   @include clearFix;
   box-sizing: border-box;
@@ -24,6 +25,9 @@ $text-sub-color: #5A5A5A;
 
       p {
         @include clearBack;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         padding: 7px 0;
 
         label {
@@ -34,6 +38,14 @@ $text-sub-color: #5A5A5A;
         span {
           @include overflow(1);
           display: inline-block;
+
+          &.succeed {
+            color: $succeed-color;
+          }
+
+          &.danger {
+            color: $danger-color;
+          }
         }
       }
 

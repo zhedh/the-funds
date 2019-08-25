@@ -2,7 +2,7 @@ import { observable, action, computed } from 'mobx'
 import PersonApi from '../api/person'
 
 class PersonStore {
-  @observable name = 'kevin'
+  @observable name = ''
   @observable lastClearTime = ''
   @observable userInfo = {}
   @observable specials = [] // 特价额度
@@ -26,8 +26,8 @@ class PersonStore {
       return 0
     }
     return this.specials.reduce((pre, cur) => {
-      const { usable } = cur.data
-      return pre + usable
+      const { locked } = cur.data
+      return pre + locked
     }, 0)
   }
 

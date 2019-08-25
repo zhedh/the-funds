@@ -10,8 +10,9 @@ const COIN_CARD = {
   bgImg: walletZbsImg,
   name: 'XC',
   asset: '',
-  rechargeUrl: '1',
-  withdrawUrl: '1',
+  rechargeUrl: '/wallet/recharge/',
+  withdrawUrl: '/wallet/withdraw/',
+  productId: ''
 }
 
 @inject('walletStore')
@@ -29,13 +30,15 @@ class WalletCoin extends Component {
         ...COIN_CARD,
         name: res.productName,
         productId: res.productId,
-        asset: res.data && res.data.amount
+        asset: res.data && res.data.amount,
+        locked: res.data && res.data.locked,
+        rechargeUrl: '/wallet/recharge/' + res.productName,
+        withdrawUrl: '/wallet/withdraw/' + res.productName,
       }
       this.setState({coinCard})
     })
-    walletStore.getCoinStream({productId: id})
+    walletStore.getCoinStream({productId: id, status: 1})
   }
-
 
   render() {
     const {walletStore} = this.props
@@ -66,4 +69,4 @@ class WalletCoin extends Component {
   }
 }
 
-export default WalletCoin;
+export default WalletCoin

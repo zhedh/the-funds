@@ -27,6 +27,9 @@ class WalletCard extends Component {
         <h1>
           <small>总资产（{card.name}）</small>
           <span>{formatCoinPrice(card.asset)}</span>
+          {card.locked && <aside>
+            冻结：{formatCoinPrice(card.locked)}
+          </aside>}
         </h1>
         <ul>
           {card.withdrawUrl && (

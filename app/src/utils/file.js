@@ -1,4 +1,4 @@
-import Compressor from "compressorjs";
+import Compressor from "compressorjs"
 
 export function downloadFile(fileName, content) {
   let aLink = document.createElement('a');
@@ -43,4 +43,23 @@ export function compressorImg(image, callback) {
       console.log(err.message);
     },
   });
+}
+
+// 获取图片临时路径
+export function getImagePath(file, callback) {
+  const reads = new FileReader()
+  reads.onload = function () {
+    let img = new Image();
+    img.src = this.result;
+
+    if (img.complete) {
+      callback && callback(this.result)
+    } else {
+      img.onload = function () {
+        callback && callback(this.result)
+      }.bind(this)
+    }
+  }
+
+  reads.readAsDataURL(file)
 }

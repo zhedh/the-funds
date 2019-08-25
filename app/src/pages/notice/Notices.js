@@ -23,6 +23,7 @@ class Notices extends Component {
           title="公告列表"
           isShadow
           isFixed
+          bgWhite
           onHandle={() => history.push('/user-center')}
         />
         <section>

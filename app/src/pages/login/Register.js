@@ -1,35 +1,30 @@
-import React, { Component } from 'react'
-import { Button, Toast } from 'antd-mobile'
-import { inject, observer } from 'mobx-react'
-import { UserApi } from '../../api'
-import { REG, TOAST_DURATION, COUNT_DOWN } from '../../utils/constants'
-import { compatibleFixedButton, getQueryParam } from '../../utils/common'
+import React, {Component} from 'react'
+import {Button, Toast} from 'antd-mobile'
+import {inject, observer} from 'mobx-react'
+import {UserApi} from '../../api'
+import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
+import {isEmail, isMobile} from "../../utils/reg"
+import {compatibleFixedButton, getQueryParam} from '../../utils/common'
 import AccountHeader from '../../components/partial/AccountHeader'
 import Captcha from '../../components/common/Captcha'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import registerSuccessImg from '../../assets/images/register-success.png'
 import './Register.scss'
 
 class RegisterSuccess extends Component {
-  onConfirm = () => {
-    const { history } = this.props
-    // 暂时进入邀请好友页
-    // history.push('/');
-    history.push('/home/inviter-friend')
-  }
 
   render() {
+    const {history} = this.props
+
     return (
       <div className="register-success">
-        <AccountHeader title="注册成功！" />
+        <AccountHeader title="注册成功！"/>
         <main>
-          <img
-            src={require('../../assets/images/register-success.png')}
-            alt=""
-          />
+          <img src={registerSuccessImg} alt=""/>
           <p className="text">恭喜您，注册成功 !</p>
         </main>
-        <Button className="btn" onClick={this.onConfirm}>
+        <Button className="primary-button" onClick={() => history.push('/deposit')}>
           立即开启
         </Button>
       </div>
@@ -62,10 +57,10 @@ class Register extends Component {
 
   componentDidMount() {
     const recommendCode = getQueryParam('recommendCode') || ''
-    this.setState({ recommendCode })
+    this.setState({recommendCode})
     this.getCaptchaPng()
     compatibleFixedButton(isShow => {
-      this.setState({ showBtn: isShow })
+      this.setState({showBtn: isShow})
     })
   }
 
@@ -76,28 +71,26 @@ class Register extends Component {
   getCaptchaPng = () => {
     const key = +new Date()
 
-    UserApi.getCaptchaPng({ key }).then(res => {
-      this.setState({ captchaKey: key, imgSrc: res })
+    UserApi.getCaptchaPng({key}).then(res => {
+      this.setState({captchaKey: key, imgSrc: res})
     })
   }
 
   canSubmit = () => {
-    const { account, code, password, passwordConfirm } = this.state
+    const {account, code, password, passwordConfirm} = this.state
     return !!(account && code && password && passwordConfirm)
   }
 
   onInputChange = (e, key) => {
-    const {
-      target: { value }
-    } = e
-    this.setState({ [key]: value })
+    const {value} = e.target
+    this.setState({[key]: value})
   }
 
   onAccountBlur = e => {
-    const { value } = e.target
-    const { preAccount } = this.state
+    const {value} = e.target
+    const {preAccount} = this.state
     if (value !== preAccount) {
-      this.setState({ preAccount: value })
+      this.setState({preAccount: value})
       this.getCaptchaPng()
     }
   }
@@ -107,59 +100,18 @@ class Register extends Component {
 
     this.timer = setInterval(() => {
       if (count <= 0) {
-        this.setState({ isGetSms: true, count: COUNT_DOWN })
+        this.setState({isGetSms: true, count: COUNT_DOWN})
         clearInterval(this.timer)
       } else {
-        this.setState({ isGetSms: false, count: count-- })
+        this.setState({isGetSms: false, count: count--})
       }
     }, 1000)
   }
 
-  sendSmsCode = () => {
-    const { account, captcha, captchaKey } = this.state
-    UserApi.sendSmsCode(
-      {
-        imgcode: captcha,
-        prefix: '86',
-        phone: account,
-        type: 'reg'
-      },
-      {
-        key: captchaKey
-      }
-    ).then(res => {
-      if (res.status !== 1) {
-        Toast.info(res.msg)
-        this.getCaptchaPng()
-        return
-      }
-      this.codeCountDown()
-    })
-  }
-
-  sendMailCode = () => {
-    const { account, captcha, captchaKey } = this.state
-    UserApi.sendMailCode(
-      {
-        imgcode: captcha,
-        email: account,
-        type: 'reg'
-      },
-      {
-        key: captchaKey
-      }
-    ).then(res => {
-      if (res.status === -1) {
-        Toast.info(res.msg)
-        return
-      }
-      this.codeCountDown()
-    })
-  }
-
   getCode = async () => {
-    const { account, captcha } = this.state
-    if (!REG.EMAIL.test(account) && !REG.MOBILE.test(account)) {
+    const {userStore} = this.props
+    const {account, captcha, captchaKey} = this.state
+    if (!isEmail(account) && !isMobile(account)) {
       Toast.info('请填写正确的邮箱或者手机号', TOAST_DURATION)
       return
     }
@@ -169,16 +121,32 @@ class Register extends Component {
       return
     }
 
-    REG.MOBILE.test(account) ? this.sendSmsCode() : this.sendMailCode()
+    userStore.getCode({
+      captcha,
+      account,
+      type: 'reg'
+    }, {key: captchaKey}).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg)
+        this.getCaptchaPng()
+        return
+      }
+      this.codeCountDown()
+    })
   }
 
   onSetType = (currentType, key) => {
     const type = currentType === 'password' ? 'text' : 'password'
-    this.setState({ [key]: type })
+    this.setState({[key]: type})
   }
 
   register = () => {
-    const { userStore } = this.props
+
+
+  }
+
+  onSubmit = () => {
+    const {userStore} = this.props
     const {
       account,
       code,
@@ -187,48 +155,37 @@ class Register extends Component {
       recommendCode
     } = this.state
 
-    userStore
-      .register({
-        phonePrefix: REG.MOBILE.test(account) ? '86' : null,
-        userName: account,
-        code,
-        password,
-        passwordConfirm,
-        recommendCode
-      })
-      .then(res => {
-        if (res.status !== 1) {
-          Toast.info(res.msg, TOAST_DURATION)
-          return
-        }
-        Toast.success('注册成功', TOAST_DURATION, () =>
-          this.setState({ showSuccess: true })
-        )
-      })
-  }
-
-  onSubmit = () => {
-    const { account, password, passwordConfirm } = this.state
     if (!REG.EMAIL.test(account) && !REG.MOBILE.test(account)) {
       Toast.info('账号输入错误', TOAST_DURATION)
       return
     }
-
     if (!REG.PASSWORD.test(password)) {
       Toast.info('密码最少8位，字母加数字', TOAST_DURATION)
       return
     }
-
     if (password !== passwordConfirm) {
       Toast.info('两次密码不一致', TOAST_DURATION)
       return
     }
 
-    this.register()
+    userStore.register({
+      phonePrefix: isMobile(account) ? '86' : null,
+      userName: account,
+      code,
+      password,
+      passwordConfirm,
+      recommendCode
+    }).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg, TOAST_DURATION)
+        return
+      }
+      Toast.success('注册成功', TOAST_DURATION, () => this.setState({showSuccess: true}))
+    })
   }
 
   render() {
-    const { history } = this.props
+    const {history} = this.props
     const {
       account,
       code,
@@ -247,7 +204,7 @@ class Register extends Component {
 
     return (
       <div id="register">
-        <AccountHeader title="注册" onHandle={() => history.push('/login')} />
+        <AccountHeader title="注册" onHandle={() => history.push('/login')}/>
         <div className="main-content">
           <label>
             <input
@@ -278,8 +235,7 @@ class Register extends Component {
             />
             <span
               className={`sms-code  ${!isGetSms ? `event-none` : ''}`}
-              onClick={this.getCode}
-            >
+              onClick={this.getCode}>
               {isGetSms ? '获取验证码' : <span>{`${count}s`}</span>}
             </span>
           </label>
@@ -323,19 +279,14 @@ class Register extends Component {
             />
           </label>
         </div>
-        {showBtn && (
-          <Button
-            activeClassName="btn-common__active"
-            className={`btn-common btn-common__bottom ${
-              this.canSubmit() ? '' : 'btn-common__disabled'
-            }`}
-            disabled={!this.canSubmit()}
-            onClick={this.onSubmit}
-          >
-            立即注册
-          </Button>
-        )}
-        {showSuccess && <RegisterSuccess history={this.props.history} />}
+        {showBtn && <Button
+          activeClassName="active"
+          className="primary-button"
+          disabled={!this.canSubmit()}
+          onClick={this.onSubmit}>
+          立即注册
+        </Button>}
+        {showSuccess && <RegisterSuccess history={this.props.history}/>}
       </div>
     )
   }

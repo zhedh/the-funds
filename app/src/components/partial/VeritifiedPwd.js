@@ -28,7 +28,7 @@ class VerifiedPwd extends Component {
     } = this.props
     const { pwType, pwConfirmType } = this.state
     const canSubmit = password !== '' && passwordConfirm !== ''
-    console.log(typeOption)
+
     return (
       <div className={'verified-pwd ' + (show ? 'show' : '')}>
         <AccountHeader

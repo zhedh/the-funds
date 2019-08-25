@@ -1,9 +1,13 @@
 import Loadable from 'react-loadable'
 import Loading from './components/common/Loading'
 
-import Home from './pages/home/Index'
+// import Home from './pages/home/Index'
 import Login from './pages/login/Login'
 
+const Home = Loadable({
+  loader: () => import('./pages/home/Index'),
+  loading: Loading
+})
 const InviterFriend = Loadable({
   loader: () => import('./pages/home/InviterFriend'),
   loading: Loading
@@ -112,7 +116,7 @@ const DepositResult = Loadable({
 
 export default [
   // 主页
-  { path: '/', name: 'Login', component: Login },
+  { path: '/', name: 'Home', component: Home },
   { path: '/home', name: 'Home', component: Home },
   {
     path: '/home/inviter-friend',
@@ -143,10 +147,9 @@ export default [
   { path: '/wallet/usdt', name: 'WalletUsdt', component: WalletUsdt },
   { path: '/wallet/coin/:id', name: 'WalletCoin', component: WalletCoin },
   { path: '/wallet/withdraw/:type', name: 'Withdraw', component: Withdraw },
-  { path: '/wallet/recharge/usdt', name: 'RechargeUsdt', component: Recharge },
-  { path: '/wallet/recharge/zbx', name: 'RechargeZbx', component: Recharge },
+  { path: '/wallet/recharge/:type', name: 'Recharge', component: Recharge },
   {
-    path: '/wallet/withdraw-record',
+    path: '/wallet/withdraw-record/:type',
     name: 'WithdrawRecord',
     component: WithdrawRecord
   },

@@ -13,8 +13,7 @@ class Bargain extends Component {
     personStore.getSpecial()
     personStore.getLastClearTime()
 
-    // productId 默认取基金第一个
-    productStore.getProducts().then(productId => {
+    productStore.getProductId().then(productId => {
       personStore.getSpecialAwards({productId})
     })
   }
@@ -61,8 +60,8 @@ class Bargain extends Component {
           当日得到的奖励额度，有效期至次日结算时间，如次日结算时还未使用，则奖励额度失效，请尽快使用。
         </section>
       </div>
-    );
+    )
   }
 }
 
-export default Bargain;
+export default Bargain

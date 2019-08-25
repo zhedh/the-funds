@@ -48,6 +48,21 @@ class WalletStore {
       return res
     })
   }
+
+  @action
+  withdraw(options) {
+    return WalletApi.withdraw(options)
+  }
+
+  @action
+  withdrawRecords(options) {
+    return WalletApi.withdrawRecords(options)
+  }
+
+  @action
+  getWalletAddress(options) {
+    return WalletApi.getWalletAddress(options)
+  }
 }
 
 export default WalletStore
