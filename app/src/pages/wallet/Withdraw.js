@@ -20,7 +20,7 @@ class Withdraw extends Component {
   state = {
     code: '',
     amount: '',
-    walletTo: '1EtZLjTU4EheZ8DqdFreBxwq9mgYCBtraQ',
+    walletTo: '',
     type: '',
     imgSrc: 'http://47.75.138.157/api/captchapng/png',
     captcha: '',
@@ -173,7 +173,7 @@ class Withdraw extends Component {
             className="record-icon"
             src={recordIcon}
             alt="提现记录"
-            onClick={() => history.push('/wallet/withdraw-record')}
+            onClick={() => history.push('/wallet/withdraw-record/' + type)}
           />
         </Header>
         <section className="section-form">

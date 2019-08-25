@@ -6,6 +6,14 @@ import './DepositResult.scss'
 @inject('personStore')
 @observer
 class DepositResult extends Component {
+  handleFinish = () => {
+    const {history, location} = this.props
+    const isUnLock = location.state === 'unLock'
+    isUnLock ?
+      history.push({pathname: '/deposit', state: 1}) :
+      history.push('/home')
+  }
+
   render() {
     const {history, location} = this.props
     const isUnLock = location.state === 'unLock'
@@ -25,7 +33,7 @@ class DepositResult extends Component {
           <Button
             activeClassName="active"
             className="primary-button"
-            onClick={() => history.push('/home')}
+            onClick={this.handleFinish}
           >
             完成
           </Button>

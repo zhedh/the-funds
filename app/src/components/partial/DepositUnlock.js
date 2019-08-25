@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
+import {withRouter} from "react-router"
 import {Link} from 'react-router-dom'
 import {Button, Toast} from 'antd-mobile'
 import Header from '../common/Header'
@@ -176,4 +177,4 @@ class DepositUnlock extends Component {
   }
 }
 
-export default DepositUnlock
+export default withRouter(DepositUnlock)

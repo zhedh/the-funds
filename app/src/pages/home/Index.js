@@ -29,6 +29,27 @@ class Index extends Component {
         personStore.getDepositRecords({productId, status: 0})
       })
     }
+
+    this.destroyIframe()
+  }
+
+  destroyIframe = () => {
+    let script = document.querySelector('#ze-snippet')
+    let iframe = document.querySelector('iframe')
+
+    if (script) script.remove()
+    if (!iframe) return
+    //把iframe指向空白页面，这样可以释放大部分内存。
+    iframe.src = 'about:blank'
+
+    try {
+      iframe.contentWindow.document.write('')
+      iframe.contentWindow.document.clear()
+    } catch (e) {
+    }
+
+    //把iframe从页面移除
+    iframe.parentNode.removeChild(iframe)
   }
 
   render() {
@@ -111,7 +132,6 @@ class Index extends Component {
                     {record.remark}
                   </small>
                   {record.amount} {currentProduct.productName}
-                  {/*<span>消耗 58.59 USDT</span>*/}
                 </div>
                 <div className="aside">
                   <time>{formatDate(record.unlockTime)}</time>

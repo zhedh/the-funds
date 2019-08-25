@@ -21,6 +21,7 @@ const WALLET_CARD = {
   bgImg: walletZbsImg,
   name: 'XC',
   asset: '',
+  locked: '',
   rechargeUrl: '/wallet/recharge/',
   withdrawUrl: '/wallet/withdraw/',
   link: '/wallet/coin/',
@@ -86,7 +87,9 @@ class Index extends Component {
         rechargeUrl: '/wallet/recharge/' + wallet.productName,
         withdrawUrl: '/wallet/withdraw/' + wallet.productName,
         asset: wallet.data.amount,
-        productId: wallet.productId
+        locked: wallet.data.locked,
+        productId: wallet.productId,
+        link: '/wallet/coin/' + wallet.productId,
       }
     })
     cards.push(...walletCards)

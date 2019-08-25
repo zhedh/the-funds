@@ -26,8 +26,8 @@ class PersonStore {
       return 0
     }
     return this.specials.reduce((pre, cur) => {
-      const { usable } = cur.data
-      return pre + usable
+      const { locked } = cur.data
+      return pre + locked
     }, 0)
   }
 
