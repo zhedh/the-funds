@@ -105,7 +105,7 @@ class DepositUnlock extends Component {
               USDT 余额：
               {formatCoinPrice(userBalance)}
             </small>
-            <small>手续费费率：{serviceCharge}%</small>
+            <small>手续费费率：{serviceCharge * 100}%</small>
           </label>
           <h3>
             <span>交易额（USDT）</span>
@@ -138,9 +138,9 @@ class DepositUnlock extends Component {
                 <span>{formatCoinPrice(totalAmount)}</span>
               </p>
               <p className="service-charge">
-                <span>手续费{serviceCharge}%</span>
+                <span>手续费{serviceCharge * 100}%</span>
                 <span>
-                  {formatSpecialOffer(totalAmount * serviceCharge * 0.01)}
+                  {formatSpecialOffer(totalAmount * serviceCharge)}
                 </span>
               </p>
               <p>
