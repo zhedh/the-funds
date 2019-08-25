@@ -66,7 +66,8 @@ class Index extends Component {
             title={HOME.TITLE}
             icon={userCenterImg}
             onHandle={() => {
-              history.push("user-center");
+              window.location.href = '/user-center'
+              // history.push("user-center");
             }}
           />
           <div className="notice-carousel" onClick={() => history.push('/notices')}>

@@ -29,6 +29,7 @@ class DepositUnlock extends Component {
   }
 
   onDeposit = amount => {
+    console.log(amount)
     if (amount) this.setState({showConfirm: true})
   }
 

@@ -29,12 +29,12 @@ class DepositBuy extends Component {
   }
 
   onDeposit = gearNum => {
-    const {personStore,userStore} = this.props
-    if(!personStore.isAuth){
+    const {personStore, userStore} = this.props
+    if (!personStore.isAuth) {
       Toast.info('请进行身份认证')
       return
     }
-    if(!userStore.hasPayPassword){
+    if (!userStore.hasPayPassword) {
       Toast.info('请设置交易密码')
       return
     }
@@ -99,22 +99,20 @@ class DepositBuy extends Component {
           </p>}
           <small>手续费费率：{productDetail.serviceCharge}%</small>
         </div>
-        {!personStore.isAuth && !userStore.hasPayPassword && (
-          <aside>
-            {!personStore.isAuth && (
-              <p>
-                *您暂未通过实名认证，无法定存
-                <Link to="/verified-country">去认证</Link>
-              </p>
-            )}
-            {!userStore.hasPayPassword && (
-              <p>
-                *您暂未设置交易密码，无法定存
-                <Link to="/password/pay">去设置</Link>
-              </p>
-            )}
-          </aside>
-        )}
+        <aside>
+          {!personStore.isAuth && (
+            <p>
+              *您暂未通过实名认证，无法定存
+              <Link to="/verified-country">去认证</Link>
+            </p>
+          )}
+          {!userStore.hasPayPassword && (
+            <p>
+              *您暂未设置交易密码，无法定存
+              <Link to="/password/pay">去设置</Link>
+            </p>
+          )}
+        </aside>
         <Button
           className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"

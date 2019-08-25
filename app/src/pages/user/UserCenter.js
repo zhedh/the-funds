@@ -39,6 +39,7 @@ class UserCenter extends Component {
 
   componentDidMount() {
     const {personStore, userStore} = this.props
+    console.log(333333)
     this.createIframe()
 
     if (userStore.isOnline) {
@@ -47,7 +48,7 @@ class UserCenter extends Component {
   }
 
   componentWillUnmount() {
-    this.destroyIframe('ze-snippet')
+    this.destroyIframe()
     // let iframe = document.querySelector('iframe')
     // iframe.style.display = 'none'
   }
@@ -81,6 +82,7 @@ class UserCenter extends Component {
 
     //把iframe从页面移除
     iframe.parentNode.removeChild(iframe)
+    console.log(33333)
   }
 
   onBack = () => {
@@ -138,7 +140,7 @@ class UserCenter extends Component {
           title="个人中心"
           isShadow={true}
           bgWhite
-          onHandle={this.onBack}
+          onHandle={() => this.onBack()}
         />
         <section className={`list-content list-first`}>
           {userStore.isOnline ? (
@@ -172,7 +174,7 @@ class UserCenter extends Component {
           )}
           <div className="list-tip">
             {userInfo.isF ? (
-              <span className="active">F用户生效中，2019.07.10失效</span>
+              <span className="active">F用户生效中，{userInfo.isFTime}失效</span>
             ) : (
               <span> 非F用户，暂不可享推广奖励</span>
             )}

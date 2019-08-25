@@ -8,7 +8,6 @@ class ProductStore {
   @observable products = []
   @observable productDetail = {}
   @observable gearNum = null
-  @observable totalAmount = ''
   @observable unLockAmount = ''
 
   @computed
@@ -19,6 +18,11 @@ class ProductStore {
   @computed
   get currentProduct() {
     return this.products.find(product => product.id === Number(this.productId)) || this.products[0] || {}
+  }
+
+  @computed
+  get totalAmount() {
+    return this.unLockAmount * this.productDetail.specialOffer
   }
 
   @action
@@ -104,8 +108,6 @@ class ProductStore {
   @action
   onAmountChange = e => {
     this.unLockAmount = e.target && e.target.value
-    this.totalAmount =
-      (e.target && e.target.value) * this.productDetail.specialOffer
   }
 
   @action

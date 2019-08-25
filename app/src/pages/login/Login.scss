@@ -4,9 +4,6 @@
   position: relative;
   box-sizing: border-box;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 
   .content {
     box-sizing: border-box;
@@ -60,7 +57,7 @@
     }
   }
 
-  .bottom{
+  .btn-box {
     padding: 5rem 20px;
   }
 }

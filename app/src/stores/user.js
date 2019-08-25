@@ -15,6 +15,7 @@ class UserStore {
 
   @computed
   get hasPayPassword() {
+    console.log(this.payPassword)
     return Number(this.payPassword) === 1
   }
 

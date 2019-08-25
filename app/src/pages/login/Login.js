@@ -66,7 +66,7 @@ class Login extends Component {
       }
 
       Toast.success('登录成功', TOAST_DURATION)
-      this.timer = setTimeout(() => history.push('/home'), TOAST_DURATION * 1000)
+      this.timer = setTimeout(() => history.push('/deposit'), TOAST_DURATION * 1000)
     })
   }
 
@@ -76,47 +76,47 @@ class Login extends Component {
 
     return (
       <div id="login">
-        <div className="top">
-          <AccountHeader title="登录"/>
-          <div className="content">
-            <label>
-              <input
-                className="input-main"
-                type="text"
-                placeholder="邮箱/手机号"
-                value={account}
-                onChange={(e) => this.onInputChange(e, 'account')}
-              />
-            </label>
-            <label>
-              <input
-                className="input-main"
-                type={type}
-                placeholder="密码"
-                value={password}
-                onChange={(e) => this.onInputChange(e, 'password')}
-              />
-              <img
-                src={type === 'text' ? openPwdImg : closePwdImg}
-                alt=""
-                onClick={() => this.onSetType(type)}
-              />
-            </label>
-            <p>
-              <Link to="/password/find">忘记密码？</Link>
-              <Link to="/register">注册</Link>
-            </p>
-          </div>
+        <AccountHeader title="登录"/>
+        <div className="content">
+          <label>
+            <input
+              className="input-main"
+              type="text"
+              placeholder="邮箱/手机号"
+              value={account}
+              onChange={(e) => this.onInputChange(e, 'account')}
+            />
+          </label>
+          <label>
+            <input
+              className="input-main"
+              type={type}
+              placeholder="密码"
+              value={password}
+              onChange={(e) => this.onInputChange(e, 'password')}
+            />
+            <img
+              src={type === 'text' ? openPwdImg : closePwdImg}
+              alt=""
+              onClick={() => this.onSetType(type)}
+            />
+          </label>
+          <p>
+            <Link to="/password/find">忘记密码？</Link>
+            <Link to="/register">注册</Link>
+          </p>
         </div>
-        <div className="bottom">
-          {showBtn && <Button
+
+        {showBtn && <div className="btn-box">
+          <Button
             activeClassName="active"
             className="primary-button"
             disabled={canSubmit}
             onClick={this.onSubmit}>
             确认
-          </Button>}
-        </div>
+          </Button>
+        </div>}
+
       </div>
     )
   }
