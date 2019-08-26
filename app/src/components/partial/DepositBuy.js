@@ -7,6 +7,8 @@ import Header from '../common/Header'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './DepositBuy.scss'
+import {formatCoinPrice} from "../../utils/format";
+import {COIN_POINT_LENGTH} from "../../utils/constants";
 
 @inject('productStore')
 @inject('userStore')
@@ -70,8 +72,6 @@ class DepositBuy extends Component {
     const {showConfirm, payPassword, pwdType} = this.state
     const {productDetail, gears, gearNum} = productStore
     const hasGears = gears && gears.length > 0
-    const userBalance =
-      productDetail.userBalance && Number(productDetail.userBalance).toFixed(2)
 
     return (
       <div className={`deposit-buy ${show ? 'show' : ''}`}>
@@ -142,7 +142,7 @@ class DepositBuy extends Component {
               </p>
               <p>
                 <span>可用</span>
-                <span>{userBalance}</span>
+                <span>{formatCoinPrice(productDetail.userWarehouse,COIN_POINT_LENGTH)}</span>
               </p>
               <div className="input-box">
                 <input

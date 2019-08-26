@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import {Toast, Button} from "antd-mobile"
 import UserApi from "../../api/user"
-import {COUNT_DOWN} from "../../utils/constants"
+import {COIN_POINT_LENGTH, COUNT_DOWN, USDT_POINT_LENGTH} from "../../utils/constants"
 import {isMobile} from "../../utils/reg"
 import {formatCoinPrice} from "../../utils/format"
 import {getImagePath} from "../../utils/file"
@@ -179,7 +179,7 @@ class Withdraw extends Component {
         <section className="section-form">
           <div className="row">
             <span className="balance">
-              可用：{formatCoinPrice(balance)}
+              可用：{formatCoinPrice(balance, type === 'USDT' ? USDT_POINT_LENGTH : COIN_POINT_LENGTH)}
             </span>
           </div>
           <div className="row">

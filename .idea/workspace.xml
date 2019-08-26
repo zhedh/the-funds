@@ -3,17 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a61b7edb-69f7-4da5-85e0-c0160a3d4967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/home/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Register.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Register.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/stores/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/stores/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/partial/WalletCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/WalletCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/home/Generalize.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/Generalize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/wallet/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/wallet/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/stores/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/stores/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/utils/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/utils/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/utils/format.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,9 +26,9 @@
     <session id="-381580932">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="49" />
+          <entry key="project.closed" value="50" />
           <entry key="project.open.time.0" value="19" />
-          <entry key="project.open.time.1" value="8" />
+          <entry key="project.open.time.1" value="9" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.3" value="3" />
@@ -38,7 +36,7 @@
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="50" />
+          <entry key="project.opened" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -51,7 +49,7 @@
           <entry key="html" value="15" />
           <entry key="ico" value="3" />
           <entry key="id_rsa_github" value="1" />
-          <entry key="js" value="706" />
+          <entry key="js" value="719" />
           <entry key="json" value="24" />
           <entry key="lock" value="1" />
           <entry key="md" value="8" />
@@ -69,7 +67,7 @@
           <entry key="HTML" value="15" />
           <entry key="Image" value="15" />
           <entry key="JSON" value="24" />
-          <entry key="JavaScript" value="706" />
+          <entry key="JavaScript" value="719" />
           <entry key="Markdown" value="8" />
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="SCSS" value="175" />
@@ -84,7 +82,7 @@
           <entry key="editorconfig" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="62" />
-          <entry key="js" value="36927" />
+          <entry key="js" value="37344" />
           <entry key="json" value="61" />
           <entry key="md" value="461" />
           <entry key="scss" value="8929" />
@@ -96,7 +94,7 @@
           <entry key="CSS" value="23" />
           <entry key="HTML" value="62" />
           <entry key="JSON" value="61" />
-          <entry key="JavaScript" value="36927" />
+          <entry key="JavaScript" value="37344" />
           <entry key="Markdown" value="461" />
           <entry key="PLAIN_TEXT" value="265" />
           <entry key="SCSS" value="8929" />
@@ -120,10 +118,14 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/user/UserCenter.js">
+        <entry file="file://$PROJECT_DIR$/app/src/utils/constants.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2736">
-              <caret line="167" column="20" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
+            <state relative-caret-position="259">
+              <caret line="22" column="33" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="33" />
+              <folding>
+                <element signature="e#31#313#0" expanded="true" />
+                <element signature="e#674#5724#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,32 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="65" column="17" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/stores/product.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/home/Index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+            <state relative-caret-position="-203">
+              <caret line="147" column="40" lean-forward="true" selection-start-line="147" selection-start-column="40" selection-end-line="147" selection-end-column="40" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -165,68 +143,60 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/utils/format.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="614">
+              <caret line="181" column="33" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositBuy.js">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3234">
+              <caret line="151" column="52" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/partial/WalletCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="32" column="31" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/WithdrawRecord.js">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
-              <caret line="140" column="23" lean-forward="true" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
+              <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <element signature="e#512#586#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="109" column="43" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-                <element signature="e#616#696#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4681">
-              <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2310">
-              <caret line="105" column="24" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/stores/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -236,8 +206,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createObjectURL</find>
-      <find>base64ToBlob</find>
       <find>tctx</find>
       <find>mimeType</find>
       <find>getPhotoItem</find>
@@ -266,6 +234,8 @@
       <find>totalAmount</find>
       <find>destroyIframe</find>
       <find>const hasPayPassword = userStore.hasPayPassword</find>
+      <find>usdt</find>
+      <find>formatCoinPrice</find>
     </findStrings>
     <replaceStrings>
       <replace>recommendCode</replace>
@@ -289,7 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/utils/format.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.scss" />
         <option value="$PROJECT_DIR$/app/src/utils/file.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.scss" />
@@ -314,8 +283,6 @@
         <option value="$PROJECT_DIR$/app/src/pages/home/BargainRecord.js" />
         <option value="$PROJECT_DIR$/app/src/pages/deposit/Deposit.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.scss" />
-        <option value="$PROJECT_DIR$/app/src/pages/home/Generalize.js" />
-        <option value="$PROJECT_DIR$/app/src/utils/constants.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/WalletUsdt.js" />
         <option value="$PROJECT_DIR$/app/src/pages/deposit/DepositResult.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/VeritifiedPwd.js" />
@@ -323,23 +290,26 @@
         <option value="$PROJECT_DIR$/app/src/App.scss" />
         <option value="$PROJECT_DIR$/app/src/App.js" />
         <option value="$PROJECT_DIR$/app/src/stores/person.js" />
-        <option value="$PROJECT_DIR$/app/src/pages/wallet/Index.js" />
-        <option value="$PROJECT_DIR$/app/src/components/partial/WalletCard.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/WalletCard.scss" />
         <option value="$PROJECT_DIR$/app/src/api/http.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/WalletCoin.js" />
-        <option value="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" />
         <option value="$PROJECT_DIR$/app/public/index.html" />
         <option value="$PROJECT_DIR$/app/src/routes.js" />
         <option value="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" />
-        <option value="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" />
         <option value="$PROJECT_DIR$/app/src/stores/product.js" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Index.js" />
-        <option value="$PROJECT_DIR$/app/src/stores/user.js" />
-        <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" />
         <option value="$PROJECT_DIR$/app/src/pages/login/Login.js" />
         <option value="$PROJECT_DIR$/app/src/pages/login/Login.scss" />
         <option value="$PROJECT_DIR$/app/src/pages/login/Register.scss" />
+        <option value="$PROJECT_DIR$/app/src/pages/wallet/Index.js" />
+        <option value="$PROJECT_DIR$/app/src/pages/home/Generalize.js" />
+        <option value="$PROJECT_DIR$/app/src/stores/user.js" />
+        <option value="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" />
+        <option value="$PROJECT_DIR$/app/src/utils/constants.js" />
+        <option value="$PROJECT_DIR$/app/src/components/partial/WalletCard.js" />
+        <option value="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" />
+        <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" />
+        <option value="$PROJECT_DIR$/app/src/utils/format.js" />
       </list>
     </option>
   </component>
@@ -420,14 +390,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="partial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -443,14 +405,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="deposit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -459,31 +413,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="notice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="wallet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
@@ -601,21 +531,8 @@
       <workItem from="1566393363003" duration="10043000" />
       <workItem from="1566483131075" duration="7442000" />
       <workItem from="1566525732431" duration="30678000" />
-      <workItem from="1566618980297" duration="54643000" />
-    </task>
-    <task id="LOCAL-00004" summary="create project catalogue">
-      <created>1564328042116</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1564328042116</updated>
-    </task>
-    <task id="LOCAL-00005" summary="create project catalogue">
-      <created>1564328923748</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1564328923749</updated>
+      <workItem from="1566618980297" duration="55462000" />
+      <workItem from="1566819623982" duration="4691000" />
     </task>
     <task id="LOCAL-00006" summary="create project catalogue">
       <created>1564590718459</created>
@@ -946,11 +863,25 @@
       <option name="project" value="LOCAL" />
       <updated>1566733476201</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="update wallet withdraw records">
+      <created>1566740121905</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1566740121906</updated>
+    </task>
+    <task id="LOCAL-00054" summary="update wallet withdraw records">
+      <created>1566744846494</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1566744846494</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="426248000" />
+    <option name="totallyTimeSpent" value="431758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="703" y="23" width="899" height="969" extended-state="0" />
@@ -969,8 +900,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49953917" weight="0.3295325" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32972974" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7266515" visible="true" weight="0.3295325" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2733485" side_tool="true" visible="true" weight="0.3295325" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7255125" visible="true" weight="0.3295325" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.27448747" side_tool="true" visible="true" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49887133" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1037,24 +968,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="update wallet withdraw records" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/pages/home/InviterFriend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="33" />
-          <folding>
-            <element signature="e#472#493#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/partial/QrCodeBox.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#142#163#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1069,10 +986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
           <caret line="57" column="3" lean-forward="true" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <element signature="e#410#428#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1099,9 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="21" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,9 +1026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#935#1955#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,17 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-471">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#596#632#0" expanded="true" />
-            <element signature="e#645#768#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/utils/reg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1144,9 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="26" column="11" lean-forward="true" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1168,32 +1061,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Generalize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1078">
-          <caret line="51" column="18" lean-forward="true" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/api/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/utils/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="e#31#313#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1229,9 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
           <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1239,37 +1109,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/common/Captcha.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-163" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/common/Captcha.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/common/CaptchaPng.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#240#277#0" expanded="true" />
-            <element signature="e#948#1012#0" expanded="true" />
-            <element signature="e#1194#1276#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/common/CaptchaPng.js" />
     <entry file="file://$PROJECT_DIR$/app/src/pages/deposit/DepositResult.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
@@ -1298,9 +1149,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1308,19 +1156,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/partial/WalletCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1328,18 +1163,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="89" selection-start-line="89" selection-end-line="90" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <element signature="e#472#631#0" expanded="true" />
-            <element signature="e#653#832#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1354,9 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1364,30 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <element signature="e#784#1088#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/WithdrawRecord.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="172" column="35" selection-start-line="172" selection-start-column="35" selection-end-line="172" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1395,10 +1191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#script#1;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1420,25 +1212,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
+    <entry file="file://$PROJECT_DIR$/app/src/pages/user/UserCenter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="65" column="17" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="3300">
+          <caret line="167" column="18" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/stores/product.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="154">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
@@ -1446,16 +1232,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/user/UserCenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2736">
-          <caret line="167" column="20" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/home/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
+        <state relative-caret-position="1870">
           <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -1463,19 +1242,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/stores/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
+        <state relative-caret-position="1980">
           <caret line="109" column="43" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="43" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -1484,16 +1253,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4681">
+        <state relative-caret-position="792">
           <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -1508,13 +1270,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositBuy.js">
+    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Generalize.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="140" column="23" lean-forward="true" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
+        <state relative-caret-position="-867">
+          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/utils/reg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1760">
+          <caret line="94" column="30" lean-forward="true" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <element signature="e#512#586#0" expanded="true" />
+            <element signature="e#472#631#0" expanded="true" />
+            <element signature="e#1921#2272#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/stores/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="181" column="33" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/WalletCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/WithdrawRecord.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="147" column="40" lean-forward="true" selection-start-line="147" selection-start-column="40" selection-end-line="147" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositBuy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3234">
+          <caret line="151" column="52" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/utils/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="33" />
+          <folding>
+            <element signature="e#31#313#0" expanded="true" />
+            <element signature="e#674#5724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/utils/format.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>

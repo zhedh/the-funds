@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import {COIN_POINT_LENGTH, SPECIAL_POINT_LENGTH} from "./constants";
 
 export function formatDate(timestamp) {
   if (!timestamp) return ''
@@ -15,14 +16,15 @@ export function formatDateTime(timestamp) {
   return dayjs(timestamp * 1000).format('YYYY.MM.DD HH:mm:ss')
 }
 
-// USDT、ZBX价格与数量都保留4位小数
-export function formatCoinPrice(price) {
+// 币种价格与数量位数格式化
+export function formatCoinPrice(price, length = COIN_POINT_LENGTH) {
   if (!price) return '--'
-  return Number(price).toFixed(4)
+  price = Number(price).toFixed(length)
+  return parseFloat(price)
 }
 
 // 特价额度数量保留2位
 export function formatSpecialOffer(price) {
   if (!price) return '--'
-  return Number(price).toFixed(2)
+  return Number(price).toFixed(SPECIAL_POINT_LENGTH)
 }

@@ -5,6 +5,7 @@ import withdrawImg from '../../assets/images/withdraw.svg'
 import arrowRightImg from '../../assets/images/arrow-right-white.png'
 import {formatCoinPrice} from "../../utils/format"
 import './WalletCard.scss'
+import {COIN_POINT_LENGTH, USDT_POINT_LENGTH} from "../../utils/constants";
 
 class WalletCard extends Component {
   toPage = (link, e) => {
@@ -17,6 +18,7 @@ class WalletCard extends Component {
 
   render() {
     const {card} = this.props
+    const pointLength = card.name === 'USDT' ? USDT_POINT_LENGTH : COIN_POINT_LENGTH
 
     return (
       <div
@@ -26,9 +28,9 @@ class WalletCard extends Component {
       >
         <h1>
           <small>总资产（{card.name}）</small>
-          <span>{formatCoinPrice(card.asset)}</span>
-          {card.locked && <aside>
-            冻结：{formatCoinPrice(card.locked)}
+          <span>{formatCoinPrice(card.asset, pointLength)}</span>
+          {!!card.locked && <aside>
+            冻结：{formatCoinPrice(card.locked, pointLength)}
           </aside>}
         </h1>
         <ul>

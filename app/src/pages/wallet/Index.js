@@ -102,7 +102,7 @@ class Index extends Component {
 
     return (
       <div id="wallet">
-        <Header title="钱包" isFixed isShadow/>
+        <Header hideIcon title="钱包" isFixed isShadow/>
         {userStore.isOnline ? <CardList cards={cards}/> : <ToLogin/>}
       </div>
     );
