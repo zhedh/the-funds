@@ -157,3 +157,21 @@ export function isWxAgent() {
   if (!match) return false
   return (match.toString() === "micromessenger")
 }
+
+/**
+ * @description 隐藏联系客服按钮
+ * @returns {void}
+ */
+
+export function hideChatButton() {
+  let iframes = document.querySelectorAll('iframe')
+  const len = iframes.length || 0
+  if (len <= 0) return
+  for (let i = 0; i < len; i++) {
+    let win = iframes[i].contentWindow
+    let button = win.document.querySelector('.jx_ui_Widget')
+    if (button) {
+      button.style.display = 'none'
+    }
+  }
+}

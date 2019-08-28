@@ -40,13 +40,13 @@ class Bargain extends Component {
             <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
             <small>上次结算时间: {lastClearTime}</small>
             <button onClick={() => history.push('/deposit?type=unLock')}>
-              解锁
+              认购
             </button>
           </div>
-          <p>* 解锁后的特价XC将直接充值到您的账户</p>
+          {/*<p>* 解锁后的特价XC将直接充值到您的账户</p>*/}
         </section>
         <section className="section-main">
-          <h2>当日奖励额度</h2>
+          <h2>当前奖励额度</h2>
           <ul>
             {specialAwards.map(award =>
               <li key={award.remark}>
@@ -57,7 +57,7 @@ class Bargain extends Component {
           </ul>
         </section>
         <section className="section-aside">
-          当日得到的奖励额度，有效期至次日结算时间，如次日结算时还未使用，则奖励额度失效，请尽快使用。
+          当前得到的奖励额度，有效期为俩个交易日，若俩个交易日结算前未使用，则奖励额度失效，请尽快认购。
         </section>
       </div>
     )

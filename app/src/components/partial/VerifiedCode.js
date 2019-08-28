@@ -95,7 +95,7 @@ class VerifiedCode extends Component {
       }
     ).then(res => {
       if (res.status === -1) {
-        // Toast.info(res.msg)
+        Toast.info(res.msg)
         this.getCaptchaPng()
         return
       }
@@ -118,7 +118,7 @@ class VerifiedCode extends Component {
       }
     ).then(res => {
       if (res.status === -1) {
-        // Toast.info(res.msg)
+        Toast.info(res.msg)
         this.getCaptchaPng()
         return
       }

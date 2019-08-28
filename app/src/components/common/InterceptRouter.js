@@ -1,6 +1,7 @@
 import {Component} from "react"
 import {withRouter} from "react-router"
 import {inject, observer} from "mobx-react"
+import {hideChatButton} from "../../utils/common";
 
 @inject('userStore')
 @inject('productStore')
@@ -15,6 +16,9 @@ class InterceptRouter extends Component {
     const {history, location} = this.props
     if (location.pathname === '/') {
       history.push('/home')
+    }
+    if (location.pathname !== '/user-center') {
+      hideChatButton();
     }
   }
 

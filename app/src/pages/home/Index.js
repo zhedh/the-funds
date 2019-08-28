@@ -132,7 +132,7 @@ class Index extends Component {
                     &nbsp;
                     {record.remark}
                   </small>
-                  {record.amount} {currentProduct.productName}
+                  {Number(record.amount).toFixed(0)} {currentProduct.productName}
                 </div>
                 <div className="aside">
                   <time>{formatDate(record.unlockTime)}</time>

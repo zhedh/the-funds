@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react"
 import Header from "../../components/common/Header"
 import walletZbsImg from "../../assets/images/wallet-zbs.png"
 import WalletCard from "../../components/partial/WalletCard"
-import {formatTime} from "../../utils/format"
+import {formatCoinPrice, formatTime} from "../../utils/format"
 import './WalletCoin.scss'
 
 const COIN_CARD = {
@@ -59,7 +59,7 @@ class WalletCoin extends Component {
                 <small>{formatTime(record.addTime)}</small>
               </main>
               <aside>
-                {record.amount}
+                {formatCoinPrice(record.amount)}
               </aside>
             </li>
           )}

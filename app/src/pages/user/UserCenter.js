@@ -4,6 +4,7 @@ import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
 import {inject, observer} from 'mobx-react'
+import {hideChatButton} from "../../utils/common";
 
 class ListItem extends PureComponent {
   render() {
@@ -47,9 +48,7 @@ class UserCenter extends Component {
   }
 
   componentWillUnmount() {
-    this.destroyIframe()
-    // let iframe = document.querySelector('iframe')
-    // iframe.style.display = 'none'
+    hideChatButton();
   }
 
   createIframe = () => {
@@ -64,29 +63,8 @@ class UserCenter extends Component {
     document.body.appendChild(script)
   }
 
-  destroyIframe = () => {
-    let script = document.querySelector('#ze-snippet')
-    let iframe = document.querySelector('iframe')
-
-    if (script) script.remove()
-    if (!iframe) return
-    //把iframe指向空白页面，这样可以释放大部分内存。
-    iframe.src = 'about:blank'
-
-    try {
-      iframe.contentWindow.document.write('')
-      iframe.contentWindow.document.clear()
-    } catch (e) {
-    }
-
-    //把iframe从页面移除
-    iframe.parentNode.removeChild(iframe)
-    console.log(33333)
-  }
-
   onBack = () => {
     const {history} = this.props
-    this.destroyIframe()
     history.push('/home')
   }
 
@@ -106,10 +84,6 @@ class UserCenter extends Component {
         }
       }
     ])
-  }
-
-  toContact = () => {
-    // 联系客服
   }
 
   getAuthLabel = (status) => {
@@ -226,7 +200,7 @@ class UserCenter extends Component {
               textAlign: 'justify',
               padding: '10px'
             }}>
-            当您定存买入成功后,将获得F用户的标示,F用户标示代表着您能够享受定投奖、代数奖、团队奖等相关奖励,F用户标示有效期为48小时。
+            当您定存买入成功后，将获得F用户的标示，F用户标示代表着您能够享受定投奖、代数奖、团队奖等相关奖励，f用户的有效期为3个交易日（包含成为当天）。
           </div>
         </Modal>
       </div>
@@ -235,5 +209,3 @@ class UserCenter extends Component {
 }
 
 export default UserCenter
-
-// 联系客服图片和链接没有通

@@ -30,9 +30,9 @@ class DepositUnlock extends Component {
   }
 
   onDeposit = amount => {
-    const reg = /^([^0][0-9]+|0)$/
+    const reg = /^[0-9]*[1-9][0-9]*$/
     if (!reg.test(amount)) {
-      Toast.info('认购数量需为整数')
+      Toast.info('认购数量需为正整数')
       return
     }
     if (amount) this.setState({showConfirm: true})
@@ -108,14 +108,14 @@ class DepositUnlock extends Component {
           <label>
             <small>
               USDT 余额：
-              {formatCoinPrice(userBalance,USDT_POINT_LENGTH)}
+              {formatCoinPrice(userBalance, USDT_POINT_LENGTH)}
             </small>
             <small>手续费费率：{serviceCharge * 100}%</small>
           </label>
           <h3>
             <span>交易额（USDT）</span>
             <span>
-              {formatCoinPrice(totalAmount,USDT_POINT_LENGTH)}
+              {formatCoinPrice(totalAmount, USDT_POINT_LENGTH)}
             </span>
           </h3>
         </section>
@@ -140,17 +140,17 @@ class DepositUnlock extends Component {
             <div className="content">
               <p className="deposit-price">
                 <span>支付总额（USDT）</span>
-                <span>{formatCoinPrice(totalAmount,USDT_POINT_LENGTH)}</span>
+                <span>{formatCoinPrice(totalAmount, USDT_POINT_LENGTH)}</span>
               </p>
               <p className="service-charge">
                 <span>手续费{serviceCharge * 100}%</span>
                 <span>
-                  {formatSpecialOffer(totalAmount * serviceCharge)}
+                  {formatCoinPrice(totalAmount * serviceCharge)}
                 </span>
               </p>
               <p>
                 <span>可用</span>
-                <span>{formatCoinPrice(userBalance,USDT_POINT_LENGTH)}</span>
+                <span>{formatCoinPrice(userBalance, USDT_POINT_LENGTH)}</span>
               </p>
               <p className="service-charge">
                 *扣款时依照最新的兑价为准

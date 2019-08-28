@@ -157,6 +157,7 @@ class Withdraw extends Component {
       isCountDown
     } = this.state
     const {
+      dayMax,
       amountMin,
       amountMax,
       balance,
@@ -255,7 +256,7 @@ class Withdraw extends Component {
         <section className="section-aside">
           <p>友情提示</p>
           <p> •
-            当前，每人每日最高可提现 {amountMax} {type}，
+            当前，每人每日最高可提现 {dayMax} {type}，
             单笔转出限额为{amountMin} - {amountMax} {type}，
             手续费 {serviceCharge} {type}
           </p>
