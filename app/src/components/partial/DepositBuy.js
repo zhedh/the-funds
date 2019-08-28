@@ -137,12 +137,12 @@ class DepositBuy extends Component {
               <p className="service-charge">
                 <span>手续费{productDetail.serviceCharge * 100}%</span>
                 <span>
-                  {(gearNum * productDetail.serviceCharge).toFixed(2)}
+                  {formatCoinPrice(gearNum * productDetail.serviceCharge)}
                 </span>
               </p>
               <p>
                 <span>可用</span>
-                <span>{formatCoinPrice(productDetail.userWarehouse,COIN_POINT_LENGTH)}</span>
+                <span>{formatCoinPrice(productDetail.userWarehouse, COIN_POINT_LENGTH)}</span>
               </p>
               <div className="input-box">
                 <input

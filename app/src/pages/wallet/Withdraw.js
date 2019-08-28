@@ -205,7 +205,7 @@ class Withdraw extends Component {
             <div className="input-box">
               <input
                 type="text"
-                placeholder="最小提币量0.01"
+                placeholder={'最小提币量' + amountMin}
                 value={amount}
                 onChange={(e) => this.onInputChange(e, 'amount')}
               />

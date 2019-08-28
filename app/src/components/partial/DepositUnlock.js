@@ -7,8 +7,8 @@ import Header from '../common/Header'
 import {formatCoinPrice, formatSpecialOffer} from "../../utils/format";
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import {USDT_POINT_LENGTH} from "../../utils/constants"
 import './DepositUnlock.scss'
-import {USDT_POINT_LENGTH} from "../../utils/constants";
 
 @inject('productStore')
 @inject('userStore')
@@ -30,12 +30,13 @@ class DepositUnlock extends Component {
   }
 
   onDeposit = amount => {
-    const reg = /^[0-9]*[1-9][0-9]*$/
-    if (!reg.test(amount)) {
-      Toast.info('认购数量需为正整数')
-      return
-    }
-    if (amount) this.setState({showConfirm: true})
+    this.setState({showConfirm: true})
+    // const reg = /^[0-9]*[1-9][0-9]*$/
+    // if (!reg.test(amount)) {
+    //   Toast.info('认购数量需为正整数')
+    //   return
+    // }
+    // if (amount) this.setState({showConfirm: true})
   }
 
   onSubmit = () => {
@@ -93,17 +94,24 @@ class DepositUnlock extends Component {
             {formatSpecialOffer(specialOffer)}
           </p>
           <label>
+            {/*<input*/}
+            {/*type="text"*/}
+            {/*placeholder="输入解锁数量"*/}
+            {/*value={unLockAmount}*/}
+            {/*onChange={e => onAmountChange(e)}*/}
+            {/*/>*/}
+            {/*<span*/}
+            {/*className="all"*/}
+            {/*onClick={() => productStore.addAllUnLockAmount()}>*/}
+            {/*全部*/}
+            {/*</span>*/}
             <input
               type="text"
               placeholder="输入解锁数量"
-              value={unLockAmount}
+              value={userSpecial}
+              readOnly
               onChange={e => onAmountChange(e)}
             />
-            <span
-              className="all"
-              onClick={() => productStore.addAllUnLockAmount()}>
-              全部
-            </span>
           </label>
           <label>
             <small>
@@ -115,14 +123,14 @@ class DepositUnlock extends Component {
           <h3>
             <span>交易额（USDT）</span>
             <span>
-              {formatCoinPrice(totalAmount, USDT_POINT_LENGTH)}
+              {formatCoinPrice(specialOffer * userSpecial, USDT_POINT_LENGTH)}
             </span>
           </h3>
         </section>
         <Button
           className="primary-button"
           activeClassName="active"
-          disabled={!unLockAmount}
+          disabled={!userSpecial}
           onClick={() => this.onDeposit(unLockAmount)}
         >
           认购
@@ -140,12 +148,12 @@ class DepositUnlock extends Component {
             <div className="content">
               <p className="deposit-price">
                 <span>支付总额（USDT）</span>
-                <span>{formatCoinPrice(totalAmount, USDT_POINT_LENGTH)}</span>
+                <span>{formatCoinPrice(specialOffer * userSpecial, USDT_POINT_LENGTH)}</span>
               </p>
               <p className="service-charge">
                 <span>手续费{serviceCharge * 100}%</span>
                 <span>
-                  {formatCoinPrice(totalAmount * serviceCharge)}
+                  {formatCoinPrice(specialOffer * userSpecial * serviceCharge)}
                 </span>
               </p>
               <p>
