@@ -97,10 +97,11 @@ class ProductStore {
 
   @action
   createSpecialOrder(payToken) {
+    const {userSpecial} = this.productDetail
     return ProductApi.createOrder({
       payToken,
       productId: this.productDetail.productId,
-      productAmount: this.unLockAmount,
+      productAmount: userSpecial,
       special: '1'
     })
   }

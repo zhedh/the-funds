@@ -39,14 +39,14 @@ class Bargain extends Component {
           <div className="banner">
             <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
             <small>上次结算时间: {lastClearTime}</small>
-            <button onClick={() => history.push('/deposit?type=unLock')}>
+            <button onClick={() => history.push({pathname: '/deposit', state: 1})}>
               认购
             </button>
           </div>
           {/*<p>* 解锁后的特价XC将直接充值到您的账户</p>*/}
         </section>
         <section className="section-main">
-          <h2>当前奖励额度</h2>
+          <h2>上次结算奖励额度</h2>
           <ul>
             {specialAwards.map(award =>
               <li key={award.remark}>
