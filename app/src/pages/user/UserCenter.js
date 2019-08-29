@@ -1,5 +1,6 @@
 import React, {Component, PureComponent} from 'react'
 import {Modal} from 'antd-mobile'
+import {SWITCH} from '../../config'
 import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
 import './UserCenter.scss'
@@ -40,7 +41,9 @@ class UserCenter extends Component {
 
   componentDidMount() {
     const {personStore, userStore} = this.props
-    this.createIframe()
+    if(SWITCH.PROJECT === 'XC'){
+      this.createIframe()
+    }
 
     if (userStore.isOnline) {
       personStore.getUserInfo()
@@ -129,7 +132,7 @@ class UserCenter extends Component {
               </ul>
               {!hideAuthButton && (
                 <button
-                  className="certification"
+                  className={`certification ${SWITCH.PROJECT === 'XC' ? 'xc':'nttc'}`}
                   onClick={() => history.push('/verified-country')}
                 >
                   实名认证
@@ -168,12 +171,12 @@ class UserCenter extends Component {
             name="账户安全"
             url={userStore.isOnline ? '/account' : '/login'}
           />
-          {/*<ListItem*/}
-          {/*icon={require('../../assets/images/account.svg')}*/}
-          {/*name="联系客服"*/}
-          {/*// url={'/user-center'}*/}
-          {/*onHandle={this.toContact}*/}
-          {/*/>*/}
+          {SWITCH.PROJECT === 'NTTC' && <ListItem
+          icon={require('../../assets/images/account.svg')}
+          name="联系客服"
+          url={'/contact-us'}
+          // onHandle={this.toContact}
+          />}
         </section>
         {userStore.isOnline && (
           <section className={`list-content list-second`}>

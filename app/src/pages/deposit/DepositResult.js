@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button} from 'antd-mobile'
+import {AUTH} from '../../assets/static'
 import './DepositResult.scss'
 
 @inject('personStore')
@@ -22,7 +23,7 @@ class DepositResult extends Component {
         <img
           className="result-img"
           alt="结果图片"
-          src={require('../../assets/images/vertified-success.png')}
+          src={AUTH.IMG_SUCCESS}
         />
         <div className="result-content">
           <h2>支付成功！</h2>

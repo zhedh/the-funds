@@ -87,6 +87,10 @@ const AccountSafe = Loadable({
   loader: () => import('./pages/user/AccountSafe'),
   loading: Loading
 })
+const ContactUs = Loadable({
+  loader: () => import('./pages/user/ContactUs'),
+  loading: Loading
+})
 const VerifiedCountry = Loadable({
   loader: () => import('./pages/user/VerifiedCountry'),
   loading: Loading
@@ -167,7 +171,7 @@ export default [
   {path: '/user-center', name: 'UserCenter', component: UserCenter},
   {path: '/notices', name: 'Notices', component: Notices},
   {path: '/account', name: 'AccountSafe', component: AccountSafe},
-  // { path: '/contact', name: 'ContactCustomer', component: ContactCustomer },
+  { path: '/contact-us', name: 'ContactUs', component: ContactUs },
 
   // 实名认证
   {

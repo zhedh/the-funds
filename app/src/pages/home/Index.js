@@ -61,7 +61,9 @@ class Index extends Component {
 
     return (
       <div id="home">
-        <section className="section-banner">
+        <section
+          className="section-banner"
+          style={{backgroundImage: `url(${HOME.IMG_BG})`}}>
           <Header
             title={HOME.TITLE}
             icon={userCenterImg}

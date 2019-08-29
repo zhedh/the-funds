@@ -1,25 +1,26 @@
 import React, {Component, Fragment} from 'react'
 import {Button, Toast} from 'antd-mobile'
-import Header from '../../components/common/Header'
-import './VerifiedIdentity.scss'
-import {COUNTRIES_LIST, TOAST_DURATION} from '../../utils/constants'
 import {inject, observer} from 'mobx-react'
+import {AUTH} from '../../assets/static'
+import Header from '../../components/common/Header'
+import {COUNTRIES_LIST, TOAST_DURATION} from '../../utils/constants'
+import './VerifiedIdentity.scss'
 
 const typeList = [
   {
     name: '身份证',
-    icon: require('../../assets/images/idcard.svg'),
-    active: require('../../assets/images/idcard-active.svg')
+    icon: require('../../assets/images/common/auth-id-card.svg'),
+    active: AUTH.IMG_ID_CARD
   },
   {
     name: '护照',
-    icon: require('../../assets/images/passport.svg'),
-    active: require('../../assets/images/passport-active.svg')
+    icon: require('../../assets/images/common/auth-passport.svg'),
+    active: AUTH.IMG_PASSPORT
   },
   {
     name: '驾照',
-    icon: require('../../assets/images/driving.svg'),
-    active: require('../../assets/images/driving-active.svg')
+    icon: require('../../assets/images/common/auth-driving.svg'),
+    active: AUTH.IMG_DRIVING
   }
 ]
 

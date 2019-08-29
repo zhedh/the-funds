@@ -6,9 +6,9 @@ import {Button, Toast} from 'antd-mobile'
 import Header from '../common/Header'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import {formatCoinPrice} from "../../utils/format"
+import {COIN_POINT_LENGTH} from "../../utils/constants"
 import './DepositBuy.scss'
-import {formatCoinPrice} from "../../utils/format";
-import {COIN_POINT_LENGTH} from "../../utils/constants";
 
 @inject('productStore')
 @inject('userStore')

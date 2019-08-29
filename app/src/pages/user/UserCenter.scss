@@ -66,7 +66,14 @@
           border-radius: 5px;
           box-sizing: border-box;
           padding: 7px 10px;
-          @include background-gradient(#ff9665, $primary-color);
+
+          &.nttc {
+            @include background-gradient($primary-color-gradient, $primary-color);
+          }
+
+          &.xc {
+            @include background-gradient(#ff9665, $warn-color);
+          }
         }
 
         ul {

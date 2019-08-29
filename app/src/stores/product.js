@@ -107,8 +107,8 @@ class ProductStore {
   }
 
   @action
-  onAmountChange = e => {
-    this.unLockAmount = e.target && e.target.value
+  onAmountChange(value) {
+    this.unLockAmount = value
   }
 
   @action
