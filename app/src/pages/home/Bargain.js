@@ -37,8 +37,11 @@ class Bargain extends Component {
         </header>
         <section className="section-banner">
           <div className="banner">
-            <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
-            <small>上次结算时间: {lastClearTime}</small>
+            <div className="info">
+              <span>{BARGAIN.BANNER_LABEL}{allUsableSpecial}46763743</span>
+              <br/>
+              <small>上次结算时间：{lastClearTime}</small>
+            </div>
             <button onClick={() => history.push({pathname: '/deposit', state: 1})}>
               认购
             </button>

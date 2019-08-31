@@ -6,7 +6,7 @@ import {FiChevronRight} from "react-icons/fi"
 import {IoIosMegaphone} from "react-icons/io"
 import {GoMailRead} from "react-icons/go"
 
-import {formatDate} from "../../utils/format"
+import {formatDate, formatSpecialOffer} from "../../utils/format"
 import userCenterImg from '../../assets/images/user-center.png'
 import {HOME} from '../../assets/static'
 import Dialog from "../../components/common/Dialog"
@@ -29,27 +29,6 @@ class Index extends Component {
         personStore.getDepositRecords({productId, status: 0})
       })
     }
-
-    this.destroyIframe()
-  }
-
-  destroyIframe = () => {
-    let script = document.querySelector('#ze-snippet')
-    let iframe = document.querySelector('iframe')
-
-    if (script) script.remove()
-    if (!iframe) return
-    //把iframe指向空白页面，这样可以释放大部分内存。
-    iframe.src = 'about:blank'
-
-    try {
-      iframe.contentWindow.document.write('')
-      iframe.contentWindow.document.clear()
-    } catch (e) {
-    }
-
-    //把iframe从页面移除
-    iframe.parentNode.removeChild(iframe)
   }
 
   render() {
@@ -72,7 +51,8 @@ class Index extends Component {
               // history.push("user-center");
             }}
           />
-          <div className="notice-carousel" onClick={() => history.push('/notices')}>
+          <div className="notice-carousel"
+               onClick={() => notices.length ? history.push('/notices') : ''}>
             <label>
               <IoIosMegaphone className="megaphone"/>
               公告：
@@ -87,7 +67,10 @@ class Index extends Component {
                 autoplay
                 infinite>
                 {notices.map(notice =>
-                  <div key={notice.id} className="item">
+                  <div
+                    key={notice.id}
+                    className="item"
+                    onClick={() => window.location.href=notice.linkUrl}>
                     {notice.title}
                   </div>
                 )}
@@ -98,7 +81,7 @@ class Index extends Component {
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
               <div className="text">
-                {userStore.isOnline ? <b>{personStore.allUsableSpecial}</b> : <span>登录查看</span>}
+                {userStore.isOnline ? <b>{formatSpecialOffer(personStore.allUsableSpecial)}</b> : <span>登录查看</span>}
                 <br/>
                 <small>可用特价额度</small>
               </div>

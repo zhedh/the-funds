@@ -17,10 +17,10 @@ class WalletStore {
 
   @action
   getCurrentWallet(productId) {
-    if (this.wallets.length > 0) {
-      this.currentWallet = this.wallets.find(wallet => wallet.productId === productId) || {}
-      return Promise.resolve(this.currentWallet)
-    }
+    // if (this.wallets.length > 0) {
+    //   this.currentWallet = this.wallets.find(wallet => wallet.productId === productId) || {}
+    //   return Promise.resolve(this.currentWallet)
+    // }
     return this.getWallets().then(() => {
       this.currentWallet = this.wallets.find(wallet => wallet.productId === productId) || {}
       return this.currentWallet

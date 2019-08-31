@@ -83,6 +83,10 @@ const Notices = Loadable({
   loader: () => import('./pages/notice/Notices'),
   loading: Loading
 })
+const NoticeDetail = Loadable({
+  loader: () => import('./pages/notice/NoticeDetail'),
+  loading: Loading
+})
 const AccountSafe = Loadable({
   loader: () => import('./pages/user/AccountSafe'),
   loading: Loading
@@ -170,6 +174,7 @@ export default [
   // 个人中心
   {path: '/user-center', name: 'UserCenter', component: UserCenter},
   {path: '/notices', name: 'Notices', component: Notices},
+  {path: '/notice/:id', name: 'NoticeDetail', component: NoticeDetail},
   {path: '/account', name: 'AccountSafe', component: AccountSafe},
   { path: '/contact-us', name: 'ContactUs', component: ContactUs },
 

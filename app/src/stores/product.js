@@ -17,7 +17,8 @@ class ProductStore {
 
   @computed
   get currentProduct() {
-    return this.products.find(product => product.id === Number(this.productId)) || this.products[0] || {}
+    if(!this.products.length) return {}
+    return this.products.find(product => product.id === Number(this.productId)) || this.products[0]
   }
 
   @computed

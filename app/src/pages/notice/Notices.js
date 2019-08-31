@@ -32,7 +32,8 @@ class Notices extends Component {
               <ul
                 key={notice.id}
                 className="list-item"
-                onClick={() => (window.location.href = notice.linkUrl)}
+                onClick={() => window.location.href = notice.linkUrl}
+                // onClick={() => history.push('/notice/' + notice.id)}
               >
                 <li>{notice.title}</li>
                 <li>{formatTime(notice.addTime)}</li>

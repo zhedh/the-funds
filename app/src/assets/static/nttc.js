@@ -1,13 +1,13 @@
 const HTTC = {
   HOME: {
-    TITLE: 'HTTC节点计划',
+    TITLE: 'NTTC节点计划',
     IMG_BG:require('../images/nttc/home-bg.png'),
     ICON_HOME: require('../images/nttc-icon-home.png'),
     ICON_DEPOSIT: require('../images/nttc-icon-deposit.png'),
     ICON_WALLET: require('../images/nttc-icon-wallet.png')
   },
   BARGAIN: {
-    BANNER_LABEL: '特价HTTC奖励额度：'
+    BANNER_LABEL: '特价NTTC奖励额度：'
   },
   AUTH:{
     IMG_BACK:require('../images/nttc/auth-card-back.png'),
