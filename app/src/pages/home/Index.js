@@ -100,9 +100,9 @@ class Index extends Component {
         <section className="section-main">
           <div className="steps">
             {/*<Link to={userStore.isOnline ? '/home/deposit-history' : '/login'}>*/}
-            {/*定存中*/}
+            {/*参与计划中*/}
             {/*</Link>*/}
-            <span>定存中</span>
+            <span>参与计划中</span>
             <Link to="/home/rule">
               规则介绍
               <FiChevronRight className="icon"/>
@@ -130,7 +130,7 @@ class Index extends Component {
         <Dialog
           show={false}
           title="温馨提示"
-          msg="参与定存需先进行身份认证哦"
+          msg="参与计划需先进行身份认证哦"
         />
       </div>
     )

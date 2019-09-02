@@ -38,7 +38,7 @@ class DepositHistory extends Component {
     return (
       <div id="deposit-history">
         <Header
-          title="定存历史"
+          title="参与计划历史"
           isFixed
           isShadow
           onHandle={() => history.push('/home')}
@@ -55,7 +55,7 @@ class DepositHistory extends Component {
                 <span>{history.order}</span>
               </p>
               <p>
-                <label>定存XC</label>
+                <label>X PLAY</label>
                 <span>{history.depositZbx}</span>
               </p>
               <p>

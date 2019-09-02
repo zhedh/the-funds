@@ -200,7 +200,7 @@ export default [
     component: VerifiedResult
   },
 
-  // 定存
+  // X PLAY
   {path: '/deposit', name: 'Deposit', component: Deposit},
   {path: '/deposit/result', name: 'DepositResult', component: DepositResult},
 

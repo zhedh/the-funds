@@ -2,9 +2,6 @@ const XC = {
   HOME: {
     TITLE: 'X PLAY',
     IMG_BG: require('../images/xc/home-bg.png'),
-    ICON_HOME: require('../images/find-pre.svg'),
-    ICON_DEPOSIT: require('../images/deposit-pre.svg'),
-    ICON_WALLET: require('../images/wallet-pre.svg')
   },
   BARGAIN: {
     BANNER_LABEL: '特价XC奖励额度：'
@@ -19,6 +16,15 @@ const XC = {
     IMG_WAIT:require('../images/xc/auth-wait.png'),
     IMG_SUCCESS:require('../images/xc/auth-success.png'),
     IMG_FAIL:require('../images/xc/auth-fail.png'),
+  },
+  DEPOSIT:{
+    COIN_NAME:'X PLAY'
+  },
+  FOOTER:{
+    ICON_HOME: require('../images/find-pre.svg'),
+    ICON_DEPOSIT: require('../images/deposit-pre.svg'),
+    ICON_WALLET: require('../images/wallet-pre.svg'),
+    LABEL_DEPOSIT: 'X PLAY'
   }
 }
 

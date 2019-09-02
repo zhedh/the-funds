@@ -7,7 +7,7 @@ import './NoticeDetail.scss'
 @inject('noticeStore')
 @observer
 class NoticeDetail extends Component {
-  state = {url: ''}
+  state = {content: ''}
 
   componentDidMount() {
     const {noticeStore, match} = this.props
@@ -16,13 +16,13 @@ class NoticeDetail extends Component {
       if (res.status !== 1) {
         Toast.info(res.msg)
       }
-      this.setState({url: res.data.linkUrl})
+      this.setState({content: res.data.content})
       console.log(res.data)
     })
   }
 
   render() {
-    const {url} = this.state
+    const {content} = this.state
 
     return (
       <div className="notice-detail">
@@ -32,14 +32,15 @@ class NoticeDetail extends Component {
           isFixed
           bgWhite
         />
-        {url && <iframe
-          id="iframe-notice"
-          // src={url}
-          title="公告"
-          src="https://www.jb51.net"
-          frameborder="0"
-          target="_blank">
-        </iframe>}
+        <div dangerouslySetInnerHTML={{__html: content}}> </div>
+        {/*{url && <iframe*/}
+        {/*id="iframe-notice"*/}
+        {/*// src={url}*/}
+        {/*title="公告"*/}
+        {/*src="https://www.jb51.net"*/}
+        {/*frameborder="0"*/}
+        {/*target="_blank">*/}
+        {/*</iframe>}*/}
       </div>
     );
   }

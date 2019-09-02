@@ -1,36 +1,29 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import './Footer.scss'
-import { HOME } from '../../assets/static'
+import { FOOTER } from '../../assets/static'
 import FindSvg from '../../assets/images/find.svg'
 import DepositSvg from '../../assets/images/deposit.svg'
 import WalletSvg from '../../assets/images/wallet.svg'
-
-// import FindPreSvg from '../../assets/images/find-pre.svg'
-// import DepositPreSvg from '../../assets/images/deposit-pre.svg'
-// import WalletPreSvg from '../../assets/images/wallet-pre.svg'
 
 const TABS = [
   {
     pathname: '/home',
     label: '首页',
     image: FindSvg,
-    // imagePre: FindPreSvg
-    imagePre: HOME.ICON_HOME
+    imagePre: FOOTER.ICON_HOME
   },
   {
     pathname: '/deposit',
-    label: '定投',
+    label: FOOTER.LABEL_DEPOSIT,
     image: DepositSvg,
-    // imagePre: DepositPreSvg
-    imagePre: HOME.ICON_DEPOSIT
+    imagePre: FOOTER.ICON_DEPOSIT
   },
   {
     pathname: '/wallet',
     label: '钱包',
     image: WalletSvg,
-    // imagePre: WalletPreSvg
-    imagePre: HOME.ICON_WALLET
+    imagePre: FOOTER.ICON_WALLET
   }
 ]
 
