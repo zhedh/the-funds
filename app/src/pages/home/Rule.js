@@ -158,6 +158,13 @@ function XcRule() {
         &nbsp;&nbsp;附属3个一级节点，
         且节点下有2960个有效用户，享有下属用户每6个XC折扣配额空投每参与通证定投计划一次，该节点额外获得1个XC折扣
         配额空投。
+        <br />
+        <br />
+        <br />
+        <span className="text-right">
+          XC官方地址：http://www.zbXCoin.com
+          <br /> 2019年9月1日
+        </span>
       </p>
     </div>
   )
