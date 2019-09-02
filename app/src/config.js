@@ -5,7 +5,7 @@
 // 2.package.json 下修改 antd-mobile 主题颜色
 
 
-// XC定投代码仓库：
+// X PLAY代码仓库：
 // ssh://www@47.75.138.157/data/git/zmfund-front.git
 //
 // NTTC代码仓库：
