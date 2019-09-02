@@ -4,7 +4,6 @@
 // 1.styles 文件夹下 mixin.scss 修改 variable 的引用
 // 2.package.json 下修改 antd-mobile 主题颜色
 
-
 // XC定投代码仓库：
 // ssh://www@47.75.138.157/data/git/zmfund-front.git
 //
@@ -20,7 +19,6 @@
 // nttc正式站访问地址：http://www.naturenode.org
 // nttc测试站访问地址：http://47.75.138.157:8081
 
-
 /**
  * @description 开关配置，打包前修改配置
  *
@@ -29,8 +27,8 @@
  * */
 
 export const SWITCH = {
-  // PROJECT: 'NTTC',
-  PROJECT: 'XC',
+  PROJECT: 'NTTC',
+  // PROJECT: 'XC',
   ONLINE: false
 }
 
