@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.title = SWITCH.PROJECT === 'XC' ? 'XC定投' : 'NTTC'
+    document.title = SWITCH.PROJECT === 'XC' ? 'X PLAY' : 'NTTC'
   }
 
   render() {

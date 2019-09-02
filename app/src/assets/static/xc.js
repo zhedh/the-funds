@@ -1,6 +1,6 @@
 const XC = {
   HOME: {
-    TITLE: '定投XC',
+    TITLE: 'X PLAY',
     IMG_BG: require('../images/xc/home-bg.png'),
     ICON_HOME: require('../images/find-pre.svg'),
     ICON_DEPOSIT: require('../images/deposit-pre.svg'),
