@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Header from "../../components/common/Header";
+import React, { Component } from 'react'
+import Header from '../../components/common/Header'
 import './DepositHistory.scss'
 
 const HISTORIES = [
@@ -13,7 +13,8 @@ const HISTORIES = [
     fee: '0.15',
     exchangePrince: '0.45',
     returnZbx: '123.19'
-  }, {
+  },
+  {
     id: 2,
     time: '2019.07.09 15:00',
     status: '已返还',
@@ -23,28 +24,28 @@ const HISTORIES = [
     fee: '0.15',
     exchangePrince: '0.45',
     returnZbx: '123.19'
-  },
-];
+  }
+]
 
 class DepositHistory extends Component {
   state = {
-    depositHistories: HISTORIES,
-  };
+    depositHistories: HISTORIES
+  }
 
   render() {
-    const {history} = this.props
-    const {depositHistories} = this.state;
+    const { history } = this.props
+    const { depositHistories } = this.state
 
     return (
       <div id="deposit-history">
         <Header
-          title="定存历史"
+          title="参与计划历史"
           isFixed
           isShadow
           onHandle={() => history.push('/home')}
         />
         <ul>
-          {depositHistories.map(history =>
+          {depositHistories.map(history => (
             <li key={history.id}>
               <aside>
                 <span>{history.time}</span>
@@ -55,7 +56,7 @@ class DepositHistory extends Component {
                 <span>{history.order}</span>
               </p>
               <p>
-                <label>定存XC</label>
+                <label>X PLAN</label>
                 <span>{history.depositZbx}</span>
               </p>
               <p>
@@ -74,12 +75,12 @@ class DepositHistory extends Component {
                 <label>到期返还XC</label>
                 <span>{history.returnZbx}</span>
               </p>
-            </li>)
-          }
+            </li>
+          ))}
         </ul>
       </div>
-    );
+    )
   }
 }
 
-export default DepositHistory;
+export default DepositHistory

@@ -27,7 +27,7 @@ class ProductApi {
    * @required payToken string 支付TOKEN
    * @required productId string 商品id
    * @required productAmount string 商品数量
-   * special string 0为普通定存，1为特价买入
+   * special string 0为普通参与，1为特价买入
    *
    **/
   static createOrder(options = {}) {
