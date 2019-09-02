@@ -22,7 +22,7 @@ class NoticeDetail extends Component {
   }
 
   render() {
-    // const {url} = this.state
+    const {url} = this.state
 
     return (
       <div className="notice-detail">
@@ -32,8 +32,14 @@ class NoticeDetail extends Component {
           isFixed
           bgWhite
         />
-        {/*{url && <iframe id="iframe-notice" src={url} frameborder="0">*/}
-        {/*</iframe>}*/}
+        {url && <iframe
+          id="iframe-notice"
+          // src={url}
+          title="公告"
+          src="https://www.jb51.net"
+          frameborder="0"
+          target="_blank">
+        </iframe>}
       </div>
     );
   }

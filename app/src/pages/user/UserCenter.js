@@ -1,11 +1,11 @@
 import React, {Component, PureComponent} from 'react'
+import {inject, observer} from 'mobx-react'
 import {Modal} from 'antd-mobile'
 import {SWITCH} from '../../config'
 import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
+import {hideChatButton} from "../../utils/common"
 import './UserCenter.scss'
-import {inject, observer} from 'mobx-react'
-import {hideChatButton} from "../../utils/common";
 
 class ListItem extends PureComponent {
   render() {

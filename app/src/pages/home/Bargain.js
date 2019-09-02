@@ -38,7 +38,7 @@ class Bargain extends Component {
         <section className="section-banner">
           <div className="banner">
             <div className="info">
-              <span>{BARGAIN.BANNER_LABEL}{allUsableSpecial}46763743</span>
+              <span>{BARGAIN.BANNER_LABEL}{allUsableSpecial}</span>
               <br/>
               <small>上次结算时间：{lastClearTime}</small>
             </div>
