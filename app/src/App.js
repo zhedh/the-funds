@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
-import {Provider} from 'mobx-react'
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { Provider } from 'mobx-react'
 import Loadable from 'react-loadable'
 import InterceptRouter from './components/common/InterceptRouter'
 import routes from './routes'
 import stores from './stores'
 import NoMatch from './pages/exception/404'
-import {SWITCH} from './config'
+import { SWITCH } from './config'
 
 import './App.scss'
 
@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    const {...storesArray} = stores
+    const { ...storesArray } = stores
 
     return (
       <Provider {...storesArray}>
@@ -49,9 +49,9 @@ class App extends Component {
                 />
               )
             })}
-            <Route component={NoMatch}/>
+            <Route component={NoMatch} />
           </Switch>
-          <LoadableFooter/>
+          <LoadableFooter />
         </div>
       </Provider>
     )

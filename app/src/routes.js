@@ -167,15 +167,15 @@ export default [
   },
 
   // 登陆注册
-  {path: '/login', name: 'Login', component: Login},
-  {path: '/register', name: 'Register', component: Register},
-  {path: '/password/:type', name: 'Password', component: Password},
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/register', name: 'Register', component: Register },
+  { path: '/password/:type', name: 'Password', component: Password },
 
   // 个人中心
-  {path: '/user-center', name: 'UserCenter', component: UserCenter},
-  {path: '/notices', name: 'Notices', component: Notices},
-  {path: '/notice/:id', name: 'NoticeDetail', component: NoticeDetail},
-  {path: '/account', name: 'AccountSafe', component: AccountSafe},
+  { path: '/user-center', name: 'UserCenter', component: UserCenter },
+  { path: '/notices', name: 'Notices', component: Notices },
+  { path: '/notice/:id', name: 'NoticeDetail', component: NoticeDetail },
+  { path: '/account', name: 'AccountSafe', component: AccountSafe },
   { path: '/contact-us', name: 'ContactUs', component: ContactUs },
 
   // 实名认证
