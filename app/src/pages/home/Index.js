@@ -70,7 +70,9 @@ class Index extends Component {
                   <div
                     key={notice.id}
                     className="item"
-                    onClick={() => window.location.href=notice.linkUrl}>
+                    // onClick={() => window.location.href=notice.linkUrl}
+                    onClick={() => history.push('/notice/' + notice.id)}
+                  >
                     {notice.title}
                   </div>
                 )}
@@ -81,7 +83,8 @@ class Index extends Component {
           <ul className="tabs">
             <li onClick={() => history.push(userStore.isOnline ? '/home/bargain' : '/login')}>
               <div className="text">
-                {userStore.isOnline ? <b>{formatSpecialOffer(personStore.allUsableSpecial)}</b> : <span>登录查看</span>}
+                {userStore.isOnline ? <b>{formatSpecialOffer(personStore.allUsableSpecial)}</b> :
+                  <span>登录查看</span>}
                 <br/>
                 <small>可用特价额度</small>
               </div>

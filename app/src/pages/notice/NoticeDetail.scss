@@ -6,3 +6,15 @@
   width: 100%;
   height: 100vh;
 }
+
+.notice-detail {
+  box-sizing: border-box;
+  padding-top: $header-height;
+
+  .htmlContent {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

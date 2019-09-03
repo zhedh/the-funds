@@ -55,7 +55,7 @@ class DepositHistory extends Component {
                 <span>{history.order}</span>
               </p>
               <p>
-                <label>X PLAY</label>
+                <label>X PLAN</label>
                 <span>{history.depositZbx}</span>
               </p>
               <p>

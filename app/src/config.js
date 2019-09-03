@@ -4,7 +4,7 @@
 // 1.styles 文件夹下 mixin.scss 修改 variable 的引用
 // 2.package.json 下修改 antd-mobile 主题颜色
 
-// X PLAY代码仓库：
+// X PLAN代码仓库：
 // ssh://www@47.75.138.157/data/git/zmfund-front.git
 //
 // NTTC代码仓库：
@@ -29,7 +29,7 @@
 export const SWITCH = {
   // PROJECT: 'NTTC',
   PROJECT: 'XC',
-  ONLINE: false
+  ONLINE: true
 }
 
 const XC = {

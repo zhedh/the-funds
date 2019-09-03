@@ -17,7 +17,6 @@ class NoticeDetail extends Component {
         Toast.info(res.msg)
       }
       this.setState({content: res.data.content})
-      console.log(res.data)
     })
   }
 
@@ -32,7 +31,7 @@ class NoticeDetail extends Component {
           isFixed
           bgWhite
         />
-        <div dangerouslySetInnerHTML={{__html: content}}> </div>
+        {content && <div className="htmlContent" dangerouslySetInnerHTML={{__html: `<div>${content}</div>`}}></div>}
         {/*{url && <iframe*/}
         {/*id="iframe-notice"*/}
         {/*// src={url}*/}

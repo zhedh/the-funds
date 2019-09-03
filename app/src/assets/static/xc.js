@@ -1,6 +1,6 @@
 const XC = {
   HOME: {
-    TITLE: 'X PLAY',
+    TITLE: 'X PLAN',
     IMG_BG: require('../images/xc/home-bg.png'),
   },
   BARGAIN: {
@@ -18,13 +18,13 @@ const XC = {
     IMG_FAIL:require('../images/xc/auth-fail.png'),
   },
   DEPOSIT:{
-    COIN_NAME:'X PLAY'
+    COIN_NAME:'X PLAN'
   },
   FOOTER:{
     ICON_HOME: require('../images/find-pre.svg'),
     ICON_DEPOSIT: require('../images/deposit-pre.svg'),
     ICON_WALLET: require('../images/wallet-pre.svg'),
-    LABEL_DEPOSIT: 'X PLAY'
+    LABEL_DEPOSIT: 'X PLAN'
   }
 }
 

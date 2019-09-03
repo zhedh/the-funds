@@ -3,30 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="a61b7edb-69f7-4da5-85e0-c0160a3d4967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/api/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/api/person.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/api/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/api/product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/api/wallet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/api/wallet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/images/deposit-pre.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/images/deposit-pre.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/images/deposit.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/images/deposit.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/images/find-pre.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/images/find-pre.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/images/find.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/images/find.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/images/wallet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/images/wallet.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/assets/static/nttc.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/static/nttc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/assets/static/xc.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/assets/static/xc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/common/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/common/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/deposit/Deposit.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/deposit/Deposit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/home/DepositHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/DepositHistory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/home/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/home/Rule.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/home/Rule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/notice/Notices.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/notice/Notices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/user/VerifiedUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/user/VerifiedUpload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/styles/mixin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/styles/mixin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/完成状态.md" beforeDir="false" afterPath="$PROJECT_DIR$/完成状态.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,14 +50,14 @@
           <entry key="html" value="16" />
           <entry key="ico" value="3" />
           <entry key="id_rsa_github" value="1" />
-          <entry key="js" value="835" />
+          <entry key="js" value="837" />
           <entry key="json" value="29" />
           <entry key="lock" value="1" />
           <entry key="md" value="8" />
           <entry key="nunjucks" value="1" />
           <entry key="png" value="34" />
           <entry key="pub" value="2" />
-          <entry key="scss" value="212" />
+          <entry key="scss" value="213" />
           <entry key="svg" value="29" />
           <entry key="ts" value="13" />
         </counts>
@@ -82,10 +68,10 @@
           <entry key="HTML" value="16" />
           <entry key="Image" value="37" />
           <entry key="JSON" value="29" />
-          <entry key="JavaScript" value="835" />
+          <entry key="JavaScript" value="837" />
           <entry key="Markdown" value="8" />
           <entry key="PLAIN_TEXT" value="10" />
-          <entry key="SCSS" value="212" />
+          <entry key="SCSS" value="213" />
           <entry key="SVG" value="29" />
           <entry key="TypeScript" value="13" />
           <entry key="yarn.lock" value="1" />
@@ -97,10 +83,10 @@
           <entry key="editorconfig" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="88" />
-          <entry key="js" value="39179" />
+          <entry key="js" value="39240" />
           <entry key="json" value="61" />
           <entry key="md" value="463" />
-          <entry key="scss" value="9234" />
+          <entry key="scss" value="9275" />
           <entry key="svg" value="8" />
           <entry key="txt" value="280" />
         </counts>
@@ -110,10 +96,10 @@
           <entry key="CSS" value="23" />
           <entry key="HTML" value="88" />
           <entry key="JSON" value="61" />
-          <entry key="JavaScript" value="39179" />
+          <entry key="JavaScript" value="39240" />
           <entry key="Markdown" value="463" />
           <entry key="PLAIN_TEXT" value="282" />
-          <entry key="SCSS" value="9234" />
+          <entry key="SCSS" value="9275" />
           <entry key="SVG" value="8" />
         </counts>
       </usages-collector>
@@ -137,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="33" column="10" lean-forward="true" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+            <state relative-caret-position="299">
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -147,12 +133,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/pages/home/Rule.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3476">
-              <caret line="158" column="47" selection-start-line="158" selection-start-column="47" selection-end-line="158" selection-end-column="47" />
+            <state relative-caret-position="995">
+              <caret line="279" column="14" lean-forward="true" selection-start-line="279" selection-start-column="14" selection-end-line="279" selection-end-column="14" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
+                <element signature="n#!!block;n#XcRule#0" />
               </folding>
             </state>
           </provider>
@@ -161,8 +157,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/pages/notice/Notices.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="292">
+              <caret line="35" selection-start-line="35" selection-end-line="36" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -170,14 +166,39 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1056">
+              <caret line="48" column="49" lean-forward="true" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
+              <folding>
+                <element signature="e#596#654#0" expanded="true" />
+                <element signature="e#667#790#0" expanded="true" />
+                <element signature="e#677#729#0" expanded="true" />
+                <element signature="e#738#788#0" expanded="true" />
+                <element signature="e#815#870#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/pages/home/Index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="113" column="25" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="25" />
+            <state relative-caret-position="293">
+              <caret line="139" column="3" selection-start-line="139" selection-start-column="3" selection-end-line="139" selection-end-column="3" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/assets/static/nttc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -186,9 +207,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>imgUrl</find>
-      <find>sendMailCode</find>
-      <find>confirm</find>
       <find>usable</find>
       <find>CaptchaPng</find>
       <find>Home</find>
@@ -216,14 +234,18 @@
       <find>定存XC</find>
       <find>定投</find>
       <find>定存</find>
+      <find>X PLAY</find>
+      <find>定投中</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
       <replace>recommendCode</replace>
       <replace>account</replace>
-      <replace />
       <replace>X PLAY</replace>
       <replace>参与计划</replace>
       <replace>DEPOSIT.COIN_NAME</replace>
+      <replace />
+      <replace>X PLAN</replace>
       <replace>参与</replace>
     </replaceStrings>
     <dirStrings>
@@ -270,7 +292,6 @@
         <option value="$PROJECT_DIR$/app/src/stores/product.js" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Index.scss" />
         <option value="$PROJECT_DIR$/app/src/components/common/Header.scss" />
-        <option value="$PROJECT_DIR$/app/src/pages/home/Index.js" />
         <option value="$PROJECT_DIR$/app/src/stores/wallet.js" />
         <option value="$PROJECT_DIR$/app/src/routes.js" />
         <option value="$PROJECT_DIR$/app/src/stores/notice.js" />
@@ -280,9 +301,7 @@
         <option value="$PROJECT_DIR$/app/src/styles/_variable-nttc.scss" />
         <option value="$PROJECT_DIR$/app/src/styles/_variable-xc.scss" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Bargain.js" />
-        <option value="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss" />
         <option value="$PROJECT_DIR$/app/public/index.html" />
-        <option value="$PROJECT_DIR$/app/src/config.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" />
         <option value="$PROJECT_DIR$/app/src/assets/static/index.js" />
         <option value="$PROJECT_DIR$/app/src/assets/static/xc.js" />
@@ -292,9 +311,12 @@
         <option value="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" />
         <option value="$PROJECT_DIR$/app/src/styles/mixin.scss" />
         <option value="$PROJECT_DIR$/app/package.json" />
+        <option value="$PROJECT_DIR$/app/src/pages/home/Rule.js" />
         <option value="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js" />
         <option value="$PROJECT_DIR$/app/src/pages/notice/Notices.js" />
-        <option value="$PROJECT_DIR$/app/src/pages/home/Rule.js" />
+        <option value="$PROJECT_DIR$/app/src/pages/home/Index.js" />
+        <option value="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss" />
+        <option value="$PROJECT_DIR$/app/src/config.js" />
       </list>
     </option>
   </component>
@@ -359,28 +381,6 @@
               <item name="the-funds" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -390,14 +390,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="notice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
@@ -640,14 +632,7 @@
       <workItem from="1566959451985" duration="9830000" />
       <workItem from="1567084445362" duration="9004000" />
       <workItem from="1567315686592" duration="682000" />
-      <workItem from="1567390486098" duration="9659000" />
-    </task>
-    <task id="LOCAL-00016" summary="update withdraw">
-      <created>1565016453973</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1565016453973</updated>
+      <workItem from="1567390486098" duration="15739000" />
     </task>
     <task id="LOCAL-00017" summary="update withdraw">
       <created>1565096741816</created>
@@ -985,11 +970,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567416962564</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="修改定投文字">
+      <created>1567423264483</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1567423264483</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="474095000" />
+    <option name="totallyTimeSpent" value="480175000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="570" y="23" width="899" height="969" extended-state="0" />
@@ -1005,10 +997,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49953917" visible="true" weight="0.3295325" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49953917" weight="0.3295325" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32972974" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.6697039" weight="0.3295325" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.6697039" visible="true" weight="0.3295325" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.33029613" side_tool="true" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49887133" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1076,18 +1068,6 @@
     <MESSAGE value="rule" />
     <MESSAGE value="修改定投文字" />
     <option name="LAST_COMMIT_MESSAGE" value="修改定投文字" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/src/pages/home/Rule.js</url>
-          <line>278</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/assets/images/xc/auth-wait.png">
@@ -1315,13 +1295,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1347,18 +1320,6 @@
             <element signature="e#21#255#0" expanded="true" />
             <element signature="e#313#832#0" expanded="true" />
             <element signature="e#844#872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/assets/static/nttc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="17" />
-          <folding>
-            <element signature="e#23#278#0" expanded="true" />
-            <element signature="e#291#328#0" expanded="true" />
-            <element signature="e#883#909#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1396,19 +1357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <element signature="e#598#656#0" expanded="true" />
-            <element signature="e#669#792#0" expanded="true" />
-            <element signature="e#679#731#0" expanded="true" />
-            <element signature="e#807#938#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/styles/mixin.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1437,42 +1385,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="33" column="10" lean-forward="true" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/notice/Notices.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="292">
+          <caret line="35" selection-start-line="35" selection-end-line="36" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Rule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3476">
-          <caret line="158" column="47" selection-start-line="158" selection-start-column="47" selection-end-line="158" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/home/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="113" column="25" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="25" />
+        <state relative-caret-position="293">
+          <caret line="139" column="3" selection-start-line="139" selection-start-column="3" selection-end-line="139" selection-end-column="3" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/assets/static/nttc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="48" column="49" lean-forward="true" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
+          <folding>
+            <element signature="e#596#654#0" expanded="true" />
+            <element signature="e#667#790#0" expanded="true" />
+            <element signature="e#677#729#0" expanded="true" />
+            <element signature="e#738#788#0" expanded="true" />
+            <element signature="e#815#870#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Rule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="995">
+          <caret line="279" column="14" lean-forward="true" selection-start-line="279" selection-start-column="14" selection-end-line="279" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+            <element signature="n#!!block;n#XcRule#0" />
           </folding>
         </state>
       </provider>

@@ -200,7 +200,7 @@ export default [
     component: VerifiedResult
   },
 
-  // X PLAY
+  // X PLAN
   {path: '/deposit', name: 'Deposit', component: Deposit},
   {path: '/deposit/result', name: 'DepositResult', component: DepositResult},
 
