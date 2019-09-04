@@ -32,14 +32,6 @@ class NoticeDetail extends Component {
           bgWhite
         />
         {content && <div className="htmlContent" dangerouslySetInnerHTML={{__html: `<div>${content}</div>`}}></div>}
-        {/*{url && <iframe*/}
-        {/*id="iframe-notice"*/}
-        {/*// src={url}*/}
-        {/*title="公告"*/}
-        {/*src="https://www.jb51.net"*/}
-        {/*frameborder="0"*/}
-        {/*target="_blank">*/}
-        {/*</iframe>}*/}
       </div>
     );
   }

@@ -1,4 +1,8 @@
-const HTTC = {
+const NTTC = {
+  COMMON:{
+    COIN_NAME: 'NTTC',
+    COIN_TITLE: 'NTTC',
+  },
   HOME: {
     TITLE: 'NTTC节点计划',
     IMG_BG: require('../images/nttc/home-bg.png'),
@@ -29,4 +33,4 @@ const HTTC = {
   }
 }
 
-export default HTTC
+export default NTTC

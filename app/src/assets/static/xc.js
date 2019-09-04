@@ -1,4 +1,8 @@
 const XC = {
+  COMMON:{
+    COIN_NAME: 'XC',
+    COIN_TITLE: 'X PLAN',
+  },
   HOME: {
     TITLE: 'X PLAN',
     IMG_BG: require('../images/xc/home-bg.png'),

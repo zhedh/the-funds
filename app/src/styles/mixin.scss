@@ -1,6 +1,6 @@
 @charset "utf-8";
-@import './_variable-xc';
- //@import './_variable-nttc';
+//@import './_variable-xc';
+ @import './_variable-nttc';
 
 /*超行溢出显示省略号*/
 @mixin overflow($num: 1, $fontSize: 0, $lineHeight: 1.5) {
