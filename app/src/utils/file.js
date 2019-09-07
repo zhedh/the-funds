@@ -26,16 +26,18 @@ export function base64ToBlob(code) {
   for (let i = 0; i < rawLength; ++i) {
     uInt8Array[i] = raw.charCodeAt(i)
   }
-  return new Blob([uInt8Array], { type: contentType })
+  return new Blob([uInt8Array], {type: contentType})
 }
 
 // 压缩图片
 export function compressorImg(image, callback) {
   if (!image) return
-  const ratio = (image.size / 1000) * 20000
+  // const ratio = (image.size / 1000) * 3000000
+  const ratio = image.size / 3774873.6
   new Compressor(image, {
-    quality: ratio >= 1 ? 1 / ratio : 0.9,
-    // convertSize: 2000000,
+    quality: ratio >= 1 ? 1 / ratio : 1,
+    // quality: image.size >= 3 * 1024 * 1024 ? 0.6 : 1,
+    // convertSize: 40000000,
     success(result) {
       callback && callback(result)
     },
@@ -48,14 +50,14 @@ export function compressorImg(image, callback) {
 // 获取图片临时路径
 export function getImagePath(file, callback) {
   const reads = new FileReader()
-  reads.onload = function() {
+  reads.onload = function () {
     let img = new Image()
     img.src = this.result
 
     if (img.complete) {
       callback && callback(this.result)
     } else {
-      img.onload = function() {
+      img.onload = function () {
         callback && callback(this.result)
       }.bind(this)
     }
