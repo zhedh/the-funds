@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.title = SWITCH.PROJECT === 'XC' ? 'X PLAN' : 'NTTC'
+    document.title = SWITCH.PROJECT === 'XC' ? 'X PLAN' : SWITCH.PROJECT
   }
 
   render() {

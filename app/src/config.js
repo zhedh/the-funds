@@ -19,6 +19,12 @@
 // nttc正式站访问地址：http://www.naturenode.org
 // nttc测试站访问地址：http://47.75.138.157:8081
 
+// mmt正式站接口地址：http://api.naturenode.org
+// mmt测式站接口地址：http://47.75.138.157:8080
+//
+// mmt正式站访问地址：http://www.naturenode.org
+// mmt测试站访问地址：http://47.75.138.157:8091
+
 /**
  * @description 开关配置，打包前修改配置
  *
@@ -27,29 +33,40 @@
  * */
 
 export const SWITCH = {
-  PROJECT: 'NTTC',
   // PROJECT: 'XC',
+  // PROJECT: 'NTTC',
+  PROJECT: 'MMT',
   ONLINE: false
 }
 
-const XC = {
-  PROD: {
-    API_BASE_URL: 'http://api.zbxcoin.com/api'
+const COIN = {
+  XC: {
+    PROD: {
+      API_BASE_URL: 'http://api.zbxcoin.com/api'
+    },
+    DEV: {
+      API_BASE_URL: 'http://47.75.138.157/api'
+    }
   },
-  DEV: {
-    API_BASE_URL: 'http://47.75.138.157/api'
+  NTTC: {
+    PROD: {
+      API_BASE_URL: 'http://api.naturenode.org/api'
+    },
+    DEV: {
+      API_BASE_URL: 'http://47.75.138.157:8080/api'
+    }
+  },
+  MMT: {
+    PROD: {
+      API_BASE_URL: 'http://api.naturenode.org/api'
+    },
+    DEV: {
+      API_BASE_URL: 'http://47.75.138.157:8090/api'
+    }
   }
 }
 
-const NTTC = {
-  PROD: {
-    API_BASE_URL: 'http://api.naturenode.org/api'
-  },
-  DEV: {
-    API_BASE_URL: 'http://47.75.138.157:8080/api'
-  }
-}
 
-const CURRENT_PROJECT = SWITCH.PROJECT === 'XC' ? XC : NTTC
+const CURRENT_PROJECT = COIN[SWITCH.PROJECT]
 
 export const CONFIG = SWITCH.ONLINE ? CURRENT_PROJECT.PROD : CURRENT_PROJECT.DEV

@@ -24,7 +24,7 @@ class RegisterSuccess extends Component {
           <img src={registerSuccessImg} alt=""/>
           <p className="text">恭喜您，注册成功 !</p>
         </main>
-        <Button className="primary-button" onClick={() => history.push('/deposit')}>
+        <Button className="primary-button" onClick={() => history.push('/home/inviter-friend')}>
           立即开启
         </Button>
       </div>
@@ -138,11 +138,6 @@ class Register extends Component {
   onSetType = (currentType, key) => {
     const type = currentType === 'password' ? 'text' : 'password'
     this.setState({[key]: type})
-  }
-
-  register = () => {
-
-
   }
 
   onSubmit = () => {

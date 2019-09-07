@@ -57,7 +57,8 @@ class Login extends Component {
       }
 
       Toast.success('登录成功', TOAST_DURATION)
-      this.timer = setTimeout(() => history.push('/deposit'), TOAST_DURATION * 1000)
+      // this.timer = setTimeout(() => history.push('/deposit'), TOAST_DURATION * 1000)
+      this.timer = setTimeout(() => history.push('/home/inviter-friend'), TOAST_DURATION * 1000)
     })
   }
 
@@ -67,7 +68,7 @@ class Login extends Component {
 
     return (
       <div id="login">
-        <AccountHeader title="登录"/>
+        <AccountHeader hideBack title="登录"/>
         <div className="content">
           <label>
             <input
