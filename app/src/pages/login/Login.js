@@ -16,6 +16,12 @@ class Login extends Component {
     account: '',
     password: '',
     type: 'password',
+    hideBack: false
+  }
+
+  componentDidMount() {
+    const {location: {state}} = this.props
+    this.setState({hideBack: state.hideBack})
   }
 
   componentWillUnmount() {
@@ -62,12 +68,12 @@ class Login extends Component {
   }
 
   render() {
-    const {account, password, type} = this.state
+    const {account, password, type, hideBack} = this.state
     const canSubmit = account === '' || password === ''
-
+    console.log(hideBack)
     return (
       <div id="login">
-        <AccountHeader title="登录"/>
+        <AccountHeader hideBack={hideBack} title="登录"/>
         <div className="content">
           <label>
             <input
