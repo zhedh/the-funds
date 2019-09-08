@@ -30,8 +30,8 @@ const NTTC = {
     IMG_FAIL: require('../images/nttc/auth-fail.png'),
   },
   DEPOSIT: {
-    TITLE: 'NTTC',
-    TABS: ['NTTC', '特价额度']
+    TITLE: '超级节点',
+    TABS: ['参与节点', '特价额度']
   },
   USER: {
     CUSTOMERS: [

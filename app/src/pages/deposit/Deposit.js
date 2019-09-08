@@ -26,7 +26,7 @@ class Deposit extends Component {
     personStore.getSpecial()
     productStore.getProducts().then(productId => {
       if (productId) {
-        // productStore.getProductDetail(productId)
+        productStore.getProductDetail(productId)
       }
     })
   }
@@ -110,7 +110,7 @@ class Deposit extends Component {
               title={DEPOSIT.TITLE}
               onHandle={() => this.setState({showDrawer: true})}
               icon={leftDrawerIcon}
-              hideIcon
+              // hideIcon
             >
               <span className="drawer-text">{productDetail.productName}</span>
             </Header>
