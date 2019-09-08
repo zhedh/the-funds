@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import './Footer.scss'
 import { FOOTER } from '../../assets/static'
-import FindSvg from '../../assets/images/find.svg'
-import DepositSvg from '../../assets/images/deposit.svg'
-import WalletSvg from '../../assets/images/wallet.svg'
+import FindSvg from '../../assets/images/common/icon-home.svg'
+import DepositSvg from '../../assets/images/common/icon-deposit.svg'
+import WalletSvg from '../../assets/images/common/icon-wallet.svg'
+import './Footer.scss'
 
 const TABS = [
   {

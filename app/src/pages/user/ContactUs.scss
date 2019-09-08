@@ -18,8 +18,22 @@
     }
   }
 
-  main {
+  ul {
+    @include clearList;
     box-sizing: border-box;
-    padding: 30px;
+    padding: 20px;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid $border-color;
+      line-height: 1.6;
+
+      label {
+        color: #666;
+      }
+    }
   }
 }

@@ -3,22 +3,11 @@ $black: #000;
 $black-border-bottom: rgba(0, 0, 0, 0.2);
 $black-font-primary: #636875;
 $white: #fff;
-$red: #f44;
-$blue: #1989fa;
-$orange: #ff976a;
-$orange-dark: #ed6a0c;
-$orange-light: #fffbe8;
-$green: #07c160;
-$gray: #c8c9cc;
-$gray-light: #e5e5e5;
-$gray-darker: #7d7e80;
-$gray-dark: #969799;
-$bg-btn-disabled: #a1a4ac;
 
 /* Default colors */
 $primary-color: #e8713a; // 主题色
 $assistant-color: #f5b99f; // 辅助色
-//$primary-color-gradient: #3a438ef5; // 蓝色渐变
+$primary-color-gradient: #e8713a; // 渐变
 $primary-color-gradient: #e8713a;
 
 $succeed-color: #29b056; // 通过、成功
@@ -64,3 +53,10 @@ $box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
 $border-radius: 4px;
 $header-height: 44px;
 $footer-height: 49px;
+
+/* business */
+$generalize-linear-gradient: linear-gradient(
+    315deg,
+    rgba(68, 136, 243, 1) 0%,
+    rgba(120, 186, 254, 1) 100%
+);

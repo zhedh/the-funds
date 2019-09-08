@@ -132,7 +132,7 @@ class UserCenter extends Component {
               </ul>
               {!hideAuthButton && (
                 <button
-                  className={`certification ${SWITCH.PROJECT === 'XC' ? 'xc':'nttc'}`}
+                  className={'auth-btn'}
                   onClick={() => history.push('/verified-country')}
                 >
                   实名认证
@@ -171,11 +171,10 @@ class UserCenter extends Component {
             name="账户安全"
             url={userStore.isOnline ? '/account' : '/login'}
           />
-          {SWITCH.PROJECT === 'NTTC' && <ListItem
+          {SWITCH.PROJECT !== 'XC' && <ListItem
           icon={require('../../assets/images/account.svg')}
           name="联系客服"
           url={'/contact-us'}
-          // onHandle={this.toContact}
           />}
         </section>
         {userStore.isOnline && (

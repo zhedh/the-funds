@@ -61,7 +61,6 @@ class InviterFriend extends Component {
     return (
       <div id="inviter-friend">
         <Header
-          hideIcon
           title="邀请好友"
           isShadow={true}
           isFixed={true}
@@ -94,7 +93,7 @@ class InviterFriend extends Component {
           </p>
         </section>
         <section className="section-link">
-          {/*<Link to="/home/generalize">查看推广</Link>*/}
+          <Link to="/home/generalize">查看推广</Link>
         </section>
       </div>
     );

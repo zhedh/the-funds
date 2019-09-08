@@ -24,7 +24,7 @@ class RegisterSuccess extends Component {
           <img src={registerSuccessImg} alt=""/>
           <p className="text">恭喜您，注册成功 !</p>
         </main>
-        <Button className="primary-button" onClick={() => history.push('/home/inviter-friend')}>
+        <Button className="primary-button" onClick={() => history.push('/deposit')}>
           立即开启
         </Button>
       </div>

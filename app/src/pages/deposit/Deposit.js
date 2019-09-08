@@ -26,7 +26,7 @@ class Deposit extends Component {
     personStore.getSpecial()
     productStore.getProducts().then(productId => {
       if (productId) {
-        productStore.getProductDetail(productId)
+        // productStore.getProductDetail(productId)
       }
     })
   }
@@ -107,16 +107,17 @@ class Deposit extends Component {
               isFixed
               isShadow
               bgWhite
-              title={DEPOSIT.COIN_NAME}
+              title={DEPOSIT.TITLE}
               onHandle={() => this.setState({showDrawer: true})}
               icon={leftDrawerIcon}
+              hideIcon
             >
               <span className="drawer-text">{productDetail.productName}</span>
             </Header>
             <section className="select-bar">
               <SegmentedControl
                 className="segmented-control"
-                values={[DEPOSIT.COIN_NAME, '特价额度']}
+                values={DEPOSIT.TABS}
                 selectedIndex={selectTabIndex}
                 onChange={this.onSegmentedChange}
               />

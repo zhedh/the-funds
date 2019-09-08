@@ -98,7 +98,7 @@ class DepositBuy extends Component {
             <span>参与送{productDetail.productName}特价额度</span>
             <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
           </p>}
-          <small>手续费费率：{productDetail.serviceCharge * 100}%</small>
+          <small>手续费费率：{(productDetail.serviceCharge || 0) * 100}%</small>
         </div>
         <aside>
           {!personStore.isAuth && (

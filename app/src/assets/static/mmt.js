@@ -1,11 +1,19 @@
 const MMT = {
-  COMMON:{
-    COIN_NAME: 'XC',
-    COIN_TITLE: 'X PLAN',
+  COMMON: {
+    COIN_NAME: 'MMT',
+    COIN_TITLE: 'MMT',
+  },
+  FOOTER: {
+    ICON_HOME: require('../images/mmt/icon-home.png'),
+    ICON_DEPOSIT: require('../images/mmt/icon-deposit.png'),
+    ICON_WALLET: require('../images/mmt/icon-wallet.png'),
+    LABEL_DEPOSIT: 'X PLAN'
   },
   HOME: {
-    TITLE: 'X PLAN',
-    IMG_BG: require('../images/xc/home-bg.png'),
+    TITLE: 'MMT',
+    IMG_BG: require('../images/mmt/home-bg.png'),
+    GENERALIZE_BG: require('../images/mmt/generalize-banner.png'),
+    GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级']
   },
   BARGAIN: {
     BANNER_LABEL: '特价XC奖励额度：'
@@ -22,13 +30,31 @@ const MMT = {
     IMG_FAIL: require('../images/xc/auth-fail.png')
   },
   DEPOSIT: {
-    COIN_NAME: 'X PLAN'
+    TITLE: '超级节点',
+    TABS: ['参与节点', '特价额度']
   },
-  FOOTER: {
-    ICON_HOME: require('../images/find-pre.svg'),
-    ICON_DEPOSIT: require('../images/deposit-pre.svg'),
-    ICON_WALLET: require('../images/wallet-pre.svg'),
-    LABEL_DEPOSIT: 'X PLAN'
+  USER: {
+    CUSTOMERS: [
+      {
+        LABEL: '微信客服1',
+        VALUE: 'flare_nazzi'
+      }, {
+        LABEL: '微信客服2',
+        VALUE: 'Flare_foundation'
+      }, {
+        LABEL: '微信客服3',
+        VALUE: 'FlareFoundation_Anna'
+      }, {
+        LABEL: 'Telegram',
+        VALUE: 'https://t.me/flare_Nazzi'
+      }, {
+        LABEL: 'Telegram',
+        VALUE: 'https://t.me/Flare_Rita'
+      }, {
+        LABEL: 'Telegram',
+        VALUE: 'https://t.me/MMT_Anna'
+      },
+    ]
   }
 }
 
