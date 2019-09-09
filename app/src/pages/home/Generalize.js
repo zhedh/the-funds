@@ -4,10 +4,8 @@ import {Toast} from 'antd-mobile'
 import {OtherApi} from '../../api'
 import arrowLeft from '../../assets/images/arrow-left.png'
 import arrowRightWhite from '../../assets/images/arrow-right-white.png'
-import generalizeUserOne from '../../assets/images/generalize-user-one.png'
-import generalizeUserTwo from '../../assets/images/generalize-user-two.png'
-import './Generalize.scss'
 import {HOME} from "../../assets/static";
+import './Generalize.scss'
 
 class Generalize extends Component {
   state = {
@@ -59,7 +57,7 @@ class Generalize extends Component {
             <ul className="list">
               <li onClick={() => this.toDetail(1)}>
                 <p>
-                  <img src={generalizeUserOne} alt=""/>
+                  <img src={HOME.GENERALIZE_USER_ONE_ICON} alt=""/>
                   一代推荐人数
                 </p>
                 <aside>
@@ -69,7 +67,7 @@ class Generalize extends Component {
               </li>
               <li onClick={() => this.toDetail(2)}>
                 <p>
-                  <img src={generalizeUserTwo} alt=""/>
+                  <img src={HOME.GENERALIZE_USER_TWO_ICON} alt=""/>
                   二代推荐人数
                 </p>
                 <aside>
