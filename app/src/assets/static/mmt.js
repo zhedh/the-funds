@@ -2,6 +2,7 @@ const MMT = {
   COMMON: {
     COIN_NAME: 'MMT',
     COIN_TITLE: 'MMT',
+    NO_DATA_IMG: require('../images/mmt/no-data.png')
   },
   FOOTER: {
     ICON_HOME: require('../images/mmt/icon-home.png'),

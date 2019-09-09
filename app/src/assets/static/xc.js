@@ -2,6 +2,7 @@ const XC = {
   COMMON: {
     COIN_NAME: 'XC',
     COIN_TITLE: 'X PLAN',
+    NO_DATA_IMG: require('../images/xc/no-data.png')
   },
   FOOTER: {
     ICON_HOME: require('../images/xc/icon-home.svg'),

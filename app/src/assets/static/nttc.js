@@ -2,6 +2,7 @@ const NTTC = {
   COMMON: {
     COIN_NAME: 'NTTC',
     COIN_TITLE: 'NTTC',
+    NO_DATA_IMG: require('../images/nttc/no-data.png')
   },
   FOOTER: {
     ICON_HOME: require('../images/nttc/icon-home.png'),
