@@ -22,15 +22,15 @@ const MMT = {
     BANNER_LABEL: '特价XC奖励额度：'
   },
   AUTH: {
-    IMG_BACK: require('../images/xc/auth-card-back.png'),
-    IMG_FRONT: require('../images/xc/auth-card-front.png'),
-    IMG_HOLD: require('../images/xc/auth-card-hold.png'),
-    IMG_ID_CARD: require('../images/xc/auth-id-card.svg'),
-    IMG_PASSPORT: require('../images/xc/auth-passport.svg'),
-    IMG_DRIVING: require('../images/xc/auth-driving.svg'),
-    IMG_WAIT: require('../images/xc/auth-wait.png'),
-    IMG_SUCCESS: require('../images/xc/auth-success.png'),
-    IMG_FAIL: require('../images/xc/auth-fail.png'),
+    IMG_BACK: require('../images/mmt/auth-card-back.png'),
+    IMG_FRONT: require('../images/mmt/auth-card-front.png'),
+    IMG_HOLD: require('../images/mmt/auth-card-hold.png'),
+    IMG_ID_CARD: require('../images/mmt/auth-id-card.svg'),
+    IMG_PASSPORT: require('../images/mmt/auth-passport.svg'),
+    IMG_DRIVING: require('../images/mmt/auth-driving.svg'),
+    IMG_WAIT: require('../images/mmt/auth-wait.png'),
+    IMG_SUCCESS: require('../images/mmt/auth-success.png'),
+    IMG_FAIL: require('../images/mmt/auth-fail.png'),
     UPLOAD_WRITE: 'MMT'
   },
   DEPOSIT: {

@@ -32,6 +32,8 @@ class DepositBuy extends Component {
   }
 
   onDeposit = gearNum => {
+    Toast.info('敬请期待')
+    return
     const {personStore, userStore} = this.props
     if (!personStore.isAuth) {
       Toast.info('请进行身份认证')

@@ -33,9 +33,9 @@
  * */
 
 export const SWITCH = {
-  PROJECT: 'XC',
+  // PROJECT: 'XC',
   // PROJECT: 'NTTC',
-  // PROJECT: 'MMT',
+  PROJECT: 'MMT',
   ONLINE: false
 }
 
