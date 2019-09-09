@@ -28,6 +28,7 @@ const NTTC = {
     IMG_WAIT: require('../images/nttc/auth-wait.png'),
     IMG_SUCCESS: require('../images/nttc/auth-success.png'),
     IMG_FAIL: require('../images/nttc/auth-fail.png'),
+    UPLOAD_WRITE: 'NTTC'
   },
   DEPOSIT: {
     TITLE: '超级节点',
