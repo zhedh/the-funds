@@ -59,14 +59,14 @@
           width: 6rem;
         }
 
-        .certification {
+        .auth-btn {
           @include clearButton;
           width: 8.5rem;
           color: $white;
           border-radius: 5px;
           box-sizing: border-box;
           padding: 7px 10px;
-          @include background-gradient(#ff9665, $primary-color);
+          @include background-gradient($primary-color-gradient, $primary-color);
         }
 
         ul {

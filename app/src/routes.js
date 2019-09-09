@@ -83,8 +83,16 @@ const Notices = Loadable({
   loader: () => import('./pages/notice/Notices'),
   loading: Loading
 })
+const NoticeDetail = Loadable({
+  loader: () => import('./pages/notice/NoticeDetail'),
+  loading: Loading
+})
 const AccountSafe = Loadable({
   loader: () => import('./pages/user/AccountSafe'),
+  loading: Loading
+})
+const ContactUs = Loadable({
+  loader: () => import('./pages/user/ContactUs'),
   loading: Loading
 })
 const VerifiedCountry = Loadable({
@@ -159,15 +167,16 @@ export default [
   },
 
   // 登陆注册
-  {path: '/login', name: 'Login', component: Login},
-  {path: '/register', name: 'Register', component: Register},
-  {path: '/password/:type', name: 'Password', component: Password},
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/register', name: 'Register', component: Register },
+  { path: '/password/:type', name: 'Password', component: Password },
 
   // 个人中心
-  {path: '/user-center', name: 'UserCenter', component: UserCenter},
-  {path: '/notices', name: 'Notices', component: Notices},
-  {path: '/account', name: 'AccountSafe', component: AccountSafe},
-  // { path: '/contact', name: 'ContactCustomer', component: ContactCustomer },
+  { path: '/user-center', name: 'UserCenter', component: UserCenter },
+  { path: '/notices', name: 'Notices', component: Notices },
+  { path: '/notice/:id', name: 'NoticeDetail', component: NoticeDetail },
+  { path: '/account', name: 'AccountSafe', component: AccountSafe },
+  { path: '/contact-us', name: 'ContactUs', component: ContactUs },
 
   // 实名认证
   {
@@ -191,7 +200,7 @@ export default [
     component: VerifiedResult
   },
 
-  // 定存
+  // X PLAN
   {path: '/deposit', name: 'Deposit', component: Deposit},
   {path: '/deposit/result', name: 'DepositResult', component: DepositResult},
 

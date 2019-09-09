@@ -1,4 +1,4 @@
-@import "../../styles/mixin";
+@import '../../styles/mixin';
 
 #rule {
   @include clearFix;
@@ -9,5 +9,10 @@
   p {
     padding: 8px 15px;
     line-height: 1.6;
+  }
+  .text-right {
+    width: 100%;
+    display: inline-block;
+    text-align: right;
   }
 }

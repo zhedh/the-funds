@@ -19,10 +19,10 @@ class PersonApi {
   }
 
   /**
-   * 定存中的基金
+   * 参与计划中的基金
    *
    * @required productId string 商品id
-   * @required status string 定投中：0
+   * @required status string 参与中：0
    **/
   static getDepositRecords(options = {}) {
     return http.post('/userassets/mywarehouselist', options)

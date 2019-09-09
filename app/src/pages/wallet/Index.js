@@ -6,6 +6,7 @@ import WalletCard from '../../components/partial/WalletCard'
 import walletToLoginImg from '../../assets/images/wallet-to-login.png'
 import walletZbsImg from '../../assets/images/wallet-zbs.png'
 import walletUsdtImg from '../../assets/images/wallet-usdt.png'
+import {COMMON} from '../../assets/static'
 import './Index.scss'
 
 const USDT_CARD = {
@@ -19,7 +20,7 @@ const USDT_CARD = {
 
 const WALLET_CARD = {
   bgImg: walletZbsImg,
-  name: 'XC',
+  name: COMMON.COIN_NAME,
   asset: '',
   locked: '',
   rechargeUrl: '/wallet/recharge/',

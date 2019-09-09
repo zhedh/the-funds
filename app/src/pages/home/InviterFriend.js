@@ -61,7 +61,6 @@ class InviterFriend extends Component {
     return (
       <div id="inviter-friend">
         <Header
-          // hideIcon
           title="邀请好友"
           isShadow={true}
           isFixed={true}

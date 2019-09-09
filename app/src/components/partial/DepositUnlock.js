@@ -69,8 +69,7 @@ class DepositUnlock extends Component {
     const {
       productDetail,
       unLockAmount,
-      totalAmount,
-      onAmountChange
+      // totalAmount,
     } = productStore
     const {
       productName,
@@ -110,7 +109,7 @@ class DepositUnlock extends Component {
               placeholder="输入解锁数量"
               value={userSpecial}
               readOnly
-              onChange={e => onAmountChange(e)}
+              onChange={e => productStore.onAmountChange(e.target.value)}
             />
           </label>
           <label>

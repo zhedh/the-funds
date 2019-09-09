@@ -6,9 +6,10 @@ import {Button, Toast} from 'antd-mobile'
 import Header from '../common/Header'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import {formatCoinPrice} from "../../utils/format"
+import {COIN_POINT_LENGTH} from "../../utils/constants"
+import {DEPOSIT} from '../../assets/static'
 import './DepositBuy.scss'
-import {formatCoinPrice} from "../../utils/format";
-import {COIN_POINT_LENGTH} from "../../utils/constants";
 
 @inject('productStore')
 @inject('userStore')
@@ -94,21 +95,21 @@ class DepositBuy extends Component {
         </ul>
         <div className="fee">
           {gearNum && <p>
-            <span>定投送{productDetail.productName}特价额度</span>
+            <span>参与送{productDetail.productName}特价额度</span>
             <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
           </p>}
-          <small>手续费费率：{productDetail.serviceCharge * 100}%</small>
+          <small>手续费费率：{(productDetail.serviceCharge || 0) * 100}%</small>
         </div>
         <aside>
           {!personStore.isAuth && (
             <p>
-              *您暂未通过实名认证，无法定存
+              *您暂未通过实名认证，无法参与计划
               <Link to="/verified-country">去认证</Link>
             </p>
           )}
           {!userStore.hasPayPassword && (
             <p>
-              *您暂未设置交易密码，无法定存
+              *您暂未设置交易密码，无法参与
               <Link to="/password/pay">去设置</Link>
             </p>
           )}
@@ -117,10 +118,10 @@ class DepositBuy extends Component {
           className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"
           onClick={() => this.onDeposit(gearNum)}>
-          定投
+          参与计划
         </Button>
 
-        {/*定投弹窗*/}
+        {/*参与计划弹窗*/}
         <div className={`confirm-wrapper ${showConfirm ? 'show' : ''}`}>
           <div className="content-box">
             <Header
@@ -131,7 +132,7 @@ class DepositBuy extends Component {
             />
             <div className="content">
               <p className="deposit-price">
-                <span>定投{productDetail.productName}</span>
+                <span>{DEPOSIT.COIN_NAME}</span>
                 <span>{gearNum}</span>
               </p>
               <p className="service-charge">

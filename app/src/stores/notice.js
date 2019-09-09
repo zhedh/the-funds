@@ -16,6 +16,10 @@ class NoticeStore {
     })
   }
 
+  @action
+  getNotice(id) {
+    return OtherApi.getNoticeDetail({id})
+  }
 }
 
 export default NoticeStore

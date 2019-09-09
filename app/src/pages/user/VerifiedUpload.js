@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button, Toast} from 'antd-mobile'
+import {AUTH} from '../../assets/static'
 import Header from '../../components/common/Header'
 import './VerifiedUpload.scss'
 
@@ -32,7 +33,7 @@ class VerifiedUpload extends Component {
             请确保照片完整，清晰可见，格式为jpg、jpeg或png，需小于2M。证件必须在有效期限内。
           </li>
           <li>
-            请上传手持证件照片，照片中需附一张白纸写有（“定投XC”），确保您的脸部清晰可见，所有证件详细信息都清晰可读，否则将影响您的审核进度。
+            请上传手持证件照片，照片中需附一张白纸写有（“{AUTH.UPLOAD_WRITE}”），确保您的脸部清晰可见，所有证件详细信息都清晰可读，否则将影响您的审核进度。
             字样和当前日期
           </li>
         </ul>
@@ -40,11 +41,7 @@ class VerifiedUpload extends Component {
         <div className="upload-content">
           <p>身份证/护照正面照</p>
           <img
-            src={
-              cardFront
-                ? cardFront
-                : require('../../assets/images/card-front.png')
-            }
+            src={cardFront ? cardFront : AUTH.IMG_FRONT}
             alt=""
           />
           <input
@@ -57,9 +54,7 @@ class VerifiedUpload extends Component {
         <div className="upload-content">
           <p>身份证/护照反面照</p>
           <img
-            src={
-              cardBack ? cardBack : require('../../assets/images/card-back.png')
-            }
+            src={cardBack ? cardBack : AUTH.IMG_BACK}
             alt=""
           />
           <input
@@ -72,9 +67,7 @@ class VerifiedUpload extends Component {
         <div className="upload-content">
           <p>手持身份证/护照照片</p>
           <img
-            src={
-              cardHold ? cardHold : require('../../assets/images/card-hold.png')
-            }
+            src={cardHold ? cardHold : AUTH.IMG_HOLD}
             alt=""
           />
           <input

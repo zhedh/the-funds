@@ -41,7 +41,7 @@
     section.select-bar {
       width: 70%;
       margin: 3rem auto;
-      background: rgba(232, 113, 58, 0.5);
+      background: $assistant-color;
       border-radius: 20px;
       color: #fff;
       padding: 0;
@@ -58,7 +58,7 @@
 
         .am-segment-item-selected {
           border-radius: 20px;
-          background: rgba(232, 113, 58, 1) !important;
+          background: $primary-color!important;
         }
       }
     }

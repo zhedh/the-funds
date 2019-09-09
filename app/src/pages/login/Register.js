@@ -140,11 +140,6 @@ class Register extends Component {
     this.setState({[key]: type})
   }
 
-  register = () => {
-
-
-  }
-
   onSubmit = () => {
     const {userStore} = this.props
     const {

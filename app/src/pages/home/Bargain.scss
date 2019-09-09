@@ -51,33 +51,37 @@
     .banner {
       position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
       box-sizing: border-box;
-      height: 8.9rem;
-      padding: 15px;
+      padding: 15px 10px;
       border-radius: 5px;
       background: url('../../assets/images/bargain-banner.png') center;
       background-size: cover;
       line-height: 1.8;
       color: $white;
 
-      span {
-        font-size: $font-title;
-      }
+      .info {
+        flex: 1;
 
-      small {
-        font-size: $font-context;
+        span {
+          font-size: $font-title -1;
+        }
+
+        small {
+          font-size: $font-context;
+        }
       }
 
       button {
         @include clearButton;
-        position: absolute;
-        top: 0;
-        right: 20px;
-        bottom: 0;
-        margin: auto;
+        //position: absolute;
+        //top: 0;
+        //right: 20px;
+        //bottom: 0;
+        //margin: auto;
 
         width: 6rem;
         height: 3rem;

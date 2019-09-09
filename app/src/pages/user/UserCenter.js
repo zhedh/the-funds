@@ -1,10 +1,11 @@
 import React, {Component, PureComponent} from 'react'
+import {inject, observer} from 'mobx-react'
 import {Modal} from 'antd-mobile'
+import {SWITCH} from '../../config'
 import {FaRegQuestionCircle} from 'react-icons/fa'
 import Header from '../../components/common/Header'
+import {hideChatButton} from "../../utils/common"
 import './UserCenter.scss'
-import {inject, observer} from 'mobx-react'
-import {hideChatButton} from "../../utils/common";
 
 class ListItem extends PureComponent {
   render() {
@@ -40,7 +41,9 @@ class UserCenter extends Component {
 
   componentDidMount() {
     const {personStore, userStore} = this.props
-    this.createIframe()
+    if(SWITCH.PROJECT === 'XC'){
+      this.createIframe()
+    }
 
     if (userStore.isOnline) {
       personStore.getUserInfo()
@@ -129,7 +132,7 @@ class UserCenter extends Component {
               </ul>
               {!hideAuthButton && (
                 <button
-                  className="certification"
+                  className={'auth-btn'}
                   onClick={() => history.push('/verified-country')}
                 >
                   实名认证
@@ -168,12 +171,11 @@ class UserCenter extends Component {
             name="账户安全"
             url={userStore.isOnline ? '/account' : '/login'}
           />
-          {/*<ListItem*/}
-          {/*icon={require('../../assets/images/account.svg')}*/}
-          {/*name="联系客服"*/}
-          {/*// url={'/user-center'}*/}
-          {/*onHandle={this.toContact}*/}
-          {/*/>*/}
+          {SWITCH.PROJECT !== 'XC' && <ListItem
+          icon={require('../../assets/images/account.svg')}
+          name="联系客服"
+          url={'/contact-us'}
+          />}
         </section>
         {userStore.isOnline && (
           <section className={`list-content list-second`}>
@@ -200,7 +202,7 @@ class UserCenter extends Component {
               textAlign: 'justify',
               padding: '10px'
             }}>
-            当您定存买入成功后，将获得F用户的标示，F用户标示代表着您能够享受定投奖、代数奖、团队奖等相关奖励，f用户的有效期为3个交易日（包含成为当天）。
+            当您参与计划成功后，将获得F用户的标示，F用户标示代表着您能够享受参与奖、代数奖、团队奖等相关奖励，f用户的有效期为3个交易日（包含成为当天）。
           </div>
         </Modal>
       </div>

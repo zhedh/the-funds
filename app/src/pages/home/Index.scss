@@ -5,14 +5,22 @@
   padding-top: 19.5rem;
   padding-bottom: $footer-height;
 
+  header img{
+    width: 1.62rem;
+    height: 1.8rem;
+  }
+
   .section-banner {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 19.5rem;
-    background: $primary-color;
+    //background: $primary-color;
     color: $white;
+    //background-image: url("");
+    background-size: cover;
+    background-position: center;
 
     a {
       color: inherit;

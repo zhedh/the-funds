@@ -20,7 +20,7 @@ export const USDT_POINT_LENGTH = 8 // USDT 价格和数量保留数点后8位
 
 export const COIN_POINT_LENGTH = 4 // COIN 价格和数量保留数点后4位
 
-export const SPECIAL_POINT_LENGTH = 4 // 特价额度保留数点后2位
+export const SPECIAL_POINT_LENGTH = 4 // 特价额度保留数点后4位
 
 export const COUNTRIES_LIST = [
   'China中国',

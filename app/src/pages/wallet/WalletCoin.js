@@ -4,11 +4,12 @@ import Header from "../../components/common/Header"
 import walletZbsImg from "../../assets/images/wallet-zbs.png"
 import WalletCard from "../../components/partial/WalletCard"
 import {formatCoinPrice, formatTime} from "../../utils/format"
+import {COMMON} from '../../assets/static'
 import './WalletCoin.scss'
 
 const COIN_CARD = {
   bgImg: walletZbsImg,
-  name: 'XC',
+  name: COMMON.COIN_NAME,
   asset: '',
   rechargeUrl: '/wallet/recharge/',
   withdrawUrl: '/wallet/withdraw/',

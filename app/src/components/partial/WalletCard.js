@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 import rechargeImg from '../../assets/images/recharge.svg'
 import withdrawImg from '../../assets/images/withdraw.svg'
 import arrowRightImg from '../../assets/images/arrow-right-white.png'
-import {formatCoinPrice} from "../../utils/format"
+import {formatCoinPrice, formatWalletPrice} from "../../utils/format"
 import './WalletCard.scss'
 import {COIN_POINT_LENGTH, USDT_POINT_LENGTH} from "../../utils/constants";
 
@@ -28,7 +28,7 @@ class WalletCard extends Component {
       >
         <h1>
           <small>总资产（{card.name}）</small>
-          <span>{formatCoinPrice(card.asset, pointLength)}</span>
+          <span>{formatWalletPrice(card.asset, pointLength)}</span>
           {!!card.locked && <aside>
             冻结：{formatCoinPrice(card.locked, pointLength)}
           </aside>}

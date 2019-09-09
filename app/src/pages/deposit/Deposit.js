@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Drawer, SegmentedControl} from 'antd-mobile'
+import {DEPOSIT} from '../../assets/static'
 import Header from '../../components/common/Header'
 import DepositBuy from '../../components/partial/DepositBuy'
 import DepositUnlock from '../../components/partial/DepositUnlock'
@@ -71,7 +72,7 @@ class Deposit extends Component {
     const sidebar = (
       <div className="sidebar">
         <header className="sidebar-header">
-          <span>选择定存基金</span>
+          <span>选择参与基金</span>
           <img
             src={leftDrawerIcon}
             alt="抽屉"
@@ -106,16 +107,17 @@ class Deposit extends Component {
               isFixed
               isShadow
               bgWhite
-              title={`定投${productDetail.productName || ''}`}
+              title={DEPOSIT.TITLE}
               onHandle={() => this.setState({showDrawer: true})}
               icon={leftDrawerIcon}
+              // hideIcon
             >
               <span className="drawer-text">{productDetail.productName}</span>
             </Header>
             <section className="select-bar">
               <SegmentedControl
                 className="segmented-control"
-                values={[`定投${productDetail.productName || ''}`, '特价额度']}
+                values={DEPOSIT.TABS}
                 selectedIndex={selectTabIndex}
                 onChange={this.onSegmentedChange}
               />

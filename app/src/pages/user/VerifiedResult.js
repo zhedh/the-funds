@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
 import {inject, observer} from "mobx-react"
+import {AUTH} from '../../assets/static'
 import Header from '../../components/common/Header'
 import './VerifiedResult.scss'
 
@@ -8,15 +9,15 @@ const resultOptions = [
   {
     type: 1,
     label: '等待审核',
-    image: require('../../assets/images/wait.png')
+    image: AUTH.IMG_WAIT
   }, {
     type: 2,
     label: '已审核',
-    image: require('../../assets/images/vertified-success.png')
+    image: AUTH.IMG_SUCCESS
   }, {
     type: 3,
     label: '失败',
-    image: require('../../assets/images/vertified-fail.png')
+    image: AUTH.IMG_FAIL
   },
 ]
 

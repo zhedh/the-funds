@@ -4,7 +4,6 @@ import {Button, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import {TOAST_DURATION} from '../../utils/constants'
 import {isEmail, isMobile, isPassword} from "../../utils/reg"
-import {compatibleFixedButton} from "../../utils/common"
 import AccountHeader from "../../components/partial/AccountHeader"
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
@@ -17,17 +16,9 @@ class Login extends Component {
     account: '',
     password: '',
     type: 'password',
-    showBtn: true
-  }
-
-  componentDidMount() {
-    compatibleFixedButton((isShow) => {
-      this.setState({showBtn: isShow})
-    })
   }
 
   componentWillUnmount() {
-    window.onresize = null
     clearTimeout(this.timer)
   }
 
@@ -71,7 +62,7 @@ class Login extends Component {
   }
 
   render() {
-    const {account, password, type, showBtn} = this.state
+    const {account, password, type} = this.state
     const canSubmit = account === '' || password === ''
 
     return (
@@ -107,7 +98,7 @@ class Login extends Component {
           </p>
         </div>
 
-        {showBtn && <div className="btn-box">
+        <div className="btn-box">
           <Button
             activeClassName="active"
             className="primary-button"
@@ -115,7 +106,7 @@ class Login extends Component {
             onClick={this.onSubmit}>
             确认
           </Button>
-        </div>}
+        </div>
 
       </div>
     )

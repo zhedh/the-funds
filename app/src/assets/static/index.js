@@ -1,9 +1,23 @@
-import { SWITCH } from '../../config'
+import {SWITCH} from '../../config'
 import STATIC_XC from './xc'
 import STATIC_NTTC from './nttc'
+import STATIC_MMT from './mmt'
 
-const STATIC = SWITCH.PROJECT === 'XC' ? STATIC_XC : STATIC_NTTC
+function getStatic(coin) {
+  switch (coin) {
+    case 'XC':
+      return STATIC_XC
+    case 'NTTC':
+      return STATIC_NTTC
+    case 'MMT':
+      return STATIC_MMT
+    default:
+      return STATIC_XC
+  }
+}
 
-const { HOME, BARGAIN } = STATIC
+const STATIC = getStatic(SWITCH.PROJECT)
 
-export { HOME, BARGAIN }
+const {COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER,USER} = STATIC
+
+export {COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER,USER}

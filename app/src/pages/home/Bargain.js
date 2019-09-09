@@ -3,6 +3,7 @@ import {inject, observer} from "mobx-react"
 import arrowLeft from '../../assets/images/arrow-left.png'
 import {BARGAIN} from '../../assets/static'
 import './Bargain.scss'
+import {formatSpecialOffer} from "../../utils/format";
 
 @inject('personStore')
 @inject('productStore')
@@ -37,8 +38,11 @@ class Bargain extends Component {
         </header>
         <section className="section-banner">
           <div className="banner">
-            <span>{BARGAIN.BANNER_LABEL} {allUsableSpecial}</span>
-            <small>上次结算时间: {lastClearTime}</small>
+            <div className="info">
+              <span>{BARGAIN.BANNER_LABEL}{formatSpecialOffer(allUsableSpecial)}</span>
+              <br/>
+              <small>上次结算时间：{lastClearTime}</small>
+            </div>
             <button onClick={() => history.push({pathname: '/deposit', state: 1})}>
               认购
             </button>
@@ -51,7 +55,7 @@ class Bargain extends Component {
             {specialAwards.map(award =>
               <li key={award.remark}>
                 <label>{award.remark}</label>
-                <span>{award.amount}</span>
+                <span>{formatSpecialOffer(award.amount)}</span>
               </li>)
             }
           </ul>
