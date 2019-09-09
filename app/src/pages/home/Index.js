@@ -8,7 +8,7 @@ import {GoMailRead} from "react-icons/go"
 
 import {formatDate, formatSpecialOffer} from "../../utils/format"
 import userCenterImg from '../../assets/images/user-center.png'
-import {HOME} from '../../assets/static'
+import {COMMON,HOME} from '../../assets/static'
 import Dialog from "../../components/common/Dialog"
 import Header from '../../components/common/Header'
 import NoData from "../../components/common/NoData"
@@ -130,7 +130,7 @@ class Index extends Component {
                 </div>
               </li>
             )}
-          </ul> : <NoData msg="每天存一笔，天天有钱赚！"/>}
+          </ul> : <NoData img={COMMON.NO_DATA_IMG} msg="每天存一笔，天天有钱赚！"/>}
         </section>
         <Dialog
           show={false}

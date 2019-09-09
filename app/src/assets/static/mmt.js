@@ -2,6 +2,7 @@ const MMT = {
   COMMON: {
     COIN_NAME: 'MMT',
     COIN_TITLE: 'MMT',
+    NO_DATA_IMG: require('../images/mmt/no-data.png')
   },
   FOOTER: {
     ICON_HOME: require('../images/mmt/icon-home.png'),
@@ -13,7 +14,9 @@ const MMT = {
     TITLE: 'MMT',
     IMG_BG: require('../images/mmt/home-bg.png'),
     GENERALIZE_BG: require('../images/mmt/generalize-banner.png'),
-    GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级']
+    GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级'],
+    GENERALIZE_USER_ONE_ICON: require('../images/mmt/generalize-user-one.png'),
+    GENERALIZE_USER_TWO_ICON: require('../images/mmt/generalize-user-two.png'),
   },
   BARGAIN: {
     BANNER_LABEL: '特价XC奖励额度：'
@@ -32,7 +35,8 @@ const MMT = {
   },
   DEPOSIT: {
     TITLE: '超级节点',
-    TABS: ['参与节点', '特价额度']
+    TABS: ['参与节点', '特价额度'],
+    SIDEBAR_TITLE: '选择参与基金',
   },
   USER: {
     CUSTOMERS: [
