@@ -13,8 +13,10 @@ const XC = {
   HOME: {
     TITLE: 'X PLAN',
     IMG_BG: require('../images/xc/home-bg.png'),
-    GENERALIZE_BG: require('../images/xc/generalize-banner.png'),
-    GENERALIZE_LEVEL: ['无', '普通', '初级', '中级', '高级', '超级']
+    GENERALIZE_BG: require('../images/xc/generalize-banner.jpg'),
+    GENERALIZE_LEVEL: ['无', '普通', '初级', '中级', '高级', '超级'],
+    GENERALIZE_USER_ONE_ICON: require('../images/xc/generalize-user-one.png'),
+    GENERALIZE_USER_TWO_ICON: require('../images/xc/generalize-user-two.png'),
   },
   BARGAIN: {
     BANNER_LABEL: '特价XC奖励额度：'
@@ -33,7 +35,8 @@ const XC = {
   },
   DEPOSIT: {
     TITLE: 'X PLAN',
-    TABS: ['X PLAN', '特价额度']
+    TABS: ['X PLAN', '特价额度'],
+    SIDEBAR_TITLE: '选择参与计划',
   },
   USER: {
     CUSTOMERS: []

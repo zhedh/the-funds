@@ -72,7 +72,7 @@ class Deposit extends Component {
     const sidebar = (
       <div className="sidebar">
         <header className="sidebar-header">
-          <span>选择参与基金</span>
+          <span>{DEPOSIT.SIDEBAR_TITLE}</span>
           <img
             src={leftDrawerIcon}
             alt="抽屉"
