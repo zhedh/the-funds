@@ -27,7 +27,8 @@ const XC = {
     IMG_DRIVING: require('../images/xc/auth-driving.svg'),
     IMG_WAIT: require('../images/xc/auth-wait.png'),
     IMG_SUCCESS: require('../images/xc/auth-success.png'),
-    IMG_FAIL: require('../images/xc/auth-fail.png')
+    IMG_FAIL: require('../images/xc/auth-fail.png'),
+    UPLOAD_WRITE: 'NTTC'
   },
   DEPOSIT: {
     TITLE: 'X PLAN',

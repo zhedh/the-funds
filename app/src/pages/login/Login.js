@@ -21,7 +21,7 @@ class Login extends Component {
 
   componentDidMount() {
     const {location: {state}} = this.props
-    this.setState({hideBack: state.hideBack})
+    this.setState({hideBack: state && state.hideBack})
   }
 
   componentWillUnmount() {
@@ -113,7 +113,6 @@ class Login extends Component {
             确认
           </Button>
         </div>
-
       </div>
     )
   }
