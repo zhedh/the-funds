@@ -72,6 +72,10 @@ class ProductStore {
         return
       }
       this.productDetail = res.data
+    }).catch(err => {
+      Cookies.remove('PRODUCT_ID')
+      this.getProducts().then(id => this.getProductDetail(id))
+      console.log(err)
     })
   }
 

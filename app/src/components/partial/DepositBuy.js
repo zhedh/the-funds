@@ -34,16 +34,16 @@ class DepositBuy extends Component {
   onDeposit = gearNum => {
     Toast.info('敬请期待')
     return
-    const {personStore, userStore} = this.props
-    if (!personStore.isAuth) {
-      Toast.info('请进行身份认证')
-      return
-    }
-    if (!userStore.hasPayPassword) {
-      Toast.info('请设置交易密码')
-      return
-    }
-    if (gearNum) this.setState({showConfirm: true})
+    // const {personStore, userStore} = this.props
+    // if (!personStore.isAuth) {
+    //   Toast.info('请进行身份认证')
+    //   return
+    // }
+    // if (!userStore.hasPayPassword) {
+    //   Toast.info('请设置交易密码')
+    //   return
+    // }
+    // if (gearNum) this.setState({showConfirm: true})
   }
 
   onSubmit = () => {

@@ -108,9 +108,10 @@ class Deposit extends Component {
               isShadow
               bgWhite
               title={DEPOSIT.TITLE}
-              onHandle={() => this.setState({showDrawer: true})}
-              icon={leftDrawerIcon}
-              // hideIcon
+              // onHandle={() => this.setState({showDrawer: true})}
+              onHandle={() => null}
+              hideIcon
+              // icon={leftDrawerIcon}
             >
               <span className="drawer-text">{productDetail.productName}</span>
             </Header>
