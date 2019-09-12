@@ -8,6 +8,7 @@ import AccountHeader from "../../components/partial/AccountHeader"
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import './Login.scss'
+import Cookies from "js-cookie";
 
 @inject('userStore')
 @observer
@@ -55,7 +56,7 @@ class Login extends Component {
         Toast.info(res.msg, TOAST_DURATION)
         return
       }
-
+      Cookies.remove('PRODUCT_ID')
       Toast.success('登录成功', TOAST_DURATION)
       this.timer = setTimeout(() => history.push('/deposit'), TOAST_DURATION * 1000)
     })
