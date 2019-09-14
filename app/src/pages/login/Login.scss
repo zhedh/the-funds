@@ -15,11 +15,34 @@
       display: inline-block;
       margin-top: 3rem;
 
+      &.account {
+        input {
+          box-sizing: border-box;
+          padding-left: 60px;
+        }
+
+        span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          width: 60px;
+
+          display: flex;
+          align-items: center;
+
+          svg{
+            margin-left: 3px;
+            color: #444;
+          }
+        }
+      }
+
       .input-main {
         width: 100%;
         outline: none;
         padding: 10px 0;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         @include clearButton;
         border-bottom: 1px solid $black-border-bottom;
 

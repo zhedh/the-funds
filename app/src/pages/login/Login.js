@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import {Button, Toast} from 'antd-mobile'
+import Cookies from "js-cookie"
 import {Link} from 'react-router-dom'
 import {TOAST_DURATION} from '../../utils/constants'
+import {FiChevronDown} from "react-icons/fi"
+import TEL_PREFIX_DATA from '../../utils/tel-prefix'
 import {isEmail, isMobile, isPassword} from "../../utils/reg"
 import AccountHeader from "../../components/partial/AccountHeader"
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
+import TelPrefix from "../../components/partial/TelPrefix"
 import './Login.scss'
-import Cookies from "js-cookie";
 
 @inject('userStore')
 @observer
@@ -17,10 +20,25 @@ class Login extends Component {
     account: '',
     password: '',
     type: 'password',
+    prefix: TEL_PREFIX_DATA[0],
+    showPrefix: false
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer)
+  }
+
+  onOpenPrefix = (e) => {
+    e.preventDefault()
+    this.setState({showPrefix: true})
+  }
+
+  onConfirmPrefix = (prefix) => {
+    this.setState({showPrefix: false, prefix})
+  }
+
+  onCancelPrefix = () => {
+    this.setState({showPrefix: false})
   }
 
   onInputChange = (e, key) => {
@@ -34,7 +52,7 @@ class Login extends Component {
 
   onSubmit = () => {
     const {history, userStore} = this.props
-    const {account, password} = this.state
+    const {account, password,prefix} = this.state
 
     if (!isEmail(account) && !isMobile(account)) {
       Toast.info('账号输入错误', TOAST_DURATION)
@@ -48,7 +66,7 @@ class Login extends Component {
 
     // 登录接口，成功后前往首页
     userStore.login({
-      phonePrefix: isMobile(account) ? '86' : null,
+      phonePrefix: isMobile(account) ? prefix.tel : null,
       userName: account,
       password
     }).then(res => {
@@ -63,14 +81,18 @@ class Login extends Component {
   }
 
   render() {
-    const {account, password, type} = this.state
+    const {account, password, type, prefix, showPrefix} = this.state
     const canSubmit = account === '' || password === ''
 
     return (
       <div id="login">
         <AccountHeader title="登录"/>
         <div className="content">
-          <label>
+          <label className="account">
+            <span onClick={this.onOpenPrefix}>
+              +{prefix.tel}
+              <FiChevronDown/>
+            </span>
             <input
               className="input-main"
               type="text"
@@ -109,6 +131,12 @@ class Login extends Component {
           </Button>
         </div>
 
+        <TelPrefix
+          show={showPrefix}
+          prefix={prefix}
+          confirm={this.onConfirmPrefix}
+          cancel={this.onCancelPrefix}
+        />
       </div>
     )
   }

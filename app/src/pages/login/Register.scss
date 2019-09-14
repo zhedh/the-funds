@@ -17,6 +17,29 @@
       display: block;
       margin-bottom: 3rem;
 
+      &.account {
+        input {
+          box-sizing: border-box;
+          padding-left: 60px;
+        }
+
+        span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          width: 60px;
+
+          display: flex;
+          align-items: center;
+
+          svg{
+            margin-left: 3px;
+            color: #444;
+          }
+        }
+      }
+
       .input-main {
         @include clearButton;
         width: 100%;

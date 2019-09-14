@@ -12,6 +12,9 @@ import closePwdImg from '../../assets/images/close-pwd.png'
 import registerSuccessImg from '../../assets/images/register-success.png'
 import './Register.scss'
 import Cookies from "js-cookie";
+import {FiChevronDown} from "react-icons/fi";
+import TEL_PREFIX_DATA from "../../utils/tel-prefix";
+import TelPrefix from "../../components/partial/TelPrefix";
 
 class RegisterSuccess extends Component {
 
@@ -53,7 +56,9 @@ class Register extends Component {
     count: COUNT_DOWN,
     isGetSms: true,
     showSuccess: false,
-    showBtn: true
+    showBtn: true,
+    prefix: TEL_PREFIX_DATA[0],
+    showPrefix: false
   }
 
   componentDidMount() {
@@ -75,6 +80,19 @@ class Register extends Component {
     UserApi.getCaptchaPng({key}).then(res => {
       this.setState({captchaKey: key, imgSrc: res})
     })
+  }
+
+  onOpenPrefix = (e) => {
+    e.preventDefault()
+    this.setState({showPrefix: true})
+  }
+
+  onConfirmPrefix = (prefix) => {
+    this.setState({showPrefix: false, prefix})
+  }
+
+  onCancelPrefix = () => {
+    this.setState({showPrefix: false})
   }
 
   canSubmit = () => {
@@ -196,14 +214,20 @@ class Register extends Component {
       count,
       isGetSms,
       showSuccess,
-      showBtn
+      showBtn,
+      showPrefix,
+      prefix
     } = this.state
 
     return (
       <div id="register">
         <AccountHeader title="注册" onHandle={() => history.push('/login')}/>
         <div className="main-content">
-          <label>
+          <label className="account">
+            <span onClick={this.onOpenPrefix}>
+              +{prefix.tel}
+              <FiChevronDown/>
+            </span>
             <input
               className="input-main"
               type="text"
@@ -213,6 +237,7 @@ class Register extends Component {
               onChange={e => this.onInputChange(e, 'account')}
             />
           </label>
+
           <label>
             <Captcha
               imgSrc={imgSrc}
@@ -284,6 +309,13 @@ class Register extends Component {
           立即注册
         </Button>}
         {showSuccess && <RegisterSuccess history={this.props.history}/>}
+
+        <TelPrefix
+          show={showPrefix}
+          prefix={prefix}
+          confirm={this.onConfirmPrefix}
+          cancel={this.onCancelPrefix}
+        />
       </div>
     )
   }

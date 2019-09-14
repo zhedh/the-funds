@@ -304,7 +304,7 @@ function MmtRule() {
         1.MUSDT特价交易时间：UTC+8 周一至周日 ，凌晨4：00点至晚上24:00点。
         <br />
         <br />
-        2.MUSDT特价的单价为1 USDT, 空投折扣价格为:0.4 USDT。
+        2.MUSDT特价的单价为1 USDT, 空投折扣价格为:0.5 USDT。
         <br />
         <br />
         3.参与MUSDT特价购买档位显示6档,分别为：200MUSDT、300MUSDT、500MUSDT、1000MUSDT、1500MUSDT、2000MUSDT。

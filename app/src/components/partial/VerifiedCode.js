@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
-import { Toast, Button } from 'antd-mobile'
-import { COUNT_DOWN, REG, TOAST_DURATION } from '../../utils/constants'
+import React, {Component} from 'react'
+import {Toast, Button} from 'antd-mobile'
+import {FiChevronDown} from "react-icons/fi"
+import {COUNT_DOWN, REG, TOAST_DURATION} from '../../utils/constants'
 import Captcha from '../common/Captcha'
 import AccountHeader from './AccountHeader'
 import UserApi from '../../api/user'
+import TelPrefix from "./TelPrefix"
+import TEL_PREFIX_DATA from "../../utils/tel-prefix"
 import './VerifiedCode.scss'
 
 class VerifiedCode extends Component {
@@ -13,7 +16,9 @@ class VerifiedCode extends Component {
     imgSrc: 'http://47.75.138.157/api/captchapng/png',
     captcha: '',
     captchaKey: +new Date(),
-    preAccount: ''
+    preAccount: '',
+    prefix: TEL_PREFIX_DATA[0],
+    showPrefix: false
   }
 
   componentDidMount() {
@@ -27,23 +32,36 @@ class VerifiedCode extends Component {
   getCaptchaPng = () => {
     const key = +new Date()
 
-    UserApi.getCaptchaPng({ key }).then(res => {
-      this.setState({ captchaKey: key, imgSrc: res })
+    UserApi.getCaptchaPng({key}).then(res => {
+      this.setState({captchaKey: key, imgSrc: res})
     })
   }
 
+  onOpenPrefix = (e) => {
+    e.preventDefault()
+    this.setState({showPrefix: true})
+  }
+
+  onConfirmPrefix = (prefix) => {
+    this.setState({showPrefix: false, prefix})
+  }
+
+  onCancelPrefix = () => {
+    this.setState({showPrefix: false})
+  }
+
   onAccountBlur = e => {
-    const { value } = e.target
-    const { preAccount } = this.state
+    const {value} = e.target
+    const {preAccount} = this.state
     if (value !== preAccount) {
-      this.setState({ preAccount: value })
+      this.setState({preAccount: value})
       this.getCaptchaPng()
     }
   }
 
   onInputChange = (e, key) => {
-    const { value } = e.target
-    this.setState({ [key]: value })
+    const {value} = e.target
+    this.setState({[key]: value})
   }
 
   codeCountDown = () => {
@@ -51,17 +69,17 @@ class VerifiedCode extends Component {
 
     this.timer = setInterval(() => {
       if (count <= 0) {
-        this.setState({ isGetSms: true, count: COUNT_DOWN })
+        this.setState({isGetSms: true, count: COUNT_DOWN})
         clearInterval(this.timer)
         return
       }
-      this.setState({ isGetSms: false, count: count-- })
+      this.setState({isGetSms: false, count: count--})
     }, 1000)
   }
 
   emailExist = () => {
-    const { userName } = this.props
-    UserApi.emailExist({ email: userName }).then(res => {
+    const {userName} = this.props
+    UserApi.emailExist({email: userName}).then(res => {
       if (res.status === -2) {
         Toast.info('该邮箱未注册')
         return
@@ -70,8 +88,9 @@ class VerifiedCode extends Component {
   }
 
   phoneExist = () => {
-    const { userName } = this.props
-    UserApi.emailExist({ phoneNo: userName, phonePrefix: '86' }).then(res => {
+    const {userName} = this.props
+    const {prefix} = this.state
+    UserApi.emailExist({phoneNo: userName, phonePrefix: prefix && prefix.tel}).then(res => {
       if (res.status === -2) {
         Toast.info('该手机号未注册')
         return
@@ -80,13 +99,13 @@ class VerifiedCode extends Component {
   }
 
   sendSmsCode = async () => {
-    const { userName, typeOption } = this.props
-    const { captcha, captchaKey } = this.state
+    const {userName, typeOption} = this.props
+    const {captcha, captchaKey, prefix} = this.state
     await this.phoneExist()
     UserApi.sendSmsCode(
       {
         imgcode: captcha,
-        prefix: '86',
+        prefix: prefix && prefix.tel,
         phone: userName,
         type: typeOption.codeType
       },
@@ -104,8 +123,8 @@ class VerifiedCode extends Component {
   }
 
   sendMailCode = async () => {
-    const { userName, typeOption } = this.props
-    const { captcha, captchaKey } = this.state
+    const {userName, typeOption} = this.props
+    const {captcha, captchaKey} = this.state
     await this.emailExist()
     UserApi.sendMailCode(
       {
@@ -127,8 +146,8 @@ class VerifiedCode extends Component {
   }
 
   getCode = () => {
-    const { userName } = this.props
-    const { captcha } = this.state
+    const {userName} = this.props
+    const {captcha} = this.state
     if (!REG.EMAIL.test(userName) && !REG.MOBILE.test(userName)) {
       Toast.info('请填写正确的邮箱或者手机号', TOAST_DURATION)
       return
@@ -152,14 +171,25 @@ class VerifiedCode extends Component {
       onNext,
       onBack
     } = this.props
-    const { isGetSms, count, captcha, imgSrc } = this.state
+    const {
+      isGetSms,
+      count,
+      captcha,
+      imgSrc,
+      showPrefix,
+      prefix
+    } = this.state
     const canSubmit = userName !== '' && code !== ''
 
     return (
       <div className={'verified-code ' + (show ? 'show' : '')}>
-        <AccountHeader title={typeOption.title} onHandle={onBack} />
+        <AccountHeader title={typeOption.title} onHandle={onBack}/>
         <div className="main-content">
-          <label>
+          <label className="account">
+            <span onClick={this.onOpenPrefix}>
+              +{prefix.tel}
+              <FiChevronDown/>
+            </span>
             <input
               className="input-main"
               type="text"
@@ -204,6 +234,13 @@ class VerifiedCode extends Component {
         >
           下一步
         </Button>
+
+        <TelPrefix
+          show={showPrefix}
+          prefix={prefix}
+          confirm={this.onConfirmPrefix}
+          cancel={this.onCancelPrefix}
+        />
       </div>
     )
   }
