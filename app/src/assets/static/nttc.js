@@ -17,6 +17,7 @@ const NTTC = {
     GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级'],
     GENERALIZE_USER_ONE_ICON: require('../images/nttc/generalize-user-one.png'),
     GENERALIZE_USER_TWO_ICON: require('../images/nttc/generalize-user-two.png'),
+    RULE_TITLE: 'NTTC规则说明'
   },
   BARGAIN: {
     BANNER_LABEL: '特价NTTC奖励额度：'
