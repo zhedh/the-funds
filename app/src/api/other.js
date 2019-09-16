@@ -5,7 +5,7 @@ class OtherApi {
    * 获取公告列表
    **/
   static getNotices(options = {}) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.get('/other/noticelist', options)
   }
 
@@ -15,7 +15,7 @@ class OtherApi {
    * @required id string 公告ID
    **/
   static getNoticeDetail(options = {}) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.post('/other/noticeview', options)
   }
 
@@ -23,7 +23,7 @@ class OtherApi {
    * 轮播列表
    **/
   static getBannerList(options = {}) {
-    options.noLogin = true;
+    options.noLogin = true
     return http.get('/other/banner', options)
   }
 
@@ -52,6 +52,15 @@ class OtherApi {
    **/
   static getVersion(options = {}) {
     return http.post('/other/version', options)
+  }
+
+  /**
+   * 规则说明
+   *
+   * @required
+   **/
+  static getRules() {
+    return http.get('/other/rules')
   }
 }
 

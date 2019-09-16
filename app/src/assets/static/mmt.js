@@ -8,7 +8,7 @@ const MMT = {
     ICON_HOME: require('../images/mmt/icon-home.png'),
     ICON_DEPOSIT: require('../images/mmt/icon-deposit.png'),
     ICON_WALLET: require('../images/mmt/icon-wallet.png'),
-    LABEL_DEPOSIT: 'X PLAN'
+    LABEL_DEPOSIT: 'MMT'
   },
   HOME: {
     TITLE: 'MMT',
@@ -16,7 +16,7 @@ const MMT = {
     GENERALIZE_BG: require('../images/mmt/generalize-banner.png'),
     GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级'],
     GENERALIZE_USER_ONE_ICON: require('../images/mmt/generalize-user-one.png'),
-    GENERALIZE_USER_TWO_ICON: require('../images/mmt/generalize-user-two.png'),
+    GENERALIZE_USER_TWO_ICON: require('../images/mmt/generalize-user-two.png')
   },
   BARGAIN: {
     BANNER_LABEL: '特价XC奖励额度：'
@@ -36,29 +36,34 @@ const MMT = {
   DEPOSIT: {
     TITLE: '超级节点',
     TABS: ['参与节点', '特价额度'],
-    SIDEBAR_TITLE: '选择参与基金',
+    SIDEBAR_TITLE: '选择参与基金'
   },
   USER: {
     CUSTOMERS: [
       {
         LABEL: '微信客服1',
         VALUE: 'flare_nazzi'
-      }, {
+      },
+      {
         LABEL: '微信客服2',
         VALUE: 'Flare_foundation'
-      }, {
+      },
+      {
         LABEL: '微信客服3',
         VALUE: 'FlareFoundation_Anna'
-      }, {
+      },
+      {
         LABEL: 'Telegram',
         VALUE: 'https://t.me/flare_Nazzi'
-      }, {
+      },
+      {
         LABEL: 'Telegram',
         VALUE: 'https://t.me/Flare_Rita'
-      }, {
+      },
+      {
         LABEL: 'Telegram',
         VALUE: 'https://t.me/MMT_Anna'
-      },
+      }
     ]
   }
 }
