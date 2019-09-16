@@ -30,8 +30,6 @@ class DepositUnlock extends Component {
   }
 
   onDeposit = amount => {
-    Toast.info('敬请期待')
-    return
     this.setState({showConfirm: true})
     // const reg = /^[0-9]*[1-9][0-9]*$/
     // if (!reg.test(amount)) {

@@ -25,8 +25,8 @@ class WalletCard extends Component {
       <div
         className="wallet-card"
         style={{backgroundImage: `url(${card.bgImg})`}}
-        // onClick={() => this.toPage(card.link)}
-        onClick={() => Toast.info('敬请期待')}
+        onClick={() => this.toPage(card.link)}
+        // onClick={() => Toast.info('敬请期待')}
       >
         <h1>
           <small>总资产（{card.name}）</small>
@@ -38,16 +38,16 @@ class WalletCard extends Component {
         <ul>
           {card.withdrawUrl && (
             <li
-              // onClick={(e) => this.toPage(card.withdrawUrl, e)}>
-              onClick={() => Toast.info('敬请期待')}>
+              onClick={(e) => this.toPage(card.withdrawUrl, e)}>
+              {/*onClick={() => Toast.info('敬请期待')}>*/}
               <img src={withdrawImg} alt=""/>
               提现
             </li>
           )}
           {card.rechargeUrl && (
             <li
-              // onClick={(e) => this.toPage(card.rechargeUrl, e)}>
-              onClick={() => Toast.info('敬请期待')}>
+              onClick={(e) => this.toPage(card.rechargeUrl, e)}>
+              {/*onClick={() => Toast.info('敬请期待')}>*/}
               <img src={rechargeImg} alt=""/>
               充值
             </li>
