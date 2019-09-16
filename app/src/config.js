@@ -36,13 +36,13 @@ export const SWITCH = {
   PROJECT: 'XC',
   // PROJECT: 'NTTC',
   // PROJECT: 'MMT',
-  ONLINE: false
+  ONLINE: true
 }
 
 const COIN = {
   XC: {
     PROD: {
-      API_BASE_URL: 'http://api.zbxcoin.com/api'
+      API_BASE_URL: 'https://api.zbxcoin.com/api'
     },
     DEV: {
       API_BASE_URL: 'http://47.75.138.157/api'
