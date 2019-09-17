@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import {Button, Toast} from 'antd-mobile'
+import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 import {TOAST_DURATION} from '../../utils/constants'
 import {isEmail, isMobile, isPassword} from "../../utils/reg"
@@ -55,7 +56,7 @@ class Login extends Component {
         Toast.info(res.msg, TOAST_DURATION)
         return
       }
-
+      Cookies.remove('PRODUCT_ID')
       Toast.success('登录成功', TOAST_DURATION)
       this.timer = setTimeout(() => history.push('/deposit'), TOAST_DURATION * 1000)
     })

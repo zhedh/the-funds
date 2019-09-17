@@ -11,6 +11,7 @@ import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import registerSuccessImg from '../../assets/images/register-success.png'
 import './Register.scss'
+import Cookies from "js-cookie";
 
 class RegisterSuccess extends Component {
 
@@ -175,6 +176,7 @@ class Register extends Component {
         Toast.info(res.msg, TOAST_DURATION)
         return
       }
+      Cookies.remove('PRODUCT_ID')
       Toast.success('注册成功', TOAST_DURATION, () => this.setState({showSuccess: true}))
     })
   }
