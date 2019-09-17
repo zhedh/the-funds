@@ -28,6 +28,7 @@ class Recharge extends Component {
 
   render() {
     const {type, address} = this.state
+    const isUsdt = type === 'USDT'
 
     return (
       <div id="recharge">
@@ -49,6 +50,9 @@ class Recharge extends Component {
         </section>
         <section className="section-aside">
           <p>转入说明</p>
+          {!isUsdt && <p style={{color: '#d19193'}}>
+            • 充值MMT后将自动根据 MMT/MUSDT 的时时汇率自动折合成 MUSDT ,折合时间根据MMT 到账时间为准。
+          </p>}
           <p> • 转入是自动的，{type} 转账需要整个 {type} 网络进行确认，您的 {type} 会自动充值到您的账户中。 </p>
           <p> • 此地址是你唯一且独自使用的转入地址，你可以同时进行多次充值。</p>
           <p> • 本地址禁止充值除 {type} 之外的其它资产，任何其它资产充值将不可找回。</p>

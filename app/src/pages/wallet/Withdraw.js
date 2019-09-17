@@ -99,6 +99,10 @@ class Withdraw extends Component {
     })
   }
 
+  getRealAmount = () => {
+
+  }
+
   onSubmit = () => {
     const {history, walletStore} = this.props
     let {code, amount, walletTo, type} = this.state
@@ -161,12 +165,16 @@ class Withdraw extends Component {
       amountMin,
       amountMax,
       balance,
+      mmtPrice,
       serviceCharge
     } = walletStore.withdrawInfo || {}
 
+    const isUsdt = type === 'USDT'
     const canSubmit = walletTo && amount && code
-    const realAmount = amount ? (Number(amount) - Number(serviceCharge)) : '--'
-
+    let realAmount = !amount ? '--' :
+      isUsdt ?
+        (Number(amount) - Number(serviceCharge)) :
+        (Number(amount) - Number(serviceCharge)) * mmtPrice
     return (
       <div id="withdraw">
         <Header title={type + '提币'} bgWhite isFixed isShadow>
@@ -210,7 +218,10 @@ class Withdraw extends Component {
                 onChange={(e) => this.onInputChange(e, 'amount')}
               />
             </div>
-            <small>手续费：{serviceCharge}{type}</small>
+            <small>
+              {!isUsdt && <span>MMT/MUSDT：{mmtPrice}</span>}
+              <span>手续费：{serviceCharge}{type}</span>
+            </small>
           </div>
           <div className="row">
             <label>图形验证码</label>
@@ -239,7 +250,7 @@ class Withdraw extends Component {
           </div>
           <div className="row">
             <label>
-              <span>到账数量</span>
+              <span>到账数量{!isUsdt && '（MMT）'}</span>
               <span>{realAmount}</span>
             </label>
           </div>
@@ -261,6 +272,9 @@ class Withdraw extends Component {
             手续费 {serviceCharge} {type}
           </p>
           <p> • 为了保障资金安全，我们会对提币进行人工审核，请耐心等待。</p>
+          {!isUsdt && <p style={{color: '#d19193'}}>
+            • 提币MUSDT将自动根据当前汇率（MMT/MUSDT）折合成MMT提币，请悉知～。
+          </p>}
         </section>
       </div>
     );

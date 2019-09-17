@@ -5,7 +5,6 @@ import withdrawImg from '../../assets/images/withdraw.svg'
 import arrowRightImg from '../../assets/images/arrow-right-white.png'
 import {formatCoinPrice, formatWalletPrice} from "../../utils/format"
 import {COIN_POINT_LENGTH, USDT_POINT_LENGTH} from "../../utils/constants";
-import {Toast} from "antd-mobile"
 import './WalletCard.scss'
 
 class WalletCard extends Component {
@@ -26,7 +25,6 @@ class WalletCard extends Component {
         className="wallet-card"
         style={{backgroundImage: `url(${card.bgImg})`}}
         onClick={() => this.toPage(card.link)}
-        // onClick={() => Toast.info('敬请期待')}
       >
         <h1>
           <small>总资产（{card.name}）</small>
@@ -39,7 +37,6 @@ class WalletCard extends Component {
           {card.withdrawUrl && (
             <li
               onClick={(e) => this.toPage(card.withdrawUrl, e)}>
-              {/*onClick={() => Toast.info('敬请期待')}>*/}
               <img src={withdrawImg} alt=""/>
               提现
             </li>
@@ -47,7 +44,6 @@ class WalletCard extends Component {
           {card.rechargeUrl && (
             <li
               onClick={(e) => this.toPage(card.rechargeUrl, e)}>
-              {/*onClick={() => Toast.info('敬请期待')}>*/}
               <img src={rechargeImg} alt=""/>
               充值
             </li>
