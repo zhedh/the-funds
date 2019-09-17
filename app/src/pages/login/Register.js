@@ -129,7 +129,7 @@ class Register extends Component {
 
   getCode = async () => {
     const {userStore} = this.props
-    const {account, captcha, captchaKey} = this.state
+    const {account, captcha, captchaKey, prefix} = this.state
     if (!isEmail(account) && !isMobile(account)) {
       Toast.info('请填写正确的邮箱或者手机号', TOAST_DURATION)
       return
@@ -143,6 +143,7 @@ class Register extends Component {
     userStore.getCode({
       captcha,
       account,
+      prefix: prefix.tel,
       type: 'reg'
     }, {key: captchaKey}).then(res => {
       if (res.status !== 1) {
@@ -166,7 +167,8 @@ class Register extends Component {
       code,
       password,
       passwordConfirm,
-      recommendCode
+      recommendCode,
+      prefix
     } = this.state
 
     if (!REG.EMAIL.test(account) && !REG.MOBILE.test(account)) {
@@ -183,7 +185,7 @@ class Register extends Component {
     }
 
     userStore.register({
-      phonePrefix: isMobile(account) ? '86' : null,
+      phonePrefix: isMobile(account) ? prefix.tel : null,
       userName: account,
       code,
       password,

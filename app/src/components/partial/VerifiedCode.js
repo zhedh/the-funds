@@ -230,7 +230,7 @@ class VerifiedCode extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={onNext}
+          onClick={()=>onNext(prefix.tel)}
         >
           下一步
         </Button>

@@ -19,7 +19,8 @@ class Password extends Component {
     code: '',
     password: '',
     passwordConfirm: '',
-    verifyToken: null
+    verifyToken: null,
+    prefix: '86'
   }
 
   componentDidMount() {
@@ -37,27 +38,16 @@ class Password extends Component {
       return
     }
     this.setState({typeOption})
-    // this.clearState()
   }
 
   componentWillUnmount() {
     clearInterval(this.timer)
   }
 
-  // clearState = () => {
-  //   this.setState({
-  //     userName: '',
-  //     code: '',
-  //     password: '',
-  //     passwordConfirm: ''
-  //   })
-  // }
-
   onBack = () => {
     const {history} = this.props
     const {typeOption} = this.state
     history.push(typeOption.type !== 'find' ? '/account' : '/login')
-    // this.clearState()
   }
 
   onInputChange = (e, key) => {
@@ -67,8 +57,9 @@ class Password extends Component {
 
   onStepChange = step => this.setState({step})
 
-  onNext = () => {
+  onNext = (prefix) => {
     const {userName, code, typeOption} = this.state
+    this.setState({prefix})
     if (!isEmail(userName) && !isMobile(userName)) {
       Toast.info('账号输入错误', TOAST_DURATION)
       return
@@ -86,7 +77,7 @@ class Password extends Component {
       return
     }
     UserApi.checkCode({
-      phonePrefix: isMobile(userName) ? '86' : null,
+      phonePrefix: isMobile(userName) ? prefix : null,
       userName,
       code,
       type: typeOption.codeType
@@ -107,7 +98,8 @@ class Password extends Component {
       code,
       password,
       passwordConfirm,
-      verifyToken
+      verifyToken,
+      prefix
     } = this.state
 
     if (!REG.PASSWORD.test(password)) {
@@ -124,7 +116,7 @@ class Password extends Component {
     // 找回登录密码
     if (typeOption.type === 'find') {
       return UserApi.findPassword({
-        phonePrefix: isPhone ? '86' : null,
+        phonePrefix: isPhone ? prefix : null,
         userName,
         code,
         password,
@@ -181,7 +173,7 @@ class Password extends Component {
       userName,
       code,
       password,
-      passwordConfirm
+      passwordConfirm,
     } = this.state
 
     return (

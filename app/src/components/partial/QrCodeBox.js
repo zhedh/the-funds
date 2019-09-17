@@ -9,7 +9,7 @@ class QrCodeBox extends Component {
 
   componentDidMount() {
     const canvas = document.querySelector('.qr-code__box canvas')
-    const codeUrl = canvas.toDataURL('image/png');
+    const codeUrl = canvas.toDataURL('image/png')
     this.setState({codeUrl})
   }
 
