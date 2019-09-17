@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Toast} from 'antd-mobile'
 import {inject, observer} from 'mobx-react'
+import Cookies from "js-cookie"
 import {UserApi} from '../../api'
 import {REG, TOAST_DURATION, COUNT_DOWN} from '../../utils/constants'
 import {isEmail, isMobile} from "../../utils/reg"
@@ -11,7 +12,6 @@ import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
 import registerSuccessImg from '../../assets/images/register-success.png'
 import './Register.scss'
-import Cookies from "js-cookie";
 
 class RegisterSuccess extends Component {
 
