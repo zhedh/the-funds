@@ -1,4 +1,4 @@
-import {SWITCH} from '../../config'
+import { SWITCH } from '../../config'
 import STATIC_XC from './xc'
 import STATIC_NTTC from './nttc'
 import STATIC_MMT from './mmt'
@@ -18,6 +18,6 @@ function getStatic(coin) {
 
 const STATIC = getStatic(SWITCH.PROJECT)
 
-const {COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER,USER} = STATIC
+const { COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER, USER } = STATIC
 
-export {COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER,USER}
+export { COMMON, HOME, BARGAIN, AUTH, DEPOSIT, FOOTER, USER }

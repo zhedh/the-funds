@@ -172,7 +172,7 @@ class UserCenter extends Component {
             url={userStore.isOnline ? '/account' : '/login'}
           />
           {SWITCH.PROJECT !== 'XC' && <ListItem
-          icon={require('../../assets/images/account.svg')}
+          icon={require('../../assets/images/kefu.png')}
           name="联系客服"
           url={'/contact-us'}
           />}

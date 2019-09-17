@@ -32,12 +32,13 @@ const XC = {
     IMG_WAIT: require('../images/xc/auth-wait.png'),
     IMG_SUCCESS: require('../images/xc/auth-success.png'),
     IMG_FAIL: require('../images/xc/auth-fail.png'),
-    UPLOAD_WRITE: 'X PLAN',
+    UPLOAD_WRITE: 'X PLAN'
   },
   DEPOSIT: {
+    COIN_NAME: '参与节点',
     TITLE: 'X PLAN',
     TABS: ['X PLAN', '特价额度'],
-    SIDEBAR_TITLE: '选择参与计划',
+    SIDEBAR_TITLE: '选择参与计划'
   },
   USER: {
     CUSTOMERS: []

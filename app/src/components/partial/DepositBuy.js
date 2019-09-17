@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import {withRouter} from "react-router"
-import {inject, observer} from 'mobx-react'
-import {Button, Toast} from 'antd-mobile'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { inject, observer } from 'mobx-react'
+import { Button, Toast } from 'antd-mobile'
 import Header from '../common/Header'
 import openPwdImg from '../../assets/images/open-pwd.png'
 import closePwdImg from '../../assets/images/close-pwd.png'
-import {formatCoinPrice} from "../../utils/format"
-import {COIN_POINT_LENGTH} from "../../utils/constants"
-import {DEPOSIT} from '../../assets/static'
+import { formatCoinPrice } from '../../utils/format'
+import { COIN_POINT_LENGTH } from '../../utils/constants'
+import { DEPOSIT } from '../../assets/static'
 import './DepositBuy.scss'
 
 @inject('productStore')
@@ -23,16 +23,16 @@ class DepositBuy extends Component {
   }
 
   onInputChange = (e, key) => {
-    const {value} = e.target
-    this.setState({[key]: value})
+    const { value } = e.target
+    this.setState({ [key]: value })
   }
 
   onSetType = currentType => {
-    this.setState({pwdType: currentType === 'text' ? 'password' : 'text'})
+    this.setState({ pwdType: currentType === 'text' ? 'password' : 'text' })
   }
 
   onDeposit = gearNum => {
-    const {personStore, userStore} = this.props
+    const { personStore, userStore } = this.props
     if (!personStore.isAuth) {
       Toast.info('请进行身份认证')
       return
@@ -41,14 +41,14 @@ class DepositBuy extends Component {
       Toast.info('请设置交易密码')
       return
     }
-    if (gearNum) this.setState({showConfirm: true})
+    if (gearNum) this.setState({ showConfirm: true })
   }
 
   onSubmit = () => {
-    const {history, userStore, productStore} = this.props
-    const {payPassword} = this.state
+    const { history, userStore, productStore } = this.props
+    const { payPassword } = this.state
     userStore
-      .getPayToken({payPassword})
+      .getPayToken({ payPassword })
       .then(res => {
         if (res.status !== 1) {
           Toast.info(res.msg)
@@ -69,35 +69,37 @@ class DepositBuy extends Component {
   }
 
   render() {
-    const {show, productStore, userStore, personStore} = this.props
-    const {showConfirm, payPassword, pwdType} = this.state
-    const {productDetail, gears, gearNum} = productStore
+    const { show, productStore, userStore, personStore } = this.props
+    const { showConfirm, payPassword, pwdType } = this.state
+    const { productDetail, gears, gearNum } = productStore
     const hasGears = gears && gears.length > 0
 
     return (
       <div className={`deposit-buy ${show ? 'show' : ''}`}>
         <ul className="gears">
           {hasGears &&
-          gears.map(gear => (
-            <li
-              key={gear.num}
-              className={gearNum === gear.num ? 'active' : ''}
-              onClick={() => productStore.changeGearNum(gear.num)}
-            >
-              <div className="box">
-                <div className="price">
-                  {gear.num}
-                  <small>{productDetail.productName}</small>
+            gears.map(gear => (
+              <li
+                key={gear.num}
+                className={gearNum === gear.num ? 'active' : ''}
+                onClick={() => productStore.changeGearNum(gear.num)}
+              >
+                <div className="box">
+                  <div className="price">
+                    {gear.num}
+                    <small>{productDetail.productName}</small>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
         <div className="fee">
-          {gearNum && <p>
-            <span>参与送{productDetail.productName}特价额度</span>
-            <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
-          </p>}
+          {gearNum && (
+            <p>
+              <span>参与送{productDetail.productName}特价额度</span>
+              <span>{gearNum ? (gearNum / 10).toFixed(0) : 0}</span>
+            </p>
+          )}
           <small>手续费费率：{(productDetail.serviceCharge || 0) * 100}%</small>
         </div>
         <aside>
@@ -117,7 +119,8 @@ class DepositBuy extends Component {
         <Button
           className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"
-          onClick={() => this.onDeposit(gearNum)}>
+          onClick={() => this.onDeposit(gearNum)}
+        >
           参与计划
         </Button>
 
@@ -128,12 +131,12 @@ class DepositBuy extends Component {
               isShadow
               title="确认支付"
               icon={require('../../assets/images/close.png')}
-              onHandle={() => this.setState({showConfirm: false})}
+              onHandle={() => this.setState({ showConfirm: false })}
             />
             <div className="content">
               <p className="deposit-price">
                 <span>{DEPOSIT.COIN_NAME}</span>
-                <span>{gearNum}</span>
+                <span>{gearNum || '--'}</span>
               </p>
               <p className="service-charge">
                 <span>手续费{productDetail.serviceCharge * 100}%</span>
@@ -143,7 +146,12 @@ class DepositBuy extends Component {
               </p>
               <p>
                 <span>可用</span>
-                <span>{formatCoinPrice(productDetail.userWarehouse, COIN_POINT_LENGTH)}</span>
+                <span>
+                  {formatCoinPrice(
+                    productDetail.userWarehouse,
+                    COIN_POINT_LENGTH
+                  )}
+                </span>
               </p>
               <div className="input-box">
                 <input
