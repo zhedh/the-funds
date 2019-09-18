@@ -71,13 +71,13 @@ class WithdrawRecord extends Component {
                 <span>{formatDate(record.addTime)}</span>
               </p>
               <p>
-                <label>数量</label>
+                <label>{record.tranNum ? 'MUSDT' : ''}数量</label>
                 <span>{formatCoinPrice(record.amount)}</span>
               </p>
-              {/*<p>*/}
-              {/*<label>编号</label>*/}
-              {/*<span>{record.order}</span>*/}
-              {/*</p>*/}
+              {record.tranNum && <p>
+                <label>折合MMT</label>
+                <span>{formatCoinPrice(record.tranNum)}</span>
+              </p>}
               {record.hash && <p>
                 <label>Hash</label>
                 <span>{record.hash}</span>

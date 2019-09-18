@@ -15,7 +15,7 @@ $text-sub-color: #5A5A5A;
 
   ul {
     @include clearList;
-    padding: 0 40px;
+    padding: 0 20px;
 
     li {
       padding: 12px 0;
@@ -32,12 +32,13 @@ $text-sub-color: #5A5A5A;
 
         label {
           display: inline-block;
-          width: 50px;
+          width: 80px;
         }
 
         span {
-          @include overflow(1);
-          display: inline-block;
+          flex: 1;
+          word-break: break-all;
+          line-height: 1.4;
 
           &.succeed {
             color: $succeed-color;

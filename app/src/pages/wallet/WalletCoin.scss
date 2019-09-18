@@ -42,6 +42,19 @@
           font-size: $font-assistant;
         }
       }
+
+      aside{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+        small{
+          margin-top: 5px;
+          color: $text-sub-color;
+          font-size: $font-assistant;
+        }
+      }
     }
   }
 }

@@ -61,6 +61,7 @@ class WalletCoin extends Component {
               </main>
               <aside>
                 {formatCoinPrice(record.amount)}
+                {record.toMmt && <small>折合 {formatCoinPrice(record.toMmt)} MMT</small>}
               </aside>
             </li>
           )}
