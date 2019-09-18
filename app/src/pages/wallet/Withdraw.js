@@ -63,6 +63,10 @@ class Withdraw extends Component {
     getImagePath(files[0], (url) => {
       window.qrcode.decode(url);
       window.qrcode.callback = (msg) => {
+        if (msg === 'error decoding QR Code') {
+          Toast.info('识别失败')
+          return
+        }
         this.setState({walletTo: msg})
       }
     })
