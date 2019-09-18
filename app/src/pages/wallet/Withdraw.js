@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import {Toast, Button} from "antd-mobile"
-import UserApi from "../../api/user"
+import {UserApi, PersonApi} from "../../api"
 import {COIN_POINT_LENGTH, COUNT_DOWN, USDT_POINT_LENGTH} from "../../utils/constants"
 import {isMobile} from "../../utils/reg"
 import {formatCoinPrice} from "../../utils/format"
@@ -27,7 +27,8 @@ class Withdraw extends Component {
     captchaKey: +new Date(),
     count: COUNT_DOWN,
     isCountDown: false,
-    isSubmit: false
+    isSubmit: false,
+    newServiceCharge: '', // 根据地址获取的手续费
   }
 
   componentDidMount() {
@@ -55,6 +56,19 @@ class Withdraw extends Component {
   onInputChange = (e, key) => {
     const {value} = e.target
     this.setState({[key]: value})
+  }
+
+  onAddressBlur = (e) => {
+    const {value} = e.target
+    const {type} = this.state
+    if (!value) return
+    PersonApi.serviceCharge({address: value, type}).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg);
+        return
+      }
+      this.setState({newServiceCharge: res.data.serviceCharge})
+    })
   }
 
   onChangeFile = (e) => {
@@ -164,7 +178,8 @@ class Withdraw extends Component {
       captcha,
       count,
       isCountDown,
-      isSubmit
+      isSubmit,
+      newServiceCharge
     } = this.state
     const {
       dayMax,
@@ -175,7 +190,7 @@ class Withdraw extends Component {
     } = walletStore.withdrawInfo || {}
 
     const canSubmit = walletTo && amount && code
-    const realAmount = amount ? (Number(amount) - Number(serviceCharge)) : '--'
+    const realAmount = amount ? (Number(amount) - Number(newServiceCharge || serviceCharge)) : '--'
 
     return (
       <div id="withdraw">
@@ -201,6 +216,7 @@ class Withdraw extends Component {
                 placeholder="输入或长按粘贴地址"
                 value={walletTo}
                 onChange={(e) => this.onInputChange(e, 'walletTo')}
+                onBlur={this.onAddressBlur}
               />
               <div className="file-btn">
                 <input type="file" onChange={this.onChangeFile}/>
@@ -220,7 +236,7 @@ class Withdraw extends Component {
                 onChange={(e) => this.onInputChange(e, 'amount')}
               />
             </div>
-            <small>手续费：{serviceCharge}{type}</small>
+            <small>手续费：{newServiceCharge || serviceCharge}{type}</small>
           </div>
           <div className="row">
             <label>图形验证码</label>
@@ -268,7 +284,7 @@ class Withdraw extends Component {
           <p> •
             当前，每人每日最高可提现 {dayMax} {type}，
             单笔转出限额为{amountMin} - {amountMax} {type}，
-            手续费 {serviceCharge} {type}
+            手续费 {newServiceCharge || serviceCharge} {type}
           </p>
           <p> • 为了保障资金安全，我们会对提币进行人工审核，请耐心等待。</p>
         </section>
