@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import {Toast, Button} from "antd-mobile"
-import UserApi from "../../api/user"
+import {UserApi, PersonApi} from "../../api"
 import {COIN_POINT_LENGTH, COUNT_DOWN, USDT_POINT_LENGTH} from "../../utils/constants"
 import {isMobile} from "../../utils/reg"
 import {formatCoinPrice} from "../../utils/format"
@@ -27,6 +27,8 @@ class Withdraw extends Component {
     captchaKey: +new Date(),
     count: COUNT_DOWN,
     isCountDown: false,
+    isSubmit: false,
+    newServiceCharge: '', // 根据地址获取的手续费
   }
 
   componentDidMount() {
@@ -54,6 +56,19 @@ class Withdraw extends Component {
   onInputChange = (e, key) => {
     const {value} = e.target
     this.setState({[key]: value})
+  }
+
+  onAddressBlur = (e) => {
+    const {value} = e.target
+    const {type} = this.state
+    if (!value) return
+    PersonApi.serviceCharge({address: value, type}).then(res => {
+      if (res.status !== 1) {
+        Toast.info(res.msg);
+        return
+      }
+      this.setState({newServiceCharge: res.data.serviceCharge})
+    })
   }
 
   onChangeFile = (e) => {
@@ -103,10 +118,6 @@ class Withdraw extends Component {
     })
   }
 
-  getRealAmount = () => {
-
-  }
-
   onSubmit = () => {
     const {history, walletStore} = this.props
     let {code, amount, walletTo, type} = this.state
@@ -134,21 +145,38 @@ class Withdraw extends Component {
       return
     }
 
+    this.setState({isSubmit: true})
     walletStore.withdraw({
       walletTo,
       code,
       amount,
       type
-    }).then(res => {
-      if (res.status !== 1) {
-        Toast.info(res.msg)
-        return
-      }
-      Toast.info('提现成功，正在跳转提币记录页')
-      this.linkTimer = setTimeout(() => {
-        history.push('/wallet/withdraw-record/' + type)
-      }, 2000)
     })
+      .then(res => {
+        this.setState({isSubmit: false})
+        if (res.status !== 1) {
+          Toast.info(res.msg)
+          return
+        }
+        Toast.info('提现成功，正在跳转提币记录页')
+        this.linkTimer = setTimeout(() => {
+          history.push('/wallet/withdraw-record/' + type)
+        }, 2000)
+      })
+      .catch(() => this.setState({isSubmit: false}))
+  }
+
+  getRealAmount = (amount, serviceCharge, mmtPrice) => {
+    const {type} = this.state
+    let realAmount
+    if (!amount) return ''
+
+    realAmount = Number(amount) - Number(serviceCharge)
+    if (type !== 'USDT') {
+      realAmount = -realAmount * mmtPrice
+    }
+    if (realAmount >= 0) return 0
+    return formatCoinPrice(realAmount)
   }
 
   render() {
@@ -162,7 +190,9 @@ class Withdraw extends Component {
       imgSrc,
       captcha,
       count,
-      isCountDown
+      isCountDown,
+      isSubmit,
+      newServiceCharge
     } = this.state
     const {
       dayMax,
@@ -173,12 +203,11 @@ class Withdraw extends Component {
       serviceCharge
     } = walletStore.withdrawInfo || {}
 
+    const displayServiceCharge = newServiceCharge === 0 ? 0 : (newServiceCharge || serviceCharge)
     const isUsdt = type === 'USDT'
     const canSubmit = walletTo && amount && code
-    let realAmount = !amount ? '--' :
-      isUsdt ?
-        (Number(amount) - Number(serviceCharge)) :
-        (Number(amount) - Number(serviceCharge)) * mmtPrice
+    let realAmount = this.getRealAmount(amount, displayServiceCharge, mmtPrice)
+
     return (
       <div id="withdraw">
         <Header title={type + '提币'} bgWhite isFixed isShadow>
@@ -203,6 +232,7 @@ class Withdraw extends Component {
                 placeholder="输入或长按粘贴地址"
                 value={walletTo}
                 onChange={(e) => this.onInputChange(e, 'walletTo')}
+                onBlur={this.onAddressBlur}
               />
               <div className="file-btn">
                 <input type="file" onChange={this.onChangeFile}/>
@@ -224,7 +254,7 @@ class Withdraw extends Component {
             </div>
             <small>
               {!isUsdt && <span>MMT/MUSDT：{mmtPrice}</span>}
-              <span>手续费：{serviceCharge}{type}</span>
+              <span>手续费：{displayServiceCharge}{type}</span>
             </small>
           </div>
           <div className="row">
@@ -262,7 +292,7 @@ class Withdraw extends Component {
             <Button
               activeClassName="active"
               className="primary-button"
-              disabled={!canSubmit}
+              disabled={!canSubmit || isSubmit}
               onClick={this.onSubmit}>
               提现
             </Button>
@@ -273,7 +303,7 @@ class Withdraw extends Component {
           <p> •
             当前，每人每日最高可提现 {dayMax} {type}，
             单笔转出限额为{amountMin} - {amountMax} {type}，
-            手续费 {serviceCharge} {type}
+            手续费 {displayServiceCharge} {type}
           </p>
           <p> • 为了保障资金安全，我们会对提币进行人工审核，请耐心等待。</p>
           {!isUsdt && <p style={{color: '#d19193'}}>

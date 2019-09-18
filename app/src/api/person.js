@@ -153,15 +153,6 @@ class PersonApi {
    **/
   static serviceCharge(options = {}) {
     return http.post('/user/walletforaddress', options)
-
-    // {
-    //   "status":1,
-    //   "msg":"操作成功",
-    //   "data":{
-    //   "type":1, // 1为站内，2为站外
-    //     "service_charge":0
-    // }
-    // }
   }
 
   /**

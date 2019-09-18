@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button} from 'antd-mobile'
-import {AUTH,COMMON} from '../../assets/static'
+import {AUTH, COMMON} from '../../assets/static'
 import './DepositResult.scss'
 
 @inject('personStore')
@@ -27,10 +27,6 @@ class DepositResult extends Component {
         />
         <div className="result-content">
           <h2>支付成功！</h2>
-          {!isUnLock && <p>
-            当日得到的奖励额度，有效期至次日结算时间，如次日
-            结算时还未使用，则奖励额度失效，请尽快使用。
-          </p>}
           <Button
             activeClassName="active"
             className="primary-button"
