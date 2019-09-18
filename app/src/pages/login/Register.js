@@ -25,7 +25,9 @@ class RegisterSuccess extends Component {
           <img src={registerSuccessImg} alt=""/>
           <p className="text">恭喜您，注册成功 !</p>
         </main>
-        <Button className="primary-button" onClick={() => history.push('/deposit')}>
+        <Button
+          className="primary-button"
+          onClick={() => history.push('/deposit')}>
           立即开启
         </Button>
       </div>
@@ -53,7 +55,8 @@ class Register extends Component {
     count: COUNT_DOWN,
     isGetSms: true,
     showSuccess: false,
-    showBtn: true
+    showBtn: true,
+    isSubmit: false
   }
 
   componentDidMount() {
@@ -163,6 +166,7 @@ class Register extends Component {
       Toast.info('两次密码不一致', TOAST_DURATION)
       return
     }
+    this.setState({isSubmit: true})
 
     userStore.register({
       phonePrefix: isMobile(account) ? '86' : null,
@@ -172,6 +176,7 @@ class Register extends Component {
       passwordConfirm,
       recommendCode
     }).then(res => {
+      this.setState({isSubmit: false})
       if (res.status !== 1) {
         Toast.info(res.msg, TOAST_DURATION)
         return
@@ -196,7 +201,8 @@ class Register extends Component {
       count,
       isGetSms,
       showSuccess,
-      showBtn
+      showBtn,
+      isSubmit
     } = this.state
 
     return (
@@ -279,7 +285,7 @@ class Register extends Component {
         {showBtn && <Button
           activeClassName="active"
           className="primary-button"
-          disabled={!this.canSubmit()}
+          disabled={!this.canSubmit() || isSubmit}
           onClick={this.onSubmit}>
           立即注册
         </Button>}

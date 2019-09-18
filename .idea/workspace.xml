@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a61b7edb-69f7-4da5-85e0-c0160a3d4967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/login/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/login/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,9 +21,9 @@
     <session id="-381580932">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="67" />
-          <entry key="project.open.time.0" value="24" />
-          <entry key="project.open.time.1" value="18" />
+          <entry key="project.closed" value="65" />
+          <entry key="project.open.time.0" value="23" />
+          <entry key="project.open.time.1" value="17" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.3" value="3" />
@@ -29,7 +31,7 @@
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="68" />
+          <entry key="project.opened" value="66" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -43,7 +45,7 @@
           <entry key="ico" value="3" />
           <entry key="id_rsa_github" value="1" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="984" />
+          <entry key="js" value="986" />
           <entry key="json" value="36" />
           <entry key="lock" value="1" />
           <entry key="md" value="10" />
@@ -61,7 +63,7 @@
           <entry key="HTML" value="16" />
           <entry key="Image" value="46" />
           <entry key="JSON" value="36" />
-          <entry key="JavaScript" value="984" />
+          <entry key="JavaScript" value="986" />
           <entry key="Markdown" value="10" />
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="SCSS" value="269" />
@@ -76,12 +78,12 @@
           <entry key="editorconfig" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="88" />
-          <entry key="js" value="40575" />
+          <entry key="js" value="40782" />
           <entry key="json" value="61" />
           <entry key="md" value="463" />
           <entry key="scss" value="9539" />
           <entry key="svg" value="8" />
-          <entry key="txt" value="310" />
+          <entry key="txt" value="301" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -89,9 +91,9 @@
           <entry key="CSS" value="23" />
           <entry key="HTML" value="88" />
           <entry key="JSON" value="61" />
-          <entry key="JavaScript" value="40575" />
+          <entry key="JavaScript" value="40782" />
           <entry key="Markdown" value="463" />
-          <entry key="PLAIN_TEXT" value="312" />
+          <entry key="PLAIN_TEXT" value="303" />
           <entry key="SCSS" value="9539" />
           <entry key="SVG" value="8" />
         </counts>
@@ -115,20 +117,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build/manifest.json">
+        <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="178">
+              <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#591#653#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,29 +133,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="462">
+              <caret line="293" column="5" lean-forward="true" selection-start-line="293" selection-start-column="5" selection-end-line="293" selection-end-column="5" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#1270#1677#0" expanded="true" />
+                <element signature="e#4172#4327#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/styles/_variable-xc.scss">
+        <entry file="file://$PROJECT_DIR$/app/src/pages/deposit/Deposit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="23" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="23" />
+            <state relative-caret-position="443">
+              <caret line="124" column="20" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositBuy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-187">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#679#753#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/stores/person.js">
+        <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+            <state relative-caret-position="196">
+              <caret line="142" column="33" lean-forward="true" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
+              <folding>
+                <element signature="e#623#711#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,10 +224,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3249">
-              <caret line="209" column="20" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
+            <state relative-caret-position="210">
+              <caret line="119" column="5" lean-forward="true" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#749#964#0" expanded="true" />
+                <element signature="e#3297#3357#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -223,6 +239,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>NTTC</find>
       <find>SWITCH</find>
       <find>SWITCH.PROJECT === 'XC</find>
       <find>timer</find>
@@ -251,8 +268,7 @@
       <find>assets/images/deposit-pre.svg</find>
       <find>deposit-pre</find>
       <find>86</find>
-      <find>walletTo</find>
-      <find>QR Co</find>
+      <find>Button</find>
     </findStrings>
     <replaceStrings>
       <replace>recommendCode</replace>
@@ -272,7 +288,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nttc" />
+        <entry key="$PROJECT_DIR$" value="mmt" />
       </map>
     </option>
     <option name="PUSH_TAGS">
@@ -282,7 +298,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/pages/notice/Notices.js" />
         <option value="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.js" />
         <option value="$PROJECT_DIR$/app/src/pages/notice/NoticeDetail.scss" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Bargain.js" />
@@ -298,7 +313,6 @@
         <option value="$PROJECT_DIR$/app/src/pages/home/Generalize.scss" />
         <option value="$PROJECT_DIR$/app/src/components/common/Footer.js" />
         <option value="$PROJECT_DIR$/app/src/pages/deposit/Deposit.scss" />
-        <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" />
         <option value="$PROJECT_DIR$/app/src/pages/user/UserCenter.scss" />
         <option value="$PROJECT_DIR$/app/src/pages/user/UserCenter.js" />
         <option value="$PROJECT_DIR$/app/src/assets/static/index.js" />
@@ -316,6 +330,7 @@
         <option value="$PROJECT_DIR$/app/src/pages/deposit/Deposit.js" />
         <option value="$PROJECT_DIR$/app/src/styles/_variable-xc.scss" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Generalize.js" />
+        <option value="$PROJECT_DIR$/app/src/config.js" />
         <option value="$PROJECT_DIR$/app/src/api/other.js" />
         <option value="$PROJECT_DIR$/app/src/assets/static/mmt.js" />
         <option value="$PROJECT_DIR$/app/src/pages/home/Rule.js" />
@@ -324,15 +339,16 @@
         <option value="$PROJECT_DIR$/app/src/components/partial/WalletCard.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.scss" />
         <option value="$PROJECT_DIR$/app/src/utils/constants.js" />
-        <option value="$PROJECT_DIR$/app/src/pages/login/Register.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/VerifiedCode.js" />
         <option value="$PROJECT_DIR$/app/src/pages/login/Password.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/Recharge.scss" />
         <option value="$PROJECT_DIR$/app/src/components/partial/QrCodeBox.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/Recharge.js" />
         <option value="$PROJECT_DIR$/app/src/components/partial/QrCodeBox.scss" />
+        <option value="$PROJECT_DIR$/app/src/pages/login/Register.js" />
         <option value="$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js" />
-        <option value="$PROJECT_DIR$/app/src/config.js" />
+        <option value="$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js" />
+        <option value="$PROJECT_DIR$/app/src/components/partial/DepositBuy.js" />
       </list>
     </option>
   </component>
@@ -429,6 +445,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="deposit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
+              <item name="the-funds" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="the-funds" type="b2602c69:ProjectViewProjectNode" />
@@ -581,8 +605,13 @@
       <workItem from="1568692046073" duration="99000" />
       <workItem from="1568700672260" duration="1002000" />
       <workItem from="1568702710805" duration="6797000" />
-      <workItem from="1568771876333" duration="2125000" />
-      <workItem from="1568775720260" duration="1217000" />
+    </task>
+    <task id="LOCAL-00025" summary="register">
+      <created>1565247060379</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1565247060379</updated>
     </task>
     <task id="LOCAL-00026" summary="password">
       <created>1565266804076</created>
@@ -913,30 +942,24 @@
       <option name="project" value="LOCAL" />
       <updated>1568648173571</updated>
     </task>
-    <task id="LOCAL-00073" summary="修改识别提示">
-      <created>1568776633550</created>
+    <task id="LOCAL-00073" summary="合并dev">
+      <created>1568780286570</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1568776633551</updated>
+      <updated>1568780286570</updated>
     </task>
-    <task id="LOCAL-00074" summary="修改识别提示">
-      <created>1568776917103</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1568776917103</updated>
-    </task>
-    <option name="localTasksCounter" value="75" />
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="527742000" />
+    <option name="totallyTimeSpent" value="526061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="574" y="23" width="988" height="1027" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28231645" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28231645" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -946,10 +969,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49953917" weight="0.32941177" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49953917" weight="0.3295325" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32972974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.6697039" visible="true" weight="0.19679144" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.6697039" visible="true" weight="0.19679144" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.33029613" side_tool="true" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49887133" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -991,6 +1014,7 @@
       <path value="$PROJECT_DIR$/react-svg-icon-generator" />
       <path value="$PROJECT_DIR$/app/build" />
     </ignored-roots>
+    <MESSAGE value="update router" />
     <MESSAGE value="update wang to dev" />
     <MESSAGE value="update withdraw" />
     <MESSAGE value="添加图形验证码" />
@@ -1015,10 +1039,19 @@
     <MESSAGE value="修改图片压缩" />
     <MESSAGE value="mmt" />
     <MESSAGE value="合并dev" />
-    <MESSAGE value="修改识别提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改识别提示" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并dev" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/assets/images/common/no-data.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/common/NoData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1078,13 +1111,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/deposit/Deposit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/pages/deposit/Deposit.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1848">
@@ -1128,6 +1154,13 @@
     <entry file="file://$PROJECT_DIR$/app/src/api/other.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Rule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3930">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/partial/WalletCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-168">
@@ -1135,31 +1168,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/utils/reg.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="44">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/utils/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="132">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1181,6 +1200,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1222,20 +1244,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/user/VerifiedIdentity.js">
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/QrCodeBox.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/index.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/home/Rule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        <state relative-caret-position="66">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#146#167#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1255,28 +1270,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/api/http.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+        <state relative-caret-position="-1056">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#358#447#0" expanded="true" />
+            <element signature="e#475#601#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/partial/QrCodeBox.js">
+    <entry file="file://$PROJECT_DIR$/app/src/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding>
-            <element signature="e#146#167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/llqrcode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31029" selection-start-column="31029" selection-end-column="31051" />
+        <state relative-caret-position="748">
+          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1284,16 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1347,20 +1344,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
+    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3249">
-          <caret line="209" column="20" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
+        <state relative-caret-position="178">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#591#653#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/config.js">
+    <entry file="file://$PROJECT_DIR$/app/src/pages/login/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+        <state relative-caret-position="462">
+          <caret line="293" column="5" lean-forward="true" selection-start-line="293" selection-start-column="5" selection-end-line="293" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#1270#1677#0" expanded="true" />
+            <element signature="e#4172#4327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/deposit/Deposit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="124" column="20" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/pages/wallet/Withdraw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="119" column="5" lean-forward="true" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#749#964#0" expanded="true" />
+            <element signature="e#3297#3357#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositUnlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="142" column="33" lean-forward="true" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
+          <folding>
+            <element signature="e#623#711#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/partial/DepositBuy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-187">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#679#753#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

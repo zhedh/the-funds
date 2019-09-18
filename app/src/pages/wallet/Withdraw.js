@@ -27,6 +27,7 @@ class Withdraw extends Component {
     captchaKey: +new Date(),
     count: COUNT_DOWN,
     isCountDown: false,
+    isSubmit: false
   }
 
   componentDidMount() {
@@ -130,21 +131,25 @@ class Withdraw extends Component {
       return
     }
 
+    this.setState({isSubmit: true})
     walletStore.withdraw({
       walletTo,
       code,
       amount,
       type
-    }).then(res => {
-      if (res.status !== 1) {
-        Toast.info(res.msg)
-        return
-      }
-      Toast.info('提现成功，正在跳转提币记录页')
-      this.linkTimer = setTimeout(() => {
-        history.push('/wallet/withdraw-record/' + type)
-      }, 2000)
     })
+      .then(res => {
+        this.setState({isSubmit: false})
+        if (res.status !== 1) {
+          Toast.info(res.msg)
+          return
+        }
+        Toast.info('提现成功，正在跳转提币记录页')
+        this.linkTimer = setTimeout(() => {
+          history.push('/wallet/withdraw-record/' + type)
+        }, 2000)
+      })
+      .catch(() => this.setState({isSubmit: false}))
   }
 
   render() {
@@ -158,7 +163,8 @@ class Withdraw extends Component {
       imgSrc,
       captcha,
       count,
-      isCountDown
+      isCountDown,
+      isSubmit
     } = this.state
     const {
       dayMax,
@@ -251,7 +257,7 @@ class Withdraw extends Component {
             <Button
               activeClassName="active"
               className="primary-button"
-              disabled={!canSubmit}
+              disabled={!canSubmit || isSubmit}
               onClick={this.onSubmit}>
               提现
             </Button>
