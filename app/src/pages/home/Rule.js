@@ -184,7 +184,7 @@ function NttcRule() {
         2.NTTC参与计划的单价为2 USDT, 空投折扣价格为:0.8 USDT。
         <br />
         <br />
-        3.参与计划购买档位显示3档,分别为： 200NTTC、300NTTC、500NTTC。
+        3.参与计划购买档位显示3档,分别为： 100NTTC、150NTTC、250NTTC。
         <br />
         <br />
         4.每个用户每天 只能参与计划一次NTTC。
