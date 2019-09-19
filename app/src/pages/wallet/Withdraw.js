@@ -173,9 +173,9 @@ class Withdraw extends Component {
 
     realAmount = Number(amount) - Number(serviceCharge)
     if (type !== 'USDT') {
-      realAmount = -realAmount * mmtPrice
+      realAmount = realAmount * mmtPrice
     }
-    if (realAmount >= 0) return 0
+    if (realAmount <= 0) return 0
     return formatCoinPrice(realAmount)
   }
 

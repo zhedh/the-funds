@@ -8,11 +8,12 @@ import './WithdrawRecord.scss'
 @inject('walletStore')
 @observer
 class WithdrawRecord extends Component {
-  state = {records: []}
+  state = {records: [], type: null}
 
   componentDidMount() {
     const {walletStore, match} = this.props
     const {type} = match.params
+    this.setState({type})
     walletStore.withdrawRecords({type}).then(res => {
       if (res.status !== 1) {
         Toast.info(res.msg)
@@ -54,7 +55,8 @@ class WithdrawRecord extends Component {
   }
 
   render() {
-    const {records} = this.state;
+    const {records, type} = this.state;
+    const isUsdt = type === 'USDT'
 
     return (
       <div id="withdraw-record">
@@ -71,10 +73,10 @@ class WithdrawRecord extends Component {
                 <span>{formatDate(record.addTime)}</span>
               </p>
               <p>
-                <label>{record.tranNum ? 'MUSDT' : ''}数量</label>
+                <label>{(!isUsdt && record.tranNum) ? 'MUSDT' : ''}数量</label>
                 <span>{formatCoinPrice(record.amount)}</span>
               </p>
-              {record.tranNum && <p>
+              {!isUsdt && record.tranNum && <p>
                 <label>折合MMT</label>
                 <span>{formatCoinPrice(record.tranNum)}</span>
               </p>}
