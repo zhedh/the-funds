@@ -33,15 +33,15 @@ class DepositBuy extends Component {
   }
 
   onDeposit = gearNum => {
-    // const {personStore, userStore} = this.props
-    // if (!personStore.isAuth) {
-    //   Toast.info('请进行身份认证')
-    //   return
-    // }
-    // if (!userStore.hasPayPassword) {
-    //   Toast.info('请设置交易密码')
-    //   return
-    // }
+    const {personStore, userStore} = this.props
+    if (!personStore.isAuth) {
+      Toast.info('请进行实名认证')
+      return
+    }
+    if (!userStore.hasPayPassword) {
+      Toast.info('请设置交易密码')
+      return
+    }
     if (gearNum) this.setState({showConfirm: true})
   }
 
@@ -112,20 +112,20 @@ class DepositBuy extends Component {
           )}
           <small>手续费费率：{(productDetail.serviceCharge || 0) * 100}%</small>
         </div>
-        {/*<aside>*/}
-        {/*{!personStore.isAuth && (*/}
-        {/*<p>*/}
-        {/**您暂未通过实名认证，无法参与计划*/}
-        {/*<Link to="/verified-country">去认证</Link>*/}
-        {/*</p>*/}
-        {/*)}*/}
-        {/*{!userStore.hasPayPassword && (*/}
-        {/*<p>*/}
-        {/**您暂未设置交易密码，无法参与*/}
-        {/*<Link to="/password/pay">去设置</Link>*/}
-        {/*</p>*/}
-        {/*)}*/}
-        {/*</aside>*/}
+        <aside>
+          {/*{!personStore.isAuth && (*/}
+          {/*<p>*/}
+          {/**您暂未通过实名认证，无法参与计划*/}
+          {/*<Link to="/verified-country">去认证</Link>*/}
+          {/*</p>*/}
+          {/*)}*/}
+          {!userStore.hasPayPassword && (
+            <p>
+              *您暂未设置交易密码，无法参与
+              <Link to="/password/pay">去设置</Link>
+            </p>
+          )}
+        </aside>
         <Button
           className={`btn ${!gearNum ? 'btn-disabled' : ''}`}
           activeClassName="btn-common__active"
