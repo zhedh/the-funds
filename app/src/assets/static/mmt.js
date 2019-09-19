@@ -34,6 +34,7 @@ const MMT = {
     UPLOAD_WRITE: 'MMT'
   },
   DEPOSIT: {
+    COIN_NAME: '参与节点',
     TITLE: '超级节点',
     TABS: ['参与节点', '特价额度'],
     SIDEBAR_TITLE: '选择参与基金',

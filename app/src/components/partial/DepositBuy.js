@@ -73,6 +73,7 @@ class DepositBuy extends Component {
     const {showConfirm, payPassword, pwdType} = this.state
     const {productDetail, gears, gearNum} = productStore
     const hasGears = gears && gears.length > 0
+    console.log(DEPOSIT)
 
     return (
       <div className={`deposit-buy ${show ? 'show' : ''}`}>
