@@ -33,11 +33,11 @@ class DepositBuy extends Component {
   }
 
   onDeposit = gearNum => {
-    const {personStore, userStore} = this.props
-    if (!personStore.isAuth) {
-      Toast.info('请进行实名认证')
-      return
-    }
+    const {userStore} = this.props
+    // if (!personStore.isAuth) {
+    //   Toast.info('请进行实名认证')
+    //   return
+    // }
     if (!userStore.hasPayPassword) {
       Toast.info('请设置交易密码')
       return
