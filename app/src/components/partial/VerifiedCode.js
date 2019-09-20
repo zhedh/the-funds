@@ -8,7 +8,10 @@ import UserApi from '../../api/user'
 import TelPrefix from "./TelPrefix"
 import TEL_PREFIX_DATA from "../../utils/tel-prefix"
 import './VerifiedCode.scss'
+import {inject, observer} from "mobx-react";
 
+@inject('userStore')
+@observer
 class VerifiedCode extends Component {
   state = {
     isGetSms: true,
@@ -22,11 +25,17 @@ class VerifiedCode extends Component {
   }
 
   componentDidMount() {
+    this.getPrefix()
     this.getCaptchaPng()
   }
 
   componentWillUnmount() {
     clearInterval(this.timer)
+  }
+
+  getPrefix = () => {
+    const {userStore} = this.props
+    this.setState({prefix: userStore.getPrefix()})
   }
 
   getCaptchaPng = () => {
@@ -230,7 +239,7 @@ class VerifiedCode extends Component {
           activeClassName="btn-common__active"
           className={`btn-common ${!canSubmit ? 'btn-common__disabled' : ''}`}
           disabled={!canSubmit}
-          onClick={()=>onNext(prefix.tel)}
+          onClick={() => onNext(prefix.tel)}
         >
           下一步
         </Button>
