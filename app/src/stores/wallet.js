@@ -30,14 +30,17 @@ class WalletStore {
   @action
   getUsdtStream(options) {
     return WalletApi.getUsdtStream(options).then(res => {
-      if (res.status === 1) this.usdtStream = res.data
+      if (res.status === 1) this.usdtStream = res.data.sort((a, b) => b.addTime - a.addTime)
     })
   }
 
   @action
   getCoinStream(options) {
     return WalletApi.getCoinStream(options).then(res => {
-      if (res.status === 1) this.coinStream = res.data
+      if (res.status === 1) {
+        this.coinStream = res.data.sort((a, b) => b.addTime - a.addTime)
+        // this.coinStream = res.data
+      }
     })
   }
 
