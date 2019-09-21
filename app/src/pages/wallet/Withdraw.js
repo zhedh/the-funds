@@ -129,6 +129,14 @@ class Withdraw extends Component {
       Toast.info('请填写提币地址')
       return
     }
+    if (type === 'USDT' && !(/^(1|3)[a-zA-Z\d]{24,33}$/.test(walletTo))) {
+      Toast.info('地址格式错误')
+      return
+    }
+    if (type !== 'USDT' && !(/^(0x)?[0-9a-fA-F]{40}$/.test(walletTo))) {
+      Toast.info('地址格式错误')
+      return
+    }
     if (!amount) {
       Toast.info('请输入提币数量')
       return
