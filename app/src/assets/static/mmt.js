@@ -20,7 +20,7 @@ const MMT = {
     RULE_TITLE: 'MUSDT规则说明'
   },
   BARGAIN: {
-    BANNER_LABEL: '特价XC奖励额度：'
+    BANNER_LABEL: '特价MMT奖励额度：'
   },
   AUTH: {
     IMG_BACK: require('../images/mmt/auth-card-back.png'),
