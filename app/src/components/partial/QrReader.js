@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import QrReader from 'react-qr-reader'
-import {Toast} from "antd-mobile"
-import backWhiteIcon from "../../assets/images/back-white.png"
+import { Toast } from 'antd-mobile'
+import backWhiteIcon from '../../assets/images/back-white.png'
 import './QrReader.scss'
 
 class QrReaderPopup extends Component {
@@ -21,15 +21,11 @@ class QrReaderPopup extends Component {
   }
 
   render() {
-    const {show, onBack} = this.props
+    const { show, onBack } = this.props
     return (
       <div className={`qr-reader__popup ${show ? 'show' : ''}`}>
         <header>
-          <img
-            src={backWhiteIcon}
-            alt="返回"
-            onClick={onBack}
-          />
+          <img src={backWhiteIcon} alt="返回" onClick={onBack} />
           扫描二维码
         </header>
         <div className="qr-reader__box">
@@ -37,7 +33,7 @@ class QrReaderPopup extends Component {
             delay={300}
             onError={this.handleError}
             onScan={this.handleScan}
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
           />
         </div>
       </div>

@@ -14,7 +14,8 @@ const MMT = {
     TITLE: 'MMT',
     IMG_BG: require('../images/mmt/home-bg.png'),
     GENERALIZE_BG: require('../images/mmt/generalize-banner.png'),
-    GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级'],
+    GENERALIZE_LEVEL: ['无', '普通', '初级', '中级', '高级', '超级'],
+    // GENERALIZE_LEVEL: ['无', '一级', '二级', '三级', '四级', '超级'],
     GENERALIZE_USER_ONE_ICON: require('../images/mmt/generalize-user-one.png'),
     GENERALIZE_USER_TWO_ICON: require('../images/mmt/generalize-user-two.png'),
     RULE_TITLE: 'MUSDT规则说明'
